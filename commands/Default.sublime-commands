@@ -1,0 +1,49 @@
+[
+    {
+        "caption": "BoxLang: Settings",
+        "command": "boxlang_edit_settings",
+        "args": {
+            "file": "${packages}/{boxlang_package_name}/settings/boxlang_package.sublime-settings",
+            "default": "{\n\t$0\n}\n"
+        }
+    },
+    {
+        "caption": "BoxLang: Key Bindings",
+        "command": "boxlang_edit_settings",
+        "args": {
+            "file": "${packages}/{boxlang_package_name}/inputmaps/Default ($platform).sublime-keymap",
+            "default": "[\n\t$0\n]\n"
+        }
+    },
+    {
+        "caption": "BoxLang: Mouse Bindings",
+        "command": "boxlang_edit_settings",
+        "args": {
+            "file": "${packages}/{boxlang_package_name}/inputmaps/Default ($platform).sublime-mousemap",
+            "default": "[\n\t$0\n]\n"
+        }
+    },
+    {
+        "caption": "BoxLang: Format Script - Settings",
+        "command": "boxlang_edit_settings",
+        "args": {
+            "file": "${packages}/{boxlang_package_name}/settings/boxlang_format.sublime-settings",
+            "default": "{\n\t$0\n}\n"
+        }
+    },
+    {
+        "caption": "BoxLang: Format Script",
+        "command": "boxlang_format",
+        "args": {
+            "current_method": false
+        }
+    },
+    {
+        "caption": "BoxLang: Index Active Project",
+        "command": "boxlang_index_project"
+    },
+    {
+        "caption": "BoxLang: Toggle Color Scheme Styles",
+        "command": "boxlang_color_scheme_styles"
+    }
+]

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plist version="1.0">
+<dict>
+    <key>name</key>
+    <string>boxlang-indent</string>
+    <key>scope</key>
+    <string>embedding.boxlang source.boxlang -source.boxlang.script, embedding.boxlang text.html</string>
+    <key>settings</key>
+    <dict>
+        <key>decreaseIndentPattern</key>
+        <string><![CDATA[(?x)
+            ^\s*+
+            (
+                    [^<>]*+</(?!html|cfscript)[A-Za-z0-9-]+\b[^>]*>
+                |   ---?>
+                |   \}
+                |   [^<>]*+<cfelse[^>]*>
+            )
+        ]]></string>
+        <key>batchDecreaseIndentPattern</key>
+        <string><![CDATA[(?x)
+            ^\s*+
+            (
+                    [^<>]*+</(?!html|cfscript)[A-Za-z0-9-]+\b[^>]*>
+                |   ---?>
+                |   \}
+                |   [^<>]*+<cfelse[^>]*>
+            )
+        ]]></string>
+        <key>increaseIndentPattern</key>
+        <string><![CDATA[(?x)
+            ^\s*+
+            (
+                    \{[^}"']*$
+                |   <!--(?!.*-->)
+                |   .*<(?!\?|
+                        (?i:area|base|br|col|frame|hr|html|img|input|link|meta|param|cfabort|
+                            cfargument|cfbreak|cfcontent|cfcontinue|cfcookie|cfdirectory|cfdump|
+                            cfexecute|cfexit|cffile|cfflush|cfheader|cfhttpparam|cfimage|cfimport|
+                            cfindex|cfinclude|cfinput|cfinvokeargument|cflocation|cflog|cfloginuser|
+                            cflogout|cfmailparam|cfobject|cfobjectcache|cfparam|cfprocessingdirective|
+                            cfprocparam|cfprocresult|cfproperty|cfqueryparam|cfrethrow|cfreturn|
+                            cfschedule|cfsearch|cfset|cfsetting|cfthrow
+                        )\b
+                        |[^>]*/>)
+                    (?<html_tag>[A-Za-z0-9-]+)(?=\s|>)\b[^>]*>(?!.*</\k<html_tag>\s*>)
+            )
+        ]]></string>
+        <key>batchIncreaseIndentPattern</key>
+        <string><![CDATA[(?x)
+            ^\s*+
+            (
+                    \{[^}"']*$
+                |   <!--(?!.*-->)
+                |   .*<(?!\?|
+                        (?i:area|base|br|col|frame|hr|html|img|input|link|meta|param|cfabort|
+                            cfargument|cfbreak|cfcontent|cfcontinue|cfcookie|cfdirectory|cfdump|
+                            cfexecute|cfexit|cffile|cfflush|cfheader|cfhttpparam|cfimage|cfimport|
+                            cfindex|cfinclude|cfinput|cfinvokeargument|cflocation|cflog|cfloginuser|
+                            cflogout|cfmailparam|cfobject|cfobjectcache|cfparam|cfprocessingdirective|
+                            cfprocparam|cfprocresult|cfproperty|cfqueryparam|cfrethrow|cfreturn|
+                            cfschedule|cfsearch|cfset|cfsetting|cfthrow
+                        )\b
+                        |[^>]*/>)
+                    (?<html_tag>[A-Za-z0-9-]+)(?=\s|>)\b[^>]*>(?!.*</\k<html_tag>\s*>)
+            )
+        ]]></string>
+    </dict>
+</dict>
+</plist>

@@ -1,0 +1,9 @@
+BoxLang package for Sublime Text 3
+https://github.com/ortus-boxlang/sublimetext-boxlang
+
+Thank you for installing this package. Please see the readme at the GitHub
+repository for more information about the features of this package.
+
+The GitHub repository is also the place to raise any issues you encounter.
+
+*IMPORTANT: Sublime Text 3 must be restarted for this package to function properly.*

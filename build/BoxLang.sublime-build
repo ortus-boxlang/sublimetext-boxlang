@@ -1,0 +1,25 @@
+{
+	"shell_cmd": "box \"$file_name\"",
+	"file_regex": "(\\S.*): line ([0-9]+)",
+	"selector": "embedding.boxlang",
+
+	"variants":
+	[
+		{
+			"name": "TestBox: Run Project Tests",
+			"target": "testbox",
+			"test_type": "project"
+		},
+		{
+			"name": "TestBox: Run Directory Tests",
+			"target": "testbox",
+			"test_type": "directory"
+		},
+		{
+			"name": "TestBox: Run Tests",
+			"target": "testbox",
+			"test_type": "cfc"
+		}
+
+	]
+}

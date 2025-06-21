@@ -1,0 +1,57 @@
+[
+    {
+        "caption": "Preferences",
+        "mnemonic": "n",
+        "id": "preferences",
+        "children":
+        [
+            {
+                "caption": "Package Settings",
+                "mnemonic": "P",
+                "id": "package-settings",
+                "children":
+                [
+                    {
+                        "caption": "BoxLang",
+                        "mnemonic": "C",
+                        "children":
+                        [
+                            {
+                                "command": "boxlang_edit_settings",
+                                "args": {
+                                    "file": "${packages}/{boxlang_package_name}/settings/boxlang_package.sublime-settings",
+                                    "default": "{\n\t$0\n}\n"
+                                },
+                                "caption": "Settings"
+                            },
+                            {
+                                "command": "boxlang_edit_settings",
+                                "args": {
+                                    "file": "${packages}/{boxlang_package_name}/inputmaps/Default ($platform).sublime-keymap",
+                                    "default": "[\n\t$0\n]\n"
+                                },
+                                "caption": "Key Bindings"
+                            },
+                            {
+                                "command": "boxlang_edit_settings",
+                                "args": {
+                                    "file": "${packages}/{boxlang_package_name}/inputmaps/Default ($platform).sublime-mousemap",
+                                    "contents": "[\n\t$0\n]\n"
+                                },
+                                "caption": "Mouse Bindings"
+                            },
+                            {
+                                "command": "boxlang_edit_settings",
+                                "args": {
+                                    "file": "${packages}/{boxlang_package_name}/settings/boxlang_format.sublime-settings",
+                                    "default": "{\n\t$0\n}\n"
+                                },
+                                "caption": "Format Settings"
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    }
+]
