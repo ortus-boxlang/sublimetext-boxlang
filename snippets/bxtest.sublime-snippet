@@ -1,0 +1,10 @@
+<snippet>
+    <content><![CDATA[describe("${1:test suite}", () => {
+	it("${2:should do something}", () => {
+		${0:// test code}
+	});
+});]]></content>
+    <tabTrigger>bxtest</tabTrigger>
+    <scope>source.boxlang</scope>
+    <description>BoxLang Test Block</description>
+</snippet>

@@ -1,0 +1,8 @@
+<snippet>
+    <content><![CDATA[if ( ${1:condition} ) {
+	${0:// code}
+}]]></content>
+    <tabTrigger>bxif</tabTrigger>
+    <scope>source.boxlang</scope>
+    <description>BoxLang If Statement</description>
+</snippet>

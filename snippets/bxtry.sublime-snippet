@@ -1,0 +1,10 @@
+<snippet>
+    <content><![CDATA[try {
+	${1:// code}
+} catch ( ${2:e} ) {
+	${0:// handle error}
+}]]></content>
+    <tabTrigger>bxtry</tabTrigger>
+    <scope>source.boxlang</scope>
+    <description>BoxLang Try/Catch</description>
+</snippet>

@@ -26,6 +26,18 @@ def get_indexed_metadata(project_name, dot_path):
     return project_indexes[project_name].get(dot_path)
 
 
+def get_indexed_metadata_by_dotpath(dot_path):
+    """Get metadata for an indexed component by dot path, searching all projects."""
+    for project_name, index in project_indexes.items():
+        metadata = index.get(dot_path)
+        if metadata:
+            return metadata
+        for key, value in index.items():
+            if key.lower() == dot_path.lower():
+                return value
+    return None
+
+
 def get_all_indexed(project_name):
     """Get all indexed components for a project."""
     if project_name not in project_indexes:
@@ -118,7 +130,6 @@ def index_project(project_name, callback=None):
 
             metadata = parse_file(file_path)
 
-            # Calculate dot path
             dot_path = _file_to_dot_path(file_path, project_name, project_data)
             if dot_path:
                 project_indexes[project_name][dot_path] = metadata
@@ -126,6 +137,12 @@ def index_project(project_name, callback=None):
             indexed += 1
             if callback:
                 callback(indexed, total)
+
+            try:
+                from .. import status_bar
+                status_bar.set_indexing_progress(project_name, indexed, total)
+            except Exception:
+                pass
 
         indexing_in_progress[project_name] = False
 
@@ -151,6 +168,134 @@ def _file_to_dot_path(file_path, project_name, project_data):
             return dot_path
 
     return None
+
+
+def get_dot_paths(project_name):
+    """Get all dot paths for a project."""
+    if project_name not in project_indexes:
+        return {}
+
+    result = {}
+    for dot_path, metadata in project_indexes[project_name].items():
+        result[dot_path.lower()] = {
+            "dot_path": dot_path,
+            "file_path": _dot_path_to_file(project_name, dot_path),
+            "metadata": metadata
+        }
+    return result
+
+
+def get_completions_by_file_path(project_name, file_path):
+    """Get completions for a component by file path."""
+    if project_name not in project_indexes:
+        return {}
+
+    for dot_path, metadata in project_indexes[project_name].items():
+        file_from_path = _dot_path_to_file(project_name, dot_path)
+        if file_from_path == file_path:
+            return _build_completions(metadata, dot_path)
+    return {}
+
+
+def get_completions_by_dot_path(project_name, dot_path):
+    """Get completions for a component by dot path."""
+    if project_name not in project_indexes:
+        return None
+
+    metadata = project_indexes[project_name].get(dot_path)
+    if metadata:
+        return _build_completions(metadata, dot_path)
+    return None
+
+
+def get_extended_metadata_by_file_path(project_name, file_path):
+    """Get extended metadata (with inherited functions) for a file path."""
+    if project_name not in project_indexes:
+        return None
+
+    for dot_path, metadata in project_indexes[project_name].items():
+        file_from_path = _dot_path_to_file(project_name, dot_path)
+        if file_from_path == file_path:
+            return _extend_metadata(metadata, project_name)
+    return None
+
+
+def _dot_path_to_file(project_name, dot_path):
+    """Convert a dot path to a file path."""
+    project_data = _get_project_data(project_name)
+    if not project_data:
+        return None
+
+    mappings = project_data.get("mappings", [])
+    for mapping in mappings:
+        mapping_path = utils.normalize_mapping(mapping, project_name)["path"]
+        mapping_prefix = mapping["mapping"]
+        if dot_path.startswith(mapping_prefix.lstrip("/")):
+            rel_path = dot_path[len(mapping_prefix.lstrip("/")):]
+            return utils.normalize_path(mapping_path + "/" + rel_path.replace(".", "/") + ".bx")
+    return None
+
+
+def _build_completions(metadata, dot_path):
+    """Build completion items from component metadata."""
+    completions = {
+        "functions": [],
+        "constructor": None,
+        "dot_path": dot_path
+    }
+
+    functions = metadata.get("functions", {})
+    for func_name, func_meta in functions.items():
+        # Build completion hint
+        args = func_meta.get("args", [])
+        arg_str = ", ".join([a.get("name", "") for a in args])
+        return_type = func_meta.get("return_type", "")
+        hint = f"({arg_str})" + (f": {return_type}" if return_type else "")
+
+        # Build completion content
+        snippet_args = ", ".join([f"${{{i+1}:{a.get('name', '')}}}" for i, a in enumerate(args)])
+        content = f"{func_name}({snippet_args})$0"
+
+        completions["functions"].append({
+            "key": func_name,
+            "hint": hint,
+            "content": content,
+            "private": func_meta.get("access") == "private",
+            "return_type": return_type,
+            "args": args
+        })
+
+    # Build constructor completion
+    init_func = functions.get("init") or functions.get("new")
+    if init_func:
+        args = init_func.get("args", [])
+        snippet_args = ", ".join([f"${{{i+1}:{a.get('name', '')}}}" for i, a in enumerate(args)])
+        completions["constructor"] = type('obj', (object,), {
+            'content': f"({snippet_args})$0"
+        })()
+
+    return completions
+
+
+def _extend_metadata(metadata, project_name):
+    """Extend metadata with inherited functions from parent class."""
+    extended = dict(metadata)
+    extends = metadata.get("extends")
+
+    if extends:
+        # Find parent metadata
+        parent_file = resolve_path(project_name, None, extends)
+        if parent_file:
+            parent_meta = get_extended_metadata_by_file_path(project_name, parent_file)
+            if parent_meta:
+                # Merge parent functions (child overrides parent)
+                parent_functions = parent_meta.get("functions", {})
+                child_functions = extended.get("functions", {})
+                merged = dict(parent_functions)
+                merged.update(child_functions)
+                extended["functions"] = merged
+
+    return extended
 
 
 def _get_project_data(project_name):

@@ -1,0 +1,12 @@
+<snippet>
+    <content><![CDATA[class ${1:ClassName} {
+	extends = "${2:BaseClass}";
+
+	function init() {
+		${0:// constructor code}
+	}
+}]]></content>
+    <tabTrigger>bxclass</tabTrigger>
+    <scope>source.boxlang</scope>
+    <description>BoxLang Class</description>
+</snippet>

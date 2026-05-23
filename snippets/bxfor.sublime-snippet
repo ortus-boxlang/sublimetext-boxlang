@@ -1,0 +1,8 @@
+<snippet>
+    <content><![CDATA[for ( ${1:i} = 0; ${1:i} < ${2:count}; ${1:i}++ ) {
+	${0:// loop body}
+}]]></content>
+    <tabTrigger>bxfor</tabTrigger>
+    <scope>source.boxlang</scope>
+    <description>BoxLang For Loop</description>
+</snippet>

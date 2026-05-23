@@ -1,0 +1,8 @@
+<snippet>
+    <content><![CDATA[<bx:script>
+	${0:// script code}
+</bx:script>]]></content>
+    <tabTrigger>bxscript</tabTrigger>
+    <scope>text.html.boxlang</scope>
+    <description>BoxLang Script Block</description>
+</snippet>

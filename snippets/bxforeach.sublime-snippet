@@ -1,0 +1,8 @@
+<snippet>
+    <content><![CDATA[for ( ${1:item} in ${2:collection} ) {
+	${0:// loop body}
+}]]></content>
+    <tabTrigger>bxforeach</tabTrigger>
+    <scope>source.boxlang</scope>
+    <description>BoxLang For-In Loop</description>
+</snippet>

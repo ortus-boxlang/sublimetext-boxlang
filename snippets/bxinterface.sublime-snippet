@@ -1,0 +1,8 @@
+<snippet>
+    <content><![CDATA[interface ${1:InterfaceName} {
+	${2:// method signatures}
+}]]></content>
+    <tabTrigger>bxinterface</tabTrigger>
+    <scope>source.boxlang</scope>
+    <description>BoxLang Interface</description>
+</snippet>

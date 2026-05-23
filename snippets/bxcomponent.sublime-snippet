@@ -1,0 +1,12 @@
+<snippet>
+    <content><![CDATA[component {
+
+	function init() {
+		${0:// constructor code}
+	}
+
+}]]></content>
+    <tabTrigger>bxcomponent</tabTrigger>
+    <scope>source.boxlang</scope>
+    <description>BoxLang Component</description>
+</snippet>

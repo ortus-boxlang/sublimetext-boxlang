@@ -1,0 +1,8 @@
+<snippet>
+    <content><![CDATA[function ${1:functionName}(${2:arguments}) {
+	${0:// function body}
+}]]></content>
+    <tabTrigger>bxfunc</tabTrigger>
+    <scope>source.boxlang</scope>
+    <description>BoxLang Function</description>
+</snippet>
