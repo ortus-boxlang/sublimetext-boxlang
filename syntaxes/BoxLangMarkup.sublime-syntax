@@ -38,7 +38,7 @@ contexts:
     - include: bx-generic-tag
     - include: interpolation
     - match: '(##)'
-      scope: constant.character.escape.hash.boxlang
+      scope: keyword.operator.escape.hash.boxlang
     - include: html-with-boxlang
 
   html-with-boxlang:
@@ -51,7 +51,7 @@ contexts:
         - include: bx-generic-tag
         - include: interpolation
         - match: '(##)'
-          scope: constant.character.escape.hash.boxlang
+          scope: keyword.operator.escape.hash.boxlang
 
   html-with-boxlang-output:
     - include: scope:text.html.basic
@@ -59,7 +59,7 @@ contexts:
         - match: (</)(bx:output)(>)
           captures:
             1: punctuation.definition.tag.begin.boxlang
-            2: entity.name.tag.boxlang
+            2: keyword.control.boxlang
             3: punctuation.definition.tag.end.boxlang
           pop: true
         - include: bx-function
@@ -69,15 +69,15 @@ contexts:
         - include: bx-generic-tag
         - include: interpolation
         - match: '(##)'
-          scope: constant.character.escape.hash.boxlang
+          scope: keyword.operator.escape.hash.boxlang
 
   interpolation:
     - match: '#(?!#)'
-      scope: punctuation.definition.interpolation.begin.boxlang
+      scope: keyword.operator.interpolation.begin.boxlang
       push:
         - meta_scope: meta.interpolation.boxlang
         - match: '#'
-          scope: punctuation.definition.interpolation.end.boxlang
+          scope: keyword.operator.interpolation.end.boxlang
           pop: true
         - include: scope:source.boxlang
 
@@ -85,7 +85,7 @@ contexts:
     - match: (</)(bx:)([[:alpha:]][[:alnum:]_\-]*)(\s*)(>)
       captures:
         1: punctuation.definition.tag.begin.boxlang
-        2: entity.name.tag.boxlang
+        2: keyword.control.boxlang
         3: entity.name.tag.boxlang
         5: punctuation.definition.tag.end.boxlang
 
@@ -126,7 +126,7 @@ contexts:
     - match: (<)(bx:)([[:alpha:]][[:alnum:]_\-]*)
       captures:
         1: punctuation.definition.tag.begin.boxlang
-        2: entity.name.tag.boxlang
+        2: keyword.control.boxlang
         3: entity.name.tag.boxlang
       push:
         - meta_scope: meta.tag.boxlang
@@ -163,7 +163,7 @@ contexts:
     - match: (<)(bx:function\b)
       captures:
         1: punctuation.definition.tag.begin.boxlang
-        2: entity.name.tag.boxlang
+        2: keyword.control.boxlang
       push:
         - meta_scope: meta.tag.function.boxlang
         - match: '>'
@@ -176,7 +176,7 @@ contexts:
     - match: (</)(bx:function)(>)
       captures:
         1: punctuation.definition.tag.begin.boxlang
-        2: entity.name.tag.boxlang
+        2: keyword.control.boxlang
         3: punctuation.definition.tag.end.boxlang
       pop: true
     - include: scope:source.boxlang
@@ -185,7 +185,7 @@ contexts:
     - match: (<)(bx:output\b)
       captures:
         1: punctuation.definition.tag.begin.boxlang
-        2: entity.name.tag.boxlang
+        2: keyword.control.boxlang
       push:
         - meta_scope: meta.tag.output.boxlang
         - match: '>'
@@ -197,7 +197,7 @@ contexts:
     - match: (</)(bx:output)(>)
       captures:
         1: punctuation.definition.tag.begin.boxlang
-        2: entity.name.tag.boxlang
+        2: keyword.control.boxlang
         3: punctuation.definition.tag.end.boxlang
       pop: true
     - include: html-with-boxlang-output
@@ -206,7 +206,7 @@ contexts:
     - match: (<)(bx:script\b)
       captures:
         1: punctuation.definition.tag.begin.boxlang
-        2: entity.name.tag.boxlang
+        2: keyword.control.boxlang
       push:
         - meta_scope: meta.tag.script.boxlang
         - match: '>'
@@ -219,7 +219,7 @@ contexts:
     - match: (</)(bx:script)(>)
       captures:
         1: punctuation.definition.tag.begin.boxlang
-        2: entity.name.tag.boxlang
+        2: keyword.control.boxlang
         3: punctuation.definition.tag.end.boxlang
       pop: true
     - include: scope:source.boxlang
