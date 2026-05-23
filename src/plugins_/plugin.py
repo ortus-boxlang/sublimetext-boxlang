@@ -2,7 +2,6 @@
 Base plugin class for BoxLang.
 """
 
-
 class BoxlangPlugin:
     """Base class for BoxLang plugins."""
 

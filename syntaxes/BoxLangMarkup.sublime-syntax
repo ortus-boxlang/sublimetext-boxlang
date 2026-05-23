@@ -37,19 +37,33 @@ contexts:
     - include: bx-generic-tag
     - match: '(##)'
       scope: constant.character.escape.hash.boxlang
-    - match: '(?=[^<])'
-      push:
-        - meta_include_prototype: false
-        - meta_scope: text.html.basic.boxlang
-        - match: '(?=<bx:|</bx:)'
+    - include: html-with-boxlang
+
+  html-with-boxlang:
+    - include: scope:text.html.basic
+      with_prototype:
+        - include: bx-function
+        - include: bx-output
+        - include: bx-script
+        - include: bx-generic-tag
+        - match: '(##)'
+          scope: constant.character.escape.hash.boxlang
+
+  html-with-boxlang-output:
+    - include: scope:text.html.basic
+      with_prototype:
+        - match: (</)(bx:output)(>)
+          captures:
+            1: punctuation.definition.tag.begin.boxlang
+            2: entity.name.tag.boxlang
+            3: punctuation.definition.tag.end.boxlang
           pop: true
-        - match: '(?=\S)'
-          push:
-            - meta_include_prototype: false
-            - match: '(?=<bx:|</bx:|\n)'
-              pop: true
-            - match: .
-              scope: text.html.basic.boxlang
+        - include: bx-function
+        - include: bx-output
+        - include: bx-script
+        - include: bx-generic-tag
+        - match: '(##)'
+          scope: constant.character.escape.hash.boxlang
 
   comments:
     - match: /\*\*(?!/|\*)
@@ -162,26 +176,7 @@ contexts:
         2: entity.name.tag.boxlang
         3: punctuation.definition.tag.end.boxlang
       pop: true
-    - include: comments
-    - include: bx-function
-    - include: bx-output
-    - include: bx-script
-    - include: bx-generic-tag
-    - match: '(##)'
-      scope: constant.character.escape.hash.boxlang
-    - match: '(?=[^<])'
-      push:
-        - meta_include_prototype: false
-        - meta_scope: text.html.basic.boxlang
-        - match: '(?=<bx:|</bx:|</bx:output)'
-          pop: true
-        - match: '(?=\S)'
-          push:
-            - meta_include_prototype: false
-            - match: '(?=<bx:|</bx:|</bx:output|\n)'
-              pop: true
-            - match: .
-              scope: text.html.basic.boxlang
+    - include: html-with-boxlang-output
 
   bx-script:
     - match: (<)(bx:script\b)

@@ -2,44 +2,30 @@
 BoxLang documentation plugin.
 Provides inline documentation linking to boxlang.ortusbooks.com.
 """
-
 import re
 import webbrowser
 from ... import utils
 from ... import documentation_helpers
-
-SIDE_COLOR = "#158CBA"
-
-# URL mapping for built-in functions - generated from docs structure
-# Format: function_name -> category/function_name
+SIDE_COLOR = '#158CBA'
 BIF_URL_MAP = {}
-
-# URL mapping for components
 COMPONENT_URL_MAP = {}
-
 
 def build_url_maps():
     """Build URL mapping from completion data."""
     global BIF_URL_MAP, COMPONENT_URL_MAP
-
-    # Load from tags data
     try:
         from ..basecompletions import completions
-        tags_data = completions.get("boxlang_tags", {})
+        tags_data = completions.get('boxlang_tags', {})
         for tag_name in tags_data:
-            COMPONENT_URL_MAP[tag_name] = f"boxlang-language/reference/components/{tag_name}"
+            COMPONENT_URL_MAP[tag_name] = 'boxlang-language/reference/components/{}'.format(tag_name)
     except Exception:
         pass
-
-    # Load from functions data
     try:
         from ..basecompletions import function_names
         for func_name in function_names:
-            # Default to bifs category - will be refined during data generation
-            BIF_URL_MAP[func_name.lower()] = f"boxlang-language/reference/built-in-functions/bifs/{func_name}"
+            BIF_URL_MAP[func_name.lower()] = 'boxlang-language/reference/built-in-functions/bifs/{}'.format(func_name)
     except Exception:
         pass
-
 
 def get_inline_documentation(boxlang_view, doc_type):
     """Get inline documentation for BIFs and tags."""
@@ -47,324 +33,218 @@ def get_inline_documentation(boxlang_view, doc_type):
     doc_attr_or_arg = None
     doc_regions = None
     doc_priority = 0
-
-    # Tags
     if boxlang_view.tag_name:
         doc_name = boxlang_view.tag_name
         doc_attr_or_arg = boxlang_view.tag_attribute_name
-
-        if (
-            doc_type == "hover_doc"
-            and doc_name in ["bx:component", "bx:interface", "bx:function"]
-            and boxlang_view.view.match_selector(boxlang_view.position, "source.boxlang")
-        ):
+        if doc_type == 'hover_doc' and doc_name in ['bx:component', 'bx:interface', 'bx:function'] and boxlang_view.view.match_selector(boxlang_view.position, 'source.boxlang'):
             return None
-
-    # Functions
-    elif boxlang_view.view.match_selector(
-        boxlang_view.position, "meta.function-call.support.boxlang"
-    ):
-        doc_name, function_name_region, function_args_region = boxlang_view.get_function_call(
-            boxlang_view.position, True
-        )
-        doc_regions = [
-            boxlang_view.view.full_line(function_name_region.begin())
-        ]
-
+    elif boxlang_view.view.match_selector(boxlang_view.position, 'meta.function-call.support.boxlang'):
+        doc_name, function_name_region, function_args_region = boxlang_view.get_function_call(boxlang_view.position, True)
+        doc_regions = [boxlang_view.view.full_line(function_name_region.begin())]
     if doc_name:
-        # Remove bx: prefix for lookup
         lookup_name = doc_name
-        if lookup_name.startswith("bx:"):
+        if lookup_name.startswith('bx:'):
             lookup_name = lookup_name[3:]
-
-        # Try to find documentation
         data = _get_boxdoc(lookup_name)
         if data:
-            return boxlang_view.Documentation(
-                doc_regions,
-                build_boxdoc(doc_name, doc_attr_or_arg, data),
-                None,
-                doc_priority,
-            )
-
+            return boxlang_view.Documentation(doc_regions, build_boxdoc(doc_name, doc_attr_or_arg, data), None, doc_priority)
     return None
-
 
 def get_completion_docs(boxlang_view):
     """Get documentation shown during completion."""
-    if boxlang_view.tag_name and boxlang_view.tag_attribute_name and boxlang_view.tag_location == "tag_attributes":
+    if boxlang_view.tag_name and boxlang_view.tag_attribute_name and (boxlang_view.tag_location == 'tag_attributes'):
         lookup_name = boxlang_view.tag_name
-        if lookup_name.startswith("bx:"):
+        if lookup_name.startswith('bx:'):
             lookup_name = lookup_name[3:]
-
         data = _get_boxdoc(lookup_name)
         if data:
-            for param in data.get("params", []):
-                if param.get("name", "").lower() == boxlang_view.tag_attribute_name.lower():
-                    return boxlang_view.CompletionDoc(
-                        None, build_tag_completion_doc(data, param), None
-                    )
+            for param in data.get('params', []):
+                if param.get('name', '').lower() == boxlang_view.tag_attribute_name.lower():
+                    return boxlang_view.CompletionDoc(None, build_tag_completion_doc(data, param), None)
         return None
-
-    if (
-        boxlang_view.function_call_params
-        and boxlang_view.function_call_params.support
-        and not boxlang_view.function_call_params.method
-    ):
+    if boxlang_view.function_call_params and boxlang_view.function_call_params.support and (not boxlang_view.function_call_params.method):
         data = _get_boxdoc(boxlang_view.function_call_params.function_name)
         if data:
-            return boxlang_view.CompletionDoc(
-                None,
-                build_function_completion_doc(boxlang_view.function_call_params, data),
-                None,
-            )
-
+            return boxlang_view.CompletionDoc(None, build_function_completion_doc(boxlang_view.function_call_params, data), None)
     return None
-
 
 def get_goto_boxlang_file(boxlang_view):
     """Get URL for documentation navigation."""
-    # Functions
-    if boxlang_view.view.match_selector(
-        boxlang_view.position, "meta.function-call.support.boxlang"
-    ):
+    if boxlang_view.view.match_selector(boxlang_view.position, 'meta.function-call.support.boxlang'):
         doc_name, _, _ = boxlang_view.get_function_call(boxlang_view.position, True)
         if doc_name:
             url = _get_bif_url(doc_name)
             if url:
                 return boxlang_view.GotoBoxlangFile(url, None)
-
-    # Tags
-    elif boxlang_view.view.match_selector(
-        boxlang_view.position, "meta.tag.boxlang,meta.tag.script.boxlang,meta.tag.script.bx.boxlang"
-    ):
+    elif boxlang_view.view.match_selector(boxlang_view.position, 'meta.tag.boxlang,meta.tag.script.boxlang,meta.tag.script.bx.boxlang'):
         doc_name = utils.get_tag_name(boxlang_view.view, boxlang_view.position)
         if doc_name:
-            if doc_name.startswith("bx:"):
+            if doc_name.startswith('bx:'):
                 doc_name = doc_name[3:]
             url = _get_component_url(doc_name)
             if url:
                 return boxlang_view.GotoBoxlangFile(url, None)
-
     return None
-
 
 def _get_boxdoc(name):
     """Get documentation for a function or tag."""
-    # Try to load from completion data
     try:
         from ..basecompletions import completions
-        functions_data = completions.get("boxlang_functions", {})
+        functions_data = completions.get('boxlang_functions', {})
         if name.lower() in {k.lower(): v for k, v in functions_data.items()}:
             func_data = functions_data.get(name) or functions_data.get(name.lower())
             if func_data:
-                return {
-                    "type": "function",
-                    "name": name,
-                    "description": func_data[0] if len(func_data) > 0 else "",
-                    "params": _extract_params(func_data),
-                    "returns": ""
-                }
-
-        tags_data = completions.get("boxlang_tags", {})
+                return {'type': 'function', 'name': name, 'description': func_data[0] if len(func_data) > 0 else '', 'params': _extract_params(func_data), 'returns': ''}
+        tags_data = completions.get('boxlang_tags', {})
         if name.lower() in {k.lower(): v for k, v in tags_data.items()}:
             tag_data = tags_data.get(name) or tags_data.get(name.lower())
             if tag_data:
-                attrs = tag_data.get("attributes", [[], []]) if isinstance(tag_data, dict) else tag_data
+                attrs = tag_data.get('attributes', [[], []]) if isinstance(tag_data, dict) else tag_data
                 if isinstance(attrs, list) and len(attrs) > 0 and isinstance(attrs[0], list):
                     required = attrs[0]
                     optional = attrs[1] if len(attrs) > 1 else []
-                    params = [{"name": a, "required": True, "type": "any"} for a in required]
-                    params.extend([{"name": a, "required": False, "type": "any"} for a in optional])
+                    params = [{'name': a, 'required': True, 'type': 'any'} for a in required]
+                    params.extend([{'name': a, 'required': False, 'type': 'any'} for a in optional])
                 else:
                     params = []
-                return {
-                    "type": "tag",
-                    "name": name,
-                    "description": f"BoxLang component: {name}",
-                    "params": params
-                }
+                return {'type': 'tag', 'name': name, 'description': 'BoxLang component: {}'.format(name), 'params': params}
     except Exception:
         pass
-
     return None
-
 
 def _extract_params(func_data):
     """Extract params from function completion data."""
     if len(func_data) < 2:
         return []
-    # Parse snippet to extract param names
-    snippet = func_data[1][0] if len(func_data[1]) > 0 else ""
-    params = re.findall(r'\$\{(\d+):(\w+)\}', snippet)
-    return [{"name": p[1], "required": True, "type": "any"} for p in params]
-
+    snippet = func_data[1][0] if len(func_data[1]) > 0 else ''
+    params = re.findall('\\$\\{(\\d+):(\\w+)\\}', snippet)
+    return [{'name': p[1], 'required': True, 'type': 'any'} for p in params]
 
 def _get_bif_url(name):
     """Get documentation URL for a built-in function."""
     if name.lower() in BIF_URL_MAP:
-        return f"https://boxlang.ortusbooks.com/{BIF_URL_MAP[name.lower()]}"
-    return f"https://boxlang.ortusbooks.com/boxlang-language/reference/built-in-functions/bifs/{name}"
-
+        return 'https://boxlang.ortusbooks.com/{}'.format(BIF_URL_MAP[name.lower()])
+    return 'https://boxlang.ortusbooks.com/boxlang-language/reference/built-in-functions/bifs/{}'.format(name)
 
 def _get_component_url(name):
     """Get documentation URL for a component."""
     if name.lower() in COMPONENT_URL_MAP:
-        return f"https://boxlang.ortusbooks.com/{COMPONENT_URL_MAP[name.lower()]}"
-    return f"https://boxlang.ortusbooks.com/boxlang-language/reference/components/{name}"
-
+        return 'https://boxlang.ortusbooks.com/{}'.format(COMPONENT_URL_MAP[name.lower()])
+    return 'https://boxlang.ortusbooks.com/boxlang-language/reference/components/{}'.format(name)
 
 def build_boxdoc(name, attr_or_arg, data):
     """Build documentation HTML."""
-    doc = {"side_color": SIDE_COLOR, "html": {}}
-
-    # Build link
-    if data["type"] == "function":
-        doc["html"]["links"] = [{"href": _get_bif_url(name), "text": f"boxlang.ortusbooks.com/.../{name}"}]
+    doc = {'side_color': SIDE_COLOR, 'html': {}}
+    if data['type'] == 'function':
+        doc['html']['links'] = [{'href': _get_bif_url(name), 'text': 'boxlang.ortusbooks.com/.../{}'.format(name)}]
     else:
-        doc["html"]["links"] = [{"href": _get_component_url(name), "text": f"boxlang.ortusbooks.com/.../{name}"}]
-
-    # Build header
-    doc["html"]["header"] = _build_header(data, attr_or_arg)
-
-    # Build body
-    doc["html"]["body"] = ""
-
-    # Check if we're showing a specific attribute/argument
+        doc['html']['links'] = [{'href': _get_component_url(name), 'text': 'boxlang.ortusbooks.com/.../{}'.format(name)}]
+    doc['html']['header'] = _build_header(data, attr_or_arg)
+    doc['html']['body'] = ''
     if attr_or_arg:
-        for param in data.get("params", []):
-            if param.get("name", "").lower() == attr_or_arg.lower():
+        for param in data.get('params', []):
+            if param.get('name', '').lower() == attr_or_arg.lower():
                 header, body = _build_attr_doc(param)
-                doc["html"]["body"] += documentation_helpers.card(header, body)
+                doc['html']['body'] += documentation_helpers.card(header, body)
                 break
     else:
-        # Show description
-        if data.get("description"):
-            doc["html"]["body"] += documentation_helpers.card(
-                body=documentation_helpers.clean_html(data["description"])
-            )
-
-        # Show params
-        if data.get("params"):
-            header_text = "ARGUMENT REFERENCE" if data["type"] == "function" else "ATTRIBUTE REFERENCE"
-            doc["html"]["body"] += f"<h2>{header_text}</h2>"
-            for param in data["params"]:
+        if data.get('description'):
+            doc['html']['body'] += documentation_helpers.card(body=documentation_helpers.clean_html(data['description']))
+        if data.get('params'):
+            header_text = 'ARGUMENT REFERENCE' if data['type'] == 'function' else 'ATTRIBUTE REFERENCE'
+            doc['html']['body'] += '<h2>{}</h2>'.format(header_text)
+            for param in data['params']:
                 header, body = _build_attr_doc(param)
-                doc["html"]["body"] += documentation_helpers.card(header, body)
-
-    doc["html"]["body"] = re.sub(
-        r"`([^`\n<>]+)`", r'<span class="code">\1</span>', doc["html"]["body"]
-    )
-
+                doc['html']['body'] += documentation_helpers.card(header, body)
+    doc['html']['body'] = re.sub('`([^`\\n<>]+)`', '<span class="code">\\1</span>', doc['html']['body'])
     return doc
-
 
 def _build_header(data, attr_or_arg=None, include_params=True):
     """Build signature header."""
-    if data["type"] != "function":
-        header = f"&lt;bx:{documentation_helpers.span_wrap(data['name'], 'entity.name.tag.boxlang')}"
-        for param in data.get("params", []):
+    if data['type'] != 'function':
+        header = '&lt;bx:{}'.format(documentation_helpers.span_wrap(data['name'], 'entity.name.tag.boxlang'))
+        for param in data.get('params', []):
             if attr_or_arg:
-                if attr_or_arg.lower() != param.get("name", "").lower():
+                if attr_or_arg.lower() != param.get('name', '').lower():
                     continue
-            elif not include_params or not param.get("required", False):
+            elif not include_params or not param.get('required', False):
                 continue
-            header += f" {documentation_helpers.span_wrap(param['name'], 'entity.other.attribute-name')}=\"\""
-        header += "&gt;"
+            header += ' {}=""'.format(documentation_helpers.span_wrap(param['name'], 'entity.other.attribute-name'))
+        header += '&gt;'
         return header
-
-    header = documentation_helpers.span_wrap(data["name"], "entity.name.function")
-    header += "("
-
-    param_base = ""
+    header = documentation_helpers.span_wrap(data['name'], 'entity.name.function')
+    header += '('
+    param_base = ''
     if include_params:
-        for param in data.get("params", []):
-            span_html = param_base + documentation_helpers.span_wrap(
-                param["name"], "variable.parameter.function"
-            )
-            if not param.get("required", True):
-                span_html = "[" + span_html + "]"
-            param_base = ", "
+        for param in data.get('params', []):
+            span_html = param_base + documentation_helpers.span_wrap(param['name'], 'variable.parameter.function')
+            if not param.get('required', True):
+                span_html = '[' + span_html + ']'
+            param_base = ', '
             header += span_html
     else:
-        params = data.get("params", [])
-        header += "..." if len(params) > 0 else ""
-
-    header += ")"
-
-    if data.get("returns"):
-        header += ": " + documentation_helpers.span_wrap(data["returns"], "storage.type")
-
+        params = data.get('params', [])
+        header += '...' if len(params) > 0 else ''
+    header += ')'
+    if data.get('returns'):
+        header += ': ' + documentation_helpers.span_wrap(data['returns'], 'storage.type')
     return header
-
 
 def _build_attr_doc(param):
     """Build attribute/argument documentation."""
     header = documentation_helpers.param_header(param)
-    body = ""
-    if "default" in param and param["default"]:
-        body += f'<p><em>Default:</em> <span class="code">{param["default"]}</span></p>'
-    description = param.get("description", "").replace("\n ", "<br>").replace("\n", "<br>").strip()
+    body = ''
+    if 'default' in param and param['default']:
+        body += '<p><em>Default:</em> <span class="code">{}</span></p>'.format(param['default'])
+    description = param.get('description', '').replace('\n ', '<br>').replace('\n', '<br>').strip()
     if description:
-        body += f"<p>{description}</p>"
-    if "values" in param and param["values"]:
-        body += f'<p><em>values:</em> {", ".join([str(v) for v in param["values"]])}</p>'
-    return header, body
-
+        body += '<p>{}</p>'.format(description)
+    if 'values' in param and param['values']:
+        body += '<p><em>values:</em> {}</p>'.format(', '.join([str(v) for v in param['values']]))
+    return (header, body)
 
 def build_tag_completion_doc(data, param):
     """Build tag completion documentation."""
-    doc = {"side_color": SIDE_COLOR, "html": {}}
-    doc["html"]["header"] = _build_header(data, include_params=False)
+    doc = {'side_color': SIDE_COLOR, 'html': {}}
+    doc['html']['header'] = _build_header(data, include_params=False)
     _, body = _build_attr_doc(param)
-    doc["html"]["body"] = body
-    doc["html"]["arguments"] = documentation_helpers.param_header(param)
+    doc['html']['body'] = body
+    doc['html']['arguments'] = documentation_helpers.param_header(param)
     return doc
-
 
 def build_function_completion_doc(function_call_params, data):
     """Build function completion documentation."""
-    doc = {"side_color": SIDE_COLOR, "html": {}}
-    doc["html"]["header"] = _build_header(data, include_params=False)
-    doc["html"]["body"] = ""
-
+    doc = {'side_color': SIDE_COLOR, 'html': {}}
+    doc['html']['header'] = _build_header(data, include_params=False)
+    doc['html']['body'] = ''
     description_params = []
-    params = data.get("params", [])
+    params = data.get('params', [])
     if params:
         for index, param in enumerate(params):
             if function_call_params.named_params:
-                active_name = function_call_params.params[function_call_params.current_index][0] or ""
-                is_active = active_name.lower() == param.get("name", "").lower()
+                active_name = function_call_params.params[function_call_params.current_index][0] or ''
+                is_active = active_name.lower() == param.get('name', '').lower()
             else:
                 is_active = index == function_call_params.current_index
-
             if is_active:
-                param_variables = {
-                    "name": param.get("name", ""),
-                    "description": param.get("description", "").replace("\n", "<br>"),
-                    "values": ""
-                }
-                if "type" in param and param["type"]:
-                    param_variables["name"] += ": " + param["type"]
-                if "values" in param and param["values"]:
-                    param_variables["values"] = "<em>values:</em> " + ", ".join([str(v) for v in param["values"]])
-                if param_variables["description"] or param_variables["values"]:
-                    doc["html"]["body"] = f'<p>{param_variables["description"]}</p><p>{param_variables["values"]}</p>'
-                description_params.append(f'<span class="active">{param["name"]}</span>')
-            elif param.get("required", True):
-                description_params.append(f'<span class="required">{param["name"]}</span>')
+                param_variables = {'name': param.get('name', ''), 'description': param.get('description', '').replace('\n', '<br>'), 'values': ''}
+                if 'type' in param and param['type']:
+                    param_variables['name'] += ': ' + param['type']
+                if 'values' in param and param['values']:
+                    param_variables['values'] = '<em>values:</em> ' + ', '.join([str(v) for v in param['values']])
+                if param_variables['description'] or param_variables['values']:
+                    doc['html']['body'] = '<p>{}</p><p>{}</p>'.format(param_variables['description'], param_variables['values'])
+                description_params.append('<span class="active">{}</span>'.format(param['name']))
+            elif param.get('required', True):
+                description_params.append('<span class="required">{}</span>'.format(param['name']))
             else:
-                description_params.append(f'<span class="optional">{param["name"]}</span>')
-
-        doc["html"]["arguments"] = "(" + ", ".join(description_params) + ")"
-
+                description_params.append('<span class="optional">{}</span>'.format(param['name']))
+        doc['html']['arguments'] = '(' + ', '.join(description_params) + ')'
     return doc
-
 
 def get_completions(boxlang_view):
     """No completions from this plugin."""
     return None
-
 
 def _plugin_loaded():
     """Build URL maps when plugin loads."""

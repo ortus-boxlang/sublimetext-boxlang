@@ -2,11 +2,9 @@
 Component parser for BoxLang files.
 Routes to AST parser for .bx/.bxs and tag parser for .bxm files.
 """
-
 import os
 from .ast_parser import ASTParser
 from .tag_parser import TagParser
-
 
 def parse_file(file_path):
     """
@@ -28,16 +26,14 @@ def parse_file(file_path):
         }
     """
     ext = os.path.splitext(file_path)[1].lower()
-
-    if ext in [".bx", ".bxs"]:
+    if ext in ['.bx', '.bxs']:
         return ASTParser.parse(file_path)
-    elif ext == ".bxm":
+    elif ext == '.bxm':
         return TagParser.parse(file_path)
     else:
-        return {"parse_errors": [f"Unsupported file extension: {ext}"]}
+        return {'parse_errors': ['Unsupported file extension: {}'.format(ext)]}
 
-
-def parse_string(content, file_type="bxs"):
+def parse_string(content, file_type='bxs'):
     """
     Parse BoxLang code from a string.
 
@@ -48,9 +44,9 @@ def parse_string(content, file_type="bxs"):
     Returns:
         Dictionary with component metadata
     """
-    if file_type in ["bx", "bxs"]:
+    if file_type in ['bx', 'bxs']:
         return ASTParser.parse_string(content)
-    elif file_type == "bxm":
+    elif file_type == 'bxm':
         return TagParser.parse_string(content)
     else:
-        return {"parse_errors": [f"Unsupported file type: {file_type}"]}
+        return {'parse_errors': ['Unsupported file type: {}'.format(file_type)]}
