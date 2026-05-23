@@ -1,0 +1,223 @@
+%YAML 1.2
+---
+
+name: BoxLang
+scope: embedding.boxlang
+version: 2
+
+file_extensions:
+  - bx
+  - bxs
+  - bxm
+
+variables:
+  identifier: '[_$[:alpha:]][_$[:alnum:]]*'
+  dot_path_identifier: '[_$[:alnum:]][_$[:alnum:].]*'
+  constant_identifier: '[[:upper:]][_$[:digit:][:upper:]]*\b'
+  attribute_name: '[_[:alpha:]][[:alnum:]_\-:]*'
+  reserved_word: |-
+    (?x:
+      break|case|catch|continue|default|do|else|finally|for|function|if|import|in|new|return|
+      super|switch|this|try|var|void|while|null|true|false|class|interface|extends|implements|
+      attempt|retry|transaction|lock|abort|throw|rethrow|include|property|component|abstract|
+      final|static|public|private|package|remote|annotation
+    )\b
+
+  non_reserved_identifier: (?:(?!{{reserved_word}}){{identifier}})
+
+  param_attributes: \b(name|default|max|maxLength|min|pattern|type)\b
+  access_modifier: \b(private|package|public|remote)\b
+  storage_modifier: \b(static|final|abstract)\b
+  storage_types: \b(?:any|array|binary|boolean|component|date|guid|numeric|query|string|struct|xml|uuid|void)\b
+  function_declaration_lookahead: |-
+    (?x:
+      ({{access_modifier}}\s+)?
+      ({{storage_modifier}}\s+)?
+      ({{dot_path_identifier}}(\[\])?\s+)?
+      \bfunction\b
+    )
+  function_lookahead: \s*\bfunction\b
+  arrow_func_lookahead: |-
+    (?x:
+      (?:
+        {{identifier}}
+        | \( ( [^()] | \( [^()]* \) )* \)
+      )
+      \s*
+      =>
+    )
+  either_function_lookahead: (?:{{function_lookahead}}|{{arrow_func_lookahead}})
+  possible_arrow_function_begin: (?:\(|{{identifier}})
+  function_assignment_lookahead: |-
+    (?x:(?=
+      \s* = \s*
+      {{either_function_lookahead}}
+    ))
+  function_call_after_lookahead: (?=\s*\()
+
+  block_comment_contents: (?:(?:[^*]|\*(?!/))*)
+  block_comment: (?:/\*{{block_comment_contents}}\*/)
+  nothing: (?:(?:\s|{{block_comment}})*)
+  line_ending_ahead: (?={{nothing}}(?:/\*{{block_comment_contents}}|//.*)?$)
+
+contexts:
+  prototype:
+    - include: comments
+
+  else-pop:
+    - match: (?=\S)
+      pop: true
+
+  immediately-pop:
+    - meta_include_prototype: false
+    - match: ''
+      pop: true
+
+  main:
+    - match: (?i)(?=^\s*(/\*|//|import\b|(class|abstract\s*class|final\s*class|interface)(\s+|{)))
+      push: scope:source.boxlang.script
+    - match: (?=\S)
+      push: html
+
+  tags:
+    - include: comments
+    - include: bx-function
+    - include: bx-output
+    - include: bx-script
+    - include: bx-generic-tag
+
+  html:
+    - match: (?=\S)
+      push:
+        - include: scope:text.html.basic
+      with_prototype:
+        - include: tags
+
+  comments:
+    - match: /\*\*(?!/|\*)
+      scope: punctuation.definition.comment.boxlang
+      push:
+        - meta_include_prototype: false
+        - meta_scope: comment.block.documentation.boxlang
+        - match: \*/
+          scope: punctuation.definition.comment.boxlang
+          pop: true
+    - match: /\*
+      scope: punctuation.definition.comment.boxlang
+      push:
+        - meta_include_prototype: false
+        - meta_scope: comment.block.boxlang
+        - match: \*/
+          scope: punctuation.definition.comment.boxlang
+          pop: true
+    - match: //
+      scope: punctuation.definition.comment.boxlang
+      push:
+        - meta_include_prototype: false
+        - meta_scope: comment.line.double-slash.boxlang
+        - match: \n
+          pop: true
+
+  bx-generic-tag:
+    - match: (<)(bx:)(\w+)
+      captures:
+        1: punctuation.definition.tag.begin.boxlang
+        2: entity.name.tag.boxlang
+        3: entity.name.tag.boxlang
+      push:
+        - meta_scope: meta.tag.boxlang
+        - match: (/?>)
+          scope: punctuation.definition.tag.end.boxlang
+          pop: true
+        - include: tag-attributes
+
+  tag-attributes:
+    - match: (\w[\w\-]*)\s*(=)
+      captures:
+        1: entity.other.attribute-name.boxlang
+        2: punctuation.separator.key-value.boxlang
+      push:
+        - meta_scope: string.quoted.double.boxlang
+        - match: '"'
+          scope: punctuation.definition.string.end.boxlang
+          pop: true
+        - match: '"'
+          scope: punctuation.definition.string.begin.boxlang
+    - match: '(\w[\w\-]*)\s*(=)\s*'
+      captures:
+        1: entity.other.attribute-name.boxlang
+        2: punctuation.separator.key-value.boxlang
+      push:
+        - meta_scope: string.quoted.single.boxlang
+        - match: "'"
+          scope: punctuation.definition.string.end.boxlang
+          pop: true
+        - match: "'"
+          scope: punctuation.definition.string.begin.boxlang
+
+  bx-function:
+    - match: (<)(bx:function\b)
+      captures:
+        1: punctuation.definition.tag.begin.boxlang
+        2: entity.name.tag.boxlang
+      push:
+        - meta_scope: meta.tag.function.boxlang
+        - match: '>'
+          scope: punctuation.definition.tag.end.boxlang
+          set: bx-function-body
+        - include: tag-attributes
+
+  bx-function-body:
+    - meta_content_scope: source.boxlang.script
+    - match: (</)(bx:function)(>)
+      captures:
+        1: punctuation.definition.tag.begin.boxlang
+        2: entity.name.tag.boxlang
+        3: punctuation.definition.tag.end.boxlang
+      pop: true
+    - include: scope:source.boxlang.script
+
+  bx-output:
+    - match: (<)(bx:output\b)
+      captures:
+        1: punctuation.definition.tag.begin.boxlang
+        2: entity.name.tag.boxlang
+      push:
+        - meta_scope: meta.tag.output.boxlang
+        - match: '>'
+          scope: punctuation.definition.tag.end.boxlang
+          set: bx-output-body
+        - include: tag-attributes
+
+  bx-output-body:
+    - match: (</)(bx:output)(>)
+      captures:
+        1: punctuation.definition.tag.begin.boxlang
+        2: entity.name.tag.boxlang
+        3: punctuation.definition.tag.end.boxlang
+      pop: true
+    - match: '(##)'
+      scope: constant.character.escape.hash.boxlang
+    - include: scope:text.html.basic
+
+  bx-script:
+    - match: (<)(bx:script\b)
+      captures:
+        1: punctuation.definition.tag.begin.boxlang
+        2: entity.name.tag.boxlang
+      push:
+        - meta_scope: meta.tag.script.boxlang
+        - match: '>'
+          scope: punctuation.definition.tag.end.boxlang
+          set: bx-script-body
+        - include: tag-attributes
+
+  bx-script-body:
+    - meta_content_scope: source.boxlang.script
+    - match: (</)(bx:script)(>)
+      captures:
+        1: punctuation.definition.tag.begin.boxlang
+        2: entity.name.tag.boxlang
+        3: punctuation.definition.tag.end.boxlang
+      pop: true
+    - include: scope:source.boxlang.script

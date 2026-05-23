@@ -1,0 +1,26 @@
+[
+    {
+        "caption": "BoxLang: Settings",
+        "command": "edit_settings",
+        "args": {
+            "base_file": "${packages}/BoxLang/settings/boxlang.sublime-settings",
+            "default": "{\n\t$0\n}\n"
+        }
+    },
+    {
+        "caption": "BoxLang: Key Bindings",
+        "command": "edit_settings",
+        "args": {
+            "base_file": "${packages}/BoxLang/inputmaps/Default ($platform).sublime-keymap",
+            "default": "[\n\t$0\n]\n"
+        }
+    },
+    {
+        "caption": "BoxLang: Run Setup Wizard",
+        "command": "boxlang_run_wizard"
+    },
+    {
+        "caption": "BoxLang: Index Active Project",
+        "command": "boxlang_index_project"
+    }
+]

@@ -1,0 +1,3922 @@
+{
+  "ArrayAppend": [
+    "Append a value to an array",
+    [
+      "(${1:array}, ${2:value}$0)",
+      "(${1:array}, ${2:value}, ${3:merge}$0)"
+    ]
+  ],
+  "ArrayAvg": [
+    "Return length of array",
+    [
+      "(${1:array}$0)",
+      "(${1:array}$0)"
+    ]
+  ],
+  "ArrayChunk": [
+    "Chunks the array into an array of arrays of the specified size.\n\nThe final chunk may be shorter if the array does not divide evenly.\n\n <pre>\n numbers = [ 1, 2, 3, 4, 5 ];\n numbers.chunk( 2 ); // [ [ 1, 2 ], [ 3, 4 ], [ 5 ] ]\n </pre>",
+    [
+      "(${1:array}, ${2:length}$0)",
+      "(${1:array}, ${2:length}$0)"
+    ]
+  ],
+  "ArrayClear": [
+    "Clear all items from array",
+    [
+      "(${1:array}$0)",
+      "(${1:array}$0)"
+    ]
+  ],
+  "ArrayContains": [
+    "Array finders and contains functions with and without case sensitivity.\n\nPlease note that \"contain\" methods return a boolean, while \"find\" methods return an index.\n If you use a function as the value, it will be used as a search closure or lambda. The signature of the function should be:\n\n <pre>\n    ( value, index ) => {\n \t  \treturn true; // if the value is found, else false\n   }\n </pre>\n\n Example:\n\n <pre>\n   array = [ 1, 2, 3, 4, 5 ];\n  index = array.find( ( value, index ) -> {\n \t\treturn value == 3;\n } );\n </pre>\n\n We recommend you use BoxLang lambdas ({@code ->}) for this purpose, so they only act upon the value and index without any side effects.\n They will be faster and more efficient.",
+    [
+      "(${1:array}, ${2:value}$0)",
+      "(${1:array}, ${2:value}, ${3:substringMatch}$0)"
+    ]
+  ],
+  "ArrayContainsNoCase": [
+    "Array finders and contains functions with and without case sensitivity.\n\nPlease note that \"contain\" methods return a boolean, while \"find\" methods return an index.\n If you use a function as the value, it will be used as a search closure or lambda. The signature of the function should be:\n\n <pre>\n    ( value, index ) => {\n \t  \treturn true; // if the value is found, else false\n   }\n </pre>\n\n Example:\n\n <pre>\n   array = [ 1, 2, 3, 4, 5 ];\n  index = array.find( ( value, index ) -> {\n \t\treturn value == 3;\n } );\n </pre>\n\n We recommend you use BoxLang lambdas ({@code ->}) for this purpose, so they only act upon the value and index without any side effects.\n They will be faster and more efficient.",
+    [
+      "(${1:array}, ${2:value}$0)",
+      "(${1:array}, ${2:value}, ${3:substringMatch}$0)"
+    ]
+  ],
+  "ArrayDelete": [
+    "Delete first occurance of item in array case sensitive",
+    [
+      "(${1:array}, ${2:value}$0)",
+      "(${1:array}, ${2:value}, ${3:scope}$0)"
+    ]
+  ],
+  "ArrayDeleteAt": [
+    "Delete item at specified index in array",
+    [
+      "(${1:array}, ${2:index}$0)",
+      "(${1:array}, ${2:index}$0)"
+    ]
+  ],
+  "ArrayDeleteNoCase": [
+    "Delete first occurance of item in array case sensitive",
+    [
+      "(${1:array}, ${2:value}$0)",
+      "(${1:array}, ${2:value}, ${3:scope}$0)"
+    ]
+  ],
+  "ArrayEach": [
+    "Used to iterate over an array and run the function closure for each item in the array.\n\nThis BIF is used to perform an operation on each item in the array, similar to Java's forEach method.\n It can also be used to perform operations in parallel if the `parallel` argument is set to true.\n\n <h2>Parallel Execution</h2>\n If the <code>parallel</code> argument is set to true, and no <code>max_threads</code> are sent, the iterator will be executed in parallel using a ForkJoinPool with parallel streams.\n If <code>max_threads</code> is specified, it will create a new ForkJoinPool with the specified number of threads to run the iterator in parallel, and destroy it after the operation is complete.\n Please note that this may not be the most efficient way to iterate, as it will create a new ForkJoinPool for each invocation of the BIF. You may want to consider using a shared ForkJoinPool for better performance.",
+    [
+      "(${1:array}$0)",
+      "(${1:array}, ${2:parallel}, ${3:maxThreads}, ${4:ordered}, ${5:virtual}$0)"
+    ]
+  ],
+  "ArrayEvery": [
+    "Used to iterate over an array and test whether <strong>every</strong> item meets the test callback.\n\nThe function will be passed 3 arguments: the value, the index, and the array.\n You can alternatively pass a Java Predicate which will only receive the 1st arg.\n The function should return true if the item meets the test, and false otherwise.\n <p>\n <strong>Note:</strong> This operation is a short-circuit operation, meaning it will stop iterating as soon as it finds the first item that does not meet the test condition.\n <p>\n <h2>Parallel Execution</h2>\n If the <code>parallel</code> argument is set to true, and no <code>max_threads</code> are sent, the filter will be executed in parallel using a ForkJoinPool with parallel streams.\n If <code>max_threads</code> is specified, it will create a new ForkJoinPool with the specified number of threads to run the filter in parallel, and destroy it after the operation is complete.\n This allows for efficient processing of large arrays, especially when the test function is computationally expensive or the array is large.",
+    [
+      "(${1:array}$0)",
+      "(${1:array}, ${2:parallel}, ${3:maxThreads}, ${4:virtual}$0)"
+    ]
+  ],
+  "ArrayFilter": [
+    "Filters an array and returns a new array containing the result\n This BIF will invoke the callback function for each item in the array, passing the item, its index, and the array itself.\n\n<ul>\n <li>If the callback returns true, the item will be included in the new array.</li>\n <li>If the callback returns false, the item will be excluded from the new array.</li>\n <li>If the callback requires strict arguments, it will only receive the item and its index.</li>\n <li>If the callback does not require strict arguments, it will receive the item, its index, and the array itself.</li>\n </ul>\n\n <h2>Parallel Execution</h2>\n If the <code>parallel</code> argument is set to true, and no <code>max_threads</code> are sent, the filter will be executed in parallel using a ForkJoinPool with parallel streams.\n If <code>max_threads</code> is specified, it will create a new ForkJoinPool with the specified number of threads to run the filter in parallel, and destroy it after the operation is complete.\n Please note that this may not be the most efficient way to filter, as it will create a new ForkJoinPool for each invocation of the BIF. You may want to consider using a shared ForkJoinPool for better performance.",
+    [
+      "(${1:array}$0)",
+      "(${1:array}, ${2:parallel}, ${3:maxThreads}, ${4:virtual}$0)"
+    ]
+  ],
+  "ArrayFind": [
+    "Array finders and contains functions with and without case sensitivity.\n\nPlease note that \"contain\" methods return a boolean, while \"find\" methods return an index.\n If you use a function as the value, it will be used as a search closure or lambda. The signature of the function should be:\n\n <pre>\n    ( value, index ) => {\n \t  \treturn true; // if the value is found, else false\n   }\n </pre>\n\n Example:\n\n <pre>\n   array = [ 1, 2, 3, 4, 5 ];\n  index = array.find( ( value, index ) -> {\n \t\treturn value == 3;\n } );\n </pre>\n\n We recommend you use BoxLang lambdas ({@code ->}) for this purpose, so they only act upon the value and index without any side effects.\n They will be faster and more efficient.",
+    [
+      "(${1:array}, ${2:value}$0)",
+      "(${1:array}, ${2:value}, ${3:substringMatch}$0)"
+    ]
+  ],
+  "ArrayFindAll": [
+    "Return an array containing the indexes of matched values",
+    [
+      "(${1:array}, ${2:value}$0)",
+      "(${1:array}, ${2:value}$0)"
+    ]
+  ],
+  "ArrayFindAllNoCase": [
+    "Return an array containing the indexes of matched values",
+    [
+      "(${1:array}, ${2:value}$0)",
+      "(${1:array}, ${2:value}$0)"
+    ]
+  ],
+  "ArrayFindFirst": [
+    "Return first item in array that matches the predicate function.\n\n<pre>\n users = [ { name: \"Ada\" }, { name: \"Grace\" } ];\n users.findFirst( ( user ) => user.name == \"Grace\" ); // { name: \"Grace\" }\n users.findFirst( ( user ) => user.name == \"Linus\", \"Unknown\" ); // \"Unknown\"\n </pre>",
+    [
+      "(${1:array}, ${2:callback}$0)",
+      "(${1:array}, ${2:callback}, ${3:defaultValue}, ${4:parallel}, ${5:maxThreads}, ${6:virtual}$0)"
+    ]
+  ],
+  "ArrayFindNoCase": [
+    "Array finders and contains functions with and without case sensitivity.\n\nPlease note that \"contain\" methods return a boolean, while \"find\" methods return an index.\n If you use a function as the value, it will be used as a search closure or lambda. The signature of the function should be:\n\n <pre>\n    ( value, index ) => {\n \t  \treturn true; // if the value is found, else false\n   }\n </pre>\n\n Example:\n\n <pre>\n   array = [ 1, 2, 3, 4, 5 ];\n  index = array.find( ( value, index ) -> {\n \t\treturn value == 3;\n } );\n </pre>\n\n We recommend you use BoxLang lambdas ({@code ->}) for this purpose, so they only act upon the value and index without any side effects.\n They will be faster and more efficient.",
+    [
+      "(${1:array}, ${2:value}$0)",
+      "(${1:array}, ${2:value}, ${3:substringMatch}$0)"
+    ]
+  ],
+  "ArrayFirst": [
+    "Return first item in array",
+    [
+      "(${1:array}$0)",
+      "(${1:array}, ${2:defaultValue}$0)"
+    ]
+  ],
+  "ArrayFlatMap": [
+    "Maps each element and flattens the result one level.\n\n<pre>\n values = [ 1, 2, 3 ];\n values.flatMap( ( value ) => [ value, value * 10 ] );\n // [ 1, 10, 2, 20, 3, 30 ]\n </pre>",
+    [
+      "(${1:array}$0)",
+      "(${1:array}, ${2:parallel}, ${3:maxThreads}, ${4:virtual}$0)"
+    ]
+  ],
+  "ArrayFlatten": [
+    "Flattens nested arrays to the specified depth.\n\nWhen depth is omitted, the array is flattened completely.\n\n <pre>\n nested = [ 1, [ 2, [ 3 ] ] ];\n nested.flatten(); // [ 1, 2, 3 ]\n nested.flatten( 1 ); // [ 1, 2, [ 3 ] ]\n </pre>",
+    [
+      "(${1:array}$0)",
+      "(${1:array}, ${2:depth}$0)"
+    ]
+  ],
+  "ArrayGetMetadata": [
+    "Gets metadata for items of an array and indicates the array type.",
+    [
+      "(${1:array}$0)",
+      "(${1:array}$0)"
+    ]
+  ],
+  "ArrayGroupBy": [
+    "Returns a struct of keys returned from the predicate function and values of arrays of matching rows.\n\n<pre>\n values = [ 1, 2, 3, 4 ];\n values.groupBy( ( value ) => value % 2 ? \"odd\" : \"even\" );\n // { odd: [ 1, 3 ], even: [ 2, 4 ] }\n </pre>",
+    [
+      "(${1:array}, ${2:callback}$0)",
+      "(${1:array}, ${2:callback}$0)"
+    ]
+  ],
+  "ArrayIndexExists": [
+    "Returns whether there exists an item in the array at the selected index.",
+    [
+      "(${1:array}, ${2:index}$0)",
+      "(${1:array}, ${2:index}$0)"
+    ]
+  ],
+  "ArrayInsertAt": [
+    "Append a value to an array",
+    [
+      "(${1:array}, ${2:position}, ${3:value}$0)",
+      "(${1:array}, ${2:position}, ${3:value}$0)"
+    ]
+  ],
+  "ArrayIsDefined": [
+    "Returns whether there exists an item in the array at the selected index.",
+    [
+      "(${1:array}, ${2:index}$0)",
+      "(${1:array}, ${2:index}$0)"
+    ]
+  ],
+  "ArrayLast": [
+    "Return first item in array",
+    [
+      "(${1:array}$0)",
+      "(${1:array}$0)"
+    ]
+  ],
+  "ArrayMap": [
+    "Iterates over every entry of the array and calls the closure function to work on the element of the array.\n\nThe returned value will be set at the\n same index in a new array and the new array will be returned",
+    [
+      "(${1:array}$0)",
+      "(${1:array}, ${2:parallel}, ${3:maxThreads}, ${4:virtual}$0)"
+    ]
+  ],
+  "ArrayMax": [
+    "Get the max value from an array",
+    [
+      "(${1:array}$0)",
+      "(${1:array}$0)"
+    ]
+  ],
+  "ArrayMedian": [
+    "Return the median value of an array.\n\nWill only work on arrays that contain only numeric values.",
+    [
+      "(${1:array}$0)",
+      "(${1:array}$0)"
+    ]
+  ],
+  "ArrayMerge": [
+    "This function creates a new array with data from the two passed arrays.\n\nTo add all the data from one array into another without creating a new\n array see the built in function ArrayAppend(arr1, arr2, true).",
+    [
+      "(${1:array1}, ${2:array2}, ${3:leaveIndex}$0)",
+      "(${1:array1}, ${2:array2}, ${3:leaveIndex}$0)"
+    ]
+  ],
+  "ArrayMid": [
+    "Extracts a sub array from an existing array.",
+    [
+      "(${1:array}, ${2:start}$0)",
+      "(${1:array}, ${2:start}, ${3:length}$0)"
+    ]
+  ],
+  "ArrayMin": [
+    "Return length of array",
+    [
+      "(${1:array}$0)",
+      "(${1:array}$0)"
+    ]
+  ],
+  "ArrayNew": [
+    "Return new array",
+    [
+      "($0)",
+      "($0)"
+    ]
+  ],
+  "ArrayNone": [
+    "Used to iterate over an array and test whether <strong>NONE</strong> item meets the test callback.\n\nThis is the opposite of {@link ArraySome}.\n <p>\n The function will be passed 3 arguments: the value, the index, and the array.\n You can alternatively pass a Java Predicate which will only receive the 1st arg.\n The function should return true if the item meets the test, and false otherwise.\n <p>\n <strong>Note:</strong> This operation is a short-circuit operation, meaning it will stop iterating as soon as it finds the first item that does meet the test condition.\n <p>\n <h2>Parallel Execution</h2>\n If the <code>parallel</code> argument is set to true, and no <code>max_threads</code> are sent, the filter will be executed in parallel using a ForkJoinPool with parallel streams.\n If <code>max_threads</code> is specified, it will create a new ForkJoinPool with the specified number of threads to run the filter in parallel, and destroy it after the operation is complete.\n This allows for efficient processing of large arrays, especially when the test function is computationally expensive or the array is large.",
+    [
+      "(${1:array}$0)",
+      "(${1:array}, ${2:parallel}, ${3:maxThreads}, ${4:virtual}$0)"
+    ]
+  ],
+  "ArrayPop": [
+    "Remove last item in array and return it",
+    [
+      "(${1:array}$0)",
+      "(${1:array}, ${2:defaultValue}$0)"
+    ]
+  ],
+  "ArrayPrepend": [
+    "Append a value to the start an array",
+    [
+      "(${1:array}, ${2:value}$0)",
+      "(${1:array}, ${2:value}$0)"
+    ]
+  ],
+  "ArrayPush": [
+    "Adds an element or an object to the end of an array, then returns the size of the modified array.",
+    [
+      "(${1:array}, ${2:value}$0)",
+      "(${1:array}, ${2:value}$0)"
+    ]
+  ],
+  "ArrayRange": [
+    "Build an array out of a range of numbers or using our range syntax: {start}..{end}\n or using the from and to arguments\n\n<p>\n You can also build negative ranges\n <p>\n\n <pre>\n arrayRange( \"1..5\" )\n arrayRange( \"-10..5\" )\n arrayRange( 1, 500 )\n </pre>",
+    [
+      "($0)",
+      "(${1:from}, ${2:to}$0)"
+    ]
+  ],
+  "ArrayReduce": [
+    "Run the provided udf over the array to reduce the values to a single output",
+    [
+      "(${1:array}$0)",
+      "(${1:array}, ${2:initialValue}$0)"
+    ]
+  ],
+  "ArrayReduceRight": [
+    "This function iterates over every element of the array and calls the closure to work on that element.\n\nIt will reduce the array to a single value,\n from the right to the left, and return it.",
+    [
+      "(${1:array}$0)",
+      "(${1:array}, ${2:initialValue}$0)"
+    ]
+  ],
+  "ArrayReject": [
+    "Filters an array and returns a new array containing the result.\n\nThis is the inverse of {@code ArrayFilter}.\n\n <pre>\n values = [ 1, 2, 3, 4 ];\n values.reject( ( value ) => value % 2 == 0 ); // [ 1, 3 ]\n </pre>\n \n This BIF will invoke the callback function for each item in the array, passing the item, its index, and the array itself.\n <ul>\n <li>If the callback returns false, the item will be included in the new array.</li>\n <li>If the callback returns true, the item will be excluded from the new array.</li>\n <li>If the callback requires strict arguments, it will only receive the item and its index.</li>\n <li>If the callback does not require strict arguments, it will receive the item, its index, and the array itself.</li>\n </ul>\n\n <h2>Parallel Execution</h2>\n If the <code>parallel</code> argument is set to true, and no <code>max_threads</code> are sent, the filter will be executed in parallel using a ForkJoinPool with parallel streams.\n If <code>max_threads</code> is specified, it will create a new ForkJoinPool with the specified number of threads to run the filter in parallel, and destroy it after the operation is complete.\n Please note that this may not be the most efficient way to filter, as it will create a new ForkJoinPool for each invocation of the BIF. You may want to consider using a shared ForkJoinPool for better performance.",
+    [
+      "(${1:array}$0)",
+      "(${1:array}, ${2:parallel}, ${3:maxThreads}, ${4:virtual}$0)"
+    ]
+  ],
+  "ArrayResize": [
+    "Resets an array to a specified minimum number of elements.\n\nThis can improve performance, if used to size an array to its\n expected maximum. For more than 500 elements, use arrayResize\n immediately after using the ArrayNew BIF.",
+    [
+      "(${1:array}, ${2:size}$0)",
+      "(${1:array}, ${2:size}$0)"
+    ]
+  ],
+  "ArrayReverse": [
+    "Returns an array with all of the elements reversed.\n\nThe value in [0] within the input array will then exist in [n] in the output array, where n is\n the amount of elements in the array minus one.",
+    [
+      "(${1:array}$0)",
+      "(${1:array}$0)"
+    ]
+  ],
+  "ArraySet": [
+    "In a one-dimensional array, sets the elements in a specified\n index range to a value.\n\nUseful for initializing an array after\n a call to arrayNew.",
+    [
+      "(${1:array}, ${2:start}, ${3:end}, ${4:value}$0)",
+      "(${1:array}, ${2:start}, ${3:end}, ${4:value}$0)"
+    ]
+  ],
+  "ArrayShift": [
+    "Removes the first element from an array and returns the removed element.\n\nThis method changes the length of the array. If used on an empty array, an\n exception will be thrown.",
+    [
+      "(${1:array}$0)",
+      "(${1:array}, ${2:defaultValue}$0)"
+    ]
+  ],
+  "ArraySlice": [
+    "Extracts a sub array from an existing array.",
+    [
+      "(${1:array}, ${2:start}$0)",
+      "(${1:array}, ${2:start}, ${3:length}$0)"
+    ]
+  ],
+  "ArraySome": [
+    "Used to iterate over an array and test whether <strong>ANY</strong> items meet the test callback.\n\nThe function will be passed 3 arguments: the value, the index, and the array.\n You can alternatively pass a Java Predicate which will only receive the 1st arg.\n The function should return true if the item meets the test, and false otherwise.\n <p>\n <strong>Note:</strong> This operation is a short-circuit operation, meaning it will stop iterating as soon as it finds the first item that meets the test condition.\n <p>\n <h2>Parallel Execution</h2>\n If the <code>parallel</code> argument is set to true, and no <code>max_threads</code> are sent, the filter will be executed in parallel using a ForkJoinPool with parallel streams.\n If <code>max_threads</code> is specified, it will create a new ForkJoinPool with the specified number of threads to run the filter in parallel, and destroy it after the operation is complete.\n Please note that this may not be the most efficient way to iterate, as it will create a new ForkJoinPool for each invocation of the BIF. You may want to consider using a shared ForkJoinPool for better performance.\n <p>",
+    [
+      "(${1:array}$0)",
+      "(${1:array}, ${2:parallel}, ${3:maxThreads}, ${4:virtual}$0)"
+    ]
+  ],
+  "ArraySort": [
+    "Sorts array elements.",
+    [
+      "(${1:array}$0)",
+      "(${1:array}, ${2:sortType}, ${3:sortOrder}, ${4:localeSensitive}$0)"
+    ]
+  ],
+  "ArraySplice": [
+    "Modifies an array by removing elements and adding new elements.\n\nIt starts from the index, removes as many elements as specified by\n elementCountForRemoval, and puts the replacements starting from index position.",
+    [
+      "(${1:array}, ${2:index}$0)",
+      "(${1:array}, ${2:index}, ${3:elementCountForRemoval}, ${4:replacements}$0)"
+    ]
+  ],
+  "ArraySum": [
+    "Returns the sum of all values in an array",
+    [
+      "(${1:array}$0)",
+      "(${1:array}$0)"
+    ]
+  ],
+  "ArraySwap": [
+    "Swaps array values of an array at specified positions.\n\nThis function is more efficient than multiple assignment statements",
+    [
+      "(${1:array}, ${2:position1}, ${3:position2}$0)",
+      "(${1:array}, ${2:position1}, ${3:position2}$0)"
+    ]
+  ],
+  "ArrayToList": [
+    "Used to iterate over an array and run the function closure for each item in the array.",
+    [
+      "(${1:array}$0)",
+      "(${1:array}, ${2:delimiter}, ${3:initialValue}$0)"
+    ]
+  ],
+  "ArrayToStruct": [
+    "Transform the array to a struct, the index of the array is the key of the struct",
+    [
+      "(${1:array}$0)",
+      "(${1:array}$0)"
+    ]
+  ],
+  "ArrayTranspose": [
+    "Returns a transposed array based on all passed in arrays.\n\n<pre>\n arrayTranspose(\n     [ 1, 2, 3 ],\n     [ 4, 5, 6 ],\n     [ 7, 8, 9 ]\n );\n // [ [ 1, 4, 7 ], [ 2, 5, 8 ], [ 3, 6, 9 ] ]\n </pre>",
+    [
+      "($0)",
+      "($0)"
+    ]
+  ],
+  "ArrayUnique": [
+    "Returns a new array with duplicate items removed.\n\n<pre>\n values = [ 1, 1, 2, 3, 3 ];\n values.unique(); // [ 1, 2, 3 ]\n </pre>",
+    [
+      "(${1:array}$0)",
+      "(${1:array}$0)"
+    ]
+  ],
+  "ArrayUnshift": [
+    "This function adds one or more elements to the beginning of the original array and returns the length of the modified array.",
+    [
+      "(${1:array}, ${2:object}$0)",
+      "(${1:array}, ${2:object}$0)"
+    ]
+  ],
+  "ArrayZip": [
+    "Returns a zipped array.\n\n<pre>\n arrayZip( [ 1, 2 ], [ \"a\", \"b\" ] );\n // [ [ 1, \"a\" ], [ 2, \"b\" ] ]\n\n arrayZip( [ 1, 2 ], [ 10, 20 ], ( a, b ) => a + b );\n // [ 11, 22 ]\n </pre>",
+    [
+      "(${1:array1}, ${2:array2}$0)",
+      "(${1:array1}, ${2:array2}, ${3:callback}, ${4:parallel}, ${5:maxThreads}, ${6:virtual}$0)"
+    ]
+  ],
+  "AsyncAll": [
+    "This BIF accepts an array of futures/closures/lambdas and executes them all in parallel.\n\nIt returns a BoxFuture that will contain an array of results once all futures are completed\n successfully.\n <p>\n This means that the futures will be executed in parallel and the results will be returned in the order\n that they were passed in. This also means that this operation is non-blocking and will return immediately\n until you call get() on the future.\n <p>\n Each future can be a BoxFuture or a CompletableFuture or a BoxLang Function that will be treated as a future.\n\n <pre>\n results = all( [f1, f2, f3] ).get()\n all( [f1, f2, f3] ).then( (values) => logResults( values ) );\n </pre>",
+    [
+      "(${1:futures}$0)",
+      "(${1:futures}, ${2:executor}$0)"
+    ]
+  ],
+  "AsyncAllApply": [
+    "This function can accept an array of items or a struct of items and apply a function\n to each of the item's in parallel.\n\nThe `mapper` argument receives the appropriate item\n and must return a result.\n <p>\n The `errorHandler` is optional and will be called if the mapper function throws an exception.\n The error handler receives the exception and the item that caused it, allowing you to handle errors gracefully.\n <p>\n The result is a future that will return an array of results, or a struct of results if the input was a struct.\n <p>\n The `executor` argument is optional and allows you to specify a custom executor for the\n asynchronous operations. If not provided, the common fork-join pool will be used.\n <p>\n The `timeout` and `timeUnit` arguments allow you to specify a timeout for the operation.\n If the operation does not complete within the specified timeout, it will throw a TimeoutException.\n The allowed time units are: `DAYS`, `HOURS`, `MINUTES`, `SECONDS`, `MILLISECONDS`, `MICROSECONDS`, `NANOSECONDS`.\n <p>\n Example usage:\n\n <pre>\n // Array\n allApply( items, ( item ) => item.getMemento() )\n // Struct: The result object is a struct of `key` and `value`\n allApply( data, ( item ) => item.key &amp; item.value.toString() )\n </pre>",
+    [
+      "(${1:items}, ${2:mapper}$0)",
+      "(${1:items}, ${2:mapper}, ${3:errorHandler}, ${4:executor}, ${5:timeout}, ${6:timeUnit}$0)"
+    ]
+  ],
+  "AsyncAny": [
+    "This BIF accepts an array of futures/closures/lambdas and executes them all in parallel,\n returning a BoxFuture that will contain the result of the first future that completes successfully.",
+    [
+      "(${1:futures}$0)",
+      "(${1:futures}, ${2:executor}$0)"
+    ]
+  ],
+  "AsyncRun": [
+    "Executes the given code asynchronously and returns to you a BoxFuture object which inherits from CompletableFuture.\n\nThis way you can create fluent asynchronous code that can be chained and composed.",
+    [
+      "(${1:callback}$0)",
+      "(${1:callback}, ${2:executor}$0)"
+    ]
+  ],
+  "ExecutorDelete": [
+    "Deletes an executor from the registry by name.\n\nIf the executor has not been shutdown,\n it will be forcibly shutdown via shutdownNow() before removal.",
+    [
+      "(${1:name}$0)",
+      "(${1:name}$0)"
+    ]
+  ],
+  "ExecutorGet": [
+    "Get an executor by name.\n\nIf no name is provided, the default executor is returned \"io-tasks\".\n BoxLang registers 3 executors by default for you:\n <ul>\n <li><strong>io-tasks</strong>: For IO bound tasks, which are not scheduled and uses virtual threads</li>\n <li><strong>cpu-tasks</strong>: For CPU bound tasks, which can be scheduled. (20 threads by default)</li>\n <li><strong>scheduled-tasks</strong>: For scheduled tasks (20 threads by default)</li>\n </ul>",
+    [
+      "(${1:name}$0)",
+      "(${1:name}$0)"
+    ]
+  ],
+  "ExecutorHas": [
+    "Verify if an executor exists",
+    [
+      "(${1:name}$0)",
+      "(${1:name}$0)"
+    ]
+  ],
+  "ExecutorList": [
+    "Get's an array of all the executors registered in the system",
+    [
+      "($0)",
+      "($0)"
+    ]
+  ],
+  "ExecutorNew": [
+    "Creates and registers a new executor by name and type.\n\nThe return value is an BoxExecutor object that can be used to interact with the executor.\n\n Available types are:\n - \"cached\" - Creates a cached thread pool executor.\n - \"fixed\" - Creates a fixed thread pool executor.\n - \"fork_join\" - Creates a fork join pool executor.\n - \"scheduled\" - Creates a scheduled thread pool executor.\n - \"single\" - Creates a single thread executor.\n - \"virtual\" - Creates a virtual thread executor.\n - \"work_stealing\" - Creates a work stealing thread pool executor.",
+    [
+      "(${1:name}, ${2:type}$0)",
+      "(${1:name}, ${2:type}, ${3:maxThreads}$0)"
+    ]
+  ],
+  "ExecutorShutdown": [
+    "Shuts down an executor by name.\n\nBy default\n the executors are shutdown gracefully. However, if you want to force the shutdown\n you can set the force argument to true. If you want to wait for the executor to shutdown\n you can set the timeout argument to the number of milliseconds to wait.",
+    [
+      "(${1:name}, ${2:force}, ${3:timeout}$0)",
+      "(${1:name}, ${2:force}, ${3:timeout}$0)"
+    ]
+  ],
+  "ExecutorStatus": [
+    "Get a struct map of a specific executor and its stats.\n\nIf no parameters are passed, it will return a struct map of all executors and their stats.",
+    [
+      "($0)",
+      "(${1:name}$0)"
+    ]
+  ],
+  "FutureNew": [
+    "Create a new BoxFuture object.",
+    [
+      "($0)",
+      "(${1:value}, ${2:executor}$0)"
+    ]
+  ],
+  "IsInThread": [
+    "Verifies if the calling execution code is running in a thread or not.",
+    [
+      "($0)",
+      "($0)"
+    ]
+  ],
+  "IsThreadInterrupted": [
+    "Verifies if the current thread is interrupted or not.\n\nYou can also pass in a thread name to check if that thread is interrupted.\n <p>\n Example:\n\n <pre>\n if ( !IsThreadInterrupted() ) {\n     // Do work\n }\n </pre>",
+    [
+      "($0)",
+      "(${1:name}$0)"
+    ]
+  ],
+  "RunAsync": [
+    "Executes the given code asynchronously and returns to you a BoxFuture object which inherits from CompletableFuture.\n\nThis way you can create fluent asynchronous code that can be chained and composed.",
+    [
+      "(${1:callback}$0)",
+      "(${1:callback}, ${2:executor}$0)"
+    ]
+  ],
+  "ThreadInterrupt": [
+    "Interrupt the specific thread by name or all threads managed by the thread manager.\n\n<p>\n Example:\n\n <pre>\n ThreadInterrupt( \"myThread\" );\n </pre>\n <p>\n This will interrupt the thread with the name \"myThread\".\n <p>\n Example:\n\n <pre>\n\n ThreadInterrupt();\n </pre>\n <p>\n This will interrupt all threads managed by the thread manager.",
+    [
+      "($0)",
+      "(${1:name}$0)"
+    ]
+  ],
+  "ThreadJoin": [
+    "Waits for the given thread object to finish running",
+    [
+      "($0)",
+      "(${1:threadName}, ${2:timeout}$0)"
+    ]
+  ],
+  "ThreadNew": [
+    "Creates a new thread of execution based on the passed closure/lambda.",
+    [
+      "(${1:runnable}$0)",
+      "(${1:runnable}, ${2:attributes}, ${3:name}, ${4:priority}, ${5:virtual}$0)"
+    ]
+  ],
+  "ThreadTerminate": [
+    "Terminates the thread specified by the threadName parameter.",
+    [
+      "(${1:threadName}$0)",
+      "(${1:threadName}$0)"
+    ]
+  ],
+  "isThreadAlive": [
+    "Tests if this thread is alive.\n\nA thread is alive if it has been started and has not yet terminated.\n <p>\n Example:\n\n <pre>\n if ( isThreadAlive( \"myThread \" ) ) {\n     // wiat\n }\n </pre>",
+    [
+      "(${1:name}$0)",
+      "(${1:name}$0)"
+    ]
+  ],
+  "BoxLangBIFProxy": [
+    "No description available.",
+    [
+      "($0)",
+      "($0)"
+    ]
+  ],
+  "BinaryDecode": [
+    "Encodes binary data to a string with the specified algorithm",
+    [
+      "(${1:string}, ${2:encoding}$0)",
+      "(${1:string}, ${2:encoding}$0)"
+    ]
+  ],
+  "BinaryEncode": [
+    "Encodes binary data to a string with the specified algorithm",
+    [
+      "(${1:binary}, ${2:encoding}$0)",
+      "(${1:binary}, ${2:encoding}$0)"
+    ]
+  ],
+  "BitAnd": [
+    "Performs a bitwise logical AND operation.",
+    [
+      "(${1:number1}, ${2:number2}$0)",
+      "(${1:number1}, ${2:number2}$0)"
+    ]
+  ],
+  "BitMaskClear": [
+    "Performs a bitwise mask clear operation.",
+    [
+      "(${1:number}, ${2:start}, ${3:length}$0)",
+      "(${1:number}, ${2:start}, ${3:length}$0)"
+    ]
+  ],
+  "BitMaskRead": [
+    "Performs a bitwise mask read operation.",
+    [
+      "(${1:number}, ${2:start}, ${3:length}$0)",
+      "(${1:number}, ${2:start}, ${3:length}$0)"
+    ]
+  ],
+  "BitMaskSet": [
+    "Performs a bitwise mask set operation.",
+    [
+      "(${1:number}, ${2:mask}, ${3:start}, ${4:length}$0)",
+      "(${1:number}, ${2:mask}, ${3:start}, ${4:length}$0)"
+    ]
+  ],
+  "BitNot": [
+    "Performs a bitwise logical NOT operation.",
+    [
+      "(${1:number}$0)",
+      "(${1:number}$0)"
+    ]
+  ],
+  "BitOr": [
+    "Performs a bitwise logical OR operation.",
+    [
+      "(${1:number1}, ${2:number2}$0)",
+      "(${1:number1}, ${2:number2}$0)"
+    ]
+  ],
+  "BitSh": [
+    "Performs a bitwise shift-left or shift-right, no-rotation operation.",
+    [
+      "(${1:number}, ${2:count}$0)",
+      "(${1:number}, ${2:count}$0)"
+    ]
+  ],
+  "BitXor": [
+    "Performs a bitwise logical XOR operation.",
+    [
+      "(${1:number1}, ${2:number2}$0)",
+      "(${1:number1}, ${2:number2}$0)"
+    ]
+  ],
+  "bitShln": [
+    "Performs a bitwise shift-left or shift-right, no-rotation operation.",
+    [
+      "(${1:number}, ${2:count}$0)",
+      "(${1:number}, ${2:count}$0)"
+    ]
+  ],
+  "bitShrn": [
+    "Performs a bitwise shift-left or shift-right, no-rotation operation.",
+    [
+      "(${1:number}, ${2:count}$0)",
+      "(${1:number}, ${2:count}$0)"
+    ]
+  ],
+  "Cache": [
+    "The entry BIF into the BoxCache.\n\nThis BIF will retrieve a named cache registered in our cache service.\n If you don't pass a cache name, it will default to the {@code default} cache.\n\n Once you have an instance to a cache, you can use the various methods to interact with the cache.\n Every cache must adhere to the {@link ICacheProvider} interface.",
+    [
+      "($0)",
+      "(${1:cacheName}$0)"
+    ]
+  ],
+  "CacheFilter": [
+    "This method creates a cache filter that can be used to operate on a cache instance and its keys.\n\nThe filter can be used to clear, get, or remove keys from the cache.\n\n All filters must be adhere to the {@link ICacheKeyFilter} interface.\n\n Example:\n\n <pre>\n cache().clear( cacheFilter( \"foo*\" ) );\n cache().clear( cacheFilter( \".*foo.*\", true ) );\n\n You can also create your own custom cache filter by using a closure/lambda that\n accepts a {@code\n Key\n } and returns a boolean.\n\n Example:\n\n <pre>\n cache().clear( key -> key.getName().startsWith( \"foo\" ) );\n cache().clear( key -> key.getName().matches( \".*foo.*\" ) );\n </pre>",
+    [
+      "(${1:filter}$0)",
+      "(${1:filter}, ${2:useRegex}$0)"
+    ]
+  ],
+  "CacheNames": [
+    "Get an array of all the registered caches in BoxLang",
+    [
+      "($0)",
+      "($0)"
+    ]
+  ],
+  "CacheProviders": [
+    "Get an array of all the registered cache providers in BoxLang",
+    [
+      "($0)",
+      "($0)"
+    ]
+  ],
+  "CacheService": [
+    "Get access to the Box Cache services",
+    [
+      "($0)",
+      "($0)"
+    ]
+  ],
+  "GetBoxCache": [
+    "The entry BIF into the BoxCache.\n\nThis BIF will retrieve a named cache registered in our cache service.\n If you don't pass a cache name, it will default to the ,{@code default}, cache.\n\n Once you have an instance to a cache, you can use the various methods to interact with the cache.\n Every cache must adhere to the ,{@link ICacheProvider}, interface.",
+    [
+      "($0)",
+      "(${1:cacheName}$0)"
+    ]
+  ],
+  "GetBoxCacheFilter": [
+    "This method creates a cache filter that can be used to operate on a cache instance and its keys.\n\nThe filter can be used to clear, get, or remove keys from the cache.\n\n All filters must be adhere to the ,{@link ICacheKeyFilter}, interface.\n\n Example:\n\n ,<pre>,\n getBoxCache().clear( getBoxCacheFilter( \"foo*\" ) );\n getBoxCache().clear( getBoxCacheFilter( \".*foo.*\", true ) );\n\n You can also create your own custom cache filter by using a closure/lambda that\n accepts a ,{@code\n Key\n }, and returns a boolean.\n\n Example:\n\n ,<pre>,\n getBoxCache().clear( key -> key.getName().startsWith( \"foo\" ) );\n getBoxCache().clear( key -> key.getName().matches( \".*foo.*\" ) );\n ,</pre>",
+    [
+      "(${1:filter}$0)",
+      "(${1:filter}, ${2:useRegex}$0)"
+    ]
+  ],
+  "GetBoxCacheNames": [
+    "Get an array of all the registered caches in BoxLang",
+    [
+      "($0)",
+      "($0)"
+    ]
+  ],
+  "GetBoxCacheProviders": [
+    "Get an array of all the registered cache providers in BoxLang",
+    [
+      "($0)",
+      "($0)"
+    ]
+  ],
+  "GetBoxCacheService": [
+    "Get access to the Box Cache services.",
+    [
+      "($0)",
+      "($0)"
+    ]
+  ],
+  "CLIClear": [
+    "Clears the CLI screen.",
+    [
+      "($0)",
+      "($0)"
+    ]
+  ],
+  "CLIExit": [
+    "Exits the CLI with the specified exit code.",
+    [
+      "($0)",
+      "(${1:exitCode}$0)"
+    ]
+  ],
+  "CLIGetArgs": [
+    "This method will parse the cli arguments and return a struct of the following:\n <ul>\n <li><code>options</code> - A struct of the options</li>\n <li><code>positionals</code> - An array of the positional arguments</li>\n </ul>\n\n<p>\n The options can be provided in the following formats:\n <ul>\n <li><code>--option</code> - A boolean option</li>\n <li><code>--option=value</code> - An option with a value</li>\n <li><code>--option=\"value\"</code> - An option with a quoted value</li>\n <li><code>--option='value'</code> - An option with a quoted value</li>\n <li><code>-o=value</code> - A shorthand option with a value</li>\n <li><code>-o</code> - A shorthand boolean option</li>\n <li><code>--!option</code> - A negation option</li>\n </ul>\n\n <p>\n For example, the following cli arguments:\n\n <pre>\n --debug --!verbose --bundles=Spec -o='/path/to/file' -v my/path/template\n </pre>\n\n <p>\n Will be parsed into the following struct:\n\n <pre>\n {\n \"options\" :  {\n    \t\"debug\": true,\n   \t\"verbose\": false,\n  \t\"bundles\": \"Spec\",\n \t   \t\"o\": \"/path/to/file\",\n \t   \t\"v\": true\n },\n \"positionals\": [ \"my/path/template\" ]\n </pre>\n\n <h2>Some Ground Rules</h2>\n <ul>\n <li>Options are prefixed with --</li>\n <li>Shorthand options are prefixed with -</li>\n <li>Options can be negated with --! or --no-</li>\n <li>Options can have values separated by =</li>\n <li>Values can be quoted with single or double quotes</li>\n <li>Repeated options will override the previous value</li>\n </ul>",
+    [
+      "($0)",
+      "($0)"
+    ]
+  ],
+  "CLIRead": [
+    "Reads a line of text from the CLI.\n\nYou can optionally provide a prompt string to display before reading the input.",
+    [
+      "($0)",
+      "(${1:prompt}$0)"
+    ]
+  ],
+  "DataNavigate": [
+    "Constructs a fluent data navigator based on different types of data.\n\n<p>\n Available Input Types:\n <ul>\n <li>String: A JSON string</li>\n <li>File Path: A path to a JSON file as a string</li>\n <li>File Path: A path to a JSON file as a Java Path</li>\n <li>Struct: A structure</li>\n <li>Map: A Java map</li>\n </ul>",
+    [
+      "(${1:data}$0)",
+      "(${1:data}$0)"
+    ]
+  ],
+  "JSONDeserialize": [
+    "Converts a JSON (JavaScript Object Notation) string data representation into data, such as a structure or array.",
+    [
+      "(${1:json}$0)",
+      "(${1:json}, ${2:strictMapping}, ${3:useCustomSerializer}$0)"
+    ]
+  ],
+  "JSONPrettify": [
+    "Prettifies a JSON string.",
+    [
+      "(${1:var}$0)",
+      "(${1:var}$0)"
+    ]
+  ],
+  "JSONSerialize": [
+    "Converts a BoxLang variable into a JSON (JavaScript Object Notation) string according to the specified options.\n\n<h2>Query Format Options</h2>\n The <code>queryFormat</code> argument determines how queries are serialized:\n <ul>\n <li><code>row</code> or <code>false</code>: Serializes the query as a top-level struct with two keys:\n <code>columns</code> (an array of column names) and <code>data</code> (an array of arrays representing\n each row's data).</li>\n <li><code>column</code> or <code>true</code>: Serializes the query as a top-level struct with three keys:\n <code>rowCount</code> (the number of rows), <code>columns</code> (an array of column names), and\n <code>data</code> (a struct where each key is a column name and the value is an array of values for that column).</li>\n <li><code>struct</code>: Serializes the query as an array of structs, where each struct represents a row of data.</li>\n </ul>\n\n <h2>Usage</h2>\n \n <pre>\n // Convert a query to JSON\n myQuery = ...;\n json = jsonSerialize( myQuery, queryFormat=\"row\" );\n // Convert a list to JSON\n myList = \"foo,bar,baz\";\n jsonList = jsonSerialize( myList );\n </pre>",
+    [
+      "(${1:data}$0)",
+      "(${1:data}, ${2:queryFormat}, ${3:useSecureJSONPrefix}, ${4:useCustomSerializer}, ${5:pretty}$0)"
+    ]
+  ],
+  "LSParseNumber": [
+    "Converts a string that is a valid numeric representation in the current locale into a formatted number.",
+    [
+      "(${1:number}$0)",
+      "(${1:number}, ${2:locale}$0)"
+    ]
+  ],
+  "ParseNumber": [
+    "Converts a string to a number in the specified numeral system",
+    [
+      "(${1:number}$0)",
+      "(${1:number}, ${2:locale}, ${3:radix}$0)"
+    ]
+  ],
+  "ToBase64": [
+    "Calculates the Base64 representation of a string or binary object.\n\nThe Base64 format uses printable characters, allowing binary data to be sent in\n forms and e-mail, and stored in a database or file.",
+    [
+      "(${1:string_or_object}$0)",
+      "(${1:string_or_object}, ${2:encoding}$0)"
+    ]
+  ],
+  "ToBinary": [
+    "Calculates the binary representation of Base64-encoded data.",
+    [
+      "(${1:base64_or_object}$0)",
+      "(${1:base64_or_object}$0)"
+    ]
+  ],
+  "ToModifiable": [
+    "Convert an array, struct or query to its Modifiable counterpart.",
+    [
+      "(${1:value}$0)",
+      "(${1:value}$0)"
+    ]
+  ],
+  "ToNumeric": [
+    "Cast a value to a number.",
+    [
+      "(${1:value}$0)",
+      "(${1:value}, ${2:radix}$0)"
+    ]
+  ],
+  "ToScript": [
+    "Creates a JavaScript expression that assigns the input BoxLang value to a JavaScript variable.\n\nThis is useful for converting BoxLang values to JavaScript variables in a script.\n It can convert:\n <ul>\n <li>Booleans</li>\n <li>DateTimes</li>\n <li>Numbers</li>\n <li>Arrays</li>\n <li>Queries</li>\n <li>Strings</li>\n <li>Structures</li>\n </ul>",
+    [
+      "(${1:cfvar}, ${2:javascriptvar}$0)",
+      "(${1:cfvar}, ${2:javascriptvar}$0)"
+    ]
+  ],
+  "ToString": [
+    "Converts a value to a string.",
+    [
+      "(${1:value}$0)",
+      "(${1:value}, ${2:encoding}$0)"
+    ]
+  ],
+  "ToUnmodifiable": [
+    "Convert an array, struct or query to its Unmodifiable counterpart.",
+    [
+      "(${1:value}$0)",
+      "(${1:value}$0)"
+    ]
+  ],
+  "arrayIsEmpty": [
+    "Determines whether an array contains data.",
+    [
+      "(${1:value}$0)",
+      "(${1:value}$0)"
+    ]
+  ],
+  "Attempt": [
+    "Create an Attempt object with or without a given value so you can do fluent operations on the\n registered attempt value.",
+    [
+      "($0)",
+      "(${1:value}$0)"
+    ]
+  ],
+  "IsArray": [
+    "Determine whether a value is an array",
+    [
+      "(${1:value}$0)",
+      "(${1:value}, ${2:number}$0)"
+    ]
+  ],
+  "IsBinary": [
+    "Determines whether a value is stored as binary data.",
+    [
+      "(${1:value}$0)",
+      "(${1:value}$0)"
+    ]
+  ],
+  "IsBoolean": [
+    "Determine whether a given object is a boolean",
+    [
+      "(${1:object}$0)",
+      "(${1:object}$0)"
+    ]
+  ],
+  "IsClosure": [
+    "Determine whether a given object is a closure",
+    [
+      "(${1:object}$0)",
+      "(${1:object}$0)"
+    ]
+  ],
+  "IsCustomFunction": [
+    "Determine whether a given object is a custom function.",
+    [
+      "(${1:object}$0)",
+      "(${1:object}, ${2:type}$0)"
+    ]
+  ],
+  "IsDate": [
+    "Determine whether a given value is a date object or a date string.",
+    [
+      "(${1:date}$0)",
+      "(${1:date}, ${2:locale}, ${3:timezone}$0)"
+    ]
+  ],
+  "IsDateObject": [
+    "Determine whether a given value or variable reference is a date or dateTime object.\n\nNote that date strings, such as `2021-01-01` and timespans returned from `createTimespan()` are NOT date objects. The former are strings and the\n latter are numeric values.",
+    [
+      "(${1:value}$0)",
+      "(${1:value}$0)"
+    ]
+  ],
+  "IsDebugMode": [
+    "Determine whether the current BoxLang instance is running in debug mode.",
+    [
+      "($0)",
+      "($0)"
+    ]
+  ],
+  "IsDefined": [
+    "Determine whether a given variable reference exists.\n\n<p>\n For example:\n <ul>\n <li><code>isDefined( \"luis\" )</code> will test for the existence of an <code>lmajano</code> variable in any accessible scope.</li>\n <li><code>isDefined( \"variables.foo\" )</code> will test for the existence of a <code>foo</code> variable in the <code>variables</code> scope.</li>\n <li><code>isDefined( \"brad.age\" )</code> will test for the existence of an <code>age</code> key in the <code>brad</code> struct, in any accessible\n scope</li>\n </ul>\n </p>",
+    [
+      "(${1:variable}$0)",
+      "(${1:variable}$0)"
+    ]
+  ],
+  "IsEmpty": [
+    "Determine whether a given value is empty.\n\nWe check for emptiness of\n anything that can be casted to: Array, Struct, Query, or String.",
+    [
+      "(${1:value}$0)",
+      "(${1:value}$0)"
+    ]
+  ],
+  "IsFileObject": [
+    "Determine whether the given object is a BoxLang File object.",
+    [
+      "(${1:object}$0)",
+      "(${1:object}$0)"
+    ]
+  ],
+  "IsIPv6": [
+    "Determine whether the given hostname supports IPv6.",
+    [
+      "($0)",
+      "(${1:hostname}$0)"
+    ]
+  ],
+  "IsJSON": [
+    "Evaluates whether a string is in valid JSON (JavaScript Object Notation) data interchange format.",
+    [
+      "(${1:var}$0)",
+      "(${1:var}$0)"
+    ]
+  ],
+  "IsLeapYear": [
+    "Determine whether a given integer value represents a leap year.",
+    [
+      "(${1:year}$0)",
+      "(${1:year}$0)"
+    ]
+  ],
+  "IsLocalHost": [
+    "Determine whether a given string value represents a loopback IP address, like `localhost`, `127.0.0.1` or `::1`.",
+    [
+      "(${1:ip}$0)",
+      "(${1:ip}$0)"
+    ]
+  ],
+  "IsNull": [
+    "Determine whether a given value or variable reference is null.",
+    [
+      "(${1:object}$0)",
+      "(${1:object}$0)"
+    ]
+  ],
+  "IsNumeric": [
+    "Tests whether a value is numeric",
+    [
+      "(${1:string}$0)",
+      "(${1:string}, ${2:locale}$0)"
+    ]
+  ],
+  "IsNumericDate": [
+    "Tests whether the given value is a numeric representation of a date",
+    [
+      "(${1:date}$0)",
+      "(${1:date}, ${2:locale}, ${3:timezone}$0)"
+    ]
+  ],
+  "IsObject": [
+    "Determines whether a value is an object.\n\n<p>\n True conditions are:\n <ul>\n <li>Box Class instances are \"objects\"</li>\n <li>All other classes that represent a Boxlang type are NOT \"objects\" (query, array, struct, XML, etc)</li>\n <li>These JDK classes which are used for \"simple\" BoxLang types are also not \"objects\" (String, Number, Boolean)</li>\n <li>Every other Java class is an \"object\"</li>\n </ul>",
+    [
+      "(${1:value}$0)",
+      "(${1:value}$0)"
+    ]
+  ],
+  "IsQuery": [
+    "Determine whether the given value is a BoxLang Query object.",
+    [
+      "(${1:value}$0)",
+      "(${1:value}$0)"
+    ]
+  ],
+  "IsSimpleValue": [
+    "Determine whether the given value is a string, boolean, numeric, or date value.",
+    [
+      "($0)",
+      "(${1:value}$0)"
+    ]
+  ],
+  "IsStruct": [
+    "Determine whether a value is a struct",
+    [
+      "(${1:variable}$0)",
+      "(${1:variable}$0)"
+    ]
+  ],
+  "IsValid": [
+    "Validates the incoming <code>value</code> against the given\n <code>type</code>.\n\nIf the type is a range, the value is\n validated against the range. If the type is a pattern, the value is validated\n against the pattern. If the type is a\n date, the value is validated against the date format. If the type is a locale\n date, the value is validated against the\n locale date format. If the type is a regular expression, the value is\n validated against the regular expression.\n <p>\n <strong>\n Note we expressly do not support the `eurodate` type, since date formats vary\n across EU countries. For this, prefer the `LSIsDate( date, locale )`\n method instead.\n </strong>\n <p>\n <h2>Valid Types</h2>\n <ul>\n <li>array</li>\n <li>binary</li>\n <li>boolean</li>\n <li>component</li>\n <li>creditcard</li>\n <li>date</li>\n <li>email</li>\n <li>float</li>\n <li>function</li>\n <li>guid</li>\n <li>hex</li>\n <li>integer</li>\n <li>numeric</li>\n <li>number</li>\n <li>query</li>\n <li>range</li>\n <li>regex</li>\n <li>regular_expression</li>\n <li>social_security_number</li>\n <li>ssn</li>\n <li>string</li>\n <li>struct</li>\n <li>telephone</li>\n <li>time</li>\n <li>time</li>\n <li>url</li>\n <li>usdate</li>\n <li>uuid</li>\n <li>variablename</li>\n <li>xml</li>\n <li>zipcode</li>\n </ul>",
+    [
+      "(${1:type}, ${2:value}$0)",
+      "(${1:type}, ${2:value}, ${3:min}, ${4:max}, ${5:pattern}$0)"
+    ]
+  ],
+  "IsXML": [
+    "Determines whether a string is well-formed XML text.",
+    [
+      "(${1:value}$0)",
+      "(${1:value}$0)"
+    ]
+  ],
+  "IsXMLDoc": [
+    "Determines whether the function parameter is an Extended Markup language (XML) document object.",
+    [
+      "(${1:value}$0)",
+      "(${1:value}$0)"
+    ]
+  ],
+  "IsXMLElem": [
+    "Determines whether the function parameter is an ELEMENT node of an XML doc.",
+    [
+      "(${1:value}$0)",
+      "(${1:value}$0)"
+    ]
+  ],
+  "IsXMLNode": [
+    "Determines whether the function parameter is a ANY node of an XML doc.",
+    [
+      "(${1:value}$0)",
+      "(${1:value}$0)"
+    ]
+  ],
+  "IsXMLRoot": [
+    "Determines whether the function parameter is a root element node of an XML doc.",
+    [
+      "(${1:value}$0)",
+      "(${1:value}$0)"
+    ]
+  ],
+  "IsXmlAttribute": [
+    "Determines whether the function parameter is an ATTRIBUTE node of an XML doc.\n\nWill return false for values refernced through the XMLAttributes struct. Useful for the results of XMLSearch()",
+    [
+      "(${1:value}$0)",
+      "(${1:value}$0)"
+    ]
+  ],
+  "LSIsNumeric": [
+    "Tests whether a value is numeric, according to a given or the default",
+    [
+      "(${1:number}$0)",
+      "(${1:number}, ${2:locale}$0)"
+    ]
+  ],
+  "structIsEmpty": [
+    "Determine whether a given value is empty.\n\nWe check for emptiness of\n anything that can be casted to: Array, Struct, Query, or String.",
+    [
+      "(${1:value}$0)",
+      "(${1:value}$0)"
+    ]
+  ],
+  "Decrypt": [
+    "Decrypts a provided encoded encrypted string using the specified algorithm and key",
+    [
+      "(${1:string}, ${2:key}$0)",
+      "(${1:string}, ${2:key}, ${3:algorithm}, ${4:encoding}, ${5:IVorSalt}, ${6:iterations}, ${7:precise}$0)"
+    ]
+  ],
+  "DecryptBinary": [
+    "Decripts an encrypted and encoded binary object using the specified algorithm and key",
+    [
+      "(${1:string}, ${2:key}$0)",
+      "(${1:string}, ${2:key}, ${3:algorithm}, ${4:encoding}, ${5:IVorSalt}, ${6:iterations}, ${7:precise}$0)"
+    ]
+  ],
+  "Encrypt": [
+    "Encrypts an object using the specified algorithm and key",
+    [
+      "(${1:key}$0)",
+      "(${1:object}, ${2:key}, ${3:algorithm}, ${4:encoding}, ${5:IVorSalt}, ${6:iterations}, ${7:precise}$0)"
+    ]
+  ],
+  "EncryptBinary": [
+    "Encrypts a binary object using the specified algorithm and key",
+    [
+      "(${1:key}$0)",
+      "(${1:object}, ${2:key}, ${3:algorithm}, ${4:encoding}, ${5:IVorSalt}, ${6:iterations}, ${7:precise}$0)"
+    ]
+  ],
+  "GeneratePBKDFKey": [
+    "Generates an encoded encryption key using the specified algorithm and key\n size",
+    [
+      "(${1:algorithm}, ${2:passphrase}, ${3:salt}$0)",
+      "(${1:algorithm}, ${2:passphrase}, ${3:salt}, ${4:iterations}, ${5:keySize}$0)"
+    ]
+  ],
+  "GenerateSecretKey": [
+    "Generates an encoded encryption key using the specified algorithm and key\n size",
+    [
+      "($0)",
+      "(${1:algorithm}, ${2:keySize}$0)"
+    ]
+  ],
+  "Hash": [
+    "Creates an algorithmic hash of an object",
+    [
+      "(${1:input}$0)",
+      "(${1:input}, ${2:algorithm}, ${3:encoding}, ${4:numIterations}$0)"
+    ]
+  ],
+  "Hash40": [
+    "Creates an algorithmic hash of an object",
+    [
+      "(${1:input}$0)",
+      "(${1:input}, ${2:algorithm}, ${3:encoding}, ${4:numIterations}$0)"
+    ]
+  ],
+  "Hmac": [
+    "Creates an algorithmic hash of an object",
+    [
+      "(${1:input}, ${2:key}$0)",
+      "(${1:input}, ${2:key}, ${3:algorithm}, ${4:encoding}, ${5:numIterations}$0)"
+    ]
+  ],
+  "BooleanFormat": [
+    "Returns the value formatted as a boolean string",
+    [
+      "(${1:value}$0)",
+      "(${1:value}$0)"
+    ]
+  ],
+  "DecimalFormat": [
+    "Converts a number to a decimal-formatted string.",
+    [
+      "(${1:number}$0)",
+      "(${1:number}, ${2:length}$0)"
+    ]
+  ],
+  "DollarFormat": [
+    "Formats a number as a U.S.\n\nDollar string with two decimal places, thousands separator, and a dollar sign.\n If the number is negative, the return value is enclosed in parentheses.\n If the number is an empty string, the function returns \"0.00\".",
+    [
+      "(${1:number}$0)",
+      "(${1:number}$0)"
+    ]
+  ],
+  "LSNumberFormat": [
+    "Localized Number formatting",
+    [
+      "(${1:number}$0)",
+      "(${1:number}, ${2:mask}, ${3:locale}$0)"
+    ]
+  ],
+  "NumberFormat": [
+    "Formats a number with an optional format mask",
+    [
+      "(${1:number}$0)",
+      "(${1:number}, ${2:mask}, ${3:locale}$0)"
+    ]
+  ],
+  "ClearLocale": [
+    "Clears the current request-level locale.",
+    [
+      "($0)",
+      "($0)"
+    ]
+  ],
+  "CurrencyFormat": [
+    "No description available.",
+    [
+      "(${1:number}$0)",
+      "(${1:number}, ${2:type}, ${3:locale}$0)"
+    ]
+  ],
+  "GetLocale": [
+    "Retrieves the the string representation of the current locale",
+    [
+      "($0)",
+      "($0)"
+    ]
+  ],
+  "GetLocaleDisplayName": [
+    "Returns the {@link java.util.Locale} display name with an optional display language/locale",
+    [
+      "($0)",
+      "(${1:locale}, ${2:dspLocale}$0)"
+    ]
+  ],
+  "GetLocaleInfo": [
+    "Retrieves a struct containin info on a locale, with an optional display locale",
+    [
+      "($0)",
+      "(${1:locale}, ${2:dspLocale}$0)"
+    ]
+  ],
+  "IsCurrency": [
+    "Determines whether a value can be parsed to numeric in the given or default locale",
+    [
+      "(${1:number}$0)",
+      "(${1:number}, ${2:locale}$0)"
+    ]
+  ],
+  "LSCurrencyFormat": [
+    "No description available.",
+    [
+      "(${1:number}$0)",
+      "(${1:number}, ${2:type}, ${3:locale}$0)"
+    ]
+  ],
+  "LSIsCurrency": [
+    "Determines whether a value can be parsed to numeric in the given or default locale",
+    [
+      "(${1:number}$0)",
+      "(${1:number}, ${2:locale}$0)"
+    ]
+  ],
+  "LSParseCurrency": [
+    "Parses a currency value in to a numeric using the specified or context locale",
+    [
+      "(${1:string}$0)",
+      "(${1:string}, ${2:locale}$0)"
+    ]
+  ],
+  "ParseCurrency": [
+    "Parses a currency value in to a numeric using the specified or context locale",
+    [
+      "(${1:string}$0)",
+      "(${1:string}, ${2:locale}$0)"
+    ]
+  ],
+  "SetLocale": [
+    "Sets the current request-level locale.",
+    [
+      "(${1:locale}$0)",
+      "(${1:locale}$0)"
+    ]
+  ],
+  "ContractPath": [
+    "Does the opposite of expandPath.\n\nTries to match a given absolute path to mappings in the environment and will return a path that is contracted by the shortest matched mapping. If there are no matches, returns the absolute path it was given.",
+    [
+      "(${1:path}$0)",
+      "(${1:path}$0)"
+    ]
+  ],
+  "CreateTempDirectory": [
+    "Creates a temporary directory in the specified directory with the specified prefix if passed.",
+    [
+      "($0)",
+      "(${1:directory}, ${2:prefix}$0)"
+    ]
+  ],
+  "CreateTempFile": [
+    "Creates a temporary file in the specified directory with the specified prefix and suffix if passed.",
+    [
+      "($0)",
+      "(${1:directory}, ${2:prefix}, ${3:suffix}$0)"
+    ]
+  ],
+  "DirectoryCopy": [
+    "Copies a directory from one location to another",
+    [
+      "(${1:source}, ${2:destination}$0)",
+      "(${1:source}, ${2:destination}, ${3:recurse}, ${4:filter}, ${5:createPath}, ${6:overwrite}$0)"
+    ]
+  ],
+  "DirectoryCreate": [
+    "Creates a directory",
+    [
+      "(${1:path}$0)",
+      "(${1:path}, ${2:createPath}, ${3:ignoreExists}, ${4:mode}$0)"
+    ]
+  ],
+  "DirectoryDelete": [
+    "Deletes a directory",
+    [
+      "(${1:path}, ${2:recursive}$0)",
+      "(${1:path}, ${2:recursive}$0)"
+    ]
+  ],
+  "DirectoryExists": [
+    "Determines whether a directory exists",
+    [
+      "(${1:path}, ${2:allowRealPath}$0)",
+      "(${1:path}, ${2:allowRealPath}$0)"
+    ]
+  ],
+  "DirectoryList": [
+    "List the contents of a directory.\n\nReturns either an array, or a query depending on the {@code listInfo} argument.\n <p>\n The {@code listInfo} argument can be one of the following:\n <ul>\n <li>{@code name} - Returns an array of the names of the items in the directory.</li>\n <li>{@code path} - Returns an array of the absolute paths of the items in the directory.</li>\n <li>{@code query} - Returns a query of the items in the directory containing the following fields:\n <ul>\n <li>{@code attributes} - The attributes of the item (R, W, X, H).</li>\n <li>{@code dateLastModified} - The date the item was last modified.</li>\n <li>{@code directory} - The directory containing the item.</li>\n <li>{@code mode} - The mode of the item.</li>\n <li>{@code name} - The name of the item.</li>\n <li>{@code size} - The size of the item in bytes.</li>\n <li>{@code type} - The type of the item (either \"Dir\" or \"File\").</li>\n </ul>\n </li>\n </ul>\n <p>\n The {@code filter} argument can be the following:\n <ul>\n <li>\n A closure/lambda that takes a single argument (the path of the item) and returns a boolean. True to return it, false otherwise.\n\n <pre>\n DirectoryList( path: \"/path/to/dir\", filter: path -> path.endsWith(\".txt\") )\n </pre>\n\n </li>\n <li>\n A string that is a glob pattern: E.g. \"*.txt\" to only return files with the .txt extension. Or you can use the {@code |} pipe to separate multiple patterns: E.g. \"*.txt|*.csv\" to return files with either the .txt or .csv extension.\n </li>\n </ul>",
+    [
+      "(${1:path}, ${2:recurse}$0)",
+      "(${1:path}, ${2:recurse}, ${3:listInfo}, ${4:filter}, ${5:sort}, ${6:type}$0)"
+    ]
+  ],
+  "DirectoryMove": [
+    "Moves a directory from one location to another",
+    [
+      "(${1:oldPath}, ${2:newPath}$0)",
+      "(${1:oldPath}, ${2:newPath}, ${3:createPath}$0)"
+    ]
+  ],
+  "DirectoryRename": [
+    "Moves a directory from one location to another",
+    [
+      "(${1:oldPath}, ${2:newPath}$0)",
+      "(${1:oldPath}, ${2:newPath}, ${3:createPath}$0)"
+    ]
+  ],
+  "ExpandPath": [
+    "Creates an absolute, platform-appropriate path that is equivalent to the value of 'path', appended to the base path.\n\nThis function (despite its\n name) can accept an absolute or relative path in the 'path' attribute.",
+    [
+      "(${1:path}$0)",
+      "(${1:path}$0)"
+    ]
+  ],
+  "FileAppend": [
+    "Appends new contents to a file starting at the last character in the file",
+    [
+      "(${1:file}, ${2:data}$0)",
+      "(${1:file}, ${2:data}, ${3:charset}, ${4:addnewline}$0)"
+    ]
+  ],
+  "FileClose": [
+    "Closes an on-disk or in-memory file that is open.",
+    [
+      "(${1:file}$0)",
+      "(${1:file}$0)"
+    ]
+  ],
+  "FileCopy": [
+    "Copies a file from one location to another.\n\nThe destionation can be a file or a directory.\n If the destination is a directory, the source file name will be appended to the destination.",
+    [
+      "(${1:source}, ${2:destination}$0)",
+      "(${1:source}, ${2:destination}, ${3:createPath}, ${4:overwrite}, ${5:accept}$0)"
+    ]
+  ],
+  "FileDelete": [
+    "Deletes the specified file on the server.\n\nThrows an exception if the file doesn't exist.",
+    [
+      "(${1:file}$0)",
+      "(${1:file}$0)"
+    ]
+  ],
+  "FileExists": [
+    "Determines whether a file exists",
+    [
+      "(${1:source}, ${2:allowRealPath}$0)",
+      "(${1:source}, ${2:allowRealPath}$0)"
+    ]
+  ],
+  "FileGetMimeType": [
+    "Gets the MIME type for the file path/file object you have specified.",
+    [
+      "(${1:file}$0)",
+      "(${1:file}, ${2:strict}$0)"
+    ]
+  ],
+  "FileInfo": [
+    "Returns a struct of file information.\n\nDifferent values are returned for FileInfo and GetFileInfo",
+    [
+      "(${1:file}$0)",
+      "(${1:file}$0)"
+    ]
+  ],
+  "FileIsEOF": [
+    "Determines whether the end of the file has been reached while reading it.",
+    [
+      "(${1:file}$0)",
+      "(${1:file}$0)"
+    ]
+  ],
+  "FileMove": [
+    "Moves file from source to destination.\n\nThe destination can be a file or a directory. If the destination is a directory, the\n file will be moved to that directory with the same name as the source file.",
+    [
+      "(${1:source}, ${2:destination}, ${3:overwrite}$0)",
+      "(${1:source}, ${2:destination}, ${3:overwrite}, ${4:accept}$0)"
+    ]
+  ],
+  "FileOpen": [
+    "Opens a file for reading or writing and returns a file object for future operations",
+    [
+      "(${1:file}$0)",
+      "(${1:file}, ${2:mode}, ${3:charset}, ${4:seekable}$0)"
+    ]
+  ],
+  "FileRead": [
+    "Reads the contents of a file and returns it as a string or binary object",
+    [
+      "(${1:filepath}$0)",
+      "(${1:filepath}, ${2:charsetOrBufferSize}, ${3:charset}, ${4:buffersize}$0)"
+    ]
+  ],
+  "FileReadBinary": [
+    "Reads the contents of a file and returns it as a string or binary object",
+    [
+      "(${1:filepath}$0)",
+      "(${1:filepath}, ${2:charsetOrBufferSize}, ${3:charset}, ${4:buffersize}$0)"
+    ]
+  ],
+  "FileReadLine": [
+    "Returns the next line from the file object stream",
+    [
+      "(${1:file}$0)",
+      "(${1:file}$0)"
+    ]
+  ],
+  "FileSeek": [
+    "Moves the buffer cursor position forward the number of characters specified by the position argument",
+    [
+      "(${1:file}, ${2:position}$0)",
+      "(${1:file}, ${2:position}$0)"
+    ]
+  ],
+  "FileSetAccessMode": [
+    "Sets the Posix permissions on a file",
+    [
+      "(${1:file}, ${2:mode}$0)",
+      "(${1:file}, ${2:mode}$0)"
+    ]
+  ],
+  "FileSetAttribute": [
+    "Sets a file access attribute",
+    [
+      "(${1:file}, ${2:attribute}$0)",
+      "(${1:file}, ${2:attribute}$0)"
+    ]
+  ],
+  "FileSetLastModified": [
+    "Sets the last modified time of a file",
+    [
+      "(${1:file}, ${2:date}$0)",
+      "(${1:file}, ${2:date}$0)"
+    ]
+  ],
+  "FileSkipBytes": [
+    "Moves the buffer cursor position forward the number of characters specified by the position argument",
+    [
+      "(${1:file}, ${2:position}$0)",
+      "(${1:file}, ${2:position}$0)"
+    ]
+  ],
+  "FileWrite": [
+    "Writes the contents of a string or binary data to a file",
+    [
+      "(${1:file}, ${2:data}$0)",
+      "(${1:file}, ${2:data}, ${3:charset}, ${4:createPath}$0)"
+    ]
+  ],
+  "FileWriteLine": [
+    "Writes a line of data to a file",
+    [
+      "(${1:file}, ${2:data}$0)",
+      "(${1:file}, ${2:data}$0)"
+    ]
+  ],
+  "GetCanonicalPath": [
+    "Returns the canonical path of a file, resolving all relative path elements and symlinks",
+    [
+      "(${1:path}$0)",
+      "(${1:path}$0)"
+    ]
+  ],
+  "GetDirectoryFromPath": [
+    "Retrieves the directory parent of a path",
+    [
+      "(${1:path}$0)",
+      "(${1:path}$0)"
+    ]
+  ],
+  "GetFileInfo": [
+    "Returns a struct of file information.\n\nDifferent values are returned for FileInfo and GetFileInfo",
+    [
+      "(${1:file}$0)",
+      "(${1:file}$0)"
+    ]
+  ],
+  "PropertyFile": [
+    "Get a fluent PropertyFile object that can be used to read or write properties to a loaded property file or a new one.\n\nIf the path is not specified, it will return a blank property file object you can use to write properties to a new file.",
+    [
+      "($0)",
+      "(${1:path}$0)"
+    ]
+  ],
+  "getTempFile": [
+    "Creates a temporary file in the specified directory with the specified prefix and suffix if passed.",
+    [
+      "($0)",
+      "(${1:directory}, ${2:prefix}, ${3:suffix}$0)"
+    ]
+  ],
+  "CreateDynamicProxy": [
+    "Creates a dynamic proxy of the Box Class that is passed to a Java library.\n\nDynamic proxy lets you pass Box Classes to Java objects.\n\n Java objects can work with the Box Class seamlessly as if they are native\n Java objects.",
+    [
+      "(${1:class}, ${2:interfaces}$0)",
+      "(${1:class}, ${2:interfaces}, ${3:classloader}$0)"
+    ]
+  ],
+  "IsInTransaction": [
+    "Detect whether the current context is executing within a transaction.",
+    [
+      "($0)",
+      "($0)"
+    ]
+  ],
+  "IsWithinTransaction": [
+    "Detect whether the current context is executing within a transaction.",
+    [
+      "($0)",
+      "($0)"
+    ]
+  ],
+  "PreserveSingleQuotes": [
+    "Prevents from automatically escaping single quotation mark characters that are contained in a variable.\n\nIt is not neccesary to use this function around listQualify() when the qualifier is a single quote, or around quotedValueList()\n as those automatically preserve and escape single quotes as needed when used inside a query component.",
+    [
+      "(${1:variable}$0)",
+      "(${1:variable}$0)"
+    ]
+  ],
+  "QueryExecute": [
+    "Execute an SQL query and returns the results.\n\n<h2>Parameters</h2>\n The <code>parameters</code> argument can be used to bind parameters to the SQL query.\n You can use either an array of binding parameters or a struct of named binding parameters.\n The SQL must have the parameters bound using the syntax <code>?</code> for positional parameters or <code>:name</code> for named parameters.\n <p>\n Example:\n\n <pre>\n queryExecute( sql: \"SELECT * FROM users WHERE id = ?\", params: [ 1 ] );\n queryExecute( sql: \"SELECT * FROM users WHERE id = :id\", params: { id: 1 } );\n </pre>\n <p>\n You can also treat each named parameter to not only be a key-value pair, but also a struct with additional options:\n <ul>\n <li><strong>value:any</strong> - The value to bind to the parameter</li>\n <li><strong>type:string</strong> - The type of the value, defaults to \"varchar\"</li>\n <li><strong>maxLength:numeric</strong> - The maximum length of the value, only applicable for string types</li>\n <li><strong>scale:numeric</strong> - The scale of the value, only applicable for decimal types, defaults to 0</li>\n <li><strong>null:boolean</strong> - Whether the value is null, defaults to false</li>\n <li><strong>list:boolean</strong> - Whether the value is a list, defaults to false</li>\n <li><strong>separator:string</strong> - The separator to use for list values, defaults to \",\"</li>\n </ul>\n <p>\n Example:\n\n <pre>\n queryExecute( sql: \"SELECT * FROM users WHERE id = :id\", params: { id: { value: 1, type: \"integer\" } } );\n queryExecute( sql: \"SELECT * FROM users WHERE id IN (:ids)\", params: { ids: { value: [ 1, 2, 3 ], type: \"integer\", list: true, separator: \",\" } } );\n </pre>\n\n <h2>Options</h2>\n The available options for this BIF are:\n <ul>\n <li><strong>cache:boolean</strong> - Whether to cache the query results, defaults to false</li>\n <li><strong>cacheKey:string</strong> - Your own cache key, if not specified, the SQL will be used as the cache key</li>\n <li><strong>cacheTimeout:timespan|seconds</strong> - The timeout for the cache, defaults to 0 (no timeout)</li>\n <li><strong>cacheLastAccessTimeout:timespan|seconds</strong> - The timeout for the last access to the cache, defaults to 0 (no timeout)</li>\n <li><strong>cacheProvider:string</strong> - The cache provider to use, defaults to the default cache provider</li>\n <li><strong>columnKey:string</strong> - The column to use as the key when returntype is \"struct\"</li>\n <li><strong>datasource:string</strong> - The datasource name to use for the query, if not specified, the default datasource will be used</li>\n <li><strong>dbtype:string</strong> - The database type to use for the query, this is either for query of queries or HQL. Mutually exclusive with <code>datasource</code></li>\n <li><strong>fetchsize:numeric</strong> - Number of rows to fetch from database at once, defaults to all rows (0)</li>\n <li><strong>maxrows:numeric</strong> - Maximum number of rows to return</li>\n <li><strong>password:string</strong> - Override the datasource password for this query only. NOTE: Not all JDBC drivers support this; will fall back to unpooled connection if unsupported</li>\n <li><strong>result</strong> - The name of the variable to store the results of the query</li>\n <li><strong>returntype</strong> - The return type: \"query\", \"array\", \"struct\"</li>\n <li><strong>timeout</strong> - Query timeout in seconds</li>\n <li><strong>username:string</strong> - Override the datasource username for this query only. NOTE: Not all JDBC drivers support this; will fall back to unpooled connection if unsupported</li>\n </ul>",
+    [
+      "(${1:sql}$0)",
+      "(${1:sql}, ${2:params}, ${3:options}$0)"
+    ]
+  ],
+  "TransactionCommit": [
+    "Commit the current transaction and persist all stored queries.\n\nYou can continue to use the transaction after a `transactionCommit()` call, but you will not be able to roll back past (before) this\n point since the changes are fully persisted to the database.",
+    [
+      "($0)",
+      "($0)"
+    ]
+  ],
+  "TransactionRollback": [
+    "Rollback the current transaction and discard all unpersisted queries.\n\n<p>\n Only the changes made since the last <code>transactionSetSavepoint()</code> or <code>transactionCommit()</code> call will be discarded.\n <p>\n If no transaction is found in the current context, this method will throw an exception.",
+    [
+      "($0)",
+      "(${1:savepoint}$0)"
+    ]
+  ],
+  "TransactionSetSavepoint": [
+    "Sets a savepoint in the current transaction.\n\nThis savepoint can then be a rollback point when executing a rollback via `transactionRollback(\n \"mySavepointName\" )`.",
+    [
+      "(${1:savepoint}$0)",
+      "(${1:savepoint}$0)"
+    ]
+  ],
+  "GetToken": [
+    "Determines whether a token of the list in the delimiters parameter is present in a string.\n\nReturns the token found at position index of the string, as a string.\n If index is greater than the number of tokens in the string, returns an empty string.",
+    [
+      "(${1:string}, ${2:index}$0)",
+      "(${1:string}, ${2:index}, ${3:delimiter}$0)"
+    ]
+  ],
+  "ListAppend": [
+    "Appends an element to a list",
+    [
+      "(${1:list}, ${2:value}$0)",
+      "(${1:list}, ${2:value}, ${3:delimiter}, ${4:includeEmptyFields}, ${5:multiCharacterDelimiter}$0)"
+    ]
+  ],
+  "ListAvg": [
+    "Gets the average of all values in a list",
+    [
+      "(${1:list}$0)",
+      "(${1:list}, ${2:delimiter}, ${3:multiCharacterDelimiter}$0)"
+    ]
+  ],
+  "ListChangeDelims": [
+    "Converts the delimiters of a list to the new delimiter.",
+    [
+      "(${1:list}, ${2:newDelimiter}$0)",
+      "(${1:list}, ${2:newDelimiter}, ${3:delimiter}, ${4:includeEmptyFields}, ${5:multiCharacterDelimiter}$0)"
+    ]
+  ],
+  "ListCompact": [
+    "Compacts a list by removing empty items from the start and end of the list",
+    [
+      "(${1:list}$0)",
+      "(${1:list}, ${2:delimiter}, ${3:multiCharacterDelimiter}$0)"
+    ]
+  ],
+  "ListContains": [
+    "Return int position of value in delimited list, case sensitive or case-insenstive variations",
+    [
+      "(${1:list}, ${2:value}$0)",
+      "(${1:list}, ${2:value}, ${3:delimiter}, ${4:includeEmptyFields}, ${5:multiCharacterDelimiter}$0)"
+    ]
+  ],
+  "ListContainsNoCase": [
+    "Return int position of value in delimited list, case sensitive or case-insenstive variations",
+    [
+      "(${1:list}, ${2:value}$0)",
+      "(${1:list}, ${2:value}, ${3:delimiter}, ${4:includeEmptyFields}, ${5:multiCharacterDelimiter}$0)"
+    ]
+  ],
+  "ListDeleteAt": [
+    "Deletes an element from a list.\n\nReturns a copy of the list, without the\n specified element.",
+    [
+      "(${1:list}, ${2:position}$0)",
+      "(${1:list}, ${2:position}, ${3:delimiter}, ${4:includeEmptyFields}, ${5:multiCharacterDelimiter}$0)"
+    ]
+  ],
+  "ListEach": [
+    "Used to iterate over a delimited list and run the function closure for each item in the list.\n\nThis BIF is similar to the ArrayEach BIF, but operates on a delimited list instead of an array.\n <p>\n <h2>Parallel Execution</h2>\n If the <code>parallel</code> argument is set to true, and no <code>max_threads</code> are sent, the filter will be executed in parallel using a ForkJoinPool with parallel streams.\n If <code>max_threads</code> is specified, it will create a new ForkJoinPool with the specified number of threads to run the filter in parallel, and destroy it after the operation is complete.\n Please note that this may not be the most efficient way to iterate, as it will create a new ForkJoinPool for each invocation of the BIF. You may want to consider using a shared ForkJoinPool for better performance.",
+    [
+      "(${1:list}$0)",
+      "(${1:list}, ${2:delimiter}, ${3:includeEmptyFields}, ${4:multiCharacterDelimiter}, ${5:parallel}, ${6:maxThreads}, ${7:ordered}, ${8:virtual}$0)"
+    ]
+  ],
+  "ListEvery": [
+    "Used to iterate over a delimited list and test whether <strong>every</strong> item meets the test callback.\n\nThe function will be passed 3 arguments: the value, the index, and the list.\n You can alternatively pass a Java Predicate which will only receive the 1st arg.\n The function should return true if the item meets the test, and false otherwise.\n <p>\n <strong>Note:</strong> This operation is a short-circuit operation, meaning it will stop iterating as soon as it finds the first item that does not meet the test condition.\n <p>\n <h2>Parallel Execution</h2>\n If the <code>parallel</code> argument is set to true, and no <code>max_threads</code> are sent, the filter will be executed in parallel using a ForkJoinPool with parallel streams.\n If <code>max_threads</code> is specified, it will create a new ForkJoinPool with the specified number of threads to run the filter in parallel, and destroy it after the operation is complete.\n This allows for efficient processing of large lists, especially when the test function is computationally expensive or the list is large.",
+    [
+      "(${1:list}$0)",
+      "(${1:list}, ${2:delimiter}, ${3:includeEmptyFields}, ${4:multiCharacterDelimiter}, ${5:parallel}, ${6:maxThreads}, ${7:virtual}$0)"
+    ]
+  ],
+  "ListFilter": [
+    "Filters a delimted list and returns the values from the callback test\n This BIF will invoke the callback function for each entry in the list, passing the entry as a string.\n\n<ul>\n <li>If the callback returns true, the entry will be included in the new list.</li>\n <li>If the callback returns false, the entry will be excluded from the new list.</li>\n <li>If the callback requires strict arguments, it will only receive the entry as a string.</li>\n <li>If the callback does not require strict arguments, it will receive the entry as a string, the index (0-based), and the original list as a string.</li>\n </ul>\n <p>\n <h2>Parallel Execution</h2>\n If the <code>parallel</code> argument is set to true, and no <code>max_threads</code> are sent, the filter will be executed in parallel using a ForkJoinPool with parallel streams.\n If <code>max_threads</code> is specified, it will create a new ForkJoinPool with the specified number of threads to run the filter in parallel, and destroy it after the operation is complete.\n Please note that this may not be the most efficient way to filter, as it will create a new ForkJoinPool for each invocation of the BIF. You may want to consider using a shared ForkJoinPool for better performance.",
+    [
+      "(${1:list}$0)",
+      "(${1:list}, ${2:delimiter}, ${3:includeEmptyFields}, ${4:multiCharacterDelimiter}, ${5:parallel}, ${6:maxThreads}, ${7:virtual}$0)"
+    ]
+  ],
+  "ListFind": [
+    "Return int position of value in delimited list, case sensitive or case-insenstive variations",
+    [
+      "(${1:list}, ${2:value}$0)",
+      "(${1:list}, ${2:value}, ${3:delimiter}, ${4:includeEmptyFields}, ${5:multiCharacterDelimiter}$0)"
+    ]
+  ],
+  "ListFindNoCase": [
+    "Return int position of value in delimited list, case sensitive or case-insenstive variations",
+    [
+      "(${1:list}, ${2:value}$0)",
+      "(${1:list}, ${2:value}, ${3:delimiter}, ${4:includeEmptyFields}, ${5:multiCharacterDelimiter}$0)"
+    ]
+  ],
+  "ListFirst": [
+    "Returns the first or last item in a delimited list, according to the specified function name",
+    [
+      "(${1:list}$0)",
+      "(${1:list}, ${2:delimiter}, ${3:includeEmptyFields}, ${4:multiCharacterDelimiter}$0)"
+    ]
+  ],
+  "ListGetAt": [
+    "Retrieves an item from a delimited list at the specified position",
+    [
+      "(${1:list}, ${2:position}$0)",
+      "(${1:list}, ${2:position}, ${3:delimiter}, ${4:includeEmptyFields}, ${5:multiCharacterDelimiter}$0)"
+    ]
+  ],
+  "ListGetEndings": [
+    "Returns the first or last item in a delimited list, according to the specified function name",
+    [
+      "(${1:list}$0)",
+      "(${1:list}, ${2:delimiter}, ${3:includeEmptyFields}, ${4:multiCharacterDelimiter}$0)"
+    ]
+  ],
+  "ListIndexExists": [
+    "Checks if a list has a given index",
+    [
+      "(${1:list}, ${2:index}$0)",
+      "(${1:list}, ${2:index}, ${3:delimiter}, ${4:includeEmptyFields}, ${5:multiCharacterDelimiter}$0)"
+    ]
+  ],
+  "ListInsertAt": [
+    "Filters a delimted list and returns the values from the callback test",
+    [
+      "(${1:list}, ${2:position}, ${3:value}$0)",
+      "(${1:list}, ${2:position}, ${3:value}, ${4:delimiter}, ${5:includeEmptyFields}, ${6:multiCharacterDelimiter}$0)"
+    ]
+  ],
+  "ListItemTrim": [
+    "Trims each item in the list.",
+    [
+      "(${1:list}$0)",
+      "(${1:list}, ${2:delimiter}, ${3:includeEmptyFields}, ${4:multiCharacterDelimiter}$0)"
+    ]
+  ],
+  "ListLast": [
+    "Returns the first or last item in a delimited list, according to the specified function name",
+    [
+      "(${1:list}$0)",
+      "(${1:list}, ${2:delimiter}, ${3:includeEmptyFields}, ${4:multiCharacterDelimiter}$0)"
+    ]
+  ],
+  "ListLen": [
+    "Calculates the length of a list separated by the specified delimiter",
+    [
+      "(${1:list}$0)",
+      "(${1:list}, ${2:delimiter}, ${3:includeEmptyFields}, ${4:multiCharacterDelimiter}$0)"
+    ]
+  ],
+  "ListMap": [
+    "This BIF will iterate over each item in the delimited list and invoke the callback function for each item so\n you can do any operation on the item and return a new value that will be set at the same index in a new list.\n\nThe callback function will be passed the item as a string, the current index (0-based), and the original list.\n <ul>\n <li>If the callback requires strict arguments, it will only receive the item as a string.</li>\n <li>If the callback does not require strict arguments, it will receive the item as a string, the index (0-based), and the original list.</li>\n </ul>\n <h2>Parallel Execution</h2>\n If the <code>parallel</code> argument is set to true, and no <code>max_threads</code> are sent, the map will be executed in parallel using a ForkJoinPool with parallel streams.\n If <code>max_threads</code> is specified, it will create a new ForkJoinPool with the specified number of threads to run the map in parallel, and destroy it after the operation is complete.\n Please note that this may not be the most efficient way to map, as it will create a new ForkJoinPool for each invocation of the BIF. You may want to consider using a shared ForkJoinPool for better performance.",
+    [
+      "(${1:list}$0)",
+      "(${1:list}, ${2:delimiter}, ${3:includeEmptyFields}, ${4:multiCharacterDelimiter}, ${5:parallel}, ${6:maxThreads}, ${7:virtual}$0)"
+    ]
+  ],
+  "ListNone": [
+    "Used to iterate over a delimited list and test whether <strong>NONE</strong> item meets the test callback.\n\nThis is the opposite of {@link ListSome}.\n <p>\n The function will be passed 3 arguments: the value, the index, and the list.\n You can alternatively pass a Java Predicate which will only receive the 1st arg.\n The function should return true if the item meets the test, and false otherwise.\n <p>\n <strong>Note:</strong> This operation is a short-circuit operation, meaning it will stop iterating as soon as it finds the first item that does not meet the test condition.\n <p>\n <h2>Parallel Execution</h2>\n If the <code>parallel</code> argument is set to true, and no <code>max_threads</code> are sent, the filter will be executed in parallel using a ForkJoinPool with parallel streams.\n If <code>max_threads</code> is specified, it will create a new ForkJoinPool with the specified number of threads to run the filter in parallel, and destroy it after the operation is complete.\n This allows for efficient processing of large lists, especially when the test function is computationally expensive or the list is large.",
+    [
+      "(${1:list}$0)",
+      "(${1:list}, ${2:delimiter}, ${3:includeEmptyFields}, ${4:multiCharacterDelimiter}, ${5:parallel}, ${6:maxThreads}, ${7:virtual}$0)"
+    ]
+  ],
+  "ListPrepend": [
+    "Filters a delimted list and returns the values from the callback test",
+    [
+      "(${1:list}, ${2:value}$0)",
+      "(${1:list}, ${2:value}, ${3:delimiter}, ${4:includeEmptyFields}, ${5:multiCharacterDelimiter}$0)"
+    ]
+  ],
+  "ListQualify": [
+    "Inserts a string at the beginning and end of list elements.\n\nIf this BIF is being called from inside of a query component,\n and the qualifier is a single quote, any single quotes in the values will be escaped by doubling them up.\n This protects against SQL Injection attacks.",
+    [
+      "(${1:list}, ${2:qualifier}$0)",
+      "(${1:list}, ${2:qualifier}, ${3:delimiter}, ${4:elements}, ${5:includeEmptyFields}, ${6:multiCharacterDelimiter}$0)"
+    ]
+  ],
+  "ListReduceRight": [
+    "Run the provided udf over a reversed delimited list to reduce the values to a single output",
+    [
+      "(${1:list}$0)",
+      "(${1:list}, ${2:initialValue}, ${3:delimiter}, ${4:includeEmptyFields}, ${5:multiCharacterDelimiter}$0)"
+    ]
+  ],
+  "ListRemoveDuplicates": [
+    "De-duplicates a delimited list - either case-sensitively or case-insenstively",
+    [
+      "(${1:list}$0)",
+      "(${1:list}, ${2:delimiter}, ${3:ignoreCase}, ${4:includeEmptyFields}, ${5:multiCharacterDelimiter}$0)"
+    ]
+  ],
+  "ListRest": [
+    "Returns the remainder of a list after removing the first item",
+    [
+      "(${1:list}$0)",
+      "(${1:list}, ${2:delimiter}, ${3:includeEmptyFields}, ${4:multiCharacterDelimiter}, ${5:offset}$0)"
+    ]
+  ],
+  "ListSetAt": [
+    "Retrieves an item in to a delimited list at the specified position",
+    [
+      "(${1:list}, ${2:position}, ${3:value}$0)",
+      "(${1:list}, ${2:position}, ${3:value}, ${4:delimiter}, ${5:includeEmptyFields}, ${6:multiCharacterDelimiter}$0)"
+    ]
+  ],
+  "ListSome": [
+    "Used to iterate over a delimited list and test whether <strong>ANY</strong> items meet the test callback.\n\nThe function will be passed 3 arguments: the value, the index, and the list.\n You can alternatively pass a Java Predicate which will only receive the 1st arg.\n The function should return true if the item meets the test, and false otherwise.\n <p>\n <strong>Note:</strong> This operation is a short-circuit operation, meaning it will stop iterating as soon as it finds the first item that meets the test condition.\n <p>\n <h2>Parallel Execution</h2>\n If the <code>parallel</code> argument is set to true, and no <code>max_threads</code> are sent, the filter will be executed in parallel using a ForkJoinPool with parallel streams.\n If <code>max_threads</code> is specified, it will create a new ForkJoinPool with the specified number of threads to run the filter in parallel, and destroy it after the operation is complete.\n Please note that this may not be the most efficient way to iterate, as it will create a new ForkJoinPool for each invocation of the BIF. You may want to consider using a shared ForkJoinPool for better performance.",
+    [
+      "(${1:list}$0)",
+      "(${1:list}, ${2:delimiter}, ${3:includeEmptyFields}, ${4:multiCharacterDelimiter}, ${5:parallel}, ${6:maxThreads}, ${7:virtual}$0)"
+    ]
+  ],
+  "ListSort": [
+    "Sorts a delimited list and returns the result",
+    [
+      "(${1:list}$0)",
+      "(${1:list}, ${2:sortType}, ${3:sortOrder}, ${4:delimiter}, ${5:includeEmptyFields}, ${6:multiCharacterDelimiter}, ${7:localeSensitive}, ${8:callback}$0)"
+    ]
+  ],
+  "ListToArray": [
+    "Converts a delimited list to an array",
+    [
+      "(${1:list}$0)",
+      "(${1:list}, ${2:delimiter}, ${3:includeEmptyFields}, ${4:multiCharacterDelimiter}$0)"
+    ]
+  ],
+  "ListTrim": [
+    "Compacts a list by removing empty items from the start and end of the list",
+    [
+      "(${1:list}$0)",
+      "(${1:list}, ${2:delimiter}, ${3:multiCharacterDelimiter}$0)"
+    ]
+  ],
+  "ListValueCount": [
+    "returns a count of the number of occurrences of a value in a list",
+    [
+      "(${1:list}, ${2:value}$0)",
+      "(${1:list}, ${2:value}, ${3:delimiter}, ${4:includeEmptyFields}, ${5:multiCharacterDelimiter}$0)"
+    ]
+  ],
+  "ListValueCountNoCase": [
+    "returns a count of the number of occurrences of a value in a list",
+    [
+      "(${1:list}, ${2:value}$0)",
+      "(${1:list}, ${2:value}, ${3:delimiter}, ${4:includeEmptyFields}, ${5:multiCharacterDelimiter}$0)"
+    ]
+  ],
+  "Abs": [
+    "Returns the absolute value of a number",
+    [
+      "(${1:value}$0)",
+      "(${1:value}$0)"
+    ]
+  ],
+  "Acos": [
+    "Returns the arccosine (inverse cosine) of a number",
+    [
+      "(${1:number}$0)",
+      "(${1:number}$0)"
+    ]
+  ],
+  "Asin": [
+    "Returns the arcsine (inverse sine) of a number",
+    [
+      "(${1:number}$0)",
+      "(${1:number}$0)"
+    ]
+  ],
+  "Atn": [
+    "Returns the arc tangent (inverse tangent) of a number",
+    [
+      "(${1:number}$0)",
+      "(${1:number}$0)"
+    ]
+  ],
+  "Ceiling": [
+    "Determines the closest integer that is greater than a specified floating point number.",
+    [
+      "(${1:number}$0)",
+      "(${1:number}$0)"
+    ]
+  ],
+  "Cos": [
+    "Returns the cosine of an angle entered in radians",
+    [
+      "(${1:number}$0)",
+      "(${1:number}$0)"
+    ]
+  ],
+  "DecrementValue": [
+    "Decrement the integer part of a number",
+    [
+      "(${1:number}$0)",
+      "(${1:number}$0)"
+    ]
+  ],
+  "Exp": [
+    "Calculates the exponent whose base is e that represents a number.",
+    [
+      "(${1:number}$0)",
+      "(${1:number}$0)"
+    ]
+  ],
+  "Fix": [
+    "Converts a real number to an integer",
+    [
+      "(${1:number}$0)",
+      "(${1:number}$0)"
+    ]
+  ],
+  "Floor": [
+    "Returns the absolute value of a number",
+    [
+      "(${1:number}$0)",
+      "(${1:number}$0)"
+    ]
+  ],
+  "FormatBaseN": [
+    "Converts a number to a string representation in the specified base.",
+    [
+      "(${1:number}, ${2:radix}$0)",
+      "(${1:number}, ${2:radix}$0)"
+    ]
+  ],
+  "IncrementValue": [
+    "Increment the integer part of a number",
+    [
+      "(${1:number}$0)",
+      "(${1:number}$0)"
+    ]
+  ],
+  "InputBaseN": [
+    "Converts a string, using the base specified by radix, to an integer.",
+    [
+      "(${1:string}, ${2:radix}$0)",
+      "(${1:string}, ${2:radix}$0)"
+    ]
+  ],
+  "Int": [
+    "Returns the closest integer that is smaller than the number",
+    [
+      "(${1:number}$0)",
+      "(${1:number}$0)"
+    ]
+  ],
+  "Log": [
+    "Returns the natural logarithm of a number.",
+    [
+      "(${1:number}$0)",
+      "(${1:number}$0)"
+    ]
+  ],
+  "Log10": [
+    "No description available.",
+    [
+      "(${1:number}$0)",
+      "(${1:number}$0)"
+    ]
+  ],
+  "Max": [
+    "Return larger of two numbers",
+    [
+      "(${1:number1}, ${2:number2}$0)",
+      "(${1:number1}, ${2:number2}$0)"
+    ]
+  ],
+  "Min": [
+    "Return larger of two numbers",
+    [
+      "(${1:number1}, ${2:number2}$0)",
+      "(${1:number1}, ${2:number2}$0)"
+    ]
+  ],
+  "Pi": [
+    "Returns the mathmatical constant Pi accurate to 15 digits",
+    [
+      "($0)",
+      "($0)"
+    ]
+  ],
+  "PrecisionEvaluate": [
+    "Evaluates one or more string expressions using BigDecimal precision arithmetic.\n\nIf the results ends in an infinitely repeating decimal value only the first 20 digits of the decimal\n portion will be used. BigDecimal precision results only work with addition, subtraction,\n multiplication and division. The use of ^, MOD, % or \\ arithmetic operators will result in\n normal integer precision.",
+    [
+      "(${1:expressions}$0)",
+      "(${1:expressions}$0)"
+    ]
+  ],
+  "Rand": [
+    "Return a random double between 0 and 1",
+    [
+      "($0)",
+      "(${1:algorithm}$0)"
+    ]
+  ],
+  "RandRange": [
+    "Return a random int between number1 and number 2",
+    [
+      "(${1:number1}, ${2:number2}$0)",
+      "(${1:number1}, ${2:number2}, ${3:algorithm}$0)"
+    ]
+  ],
+  "Randomize": [
+    "Seeds the pseudo-random number generator with an\n integer number, ensuring repeatable number patterns.",
+    [
+      "(${1:seed}$0)",
+      "(${1:seed}, ${2:algorithm}$0)"
+    ]
+  ],
+  "Round": [
+    "Rounds a number to the closest integer.",
+    [
+      "(${1:number}$0)",
+      "(${1:number}, ${2:precision}$0)"
+    ]
+  ],
+  "Sgn": [
+    "Determine the sign of a number",
+    [
+      "(${1:number}$0)",
+      "(${1:number}$0)"
+    ]
+  ],
+  "Sin": [
+    "Returns the sine of a number",
+    [
+      "(${1:number}$0)",
+      "(${1:number}$0)"
+    ]
+  ],
+  "Sqr": [
+    "Returns the square root of a number",
+    [
+      "(${1:value}$0)",
+      "(${1:value}$0)"
+    ]
+  ],
+  "Tan": [
+    "Returns the tangent of an angle that is entered in radians.",
+    [
+      "(${1:number}$0)",
+      "(${1:number}$0)"
+    ]
+  ],
+  "HTTP": [
+    "Returns a fluent HTTP client for making HTTP requests.\n\nThis BIF creates a new or retrieves an existing BoxHttpClient instance based on the provided\n connection parameters. The client can be used to fluently build and execute HTTP requests\n with support for various HTTP versions, redirects, timeouts, proxy configuration, and client certificates.\n\n Example usage:\n\n <pre>\n // Simple GET request\n http( \"https://api.example.com/data\" )\n     .invoke()\n     .ifSuccess( result -> {\n \t\t// Handle successful response\n \t} )\n     .ifError( error -> {\n \t\t// Handle error response\n \t} )\n\n // Invoke and get the result immediately, throwing an exception on error\n result = http( \"https://api.example.com/data\" )\n \t.invokeAndGet().\n </pre>",
+    [
+      "(${1:URL}$0)",
+      "(${1:URL}, ${2:connectionTimeout}, ${3:redirect}, ${4:httpVersion}, ${5:proxyServer}, ${6:proxyPort}, ${7:proxyUser}, ${8:proxyPassword}, ${9:clientCert}, ${10:clientCertPassword}$0)"
+    ]
+  ],
+  "SOAP": [
+    "Returns a fluent SOAP client for making SOAP web service requests.\n\nThis BIF creates a new or retrieves an existing BoxSoapClient instance based on the provided\n WSDL URL. The client can be used to fluently invoke SOAP operations discovered from the WSDL.\n The client provides fluent methods for configuring connection settings like setTimeout(),\n setAuthentication(), and addHeader().\n\n Example usage:\n\n <pre>\n // Create a SOAP client from WSDL\n ws = soap( \"http://example.com/service.wsdl\" )\n\n // Invoke a SOAP operation: methodName, passing arguments as an array\n result = ws.invoke( \"methodName\", [ arg1, arg2 ] )\n\n // With authentication and timeout configuration\n ws = soap( \"http://example.com/service.wsdl\" )\n     .setTimeout( 60 )\n     .setAuthentication( \"user\", \"pass\" )\n\n result = ws.invoke( \"methodName\", [ arg1, arg2 ] )\n </pre>",
+    [
+      "(${1:URL}$0)",
+      "(${1:URL}$0)"
+    ]
+  ],
+  "QueryAddColumn": [
+    "Adds a column to a query and populates its rows with the contents of a one-dimensional array.",
+    [
+      "(${1:query}, ${2:columnName}$0)",
+      "(${1:query}, ${2:columnName}, ${3:datatype}, ${4:array}$0)"
+    ]
+  ],
+  "QueryAddRow": [
+    "Return new query",
+    [
+      "(${1:query}$0)",
+      "(${1:query}, ${2:rowData}$0)"
+    ]
+  ],
+  "QueryAppend": [
+    "This function clears the query",
+    [
+      "(${1:query1}, ${2:query2}$0)",
+      "(${1:query1}, ${2:query2}$0)"
+    ]
+  ],
+  "QueryClear": [
+    "This function clears the query",
+    [
+      "(${1:query}$0)",
+      "(${1:query}$0)"
+    ]
+  ],
+  "QueryColumnArray": [
+    "This function returns the column array of a query.",
+    [
+      "(${1:query}$0)",
+      "(${1:query}$0)"
+    ]
+  ],
+  "QueryColumnCount": [
+    "This function returns the number of columns in a query",
+    [
+      "(${1:query}$0)",
+      "(${1:query}$0)"
+    ]
+  ],
+  "QueryColumnData": [
+    "Returns the data in a query column.",
+    [
+      "(${1:query}, ${2:columnName}$0)",
+      "(${1:query}, ${2:columnName}$0)"
+    ]
+  ],
+  "QueryColumnExists": [
+    "This function returns true if the column exists in the query",
+    [
+      "(${1:query}, ${2:column}$0)",
+      "(${1:query}, ${2:column}$0)"
+    ]
+  ],
+  "QueryColumnList": [
+    "This function returns the delimited column list of a query.",
+    [
+      "(${1:query}$0)",
+      "(${1:query}$0)"
+    ]
+  ],
+  "QueryCurrentRow": [
+    "Returns the current row number",
+    [
+      "(${1:query}$0)",
+      "(${1:query}$0)"
+    ]
+  ],
+  "QueryDeleteColumn": [
+    "Deletes a column within a query object.",
+    [
+      "(${1:query}, ${2:column}$0)",
+      "(${1:query}, ${2:column}$0)"
+    ]
+  ],
+  "QueryDeleteRow": [
+    "This function deletes a row from the query",
+    [
+      "(${1:query}, ${2:row}$0)",
+      "(${1:query}, ${2:row}$0)"
+    ]
+  ],
+  "QueryEach": [
+    "Iterates over query rows and passes each row per iteration to a callback function.\n\nThis function is used to perform an action for each row in the query.\n It does not return a value, but rather allows you to perform side effects such as printing or modifying data.\n <p>\n <h2>Parallel Execution</h2>\n If the <code>parallel</code> argument is set to true, and no <code>max_threads</code> are sent, the filter will be executed in parallel using a ForkJoinPool with parallel streams.\n If <code>max_threads</code> is specified, it will create a new ForkJoinPool with the specified number of threads to run the filter in parallel, and destroy it after the operation is complete.\n Please note that this may not be the most efficient way to iterate, as it will create a new ForkJoinPool for each invocation of the BIF. You may want to consider using a shared ForkJoinPool for better performance.",
+    [
+      "(${1:query}$0)",
+      "(${1:query}, ${2:parallel}, ${3:maxThreads}, ${4:ordered}, ${5:virtual}$0)"
+    ]
+  ],
+  "QueryEvery": [
+    "Used to iterate over a Query and test whether <strong>every</strong> item meets the test callback.\n\nThe function will be passed 3 arguments: the value, the index, and the Query.\n You can alternatively pass a Java Predicate which will only receive the 1st arg.\n The function should return true if the item meets the test, and false otherwise.\n <p>\n <strong>Note:</strong> This operation is a short-circuit operation, meaning it will stop iterating as soon as it finds the first item that does not meet the test condition.\n <p>\n <h2>Parallel Execution</h2>\n If the <code>parallel</code> argument is set to true, and no <code>max_threads</code> are sent, the filter will be executed in parallel using a ForkJoinPool with parallel streams.\n If <code>max_threads</code> is specified, it will create a new ForkJoinPool with the specified number of threads to run the filter in parallel, and destroy it after the operation is complete.\n This allows for efficient processing of large Queries, especially when the test function is computationally expensive or the Query is large.",
+    [
+      "(${1:query}$0)",
+      "(${1:query}, ${2:parallel}, ${3:maxThreads}, ${4:virtual}$0)"
+    ]
+  ],
+  "QueryFilter": [
+    "Filters query rows specified in filter criteria\n This BIF will invoke the callback function for each row in the query, passing the row as a struct.\n\n<ul>\n <li>If the callback returns true, the row will be included in the new query.</li>\n <li>If the callback returns false, the row will be excluded from the new query.</li>\n <li>If the callback requires strict arguments, it will only receive the row as a struct.</li>\n <li>If the callback does not require strict arguments, it will receive the row as a struct, the row number (1-based), and the query itself.</li>\n </ul>\n <p>\n <h2>Parallel Execution</h2>\n If the <code>parallel</code> argument is set to true, and no <code>max_threads</code> are sent, the filter will be executed in parallel using a ForkJoinPool with parallel streams.\n If <code>max_threads</code> is specified, it will create a new ForkJoinPool with the specified number of threads to run the filter in parallel, and destroy it after the operation is complete.\n Please note that this may not be the most efficient way to filter, as it will create a new ForkJoinPool for each invocation of the BIF. You may want to consider using a shared ForkJoinPool for better performance.",
+    [
+      "(${1:query}$0)",
+      "(${1:query}, ${2:parallel}, ${3:maxThreads}, ${4:virtual}$0)"
+    ]
+  ],
+  "QueryGetCell": [
+    "This function maps the query to a new query.",
+    [
+      "(${1:query}, ${2:column_name}$0)",
+      "(${1:query}, ${2:column_name}, ${3:row_number}$0)"
+    ]
+  ],
+  "QueryGetResult": [
+    "Returns the metadata of a query.",
+    [
+      "(${1:query}$0)",
+      "(${1:query}$0)"
+    ]
+  ],
+  "QueryInsertAt": [
+    "Inserts a query data into another query at a specific position",
+    [
+      "(${1:query}, ${2:value}, ${3:position}$0)",
+      "(${1:query}, ${2:value}, ${3:position}$0)"
+    ]
+  ],
+  "QueryKeyExists": [
+    "This function returns true if the key exists in the query",
+    [
+      "(${1:query}, ${2:key}$0)",
+      "(${1:query}, ${2:key}$0)"
+    ]
+  ],
+  "QueryMap": [
+    "This BIF will iterate over each row in the query and invoke the callback function for each item so you can do\n any operation on the row and return a new value that will be set at the same index in a new query.\n\nThe callback function will be passed the row as a struct, the current row number (1-based), and the query itself.\n <ul>\n <li>If the callback requires strict arguments, it will only receive the row as a struct.</li>\n <li>If the callback does not require strict arguments, it will receive the row as a struct, the row number (1-based), and the query itself.</li>\n </ul>\n <p>\n <h2>Parallel Execution</h2>\n If the <code>parallel</code> argument is set to true, and no <code>max_threads</code> are sent, the map will be executed in parallel using a ForkJoinPool with parallel streams.\n If <code>max_threads</code> is specified, it will create a new ForkJoinPool with the specified number of threads to run the map in parallel, and destroy it after the operation is complete.\n Please note that this may not be the most efficient way to map, as it will create a new ForkJoinPool for each invocation of the BIF. You may want to consider using a shared ForkJoinPool for better performance.",
+    [
+      "(${1:query}$0)",
+      "(${1:query}, ${2:parallel}, ${3:maxThreads}, ${4:virtual}$0)"
+    ]
+  ],
+  "QueryNew": [
+    "Return new query based on the provided column list, column types, and/or row data.\n\n<p>\n Available column types are:\n <ul>\n <li>bigint</li>\n <li>binary</li>\n <li>bit</li>\n <li>date</li>\n <li>decimal</li>\n <li>double</li>\n <li>integer</li>\n <li>null</li>\n <li>object</li>\n <li>other</li>\n <li>time</li>\n <li>timestamp</li>\n <li>varchar</li>\n </ul>\n <p>\n If <code>columnTypeList</code> is empty, all columns will be of type \"object\".",
+    [
+      "(${1:columnList}$0)",
+      "(${1:columnList}, ${2:columnTypeList}, ${3:rowData}$0)"
+    ]
+  ],
+  "QueryNone": [
+    "Used to iterate over a Query and test whether <strong>NONE</strong> item meets the test callback.\n\nThis is the opposite of {@link QuerySome}.\n <p>\n The function will be passed 3 arguments: the value, the index, and the Query.\n You can alternatively pass a Java Predicate which will only receive the 1st arg.\n The function should return true if the item meets the test, and false otherwise.\n <p>\n <strong>Note:</strong> This operation is a short-circuit operation, meaning it will stop iterating as soon as it finds the first item that does not meet the test condition.\n <p>\n <h2>Parallel Execution</h2>\n If the <code>parallel</code> argument is set to true, and no <code>max_threads</code> are sent, the filter will be executed in parallel using a ForkJoinPool with parallel streams.\n If <code>max_threads</code> is specified, it will create a new ForkJoinPool with the specified number of threads to run the filter in parallel, and destroy it after the operation is complete.\n This allows for efficient processing of large Queries, especially when the test function is computationally expensive or the Query is large.",
+    [
+      "(${1:query}$0)",
+      "(${1:query}, ${2:parallel}, ${3:maxThreads}, ${4:virtual}$0)"
+    ]
+  ],
+  "QueryPrepend": [
+    "Adds a query to the beginning of another query",
+    [
+      "(${1:query1}, ${2:query2}$0)",
+      "(${1:query1}, ${2:query2}$0)"
+    ]
+  ],
+  "QueryRecordCount": [
+    "Returns the absolute value of a number",
+    [
+      "(${1:query}$0)",
+      "(${1:query}$0)"
+    ]
+  ],
+  "QueryReduce": [
+    "This function reduces the query to a single value.",
+    [
+      "(${1:query}, ${2:initialValue}$0)",
+      "(${1:query}, ${2:initialValue}$0)"
+    ]
+  ],
+  "QueryRegisterFunction": [
+    "Register a new scalar or aggregate function for use with Query of Query.\n\nFunctions only need to be registered once per runtime and they will be cached in memory until\n the runtime restarts.",
+    [
+      "(${1:name}, ${2:function}, ${3:returnType}, ${4:type}$0)",
+      "(${1:name}, ${2:function}, ${3:returnType}, ${4:type}$0)"
+    ]
+  ],
+  "QueryReverse": [
+    "This function reverses the query data",
+    [
+      "(${1:query}$0)",
+      "(${1:query}$0)"
+    ]
+  ],
+  "QueryRowData": [
+    "Returns the cells of a query row as a structure",
+    [
+      "(${1:query}, ${2:rowNumber}$0)",
+      "(${1:query}, ${2:rowNumber}$0)"
+    ]
+  ],
+  "QueryRowSwap": [
+    "In a query object, swap the record in the sourceRow with the record from the destinationRow.",
+    [
+      "(${1:query}, ${2:source}, ${3:destination}$0)",
+      "(${1:query}, ${2:source}, ${3:destination}$0)"
+    ]
+  ],
+  "QuerySetCell": [
+    "Sets a cell to a value.",
+    [
+      "(${1:query}, ${2:column}, ${3:value}$0)",
+      "(${1:query}, ${2:column}, ${3:value}, ${4:row}$0)"
+    ]
+  ],
+  "QuerySetRow": [
+    "Adds or updates a row in a query based on the provided row data and position.",
+    [
+      "(${1:query}, ${2:rowData}$0)",
+      "(${1:query}, ${2:rowNumber}, ${3:rowData}$0)"
+    ]
+  ],
+  "QuerySlice": [
+    "Returns a subset of rows from an existing query",
+    [
+      "(${1:query}, ${2:offset}$0)",
+      "(${1:query}, ${2:offset}, ${3:length}$0)"
+    ]
+  ],
+  "QuerySome": [
+    "Used to iterate over a query and test whether <strong>ANY</strong> items meet the test callback.\n\nThe function will be passed 3 arguments: the row, the currentRow, and the query.\n You can alternatively pass a Java Predicate which will only receive the 1st arg.\n The function should return true if the item meets the test, and false otherwise.\n <p>\n <strong>Note:</strong> This operation is a short-circuit operation, meaning it will stop iterating as soon as it finds the first item that meets the test condition.\n <p>\n <h2>Parallel Execution</h2>\n If the <code>parallel</code> argument is set to true, and no <code>max_threads</code> are sent, the filter will be executed in parallel using a ForkJoinPool with parallel streams.\n If <code>max_threads</code> is specified, it will create a new ForkJoinPool with the specified number of threads to run the filter in parallel, and destroy it after the operation is complete.\n Please note that this may not be the most efficient way to iterate, as it will create a new ForkJoinPool for each invocation of the BIF. You may want to consider using a shared ForkJoinPool for better performance.\n <p>",
+    [
+      "(${1:query}$0)",
+      "(${1:query}, ${2:parallel}, ${3:maxThreads}, ${4:virtual}$0)"
+    ]
+  ],
+  "QuerySort": [
+    "Sorts array elements.",
+    [
+      "(${1:query}$0)",
+      "(${1:query}$0)"
+    ]
+  ],
+  "SchedulerGet": [
+    "Get a specific scheduler by name.",
+    [
+      "(${1:name}$0)",
+      "(${1:name}$0)"
+    ]
+  ],
+  "SchedulerGetAll": [
+    "Get a specific scheduler by name.",
+    [
+      "($0)",
+      "($0)"
+    ]
+  ],
+  "SchedulerList": [
+    "List all the schedulers registered in the system.",
+    [
+      "($0)",
+      "($0)"
+    ]
+  ],
+  "SchedulerRestart": [
+    "Restart a scheduler by name.\n\n<p>\n The default will do a graceful shutdown, but if the force argument is set to true,\n it will force shutdown the scheduler.\n <p>\n If the timeout argument is set, it will wait for the specified amount of time in seconds\n before forcing the shutdown. The default is 30 seconds.",
+    [
+      "(${1:name}$0)",
+      "(${1:name}, ${2:force}, ${3:timeout}$0)"
+    ]
+  ],
+  "SchedulerShutdown": [
+    "Shutdown a scheduler by name.\n\n<p>\n The default will do a graceful shutdown, but if the force argument is set to true,\n it will force shutdown the scheduler.\n <p>\n If the timeout argument is set, it will wait for the specified amount of time in seconds\n before forcing the shutdown. The default is 30 seconds.",
+    [
+      "(${1:name}$0)",
+      "(${1:name}, ${2:force}, ${3:timeout}$0)"
+    ]
+  ],
+  "SchedulerStart": [
+    "Create, register and start a scheduler with the given instantiation class path.\n\n<p>\n The className would be the same as instantiang the class via <code>new {className}</code>.",
+    [
+      "(${1:className}$0)",
+      "(${1:className}, ${2:name}, ${3:force}$0)"
+    ]
+  ],
+  "Ascii": [
+    "Determine the ASCII value of a character",
+    [
+      "(${1:string}$0)",
+      "(${1:string}$0)"
+    ]
+  ],
+  "CamelCase": [
+    "Convert a string to camel case",
+    [
+      "(${1:string}$0)",
+      "(${1:string}$0)"
+    ]
+  ],
+  "Char": [
+    "Convert a numeric UCS-2 code to a character",
+    [
+      "(${1:number}$0)",
+      "(${1:number}$0)"
+    ]
+  ],
+  "CharsetDecode": [
+    "Encodes a string to a binary representation",
+    [
+      "(${1:encoded_binary}$0)",
+      "(${1:encoded_binary}, ${2:encoding}$0)"
+    ]
+  ],
+  "CharsetEncode": [
+    "Encodes a binary string representation to an encoded string",
+    [
+      "($0)",
+      "(${1:encoding}$0)"
+    ]
+  ],
+  "Compare": [
+    "Performs a case-sensitive comparison of two strings.\n\n-1, if string1 is less than string2\n 0, if string1 is equal to string2\n 1, if string1 is greater than string2",
+    [
+      "(${1:string1}, ${2:string2}$0)",
+      "(${1:string1}, ${2:string2}$0)"
+    ]
+  ],
+  "CompareNoCase": [
+    "Performs a case-insensitive comparison of two strings.\n\n-1, if string1 is less than string2\n 0, if string1 is equal to string2\n 1, if string1 is greater than string2",
+    [
+      "(${1:string1}, ${2:string2}$0)",
+      "(${1:string1}, ${2:string2}$0)"
+    ]
+  ],
+  "Find": [
+    "Finds the first occurrence of a substring in a string, from a specified start position.",
+    [
+      "(${1:substring}, ${2:string}$0)",
+      "(${1:substring}, ${2:string}, ${3:start}$0)"
+    ]
+  ],
+  "FindNoCase": [
+    "Finds the first occurrence of a substring in a string, from a specified start position.",
+    [
+      "(${1:substring}, ${2:string}$0)",
+      "(${1:substring}, ${2:string}, ${3:start}$0)"
+    ]
+  ],
+  "FindOneOf": [
+    "Finds the first occurrence of any character in a set of characters, from a specified start position.",
+    [
+      "(${1:set}, ${2:string}$0)",
+      "(${1:set}, ${2:string}, ${3:start}$0)"
+    ]
+  ],
+  "Insert": [
+    "Inserts a substring into another string at a specified position.",
+    [
+      "(${1:substring}, ${2:string}, ${3:position}$0)",
+      "(${1:substring}, ${2:string}, ${3:position}$0)"
+    ]
+  ],
+  "JSStringFormat": [
+    "Escapes special JavaScript characters, such as single quotation mark, double quotation mark, and newline",
+    [
+      "(${1:string}$0)",
+      "(${1:string}$0)"
+    ]
+  ],
+  "Justify": [
+    "Justifies characters in a string of a specified length, either left or right.",
+    [
+      "(${1:string}, ${2:length}$0)",
+      "(${1:string}, ${2:length}$0)"
+    ]
+  ],
+  "KebabCase": [
+    "Convert a string to kebab case",
+    [
+      "(${1:string}$0)",
+      "(${1:string}$0)"
+    ]
+  ],
+  "LCase": [
+    "Uppercase a string",
+    [
+      "(${1:string}$0)",
+      "(${1:string}$0)"
+    ]
+  ],
+  "LJustify": [
+    "Justifies characters in a string of a specified length, either left or right.",
+    [
+      "(${1:string}, ${2:length}$0)",
+      "(${1:string}, ${2:length}$0)"
+    ]
+  ],
+  "LTrim": [
+    "Trim leading whitespace from a string",
+    [
+      "(${1:string}$0)",
+      "(${1:string}$0)"
+    ]
+  ],
+  "Left": [
+    "Extract the leftmost count characters from a string",
+    [
+      "(${1:string}, ${2:count}$0)",
+      "(${1:string}, ${2:count}$0)"
+    ]
+  ],
+  "ListReduce": [
+    "Run the provided udf over a delimited list to reduce the values to a single output",
+    [
+      "(${1:list}$0)",
+      "(${1:list}, ${2:initialValue}, ${3:delimiter}, ${4:includeEmptyFields}, ${5:multiCharacterDelimiter}$0)"
+    ]
+  ],
+  "Mid": [
+    "Extract a substring from a string",
+    [
+      "(${1:string}, ${2:start}$0)",
+      "(${1:string}, ${2:start}, ${3:count}$0)"
+    ]
+  ],
+  "ParagraphFormat": [
+    "Replaces characters in a string: Single newline characters (CR/LF sequences) with spaces and double newline characters with HTML paragraph tags",
+    [
+      "(${1:string}$0)",
+      "(${1:string}$0)"
+    ]
+  ],
+  "PascalCase": [
+    "Convert a string to pascal case",
+    [
+      "(${1:string}$0)",
+      "(${1:string}$0)"
+    ]
+  ],
+  "QueryStringToStruct": [
+    "Convert a query string to a struct.\n\nEach key-value pair in the query string is separated by a delimiter.\n The default delimiter is {@code \"&\"}\n <p>\n Example:\n\n <pre>\n queryStringToStruct( \"foo=bar&amp;baz=qux\" );\n \"foo=bar&amp;baz=qux\".toStruct();\n </pre>",
+    [
+      "(${1:target}$0)",
+      "(${1:target}, ${2:delimiter}$0)"
+    ]
+  ],
+  "RJustify": [
+    "Justifies characters in a string of a specified length, either left or right.",
+    [
+      "(${1:string}, ${2:length}$0)",
+      "(${1:string}, ${2:length}$0)"
+    ]
+  ],
+  "RTrim": [
+    "Trim trailing whitespace from a string",
+    [
+      "(${1:string}$0)",
+      "(${1:string}$0)"
+    ]
+  ],
+  "ReEscape": [
+    "Escapes regular expression control characters within a string.\n\nIf a string is \"foo.bar\" and you want to escape it for use in a regular expression, you would use this BIF.\n Escaped Pattern will be \"foo\\\\.bar\"",
+    [
+      "(${1:string}$0)",
+      "(${1:string}$0)"
+    ]
+  ],
+  "ReFind": [
+    "Uses a regular expression (RE) to search a string for a pattern, starting from a specified position.\n\nThe search is case-sensitive.\n It will return numeric if returnsubexpressions is false and a struct of arrays named \"len\", \"match\" and \"pos\" when returnsubexpressions is true.",
+    [
+      "(${1:reg_expression}, ${2:string}$0)",
+      "(${1:reg_expression}, ${2:string}, ${3:start}, ${4:returnSubExpressions}, ${5:scope}$0)"
+    ]
+  ],
+  "ReMatch": [
+    "Uses a regular expression (RE) to search a string for a pattern.",
+    [
+      "(${1:reg_expression}, ${2:string}$0)",
+      "(${1:reg_expression}, ${2:string}$0)"
+    ]
+  ],
+  "ReReplace": [
+    "Uses a regular expression (regex) to search a string for a string pattern and replace it with another.\n\nThe search is case-sensitive.",
+    [
+      "(${1:string}, ${2:regex}, ${3:substring}, ${4:scope}$0)",
+      "(${1:string}, ${2:regex}, ${3:substring}, ${4:scope}$0)"
+    ]
+  ],
+  "RemoveChars": [
+    "Removes characters from a string.",
+    [
+      "(${1:string}, ${2:start}, ${3:count}$0)",
+      "(${1:string}, ${2:start}, ${3:count}$0)"
+    ]
+  ],
+  "RepeatString": [
+    "Create a string that contains a specified number of repetitions of the specified string.",
+    [
+      "(${1:string}, ${2:count}$0)",
+      "(${1:string}, ${2:count}$0)"
+    ]
+  ],
+  "Replace": [
+    "Replaces occurrences of substring1 in a string with obj, in a specified scope.\n\nThe search is case-sensitive. Function returns original string with\n replacements made",
+    [
+      "(${1:string}, ${2:substring1}, ${3:obj}, ${4:scope}$0)",
+      "(${1:string}, ${2:substring1}, ${3:obj}, ${4:scope}$0)"
+    ]
+  ],
+  "ReplaceList": [
+    "Replaces occurrences of the elements from a delimited list, in a string with corresponding elements from another delimited list.",
+    [
+      "(${1:string}, ${2:list1}, ${3:list2}$0)",
+      "(${1:string}, ${2:list1}, ${3:list2}, ${4:delimiter_list1}, ${5:delimiter_list2}, ${6:includeEmptyFields}$0)"
+    ]
+  ],
+  "ReplaceListNoCase": [
+    "Replaces occurrences of the elements from a delimited list, in a string with corresponding elements from another delimited list.",
+    [
+      "(${1:string}, ${2:list1}, ${3:list2}$0)",
+      "(${1:string}, ${2:list1}, ${3:list2}, ${4:delimiter_list1}, ${5:delimiter_list2}, ${6:includeEmptyFields}$0)"
+    ]
+  ],
+  "ReplaceNoCase": [
+    "Replaces occurrences of substring1 in a string with obj, in a specified scope.\n\nThe search is case-sensitive. Function returns original string with\n replacements made",
+    [
+      "(${1:string}, ${2:substring1}, ${3:obj}, ${4:scope}$0)",
+      "(${1:string}, ${2:substring1}, ${3:obj}, ${4:scope}, ${5:start}$0)"
+    ]
+  ],
+  "Reverse": [
+    "Reverse the order of characters in a string",
+    [
+      "(${1:string}$0)",
+      "(${1:string}$0)"
+    ]
+  ],
+  "Right": [
+    "Extract the rightmost count characters from a string",
+    [
+      "(${1:string}, ${2:count}$0)",
+      "(${1:string}, ${2:count}$0)"
+    ]
+  ],
+  "SQLPrettify": [
+    "Prettify a SQL string",
+    [
+      "(${1:sql}$0)",
+      "(${1:sql}$0)"
+    ]
+  ],
+  "Slugify": [
+    "Slugify a string for URL safety",
+    [
+      "(${1:string}$0)",
+      "(${1:string}, ${2:maxLength}, ${3:allow}$0)"
+    ]
+  ],
+  "SnakeCase": [
+    "Convert a string to snake case",
+    [
+      "(${1:string}$0)",
+      "(${1:string}$0)"
+    ]
+  ],
+  "SpanExcluding": [
+    "Get characters from a string, from the beginning to a character that is in a specified set of characters.\n\nThe search is case-sensitive.",
+    [
+      "(${1:string}, ${2:set}$0)",
+      "(${1:string}, ${2:set}$0)"
+    ]
+  ],
+  "SpanIncluding": [
+    "Gets characters from a string, from the beginning to a character that is NOT in a specified set of characters.\n\nThe search is case-sensitive.",
+    [
+      "(${1:string}, ${2:set}$0)",
+      "(${1:string}, ${2:set}$0)"
+    ]
+  ],
+  "StringBind": [
+    "This BIF allows you to bind a string with placeholders to a set of values.\n\nEach placeholder is defined as {@code ${placeholder-name}} and can be used anywhere\n and multiple times in the string.",
+    [
+      "(${1:string}, ${2:placeholders}$0)",
+      "(${1:string}, ${2:placeholders}$0)"
+    ]
+  ],
+  "StringEach": [
+    "Iterates all the elements in a string and runs the passed callback on each character",
+    [
+      "(${1:list}$0)",
+      "(${1:list}, ${2:delimiter}, ${3:includeEmptyFields}, ${4:multiCharacterDelimiter}, ${5:parallel}, ${6:maxThreads}, ${7:ordered}, ${8:virtual}$0)"
+    ]
+  ],
+  "StringEvery": [
+    "Tests a string that all elements meet the specified criteria",
+    [
+      "(${1:list}$0)",
+      "(${1:list}, ${2:delimiter}, ${3:includeEmptyFields}, ${4:multiCharacterDelimiter}, ${5:parallel}, ${6:maxThreads}, ${7:virtual}$0)"
+    ]
+  ],
+  "StringFilter": [
+    "Filters all the elements in a string according to a specified callback",
+    [
+      "(${1:list}$0)",
+      "(${1:list}, ${2:delimiter}, ${3:includeEmptyFields}, ${4:multiCharacterDelimiter}, ${5:parallel}, ${6:maxThreads}, ${7:virtual}$0)"
+    ]
+  ],
+  "StringMap": [
+    "Iterates over all elements in a string and returns a new mapped string",
+    [
+      "(${1:list}$0)",
+      "(${1:list}, ${2:delimiter}, ${3:includeEmptyFields}, ${4:multiCharacterDelimiter}, ${5:parallel}, ${6:maxThreads}, ${7:virtual}$0)"
+    ]
+  ],
+  "StringReduce": [
+    "Run the provided udf over all characters in a string to reduce the values to a single output",
+    [
+      "(${1:list}$0)",
+      "(${1:list}, ${2:initialValue}, ${3:delimiter}, ${4:includeEmptyFields}, ${5:multiCharacterDelimiter}$0)"
+    ]
+  ],
+  "StringReduceRight": [
+    "Run the provided udf over a reversed string to reduce the values to a single output",
+    [
+      "(${1:list}$0)",
+      "(${1:list}, ${2:initialValue}, ${3:delimiter}, ${4:includeEmptyFields}, ${5:multiCharacterDelimiter}$0)"
+    ]
+  ],
+  "StringSome": [
+    "Tests whether any item in a string meets the specified callback",
+    [
+      "(${1:list}$0)",
+      "(${1:list}, ${2:delimiter}, ${3:includeEmptyFields}, ${4:multiCharacterDelimiter}, ${5:parallel}, ${6:maxThreads}, ${7:virtual}$0)"
+    ]
+  ],
+  "StringSort": [
+    "Sorts a string and returns the result",
+    [
+      "(${1:list}$0)",
+      "(${1:list}, ${2:sortType}, ${3:sortOrder}, ${4:delimiter}, ${5:includeEmptyFields}, ${6:multiCharacterDelimiter}, ${7:localeSensitive}, ${8:callback}$0)"
+    ]
+  ],
+  "StripCR": [
+    "Deletes return characters from a string.",
+    [
+      "(${1:string}$0)",
+      "(${1:string}$0)"
+    ]
+  ],
+  "Trim": [
+    "Trim whitespace from the beginning and end of a string",
+    [
+      "(${1:string}$0)",
+      "(${1:string}$0)"
+    ]
+  ],
+  "TrueFalseFormat": [
+    "Return Yes/No based on whether the input is true/false",
+    [
+      "(${1:value}$0)",
+      "(${1:value}$0)"
+    ]
+  ],
+  "UCFirst": [
+    "Transform the first letter of a string to uppercase or the first letter of each word, and optionally lowercase uppercase characters.",
+    [
+      "(${1:string}$0)",
+      "(${1:string}, ${2:doAll}, ${3:doLowerIfAllUppercase}$0)"
+    ]
+  ],
+  "UCase": [
+    "Uppercase a string",
+    [
+      "(${1:string}$0)",
+      "(${1:string}$0)"
+    ]
+  ],
+  "Val": [
+    "Converts numeric characters and the first period found that occur at the beginning of a string to a number.\n\nA period not accompianied by at least\n one numeric digit will be ignored. If no numeric digits are found at the start of the string, zero will be returned.",
+    [
+      "(${1:string}$0)",
+      "(${1:string}$0)"
+    ]
+  ],
+  "Wrap": [
+    "Wraps a string at the specified limit, breaking at the last space within the limit.",
+    [
+      "(${1:string}, ${2:limit}$0)",
+      "(${1:string}, ${2:limit}, ${3:strip}$0)"
+    ]
+  ],
+  "YesNoFormat": [
+    "Return Yes/No based on whether the input is true/false",
+    [
+      "(${1:value}$0)",
+      "(${1:value}$0)"
+    ]
+  ],
+  "reFindNoCase": [
+    "Uses a regular expression (RE) to search a string for a pattern, starting from a specified position.\n\nThe search is case-sensitive.\n It will return numeric if returnsubexpressions is false and a struct of arrays named \"len\", \"match\" and \"pos\" when returnsubexpressions is true.",
+    [
+      "(${1:reg_expression}, ${2:string}$0)",
+      "(${1:reg_expression}, ${2:string}, ${3:start}, ${4:returnSubExpressions}, ${5:scope}$0)"
+    ]
+  ],
+  "reMatchNoCase": [
+    "Uses a regular expression (RE) to search a string for a pattern.",
+    [
+      "(${1:reg_expression}, ${2:string}$0)",
+      "(${1:reg_expression}, ${2:string}$0)"
+    ]
+  ],
+  "reReplaceNoCase": [
+    "Uses a regular expression (regex) to search a string for a string pattern and replace it with another.\n\nThe search is case-sensitive.",
+    [
+      "(${1:string}, ${2:regex}, ${3:substring}, ${4:scope}$0)",
+      "(${1:string}, ${2:regex}, ${3:substring}, ${4:scope}$0)"
+    ]
+  ],
+  "StructAppend": [
+    "Appends the contents of a second struct to the first struct either with or\n without overwrite",
+    [
+      "(${1:struct1}, ${2:struct2}$0)",
+      "(${1:struct1}, ${2:struct2}, ${3:overwrite}$0)"
+    ]
+  ],
+  "StructClear": [
+    "Clear all items from struct",
+    [
+      "(${1:structure}$0)",
+      "(${1:structure}$0)"
+    ]
+  ],
+  "StructCopy": [
+    "Creates a shallow copy of a struct.\n\nCopies top-level keys, values, and arrays in the structure by value; copies nested structures by reference.",
+    [
+      "(${1:struct}$0)",
+      "(${1:struct}$0)"
+    ]
+  ],
+  "StructDelete": [
+    "Deletes a key from a struct",
+    [
+      "(${1:struct}, ${2:key}$0)",
+      "(${1:struct}, ${2:key}$0)"
+    ]
+  ],
+  "StructEach": [
+    "Used to iterate over a struct and run the function closure for each key/value pair.\n\n<p>\n The function will be passed 3 arguments: the key, the value, and the struct.\n You can alternatively pass a Java BiConsumer which will only receive the first 2 args (key and value).\n <p>\n This BIF is useful for performing side effects on each item in the struct, such as logging or modifying external state.\n <p>\n\n <p>\n <h2>Parallel Execution</h2>\n If the <code>parallel</code> argument is set to true, and no <code>max_threads</code> are sent, the filter will be executed in parallel using a ForkJoinPool with parallel streams.\n If <code>max_threads</code> is specified, it will create a new ForkJoinPool with the specified number of threads to run the filter in parallel, and destroy it after the operation is complete.\n Please note that this may not be the most efficient way to iterate, as it will create a new ForkJoinPool for each invocation of the BIF. You may want to consider using a shared ForkJoinPool for better performance.",
+    [
+      "(${1:struct}$0)",
+      "(${1:struct}, ${2:parallel}, ${3:maxThreads}, ${4:ordered}, ${5:virtual}$0)"
+    ]
+  ],
+  "StructEquals": [
+    "Tests equality between two structs",
+    [
+      "(${1:struct1}, ${2:struct2}$0)",
+      "(${1:struct1}, ${2:struct2}$0)"
+    ]
+  ],
+  "StructEvery": [
+    "Used to iterate over a struct and test whether <strong>every</strong> item meets the test callback.\n\nThe function will be passed 3 arguments: the value, the index, and the struct.\n You can alternatively pass a Java Predicate which will only receive the 1st arg.\n The function should return true if the item meets the test, and false otherwise.\n <p>\n <strong>Note:</strong> This operation is a short-circuit operation, meaning it will stop iterating as soon as it finds the first item that does not meet the test condition.\n <p>\n <h2>Parallel Execution</h2>\n If the <code>parallel</code> argument is set to true, and no <code>max_threads</code> are sent, the filter will be executed in parallel using a ForkJoinPool with parallel streams.\n If <code>max_threads</code> is specified, it will create a new ForkJoinPool with the specified number of threads to run the filter in parallel, and destroy it after the operation is complete.\n This allows for efficient processing of large structs, especially when the test function is computationally expensive or the struct is large.",
+    [
+      "(${1:struct}$0)",
+      "(${1:struct}, ${2:parallel}, ${3:maxThreads}, ${4:virtual}$0)"
+    ]
+  ],
+  "StructFilter": [
+    "Filters a struct and returns a new struct with the values that pass the filter criteria.\n\nThis BIF will invoke the callback function for each entry in the struct, passing the key, value, and the struct itself.\n <ul>\n <li>If the callback returns true, the entry will be included in the new struct.</li>\n <li>If the callback returns false, the entry will be excluded from the new struct.</li>\n <li>If the callback requires strict arguments, it will only receive the key and value.</li>\n <li>If the callback does not require strict arguments, it will receive the key, value, and the original struct.</li>\n </ul>\n <p>\n <h2>Parallel Execution</h2>\n If the <code>parallel</code> argument is set to true, and no <code>max_threads</code> are sent, the filter will be executed in parallel using a ForkJoinPool with parallel streams.\n If <code>max_threads</code> is specified, it will create a new ForkJoinPool with the specified number of threads to run the filter in parallel, and destroy it after the operation is complete.\n Please note that this may not be the most efficient way to filter, as it will create a new ForkJoinPool for each invocation of the BIF. You may want to consider using a shared ForkJoinPool for better performance.",
+    [
+      "(${1:struct}$0)",
+      "(${1:struct}, ${2:parallel}, ${3:maxThreads}, ${4:virtual}$0)"
+    ]
+  ],
+  "StructFind": [
+    "Finds and retrieves a top-level key from a string in a struct",
+    [
+      "(${1:struct}, ${2:key}$0)",
+      "(${1:struct}, ${2:key}, ${3:defaultValue}$0)"
+    ]
+  ],
+  "StructFindKey": [
+    "Searches a struct for a given key and returns an array of values",
+    [
+      "(${1:struct}, ${2:key}$0)",
+      "(${1:struct}, ${2:key}, ${3:scope}$0)"
+    ]
+  ],
+  "StructFindValue": [
+    "Searches a struct for a given value and returns an array of results",
+    [
+      "(${1:struct}, ${2:value}$0)",
+      "(${1:struct}, ${2:value}, ${3:scope}$0)"
+    ]
+  ],
+  "StructGet": [
+    "Retrieves the value from a struct using a path based expression",
+    [
+      "(${1:path}$0)",
+      "(${1:path}$0)"
+    ]
+  ],
+  "StructGetMetadata": [
+    "Gets Struct-specific metadata of the requested struct.",
+    [
+      "(${1:struct}$0)",
+      "(${1:struct}$0)"
+    ]
+  ],
+  "StructInsert": [
+    "Inserts a key/value pair in to a struct - with an optional overwrite argument",
+    [
+      "(${1:struct}, ${2:key}, ${3:value}$0)",
+      "(${1:struct}, ${2:key}, ${3:value}, ${4:overwrite}$0)"
+    ]
+  ],
+  "StructIsCaseSensitive": [
+    "Returns whether the give struct is case sensitive",
+    [
+      "(${1:struct}$0)",
+      "(${1:struct}$0)"
+    ]
+  ],
+  "StructIsOrdered": [
+    "Tests whether a struct is ordered ( e.g.\n\nlinked )",
+    [
+      "(${1:struct}$0)",
+      "(${1:struct}$0)"
+    ]
+  ],
+  "StructKeyArray": [
+    "Get keys of a struct as an array",
+    [
+      "(${1:structure}$0)",
+      "(${1:structure}$0)"
+    ]
+  ],
+  "StructKeyExists": [
+    "Tests whether a key exists in a struct and returns a boolean value",
+    [
+      "(${1:struct}, ${2:key}$0)",
+      "(${1:struct}, ${2:key}$0)"
+    ]
+  ],
+  "StructKeyList": [
+    "Get keys of a struct as a string list",
+    [
+      "(${1:structure}$0)",
+      "(${1:structure}, ${2:delimiter}$0)"
+    ]
+  ],
+  "StructKeyTranslate": [
+    "Converts a struct with dot-notated keys in to an unflattened version",
+    [
+      "(${1:struct}$0)",
+      "(${1:struct}, ${2:deep}, ${3:retainKeys}$0)"
+    ]
+  ],
+  "StructMap": [
+    "This BIF will iterate over each key-value pair in the struct and invoke the callback function for each item so you can do\n any operation on the key-value pair and return a new value that will be set in a new struct.\n\nThe callback function will be passed the key, the value, and the original struct.\n <ul>\n <li>If the callback requires strict arguments, it will only receive the key and value.</li>\n <li>If the callback does not require strict arguments, it will receive the key, value, and the original struct.</li>\n </ul>\n <h2>Parallel Execution</h2>\n If the <code>parallel</code> argument is set to true, and no <code>max_threads</code> are sent, the map will be executed in parallel using a ForkJoinPool with parallel streams.\n If <code>max_threads</code> is specified, it will create a new ForkJoinPool with the specified number of threads to run the map in parallel, and destroy it after the operation is complete.\n Please note that this may not be the most efficient way to map, as it will create a new ForkJoinPool for each invocation of the BIF. You may want to consider using a shared ForkJoinPool for better performance.",
+    [
+      "(${1:struct}$0)",
+      "(${1:struct}, ${2:parallel}, ${3:maxThreads}, ${4:virtual}$0)"
+    ]
+  ],
+  "StructNew": [
+    "Creates a new struct of the specified type.\n\nThe available types are:\n - casesensitive\n - default\n - ordered-casesensitive\n - ordered\n - soft\n - sorted\n - weak",
+    [
+      "($0)",
+      "(${1:type}, ${2:sortType}, ${3:sortOrder}, ${4:localeSensitive}$0)"
+    ]
+  ],
+  "StructNone": [
+    "Used to iterate over a struct and test whether <strong>NONE</strong> item meets the test callback.\n\nThis is the opposite of {@link StructSome}.\n <p>\n The function will be passed 3 arguments: the value, the index, and the struct.\n You can alternatively pass a Java Predicate which will only receive the 1st arg.\n The function should return true if the item meets the test, and false otherwise.\n <p>\n <strong>Note:</strong> This operation is a short-circuit operation, meaning it will stop iterating as soon as it finds the first item that does not meet the test condition.\n <p>\n <h2>Parallel Execution</h2>\n If the <code>parallel</code> argument is set to true, and no <code>max_threads</code> are sent, the filter will be executed in parallel using a ForkJoinPool with parallel streams.\n If <code>max_threads</code> is specified, it will create a new ForkJoinPool with the specified number of threads to run the filter in parallel, and destroy it after the operation is complete.\n This allows for efficient processing of large structs, especially when the test function is computationally expensive or the struct is large.",
+    [
+      "(${1:struct}$0)",
+      "(${1:struct}, ${2:parallel}, ${3:maxThreads}, ${4:virtual}$0)"
+    ]
+  ],
+  "StructReduce": [
+    "Run the provided udf against struct to reduce the values to a single output",
+    [
+      "(${1:struct}, ${2:callback}$0)",
+      "(${1:struct}, ${2:callback}, ${3:initialValue}$0)"
+    ]
+  ],
+  "StructSome": [
+    "Used to iterate over a struct and test whether <strong>ANY</strong> items meet the test callback.\n\nThe function will be passed 3 arguments: the key, the value, and the struct.\n You can alternatively pass a Java BiPredicate which will only receive the first 2 args.\n The function should return true if the item meets the test, and false otherwise.\n <p>\n <strong>Note:</strong> This operation is a short-circuit operation, meaning it will stop iterating as soon as it finds the first item that meets the test condition.\n <p>\n <h2>Parallel Execution</h2>\n If the <code>parallel</code> argument is set to true, and no <code>max_threads</code> are sent, the filter will be executed in parallel using a ForkJoinPool with parallel streams.\n If <code>max_threads</code> is specified, it will create a new ForkJoinPool with the specified number of threads to run the filter in parallel, and destroy it after the operation is complete.\n Please note that this may not be the most efficient way to iterate, as it will create a new ForkJoinPool for each invocation of the BIF. You may want to consider using a shared ForkJoinPool for better performance.\n <p>",
+    [
+      "(${1:struct}$0)",
+      "(${1:struct}, ${2:parallel}, ${3:maxThreads}, ${4:virtual}$0)"
+    ]
+  ],
+  "StructSort": [
+    "Sorts a struct according to the specified arguments and returns an array of struct keys",
+    [
+      "(${1:struct}$0)",
+      "(${1:struct}, ${2:sortType}, ${3:sortOrder}, ${4:path}$0)"
+    ]
+  ],
+  "StructToQueryString": [
+    "Converts a struct to a query string using the specified delimiter.\n\n<p>\n The default delimiter is {@code \"&\"}",
+    [
+      "(${1:struct}$0)",
+      "(${1:struct}, ${2:delimiter}$0)"
+    ]
+  ],
+  "StructToSorted": [
+    "Converts a struct to a sorted struct - using either a callback comparator or textual directives as the sort option",
+    [
+      "(${1:struct}$0)",
+      "(${1:struct}, ${2:sortType}, ${3:sortOrder}, ${4:localeSensitive}$0)"
+    ]
+  ],
+  "StructUpdate": [
+    "Updates or sets a key/value pair in to a struct",
+    [
+      "(${1:struct}, ${2:key}, ${3:value}$0)",
+      "(${1:struct}, ${2:key}, ${3:value}$0)"
+    ]
+  ],
+  "StructValueArray": [
+    "Returns an array of all values of top level keys in a struct",
+    [
+      "(${1:struct}$0)",
+      "(${1:struct}$0)"
+    ]
+  ],
+  "ApplicationRestart": [
+    "Restarts the currently running application",
+    [
+      "($0)",
+      "($0)"
+    ]
+  ],
+  "ApplicationStartTime": [
+    "Get the start date/time of the running application",
+    [
+      "($0)",
+      "($0)"
+    ]
+  ],
+  "ApplicationStop": [
+    "Stops the currently running application",
+    [
+      "($0)",
+      "($0)"
+    ]
+  ],
+  "BoxAST": [
+    "Generates the Abstract Syntax Tree (AST) for BoxLang source code or a file.\n\nThe AST represents the syntactic structure of the code and can be used for\n code analysis, transformation, or generation.\n\n <p>\n <strong>Usage Examples:</strong>\n </p>\n\n <pre>\n // Parse source code and return as struct (default)\n ast = boxAST( source = \"x = 1 + 2\" );\n println( ast.ASTType ); // Outputs: BoxAssignment\n\n // Parse source code and return as JSON\n json = boxAST( source = \"function add(a, b) { return a + b; }\", returnType = \"json\" );\n println( json ); // Outputs: JSON representation of the AST\n\n // Parse source code and return as text\n text = boxAST( source = \"if (x > 5) { println('yes'); }\", returnType = \"text\" );\n println( text ); // Outputs: Human-readable text representation\n\n // Parse a file\n ast = boxAST( filepath = \"src/MyClass.bx\" );\n\n // Use as a member function on a string\n source = \"a = [1, 2, 3]\";\n ast = source.toAST(); // Returns AST as struct\n ast = source.toAST( returnType = \"json\" ); // Returns AST as JSON string\n\n // Parse CFML/ColdFusion syntax\n ast = boxAST( source = \"cfset x = 1\", sourceType = \"cfscript\" );\n\n // Parse template syntax\n ast = boxAST( source = \"<bx:output>#now()#</bx:output>\", sourceType = \"template\" );\n </pre>\n\n <p>\n The returned AST structure contains nodes with the following key properties:\n </p>\n <ul>\n <li><strong>ASTType</strong> - The type of AST node (e.g., BoxAssignment, BoxFunctionDeclaration, BoxClass)</li>\n <li><strong>ASTPackage</strong> - The package name of the AST node class</li>\n <li>Additional properties specific to each node type (e.g., name, value, children, etc.)</li>\n </ul>",
+    [
+      "($0)",
+      "(${1:source}, ${2:filepath}, ${3:returnType}, ${4:sourceType}$0)"
+    ]
+  ],
+  "BoxAnnounce": [
+    "Announce a BoxLang event to a specific interceptor pool.\n\nBy default, the event is announced to the global interception service.\n Available pools are \"global\" and \"request\".\n The request pool is tied to the application listener and is only available during the request lifecycle.\n\n Example:\n\n <pre>\n // Announce globally\n boxAnnounce( \"onRequestStart\", { request = request } )\n\n // Announce to the application request\n boxAnnounce( \"myRequestEvent\", { data : myData }, \"request\" )\n </pre>",
+    [
+      "(${1:state}$0)",
+      "(${1:state}, ${2:data}, ${3:poolname}$0)"
+    ]
+  ],
+  "BoxAnnounceAsync": [
+    "Announce a BoxLang event to the global system interceptor service asynchronously.\n\nBy default, the event is announced to the global interception service.\n The return value is a BoxLang CompletableFuture that will be completed when the event has been announced.\n Available pools are \"global\" and \"request\".\n The request pool is tied to the application listener and is only available during the request lifecycle.\n\n Example:\n\n <pre>\n // Announce globally\n var future = announceAsync( \"onRequestStart\", { request = request } )\n\n // Announce to the application request\n var future = announceAsync( \"myRequestEvent\", { data : myData }, \"request\" )\n </pre>",
+    [
+      "(${1:state}$0)",
+      "(${1:state}, ${2:data}, ${3:poolname}$0)"
+    ]
+  ],
+  "BoxModuleReload": [
+    "Reload all the registered modules in the runtime or a specific module.",
+    [
+      "($0)",
+      "(${1:module}$0)"
+    ]
+  ],
+  "BoxRegisterInterceptionPoints": [
+    "You can use this BIF to register custom interception points into either the \"global\" or the \"request\" interceptor pools.\n\nExample:\n\n <pre>\n boxRegisterInterceptionPoints( \"onOrderComplete\" )\n boxRegisterInterceptionPoints( [ \"onOrderComplete\", \"preOrder\" ] )\n </pre>",
+    [
+      "($0)",
+      "(${1:states}, ${2:poolname}$0)"
+    ]
+  ],
+  "BoxRegisterInterceptor": [
+    "Registers a global interceptor that can listen to global runtime events.",
+    [
+      "(${1:interceptor}$0)",
+      "(${1:interceptor}, ${2:states}$0)"
+    ]
+  ],
+  "BoxRegisterRequestInterceptor": [
+    "Registers a request interceptor that can listen to application listener request runtime events.",
+    [
+      "(${1:interceptor}$0)",
+      "(${1:interceptor}, ${2:states}$0)"
+    ]
+  ],
+  "BoxUnregisterInterceptor": [
+    "UnRegisters a global interceptor from all or specific states",
+    [
+      "(${1:interceptor}$0)",
+      "(${1:interceptor}, ${2:states}$0)"
+    ]
+  ],
+  "BoxUnregisterRequestInterceptor": [
+    "UnRegisters a global interceptor from all or specific states",
+    [
+      "(${1:interceptor}$0)",
+      "(${1:interceptor}, ${2:states}$0)"
+    ]
+  ],
+  "CallStackGet": [
+    "Returns an array of structs by default of the current tag context.\n\nEach struct contains template name, line number, and function name (if applicable).\n This is a snapshot of all function calls or invocations.",
+    [
+      "($0)",
+      "(${1:maxFrames}$0)"
+    ]
+  ],
+  "CreateGUID": [
+    "Create a Globally Unique Identifier (UUID).\n\n<p>\n Returns an uppercased-but-otherwise-unmodified UUID version 4 string.",
+    [
+      "($0)",
+      "($0)"
+    ]
+  ],
+  "CreateObject": [
+    "Creates a new object representation according to the {@code type} and {@code className} arguments.\n\n<p>\n Available <strong>types</strong> are:\n <ul>\n <li><strong>class/component</strong> - Creates a new instance of a BoxLang class (Default if not used)</li>\n <li><strong>java</strong> - Creates a new instance of a Java class</li>\n <li><strong>webservice</strong> - Creates a SOAP web service client from a WSDL URL</li>\n <li><strong>{anything}</strong> - Passes the request to the {@code BoxEvent.ON_CREATEOBJECT_REQUEST} event for further processing</li>\n </ul>\n <p>\n If the type requested is not supported, then it passes to an interception call to the {@code BoxEvent.ON_CREATEOBJECT_REQUEST} event,\n so any listeners can contribute to the object creation request (if any). If there are no listeners, an exception is thrown.\n <p>\n You can also target an explicit class from a loaded BoxLang module by using the {@code @moduleName} suffix.\n Example: {@code createObject( 'class', 'class.name.path@module' )}\n <p>\n The <strong>properties</strong> is an optional argument that can be used to pass to the object creation process according to the type.\n <ul>\n <li><strong>class/component</strong> - The properties are not used</li>\n <li><strong>java</strong> - The properties can be a single or an array of absolute path(s) to a directory containing Jars/Classes, or absolute path(s) to specific Jars/Classes to classload</li>\n <li><strong>webservice</strong> - The properties are not used</li>\n <li><strong>{anything}</strong> - The properties can be any object that the listener can use to create the object</li>\n </ul>\n <p>\n <strong>IMPORTANT:</strong> For class/component types, this does NOT create an instance of the class. For that you will need to call the {@code init()} method on the returned object.\n For webservice type, a fully configured SoapClient is returned ready for method invocation.",
+    [
+      "($0)",
+      "(${1:type}, ${2:className}, ${3:properties}, ${4:externalOnly}, ${5:classloader}$0)"
+    ]
+  ],
+  "CreateUUID": [
+    "Create a Universally Unique Identifier (UUID) in the standard format.\n\nGenerates UUIDs in this format: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx. Each 'x' is a hexadecimal digit (0-9, a-f).",
+    [
+      "($0)",
+      "($0)"
+    ]
+  ],
+  "DE": [
+    "Delay evaluation of a string as an expression, when it is passed as a parameter to the IIf or Evaluate functions.\n\nEscapes any double quotation\n marks in the parameter and wraps the result in double quotation marks. It does not escape # so the string could still be evaluated in some cases.",
+    [
+      "(${1:string}$0)",
+      "(${1:string}$0)"
+    ]
+  ],
+  "DebugBoxContexts": [
+    "A debug BIF that returns an array of information showing the current context hierarchy",
+    [
+      "($0)",
+      "($0)"
+    ]
+  ],
+  "Dump": [
+    "Outputs the contents of a variable (simple or complex) of any type for debugging purposes to a specific output location.\n\n<p>\n The available <code>output</code> locations are:\n - <strong>buffer</strong>: The output is written to the buffer, which is the default location. If running on a web server, the output is written to the browser.\n - <strong>console</strong>: The output is printed to the System console.\n - <strong>Absolute File Path</strong> The output is written to a file with the specified absolute file path.\n </p>\n \n The output `format` can be either HTML or plain text.\n \n The default format is HTML if the output location is the buffer or a web server or a file, otherwise it is plain text for the console.",
+    [
+      "($0)",
+      "(${1:var}, ${2:label}, ${3:top}, ${4:expand}, ${5:abort}, ${6:output}, ${7:format}, ${8:showUDFs}$0)"
+    ]
+  ],
+  "Duplicate": [
+    "Duplicates an object - either shallow or deep",
+    [
+      "(${1:object}$0)",
+      "(${1:object}, ${2:deep}$0)"
+    ]
+  ],
+  "EncodeForHTML": [
+    "Encodes the input string for safe output in the body of a HTML tag.\n\nThe encoding in meant to mitigate Cross Site Scripting (XSS) attacks. This\n function can provide more protection from XSS than the HTMLEditFormat or XMLFormat functions do.",
+    [
+      "(${1:string}, ${2:canonicalize}$0)",
+      "(${1:string}, ${2:canonicalize}$0)"
+    ]
+  ],
+  "GetApplicationMetadata": [
+    "Print a message with line break to the console",
+    [
+      "($0)",
+      "($0)"
+    ]
+  ],
+  "GetBaseTagData": [
+    "Used within a custom tag.\n\nFinds calling (ancestor) tag by name and accesses its data.",
+    [
+      "(${1:tagName}, ${2:ancestorLevels}$0)",
+      "(${1:tagName}, ${2:ancestorLevels}$0)"
+    ]
+  ],
+  "GetBaseTagList": [
+    "A comma-delimited list of ancestor tag names as a string.",
+    [
+      "($0)",
+      "($0)"
+    ]
+  ],
+  "GetBaseTemplatePath": [
+    "Gets the absolute server file system path of the requested file.",
+    [
+      "($0)",
+      "($0)"
+    ]
+  ],
+  "GetBoxContext": [
+    "Get the current Box Context",
+    [
+      "($0)",
+      "($0)"
+    ]
+  ],
+  "GetBoxRuntime": [
+    "Get the current Box Runtime",
+    [
+      "($0)",
+      "($0)"
+    ]
+  ],
+  "GetBoxVersionInfo": [
+    "Get's the version information of the current Box Runtime",
+    [
+      "($0)",
+      "($0)"
+    ]
+  ],
+  "GetClassMetadata": [
+    "Returns the current value of an internal millisecond timer.",
+    [
+      "(${1:path}$0)",
+      "(${1:path}$0)"
+    ]
+  ],
+  "GetComponentList": [
+    "Get a collection of all the registered global components in the runtime.",
+    [
+      "($0)",
+      "($0)"
+    ]
+  ],
+  "GetComponentMetadata": [
+    "Returns the current value of an internal millisecond timer.",
+    [
+      "(${1:path}$0)",
+      "(${1:path}$0)"
+    ]
+  ],
+  "GetContextRoot": [
+    "Gets the context root.\n\nIf BoxLang is not running as a servlet-based web server, this always returns \"/\".",
+    [
+      "($0)",
+      "($0)"
+    ]
+  ],
+  "GetCurrentTemplatePath": [
+    "Gets the absolute server file system path of the file that calls this function.",
+    [
+      "($0)",
+      "($0)"
+    ]
+  ],
+  "GetFileFromPath": [
+    "Extracts a filename from an absolute path.",
+    [
+      "(${1:path}$0)",
+      "(${1:path}$0)"
+    ]
+  ],
+  "GetFunctionCalledName": [
+    "Get the name of the function that is being called.\n\nIf no function is being called, an empty string is returned.",
+    [
+      "($0)",
+      "($0)"
+    ]
+  ],
+  "GetFunctionList": [
+    "Get a collection of all the registered global functions in the runtime.",
+    [
+      "($0)",
+      "($0)"
+    ]
+  ],
+  "GetModuleInfo": [
+    "Get the module record for a loaded module in BoxLang.\n\nIf the module\n doesn't exist, an empty struct is returned.",
+    [
+      "(${1:module}$0)",
+      "(${1:module}$0)"
+    ]
+  ],
+  "GetModuleList": [
+    "Get a collection of all the registered global functions in the runtime.",
+    [
+      "($0)",
+      "($0)"
+    ]
+  ],
+  "GetRequestClassLoader": [
+    "This will retrieve the current request's class loader according to BoxLang loading hierarchy:\n\n<p>\n - If you defined Java settings in your `Application`, it will use the class loader hierarchy defined by those settings.\n - Else it uses the Global BoxRuntime class loader.",
+    [
+      "($0)",
+      "($0)"
+    ]
+  ],
+  "GetSemver": [
+    "Parses and returns a Semver object version of the passed version string or if you do not pass\n in a version, we will return to you a Semver builder {@link Semver#of()} object, so you can programmaticaly build\n a version object.\n\n<p>\n Semver is a tool that provides useful methods to manipulate versions that follow the \"semantic versioning\"\n specification (see <a href=\"http://semver.org\">semver.org</a> and <a href=\"https://github.com/semver4j/semver4j\">github</a>).\n <p>\n Some of the methods provided by Semver are:\n <ul>\n <li>{@link Semver#compareTo(Semver)}: Compares two versions and returns -1, 0, or 1 if the first version is less than,\n equal to, or greater than the second version, respectively.</li>\n <li>{@link Semver#satisfies(String)}: Checks if the version satisfies the given range.</li>\n <li>{@link Semver#isValid(String)}: Checks if the version is valid.</li>\n <li>{@link Semver#nextMajor()}: Increments the major version.</li>\n <li>{@link Semver#nextMinor()}: Increments the minor version.</li>\n <li>{@link Semver#nextPatch()}: Increments the patch version.</li>\n <li>{@link Semver#withBuild(String)}: Set the build version.</li>\n <li>{@link Semver#withPreRelease(String)}: Set the pre-release version.</li>\n <li>{@link Semver#isStable()}: Checks if the version is stable.</li>\n </ul>\n <p>\n Here are some examples of how to parse and manipulate versions using Semver:\n\n <pre>\n\n var version = GetSemver( \"1.2.3-alpha+20151212\" );\n var version = GetSemver( \"1.2.3-alpha\" );\n var version = GetSemver( \"1.2.3\" );\n var version = GetSemver( \"1.2.3+20151212\" );\n var version = GetSemver( \"1.2.3-alpha.1\" );\n var version = GetSemver( \"1.2.3-alpha.beta\" );\n </pre>\n\n Here are some examples of comparing versions using Semver:\n\n <pre>\n var version1 = GetSemver( \"1.2.3\" );\n var version2 = GetSemver( \"1.2.4\" );\n var version3 = GetSemver( \"1.3.0\" );\n\n version1.compare( version2 ); // -1\n version1.compare( version3 ); // -1\n version2.compare( version3 ); // -1\n </pre>\n\n <p>\n To use the builder you can do something like this:\n\n <pre>\n\n var version = GetSemver().withMajor( 1 ).withMinor( 2 ).withPatch( 3 ).withPreRelease( \"alpha\" ).build();\n var versionString = GetSemver().withMajor( 1 ).withMinor( 2 ).withPatch( 3 ).withPreRelease( \"alpha\" ).build();\n </pre>",
+    [
+      "($0)",
+      "(${1:version}$0)"
+    ]
+  ],
+  "GetSystemSetting": [
+    "Retrieve a Java System property or environment value by name.\n\n<p>\n It looks at properties first then environment variables second.\n <p>\n Please note that the property or environment variable name is case-sensitive.\n <p>\n You can also pass a default value to return if the property or environment variable is not found.",
+    [
+      "(${1:key}$0)",
+      "(${1:key}, ${2:defaultValue}$0)"
+    ]
+  ],
+  "GetTempDirectory": [
+    "Get the system's temporary directory.",
+    [
+      "($0)",
+      "($0)"
+    ]
+  ],
+  "GetTickCount": [
+    "Returns the current value of an internal timer.\n\nThe unit argument controls the time unit returned.",
+    [
+      "($0)",
+      "(${1:unit}$0)"
+    ]
+  ],
+  "IIF": [
+    "A boolean condition or value is passed into the first argument.\n\nIf the condition is true the second argument is evaluated and returned, if false\n the third argument is evaluated and returned.",
+    [
+      "(${1:condition}, ${2:expression1}, ${3:expression2}$0)",
+      "(${1:condition}, ${2:expression1}, ${3:expression2}$0)"
+    ]
+  ],
+  "Invoke": [
+    "Invokes an object method and returns the result of the invoked method.",
+    [
+      "(${1:object}$0)",
+      "(${1:object}, ${2:method}, ${3:arguments}$0)"
+    ]
+  ],
+  "IsInstanceOf": [
+    "Determines whether an object is an instance of a BoxLang interface or component, or of a Java class.",
+    [
+      "(${1:object}, ${2:typename}$0)",
+      "(${1:object}, ${2:typename}$0)"
+    ]
+  ],
+  "JavaCast": [
+    "Cast a variable to a specified Java type",
+    [
+      "(${1:type}, ${2:variable}$0)",
+      "(${1:type}, ${2:variable}$0)"
+    ]
+  ],
+  "Key": [
+    "Delay evaluation of a string as an expression, when it is passed as a parameter to the IIf or Evaluate functions.\n\nEscapes any double quotation\n marks in the parameter and wraps the result in double quotation marks. It does not escape # so the string could still be evaluated in some cases.",
+    [
+      "(${1:string}$0)",
+      "(${1:string}$0)"
+    ]
+  ],
+  "ObjectDeserialize": [
+    "Loads an object serialized in a binary form from a file or as binary input",
+    [
+      "(${1:input}$0)",
+      "(${1:input}$0)"
+    ]
+  ],
+  "ObjectSerialize": [
+    "Serialize an object to file or convert it to binary format using Java Serialization",
+    [
+      "(${1:object}$0)",
+      "(${1:object}, ${2:file}$0)"
+    ]
+  ],
+  "PagePoolClear": [
+    "Clears all the compiled classes from the Boxpiler's page pool.",
+    [
+      "($0)",
+      "($0)"
+    ]
+  ],
+  "Print": [
+    "Print a message with line break to the console",
+    [
+      "(${1:message}$0)",
+      "(${1:message}$0)"
+    ]
+  ],
+  "Println": [
+    "Print a message with line break to the console",
+    [
+      "($0)",
+      "(${1:message}$0)"
+    ]
+  ],
+  "RunThreadInContext": [
+    "Executes the code in the callback with a specific parent context so a specific application name\n is visible and an optional sessionID, or a specific context can be provided from another request.\n\nIf context is provided, application name and sessionID are not allowed.",
+    [
+      "(${1:callback}$0)",
+      "(${1:applicationName}, ${2:sessionId}, ${3:context}, ${4:callback}$0)"
+    ]
+  ],
+  "SessionInvalidate": [
+    "Clears session scope and makes the current session identifiers no longer valid.",
+    [
+      "($0)",
+      "($0)"
+    ]
+  ],
+  "SessionRotate": [
+    "Creates a new session (using new session ids) and copies session scope into this new session, then invalidates the old session.",
+    [
+      "($0)",
+      "($0)"
+    ]
+  ],
+  "SessionStartTime": [
+    "Provides information about the time when the current users session scope was created",
+    [
+      "($0)",
+      "($0)"
+    ]
+  ],
+  "Sleep": [
+    "Sleeps the current thread for the specified duration in millisecons",
+    [
+      "(${1:duration}$0)",
+      "(${1:duration}$0)"
+    ]
+  ],
+  "SystemCacheClear": [
+    "Clears many of the caches in the runtime.\n\nBy default with no arguments, it will clear all caches.\n\n The following caches can be cleared:\n\n <ul>\n <li><code>all</code> - Clear everything</li>\n <li><code>page</code> - Clear the compiled class pools</li>\n <li><code>class</code> - Clear the class path resolvers</li>\n <li><code>template</code> - Clear all the templates cached using the bx:cache component</li>\n <li><code>query</code> - Clears the cache storing queries</li>\n <li><code>object</code> - Clear the default cache region</li>\n </ul>",
+    [
+      "($0)",
+      "(${1:cacheName}$0)"
+    ]
+  ],
+  "SystemExecute": [
+    "Executes a system process/command on the underlying OS.\n\nReturns a struct with the following keys:\n\n {\n output : [ the command output ]\n error : [ any errors emitted by the command ]\n timeout : [ boolean value as to whether a timeout was reached ]\n terminated : [ boolean value as to whether the process was terminated ]\n pid : the PID of the process\n }",
+    [
+      "(${1:name}$0)",
+      "(${1:name}, ${2:arguments}, ${3:timeout}, ${4:terminateOnTimeout}, ${5:directory}, ${6:output}, ${7:error}$0)"
+    ]
+  ],
+  "SystemOutput": [
+    "Writes the given object to the output stream",
+    [
+      "(${1:obj}, ${2:addNewLine}$0)",
+      "(${1:obj}, ${2:addNewLine}, ${3:doErrorStream}$0)"
+    ]
+  ],
+  "Throw": [
+    "Throws a developer-specified exception, which can be caught with a catch block.",
+    [
+      "($0)",
+      "(${1:message}, ${2:type}, ${3:detail}, ${4:errorcode}, ${5:extendedinfo}, ${6:object}$0)"
+    ]
+  ],
+  "Trace": [
+    "Traces messages into the tracing facilites so they can be display by the running runtime either in console, or debug\n output or whatever the runtime is configured to do.\n\n<p>\n It will track from where the trace call was made and the message will be logged with the category, type and text provided.\n <p>\n All tracers will be sent to the {@code trace.log} file in the logs directory of the runtime as well.\n <p>\n If the {@code abort} attribute is set to true, the current request will be aborted after the trace call.\n <p>\n Tracers will <strong>only</strong> be displayed if the runtime is in <strong>debug mode.</strong>. However, all\n traces will be logged regardless of the debug mode flag.\n <p>\n The {@code extraInfo} attribute is optional and can be any simple or complex object. We will convert it to string for logging\n using the {@code toString()} method on the object. You can also use the alias of {@code var} for this attribute as well.",
+    [
+      "(${1:text}$0)",
+      "(${1:text}, ${2:category}, ${3:type}, ${4:extrainfo}, ${5:abort}$0)"
+    ]
+  ],
+  "URLDecode": [
+    "Decodes a URL-encoded string.",
+    [
+      "(${1:string}$0)",
+      "(${1:string}, ${2:charset}$0)"
+    ]
+  ],
+  "URLEncodedFormat": [
+    "Generates a URL-encoded string.\n\nFor example, it replaces spaces with `%20`, and non-alphanumeric characters with equivalent hexadecimal escape\n sequences. Passes arbitrary strings within a URL.",
+    [
+      "(${1:string}$0)",
+      "(${1:string}$0)"
+    ]
+  ],
+  "WriteLog": [
+    "Writes a message out to a log file",
+    [
+      "(${1:text}$0)",
+      "(${1:text}, ${2:type}, ${3:application}, ${4:log}$0)"
+    ]
+  ],
+  "WriteOutput": [
+    "Print a message with line break to the buffer",
+    [
+      "(${1:message}$0)",
+      "(${1:message}$0)"
+    ]
+  ],
+  "echo": [
+    "Print a message with line break to the buffer",
+    [
+      "(${1:message}$0)",
+      "(${1:message}$0)"
+    ]
+  ],
+  "htmlEditFormat": [
+    "Encodes the input string for safe output in the body of a HTML tag.\n\nThe encoding in meant to mitigate Cross Site Scripting (XSS) attacks. This\n function can provide more protection from XSS than the HTMLEditFormat or XMLFormat functions do.",
+    [
+      "(${1:string}, ${2:canonicalize}$0)",
+      "(${1:string}, ${2:canonicalize}$0)"
+    ]
+  ],
+  "writeDump": [
+    "Outputs the contents of a variable (simple or complex) of any type for debugging purposes to a specific output location.\n\n<p>\n The available <code>output</code> locations are:\n - <strong>buffer</strong>: The output is written to the buffer, which is the default location. If running on a web server, the output is written to the browser.\n - <strong>console</strong>: The output is printed to the System console.\n - <strong>Absolute File Path</strong> The output is written to a file with the specified absolute file path.\n </p>\n \n The output `format` can be either HTML or plain text.\n \n The default format is HTML if the output location is the buffer or a web server or a file, otherwise it is plain text for the console.",
+    [
+      "($0)",
+      "(${1:var}, ${2:label}, ${3:top}, ${4:expand}, ${5:abort}, ${6:output}, ${7:format}, ${8:showUDFs}$0)"
+    ]
+  ],
+  "ClearTimezone": [
+    "Clears the current timezone in the request",
+    [
+      "($0)",
+      "($0)"
+    ]
+  ],
+  "CreateDate": [
+    "Creates a date-time object.\n\nNote that the core implementation of this BIF differs from ACF/Lucee in handling of a year value without a century. BoxLang respects that pre-first century years are valid and and will treat `createDate( 20 )` as 20 AD.\n The behavior modification to emulate ACF/Lucee would require the installation of the `bx-compat` module.",
+    [
+      "($0)",
+      "(${1:year}, ${2:month}, ${3:day}, ${4:hour}, ${5:minute}, ${6:second}, ${7:millisecond}, ${8:timezone}$0)"
+    ]
+  ],
+  "CreateDateTime": [
+    "Creates a date-time object.\n\nNote that the core implementation of this BIF differs from ACF/Lucee in handling of a year value without a century. BoxLang respects that pre-first century years are valid and and will treat `createDate( 20 )` as 20 AD.\n The behavior modification to emulate ACF/Lucee would require the installation of the `bx-compat` module.",
+    [
+      "($0)",
+      "(${1:year}, ${2:month}, ${3:day}, ${4:hour}, ${5:minute}, ${6:second}, ${7:millisecond}, ${8:timezone}$0)"
+    ]
+  ],
+  "CreateODBCDate": [
+    "Creates a DateTime object with the format set to ODBC Implicit format",
+    [
+      "(${1:date}$0)",
+      "(${1:date}, ${2:timezone}$0)"
+    ]
+  ],
+  "CreateODBCDateTime": [
+    "Creates a DateTime object with the format set to ODBC Implicit format",
+    [
+      "(${1:date}$0)",
+      "(${1:date}, ${2:timezone}$0)"
+    ]
+  ],
+  "CreateODBCTime": [
+    "Creates a DateTime object with the format set to ODBC Implicit format",
+    [
+      "(${1:date}$0)",
+      "(${1:date}, ${2:timezone}$0)"
+    ]
+  ],
+  "CreateTime": [
+    "Creates a time-only datetime object using the epoch date ( 1970-1-1 ) as the date reference.",
+    [
+      "($0)",
+      "(${1:hour}, ${2:minute}, ${3:second}, ${4:millisecond}, ${5:timezone}$0)"
+    ]
+  ],
+  "CreateTimeSpan": [
+    "Creates a timespan {@link java.time.Duration}",
+    [
+      "(${1:days}, ${2:hours}, ${3:minutes}, ${4:seconds}$0)",
+      "(${1:days}, ${2:hours}, ${3:minutes}, ${4:seconds}, ${5:milliseconds}$0)"
+    ]
+  ],
+  "DateAdd": [
+    "Modifies a date object by date part and integer time unit",
+    [
+      "(${1:datepart}, ${2:number}, ${3:date}$0)",
+      "(${1:datepart}, ${2:number}, ${3:date}$0)"
+    ]
+  ],
+  "DateCompare": [
+    "Compares the difference between two dates - returning 0 if equal, -1 if date2 is less than date1 and 1 if the inverse",
+    [
+      "(${1:date1}, ${2:date2}$0)",
+      "(${1:date1}, ${2:date2}, ${3:datepart}$0)"
+    ]
+  ],
+  "DateConvert": [
+    "Converts local time to Coordinated Universal Time (UTC), or UTC to local time.\n\nThe function uses the daylight savings settings in the executing computer to compute daylight savings time, if required.",
+    [
+      "(${1:conversionType}, ${2:date}$0)",
+      "(${1:conversionType}, ${2:date}$0)"
+    ]
+  ],
+  "DateDiff": [
+    "Returns the numeric difference in the requested date part between two dates",
+    [
+      "(${1:datepart}, ${2:date1}, ${3:date2}$0)",
+      "(${1:datepart}, ${2:date1}, ${3:date2}$0)"
+    ]
+  ],
+  "DateFormat": [
+    "Formats a datetime, date or time",
+    [
+      "(${1:date}$0)",
+      "(${1:date}, ${2:mask}, ${3:timezone}, ${4:locale}$0)"
+    ]
+  ],
+  "DatePart": [
+    "Extracts a part from a datetime value as a numeric.",
+    [
+      "(${1:datepart}, ${2:date}$0)",
+      "(${1:datepart}, ${2:date}, ${3:timezone}$0)"
+    ]
+  ],
+  "DateTimeFormat": [
+    "Formats a datetime, date or time",
+    [
+      "(${1:date}$0)",
+      "(${1:date}, ${2:mask}, ${3:timezone}, ${4:locale}$0)"
+    ]
+  ],
+  "Day": [
+    "Returns the day of the month of a date object",
+    [
+      "($0)",
+      "(${1:date}, ${2:timezone}, ${3:locale}$0)"
+    ]
+  ],
+  "DayOfWeek": [
+    "Returns the numeric day of the week of a date object",
+    [
+      "($0)",
+      "(${1:date}, ${2:timezone}, ${3:locale}$0)"
+    ]
+  ],
+  "DayOfWeekAsString": [
+    "Returns the full day of the week name of a date object",
+    [
+      "($0)",
+      "(${1:date}, ${2:timezone}, ${3:locale}$0)"
+    ]
+  ],
+  "DayOfWeekShortAsString": [
+    "Returns the short day of the week name of a date object",
+    [
+      "($0)",
+      "(${1:date}, ${2:timezone}, ${3:locale}$0)"
+    ]
+  ],
+  "DayOfYear": [
+    "Returns the numeric day of the year of a date object",
+    [
+      "($0)",
+      "(${1:date}, ${2:timezone}, ${3:locale}$0)"
+    ]
+  ],
+  "DaysInMonth": [
+    "Returns the number of days in the month of a date object",
+    [
+      "($0)",
+      "(${1:date}, ${2:timezone}, ${3:locale}$0)"
+    ]
+  ],
+  "DaysInYear": [
+    "Return the number of days in the year of a date object",
+    [
+      "($0)",
+      "(${1:date}, ${2:timezone}, ${3:locale}$0)"
+    ]
+  ],
+  "FirstDayOfMonth": [
+    "Returns the first date of the month of a date object",
+    [
+      "($0)",
+      "(${1:date}, ${2:timezone}, ${3:locale}$0)"
+    ]
+  ],
+  "GetNumericDate": [
+    "Returns the numeric date in days from epoch of a date object",
+    [
+      "($0)",
+      "(${1:date}, ${2:timezone}, ${3:locale}$0)"
+    ]
+  ],
+  "GetTime": [
+    "Returns the numeric date in milliseconds from epoch of a date object",
+    [
+      "($0)",
+      "(${1:date}, ${2:timezone}, ${3:locale}$0)"
+    ]
+  ],
+  "GetTimezone": [
+    "Returns the timezone identifier of a date object",
+    [
+      "($0)",
+      "(${1:date}, ${2:timezone}, ${3:locale}$0)"
+    ]
+  ],
+  "GetTimezoneInfo": [
+    "Retrieves a struct of information about the timezone",
+    [
+      "($0)",
+      "(${1:timezone}, ${2:locale}$0)"
+    ]
+  ],
+  "Hour": [
+    "Returns the hour of a date object",
+    [
+      "($0)",
+      "(${1:date}, ${2:timezone}, ${3:locale}$0)"
+    ]
+  ],
+  "Millisecond": [
+    "Returns the millisecond of a date object",
+    [
+      "($0)",
+      "(${1:date}, ${2:timezone}, ${3:locale}$0)"
+    ]
+  ],
+  "Minute": [
+    "Returns the minute of a date object",
+    [
+      "($0)",
+      "(${1:date}, ${2:timezone}, ${3:locale}$0)"
+    ]
+  ],
+  "Month": [
+    "Returns the numeric month of a date object",
+    [
+      "($0)",
+      "(${1:date}, ${2:timezone}, ${3:locale}$0)"
+    ]
+  ],
+  "MonthAsString": [
+    "Returns the full month name of a date object",
+    [
+      "($0)",
+      "(${1:date}, ${2:timezone}, ${3:locale}$0)"
+    ]
+  ],
+  "MonthShortAsString": [
+    "Returns the short month name of a date object",
+    [
+      "($0)",
+      "(${1:date}, ${2:timezone}, ${3:locale}$0)"
+    ]
+  ],
+  "Nanosecond": [
+    "Returns the nanosecond of adate object",
+    [
+      "($0)",
+      "(${1:date}, ${2:timezone}, ${3:locale}$0)"
+    ]
+  ],
+  "Now": [
+    "Returns the current DateTimeObject representing the current zoned instance",
+    [
+      "($0)",
+      "(${1:timezone}$0)"
+    ]
+  ],
+  "Offset": [
+    "Returns the timezone offset of a date object",
+    [
+      "($0)",
+      "(${1:date}, ${2:timezone}, ${3:locale}$0)"
+    ]
+  ],
+  "ParseDateTime": [
+    "Parses a datetime string or object",
+    [
+      "(${1:date}$0)",
+      "(${1:date}, ${2:format}, ${3:timezone}, ${4:locale}$0)"
+    ]
+  ],
+  "Quarter": [
+    "Returns the quarter of a date object",
+    [
+      "($0)",
+      "(${1:date}, ${2:timezone}, ${3:locale}$0)"
+    ]
+  ],
+  "Second": [
+    "Returns the second of a date object",
+    [
+      "($0)",
+      "(${1:date}, ${2:timezone}, ${3:locale}$0)"
+    ]
+  ],
+  "SetTimezone": [
+    "Sets the timezone of the current request context",
+    [
+      "(${1:timezone}$0)",
+      "(${1:timezone}$0)"
+    ]
+  ],
+  "TimeFormat": [
+    "Formats a datetime, date or time",
+    [
+      "(${1:date}$0)",
+      "(${1:date}, ${2:mask}, ${3:timezone}, ${4:locale}$0)"
+    ]
+  ],
+  "TimeUnits": [
+    "Provides the BIF and member functions for all time unit request with no arguments",
+    [
+      "($0)",
+      "(${1:date}, ${2:timezone}, ${3:locale}$0)"
+    ]
+  ],
+  "Week": [
+    "Returns the numeric week within a year of a date object",
+    [
+      "($0)",
+      "(${1:date}, ${2:timezone}, ${3:locale}$0)"
+    ]
+  ],
+  "WeekOfYear": [
+    "Returns the numeric week within a year of a date object",
+    [
+      "($0)",
+      "(${1:date}, ${2:timezone}$0)"
+    ]
+  ],
+  "Year": [
+    "Returns the year of a date object",
+    [
+      "($0)",
+      "(${1:date}, ${2:timezone}, ${3:locale}$0)"
+    ]
+  ],
+  "ArrayLen": [
+    "Returns the absolute value of a number",
+    [
+      "(${1:value}$0)",
+      "(${1:value}$0)"
+    ]
+  ],
+  "GetMetaData": [
+    "Gets metadata (the methods, properties, and parameters of a component) associated with an object.\n\nThis returns the <code>$bx.meta</code> object for the object.",
+    [
+      "(${1:value}$0)",
+      "(${1:value}$0)"
+    ]
+  ],
+  "Len": [
+    "Returns the absolute value of a number",
+    [
+      "(${1:value}$0)",
+      "(${1:value}$0)"
+    ]
+  ],
+  "NullValue": [
+    "Returns a null value.",
+    [
+      "($0)",
+      "($0)"
+    ]
+  ],
+  "StringLen": [
+    "Returns the absolute value of a number",
+    [
+      "(${1:value}$0)",
+      "(${1:value}$0)"
+    ]
+  ],
+  "StructCount": [
+    "Returns the absolute value of a number",
+    [
+      "(${1:value}$0)",
+      "(${1:value}$0)"
+    ]
+  ],
+  "TranspileCollectionKeySwap": [
+    "No description available.",
+    [
+      "(${1:collection}, ${2:keyMap}$0)",
+      "(${1:collection}, ${2:keyMap}$0)"
+    ]
+  ],
+  "FileUpload": [
+    "Processes file uploads from the request",
+    [
+      "(${1:destination}$0)",
+      "(${1:destination}, ${2:filefield}, ${3:accept}, ${4:nameconflict}, ${5:strict}, ${6:allowedExtensions}$0)"
+    ]
+  ],
+  "FileUploadAll": [
+    "Processes file uploads from the request",
+    [
+      "(${1:destination}$0)",
+      "(${1:destination}, ${2:filefield}, ${3:accept}, ${4:nameconflict}, ${5:strict}, ${6:allowedExtensions}$0)"
+    ]
+  ],
+  "Forward": [
+    "Leads the request to a different page.\n\nThis function acts like the location functionality except that the relocation is done directly on the server and not the browser",
+    [
+      "(${1:template}$0)",
+      "(${1:template}$0)"
+    ]
+  ],
+  "GetHTTPRequestData": [
+    "Uppercase a string",
+    [
+      "(${1:includeBody}$0)",
+      "(${1:includeBody}$0)"
+    ]
+  ],
+  "GetHTTPTimeString": [
+    "Describe what the invocation of your bif function does",
+    [
+      "(${1:date}$0)",
+      "(${1:date}$0)"
+    ]
+  ],
+  "GetPageContext": [
+    "Gets the current java PageContext object that provides access to page attributes and configuration, request and response objects.\n\nIf not running in a servlet, this will be a fake class attempting to provide most of the common methods.",
+    [
+      "($0)",
+      "($0)"
+    ]
+  ],
+  "HtmlFooter": [
+    "Writes text to the footer section of a generated HTML page.\n\nIt is\n useful for embedding JavaScript code, or putting other HTML tags or deferred scripts.",
+    [
+      "(${1:text}$0)",
+      "(${1:text}$0)"
+    ]
+  ],
+  "HtmlHead": [
+    "Writes text to the head section of a generated HTML page.\n\nIt is\n useful for embedding JavaScript code, or putting other HTML tags, such as meta, link,\n title, or base in an HTML page header.\n\n If there is no head section in the HTML page, the function will create one.",
+    [
+      "(${1:text}$0)",
+      "(${1:text}$0)"
+    ]
+  ],
+  "Location": [
+    "Relocates to a different pages.",
+    [
+      "(${1:URL}$0)",
+      "(${1:URL}, ${2:addToken}, ${3:statusCode}$0)"
+    ]
+  ],
+  "SetEncoding": [
+    "Sets the character encoding (character set) of Form and URL scope variable values; used when the character encoding of the input to a form, or the\n character encoding of a URL, is not in UTF-8 encoding.",
+    [
+      "(${1:scope_name}, ${2:charset}$0)",
+      "(${1:scope_name}, ${2:charset}$0)"
+    ]
+  ],
+  "XMLChildPos": [
+    "Gets the position of a child element within an XML document object.\n\nThe position, in an XmlChildren array, of the Nth child that has the specified name.",
+    [
+      "(${1:elem}, ${2:childname}, ${3:n}$0)",
+      "(${1:elem}, ${2:childname}, ${3:n}$0)"
+    ]
+  ],
+  "XMLElemNew": [
+    "Creates a new XML Element which can be appended to an XML document",
+    [
+      "(${1:XML}, ${2:childname}$0)",
+      "(${1:XML}, ${2:childname}, ${3:namespace}$0)"
+    ]
+  ],
+  "XMLFormat": [
+    "Formats a string so that special XML characters can be used as text in XML",
+    [
+      "(${1:string}$0)",
+      "(${1:string}, ${2:escapeChars}$0)"
+    ]
+  ],
+  "XMLGetNodeType": [
+    "Get XML values according to given xPath query",
+    [
+      "(${1:XMLNode}$0)",
+      "(${1:XMLNode}$0)"
+    ]
+  ],
+  "XMLNew": [
+    "Creates a new empty XML Object",
+    [
+      "(${1:caseSensitive}$0)",
+      "(${1:caseSensitive}$0)"
+    ]
+  ],
+  "XMLParse": [
+    "Return new array",
+    [
+      "($0)",
+      "(${1:XML}$0)"
+    ]
+  ],
+  "XMLSearch": [
+    "Get XML values according to given xPath query",
+    [
+      "(${1:XMLNode}, ${2:xpath}$0)",
+      "(${1:XMLNode}, ${2:xpath}, ${3:params}$0)"
+    ]
+  ],
+  "XMLTransform": [
+    "Get XML values according to given xPath query",
+    [
+      "(${1:XML}, ${2:XSL}$0)",
+      "(${1:XML}, ${2:XSL}, ${3:parameters}$0)"
+    ]
+  ],
+  "XMLValidate": [
+    "Uses a Document Type Definition (DTD) or XML Schema to validate an XML text document or an XML document object.\n\nReturns keys status (boolean), errors (array), fatalerrors (array) and warnings (array)",
+    [
+      "(${1:XML}$0)",
+      "(${1:XML}, ${2:validator}$0)"
+    ]
+  ],
+  "Compress": [
+    "Compress the source file or folder to the destination file or folder using\n the specified format:\n\n<p>\n - zip\n - gzip (It will all files separately to the destination folder)\n <p>\n The {@code includeBaseFolder} argument is used to include the base folder as the root\n of the compressed file. The default is {@code true}.\n <p>\n The {@code overwrite} argument is used to overwrite the destination\n file if it already exists, else it will throw an exception. The default is {@code false}.\n <p>\n <h2>Compression Levels</h2>\n The {@code compressionLevel} argument is used to specify the compression level to use for the compression.\n The default is {@code 6}, which is a good balance between speed and compression ratio.\n The valid range is from {@code 0} (no compression) to {@code 9} (maximum compression).",
+    [
+      "(${1:format}, ${2:source}, ${3:destination}$0)",
+      "(${1:format}, ${2:source}, ${3:destination}, ${4:includeBaseFolder}, ${5:overwrite}, ${6:prefix}, ${7:filter}, ${8:recurse}, ${9:compressionLevel}$0)"
+    ]
+  ],
+  "Extract": [
+    "Extract the source file or folder to the destination folder using the specified format:\n\n<p>\n - zip\n - gzip\n <p>\n The {@code overwrite} argument is used to overwrite the destination\n file if it already exists, else it will throw an exception. The default is {@code false}.\n <p>\n The {@code recurse} argument is used to extract the files recursively. The default is {@code true}.\n <p>\n The {@code filter} argument is used to filter the files to extract. It can be:\n <p>\n - A string with a regular expression to match the file names. Example: \".*\\\\.txt\"\n - A Function/Lambda that receives the file name and returns a boolean. Example: (name) => name.endsWith(\".txt\")\n <p>\n The {@code entryPaths} argument is used to extract only the files that match the given paths. It can be a string\n or an array of strings with the paths to extract. Example: \"folder1/file1.txt\" or [\"folder1/file1.txt\", \"folder2/file2.txt\"]",
+    [
+      "(${1:format}, ${2:source}, ${3:destination}$0)",
+      "(${1:format}, ${2:source}, ${3:destination}, ${4:overwrite}, ${5:recurse}, ${6:filter}, ${7:entryPaths}$0)"
+    ]
+  ],
+  "IsZipFile": [
+    "Verifies if the incoming file absolute path is a zip file or not",
+    [
+      "(${1:path}$0)",
+      "(${1:path}$0)"
+    ]
+  ]
+}

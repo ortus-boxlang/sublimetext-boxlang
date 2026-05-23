@@ -1,0 +1,667 @@
+{
+  "abort": {
+    "attributes": [
+      [
+        "showerror",
+        "type"
+      ],
+      []
+    ],
+    "attribute_values": {
+      "type": [
+        "request",
+        "page"
+      ]
+    }
+  },
+  "application": {
+    "attributes": [
+      [
+        "name"
+      ],
+      []
+    ],
+    "attribute_values": {}
+  },
+  "associate": {
+    "attributes": [
+      [
+        "baseTag",
+        "dataCollection"
+      ],
+      []
+    ],
+    "attribute_values": {}
+  },
+  "cache": {
+    "attributes": [
+      [
+        "action",
+        "key"
+      ],
+      [
+        "value",
+        "cacheName",
+        "metadata"
+      ]
+    ],
+    "attribute_values": {
+      "action": [
+        "get",
+        "put",
+        "delete"
+      ]
+    }
+  },
+  "dbinfo": {
+    "attributes": [
+      [
+        "type"
+      ],
+      [
+        "datasource",
+        "table",
+        "pattern",
+        "dbname"
+      ]
+    ],
+    "attribute_values": {
+      "type": [
+        "tables",
+        "columns",
+        "procedures",
+        "version"
+      ]
+    }
+  },
+  "directory": {
+    "attributes": [
+      [
+        "action",
+        "directory"
+      ],
+      [
+        "filter",
+        "mode",
+        "sort"
+      ]
+    ],
+    "attribute_values": {
+      "action": [
+        "list",
+        "create",
+        "delete",
+        "rename"
+      ]
+    }
+  },
+  "dump": {
+    "attributes": [
+      [
+        "var"
+      ],
+      [
+        "label",
+        "top",
+        "expand",
+        "abort",
+        "output"
+      ]
+    ],
+    "attribute_values": {
+      "output": [
+        "console",
+        "browser",
+        "file"
+      ]
+    }
+  },
+  "execute": {
+    "attributes": [
+      [
+        "variable"
+      ],
+      [
+        "arguments",
+        "timeout",
+        "directory"
+      ]
+    ],
+    "attribute_values": {}
+  },
+  "exit": {
+    "attributes": [
+      [
+        "method"
+      ],
+      []
+    ],
+    "attribute_values": {
+      "method": [
+        "exit",
+        "return"
+      ]
+    }
+  },
+  "file": {
+    "attributes": [
+      [
+        "action",
+        "file"
+      ],
+      [
+        "mode",
+        "output",
+        "addnewline"
+      ]
+    ],
+    "attribute_values": {
+      "action": [
+        "read",
+        "write",
+        "append",
+        "copy",
+        "move",
+        "delete"
+      ]
+    }
+  },
+  "flush": {
+    "attributes": [
+      [],
+      []
+    ],
+    "attribute_values": {}
+  },
+  "http": {
+    "attributes": [
+      [
+        "URL"
+      ],
+      [
+        "port",
+        "timeout",
+        "method",
+        "username",
+        "password"
+      ]
+    ],
+    "attribute_values": {
+      "method": [
+        "get",
+        "post",
+        "put",
+        "delete",
+        "patch",
+        "head",
+        "options"
+      ]
+    }
+  },
+  "httpparam": {
+    "attributes": [
+      [
+        "type"
+      ],
+      [
+        "value",
+        "file",
+        "encoded",
+        "mimetype"
+      ]
+    ],
+    "attribute_values": {
+      "type": [
+        "header",
+        "url",
+        "formfield",
+        "body",
+        "cookie",
+        "cgi"
+      ]
+    }
+  },
+  "include": {
+    "attributes": [
+      [
+        "template"
+      ],
+      [
+        "externalOnly"
+      ]
+    ],
+    "attribute_values": {}
+  },
+  "invoke": {
+    "attributes": [
+      [
+        "method"
+      ],
+      [
+        "webservice",
+        "returnVariable",
+        "argumentCollection"
+      ]
+    ],
+    "attribute_values": {}
+  },
+  "invokeargument": {
+    "attributes": [
+      [
+        "name",
+        "value"
+      ],
+      []
+    ],
+    "attribute_values": {}
+  },
+  "lock": {
+    "attributes": [
+      [
+        "name",
+        "scope",
+        "type"
+      ],
+      [
+        "timeout",
+        "throwOnTimeout"
+      ]
+    ],
+    "attribute_values": {
+      "scope": [
+        "application",
+        "session",
+        "server"
+      ],
+      "type": [
+        "exclusive",
+        "readonly"
+      ]
+    }
+  },
+  "log": {
+    "attributes": [
+      [
+        "text"
+      ],
+      [
+        "file",
+        "log",
+        "type",
+        "application"
+      ]
+    ],
+    "attribute_values": {
+      "type": [
+        "information",
+        "warning",
+        "error",
+        "fatal",
+        "debug"
+      ]
+    }
+  },
+  "loop": {
+    "attributes": [
+      [
+        "array",
+        "item",
+        "index"
+      ],
+      [
+        "to",
+        "from",
+        "step"
+      ]
+    ],
+    "attribute_values": {}
+  },
+  "object": {
+    "attributes": [
+      [
+        "of"
+      ],
+      [
+        "type",
+        "className"
+      ]
+    ],
+    "attribute_values": {}
+  },
+  "output": {
+    "attributes": [
+      [
+        "query"
+      ],
+      [
+        "group",
+        "startRow",
+        "maxRows",
+        "encodefor"
+      ]
+    ],
+    "attribute_values": {
+      "encodefor": [
+        "html",
+        "url",
+        "css",
+        "javascript",
+        "xml",
+        "attribute"
+      ]
+    }
+  },
+  "param": {
+    "attributes": [
+      [
+        "name"
+      ],
+      [
+        "type",
+        "default",
+        "max",
+        "min",
+        "pattern"
+      ]
+    ],
+    "attribute_values": {}
+  },
+  "processingdirective": {
+    "attributes": [
+      [
+        "pageEncoding"
+      ],
+      [
+        "suppressWhiteSpace"
+      ]
+    ],
+    "attribute_values": {}
+  },
+  "procparam": {
+    "attributes": [
+      [
+        "type",
+        "value"
+      ],
+      [
+        "variable",
+        "sqltype",
+        "maxLength",
+        "scale"
+      ]
+    ],
+    "attribute_values": {}
+  },
+  "procresult": {
+    "attributes": [
+      [
+        "name"
+      ],
+      [
+        "resultSet",
+        "maxRows"
+      ]
+    ],
+    "attribute_values": {}
+  },
+  "query": {
+    "attributes": [
+      [
+        "name"
+      ],
+      [
+        "datasource",
+        "returnType",
+        "dbtype",
+        "username",
+        "password"
+      ]
+    ],
+    "attribute_values": {
+      "returnType": [
+        "array",
+        "struct",
+        "query"
+      ]
+    }
+  },
+  "queryparam": {
+    "attributes": [
+      [
+        "value"
+      ],
+      [
+        "sqltype",
+        "maxLength",
+        "scale",
+        "nulls",
+        "list"
+      ]
+    ],
+    "attribute_values": {}
+  },
+  "savecontent": {
+    "attributes": [
+      [
+        "variable"
+      ],
+      [
+        "trim",
+        "append"
+      ]
+    ],
+    "attribute_values": {}
+  },
+  "schedule": {
+    "attributes": [
+      [
+        "action"
+      ],
+      [
+        "task",
+        "scheduler",
+        "group",
+        "URL",
+        "interval"
+      ]
+    ],
+    "attribute_values": {
+      "action": [
+        "create",
+        "update",
+        "delete",
+        "pause",
+        "resume"
+      ]
+    }
+  },
+  "setting": {
+    "attributes": [
+      [
+        "enableOutputOnly",
+        "showDebugOutput",
+        "requestTimeout"
+      ],
+      []
+    ],
+    "attribute_values": {}
+  },
+  "silent": {
+    "attributes": [
+      [],
+      []
+    ],
+    "attribute_values": {}
+  },
+  "sleep": {
+    "attributes": [
+      [
+        "time"
+      ],
+      []
+    ],
+    "attribute_values": {}
+  },
+  "storedproc": {
+    "attributes": [
+      [
+        "procedure"
+      ],
+      [
+        "datasource",
+        "blockfactor",
+        "debug",
+        "returnCode"
+      ]
+    ],
+    "attribute_values": {}
+  },
+  "thread": {
+    "attributes": [
+      [
+        "name"
+      ],
+      [
+        "action",
+        "duration",
+        "priority",
+        "timeout",
+        "virtual"
+      ]
+    ],
+    "attribute_values": {
+      "action": [
+        "run",
+        "join",
+        "sleep",
+        "terminate"
+      ],
+      "priority": [
+        "low",
+        "normal",
+        "high"
+      ]
+    }
+  },
+  "throw": {
+    "attributes": [
+      [
+        "message"
+      ],
+      [
+        "type",
+        "detail",
+        "errorcode",
+        "extendedinfo"
+      ]
+    ],
+    "attribute_values": {}
+  },
+  "timer": {
+    "attributes": [
+      [
+        "type"
+      ],
+      [
+        "label",
+        "unit",
+        "variable"
+      ]
+    ],
+    "attribute_values": {
+      "type": [
+        "inline"
+      ],
+      "unit": [
+        "milliseconds",
+        "seconds",
+        "minutes",
+        "hours"
+      ]
+    }
+  },
+  "trace": {
+    "attributes": [
+      [
+        "abort",
+        "category",
+        "text"
+      ],
+      [
+        "type",
+        "extrainfo"
+      ]
+    ],
+    "attribute_values": {
+      "type": [
+        "information",
+        "warning",
+        "error"
+      ]
+    }
+  },
+  "transaction": {
+    "attributes": [
+      [
+        "action"
+      ],
+      [
+        "isolation",
+        "savepoint",
+        "datasource"
+      ]
+    ],
+    "attribute_values": {
+      "action": [
+        "begin",
+        "commit",
+        "rollback",
+        "setsavepoint",
+        "release"
+      ]
+    }
+  },
+  "xml": {
+    "attributes": [
+      [
+        "variable"
+      ],
+      []
+    ],
+    "attribute_values": {}
+  },
+  "zip": {
+    "attributes": [
+      [
+        "action",
+        "file"
+      ],
+      [
+        "destination",
+        "entryPath",
+        "charset"
+      ]
+    ],
+    "attribute_values": {
+      "action": [
+        "read",
+        "write",
+        "extract"
+      ]
+    }
+  },
+  "zipparam": {
+    "attributes": [
+      [
+        "charset",
+        "content",
+        "entryPath"
+      ],
+      [
+        "filter",
+        "prefix"
+      ]
+    ],
+    "attribute_values": {}
+  }
+}

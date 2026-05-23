@@ -1,0 +1,90 @@
+{
+    // BoxLang executable path (leave null to use PATH)
+    "boxlang_executable_path": null,
+
+    // Enable CFML file fallback (.cfc, .cfm, .cfs)
+    // Warning: May conflict with the CFML package if both are installed
+    "boxlang_enable_cfml_fallback": false,
+
+    // BIF completions style
+    // "basic" - only the function name
+    // "required" - only required params (default)
+    // "full" - all params and types
+    "boxlang_bif_completions": "required",
+
+    // Component completions style
+    // "basic" - only the function name
+    // "required" - only required params (default)
+    // "full" - all params and types
+    "boxlang_cfc_completions": "required",
+
+    // Component completion names
+    // "basic" - only the function name (default)
+    // "full" - includes `():returntype` (e.g., `getSomething():struct`)
+    "boxlang_cfc_completion_names": "basic",
+
+    // Provide method completions for variables referring to instantiated components
+    "boxlang_instantiated_component_completions": true,
+
+    // If true, when a ">" is typed to end a tag the corresponding closing tag
+    // will be inserted after the cursor position
+    "boxlang_auto_insert_closing_tag": false,
+
+    // Controls what happens when cursor is between a tag pair and "enter" is pressed
+    // "default" - inserts a newline character
+    // "newline" - adds an extra new line between the tag pair
+    // "indent" - adds an extra new line and indents the cursor position
+    "boxlang_between_tag_pair": "default",
+
+    // Tags that shouldn't be auto-closed (self-closing bx: tags)
+    "boxlang_non_closing_tags": [
+        "abort", "associate", "break", "continue", "dump", "exit",
+        "flush", "httpparam", "include", "invokeargument", "log",
+        "param", "procparam", "procresult", "queryparam", "rethrow",
+        "return", "schedule", "setting", "sleep", "throw", "trace", "zipparam"
+    ],
+
+    // Inline documentation settings
+    "boxlang_inline_doc_regions_highlight": true,
+    "boxlang_hover_docs": true,
+    "boxlang_completion_docs": true,
+
+    // Color scheme styles for BoxLang tags
+    "boxlang_tag_style": { "foreground": "#4C9BB0", "font_style": "" },
+    "boxlang_tag_attribute_style": { "foreground": "#D9995E", "font_style": "" },
+
+    // Default controller and view folder names
+    "boxlang_controller_folders": ["controllers", "handlers"],
+    "boxlang_view_folders": ["views"],
+
+    // TestBox settings
+    "boxlang_testbox_enabled": true,
+    "boxlang_testbox_folders": ["tests"],
+    "boxlang_testbox": {
+        "runner": "http://localhost:8888/testbox/system/Testbox.cfc?method=runremote",
+        "tests_root": "",
+        "reporter": "compacttext",
+        "results": {"server_root": "", "sublime_root": ""}
+    },
+
+    // Dependency inject property command
+    "boxlang_di_property": {
+        "script_template": "property {name};",
+        "tag_template": "<bx:property name=\"{name}\">",
+        "sort_properties": true
+    },
+
+    // Auto-compile on save (compiles to ./bin by default)
+    "boxlang_auto_compile_on_save": false,
+    "boxlang_compile_target": "./bin",
+
+    // Auto-format on save
+    "boxlang_format_on_save": false,
+
+    // Logging
+    "boxlang_log_in_file_parse_time": false,
+    "boxlang_log_doc_time": false,
+
+    // Wizard flag (do not edit manually)
+    "boxlang_wizard_completed": false
+}

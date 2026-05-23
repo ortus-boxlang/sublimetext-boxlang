@@ -1,0 +1,28 @@
+{
+    "shell_cmd": "boxlang \"$file\"",
+    "file_regex": "(?:Error compiling.*Line: ([0-9]+) Col: ([0-9]+) - (.*))",
+    "selector": "source.boxlang",
+
+    "variants": [
+        {
+            "name": "BoxLang: Run with Arguments",
+            "shell_cmd": "boxlang \"$file\" ${1:args}"
+        },
+        {
+            "name": "BoxLang: Compile File",
+            "shell_cmd": "boxlang compile --source \"$file\" --target \"./bin\""
+        },
+        {
+            "name": "BoxLang: Compile Project",
+            "shell_cmd": "boxlang compile --source \"$file_path\" --target \"./bin\""
+        },
+        {
+            "name": "BoxLang: Debug",
+            "shell_cmd": "boxlang --bx-debug \"$file\""
+        },
+        {
+            "name": "BoxLang: Feature Audit",
+            "shell_cmd": "boxlang featureaudit --source \"$file_path\""
+        }
+    ]
+}

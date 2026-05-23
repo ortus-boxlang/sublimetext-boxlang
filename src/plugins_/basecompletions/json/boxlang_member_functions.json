@@ -1,0 +1,516 @@
+{
+  "string": {
+    "left": [
+      "Extract the leftmost count characters from a string",
+      [
+        "(${1:count}$0)",
+        "(${1:count}$0)"
+      ]
+    ],
+    "right": [
+      "Extract the rightmost count characters from a string",
+      [
+        "(${1:count}$0)",
+        "(${1:count}$0)"
+      ]
+    ],
+    "len": [
+      "Get the length of the string",
+      [
+        "($0)",
+        "($0)"
+      ]
+    ],
+    "trim": [
+      "Remove whitespace from both ends",
+      [
+        "($0)",
+        "($0)"
+      ]
+    ],
+    "ltrim": [
+      "Remove whitespace from the left",
+      [
+        "($0)",
+        "($0)"
+      ]
+    ],
+    "rtrim": [
+      "Remove whitespace from the right",
+      [
+        "($0)",
+        "($0)"
+      ]
+    ],
+    "replace": [
+      "Replace occurrences in the string",
+      [
+        "(${1:target}, ${2:replacement}$0)",
+        "(${1:target}, ${2:replacement}, ${3:scope}$0)"
+      ]
+    ],
+    "find": [
+      "Find a substring in the string",
+      [
+        "(${1:substring}$0)",
+        "(${1:substring}, ${2:start}$0)"
+      ]
+    ],
+    "mid": [
+      "Extract a substring",
+      [
+        "(${1:start}, ${2:count}$0)",
+        "(${1:start}, ${2:count}$0)"
+      ]
+    ],
+    "lcase": [
+      "Convert to lowercase",
+      [
+        "($0)",
+        "($0)"
+      ]
+    ],
+    "ucase": [
+      "Convert to uppercase",
+      [
+        "($0)",
+        "($0)"
+      ]
+    ],
+    "ucfirst": [
+      "Capitalize the first character",
+      [
+        "($0)",
+        "($0)"
+      ]
+    ],
+    "reverse": [
+      "Reverse the string",
+      [
+        "($0)",
+        "($0)"
+      ]
+    ],
+    "split": [
+      "Split the string into an array",
+      [
+        "(${1:delimiter}$0)",
+        "(${1:delimiter}, ${2:limit}$0)"
+      ]
+    ],
+    "startsWith": [
+      "Check if string starts with prefix",
+      [
+        "(${1:prefix}$0)",
+        "(${1:prefix}$0)"
+      ]
+    ],
+    "endsWith": [
+      "Check if string ends with suffix",
+      [
+        "(${1:suffix}$0)",
+        "(${1:suffix}$0)"
+      ]
+    ],
+    "contains": [
+      "Check if string contains substring",
+      [
+        "(${1:substring}$0)",
+        "(${1:substring}$0)"
+      ]
+    ],
+    "repeat": [
+      "Repeat the string n times",
+      [
+        "(${1:count}$0)",
+        "(${1:count}$0)"
+      ]
+    ],
+    "insert": [
+      "Insert a substring at position",
+      [
+        "(${1:substring}, ${2:position}$0)",
+        "(${1:substring}, ${2:position}$0)"
+      ]
+    ],
+    "removeChars": [
+      "Remove characters from the string",
+      [
+        "(${1:start}, ${2:count}$0)",
+        "(${1:start}, ${2:count}$0)"
+      ]
+    ],
+    "slugify": [
+      "Convert to URL-friendly slug",
+      [
+        "($0)",
+        "($0)"
+      ]
+    ],
+    "camelCase": [
+      "Convert to camelCase",
+      [
+        "($0)",
+        "($0)"
+      ]
+    ],
+    "kebabCase": [
+      "Convert to kebab-case",
+      [
+        "($0)",
+        "($0)"
+      ]
+    ],
+    "snakeCase": [
+      "Convert to snake_case",
+      [
+        "($0)",
+        "($0)"
+      ]
+    ],
+    "pascalCase": [
+      "Convert to PascalCase",
+      [
+        "($0)",
+        "($0)"
+      ]
+    ]
+  },
+  "array": {
+    "len": [
+      "Get the array length",
+      [
+        "($0)",
+        "($0)"
+      ]
+    ],
+    "append": [
+      "Append an element to the array",
+      [
+        "(${1:element}$0)",
+        "(${1:element}$0)"
+      ]
+    ],
+    "clear": [
+      "Clear all elements from the array",
+      [
+        "($0)",
+        "($0)"
+      ]
+    ],
+    "delete": [
+      "Delete an element from the array",
+      [
+        "(${1:element}$0)",
+        "(${1:element}, ${2:count}$0)"
+      ]
+    ],
+    "deleteAt": [
+      "Delete element at index",
+      [
+        "(${1:index}$0)",
+        "(${1:index}$0)"
+      ]
+    ],
+    "first": [
+      "Get the first element",
+      [
+        "($0)",
+        "($0)"
+      ]
+    ],
+    "last": [
+      "Get the last element",
+      [
+        "($0)",
+        "($0)"
+      ]
+    ],
+    "find": [
+      "Find an element in the array",
+      [
+        "(${1:element}$0)",
+        "(${1:element}, ${2:start}$0)"
+      ]
+    ],
+    "insertAt": [
+      "Insert element at index",
+      [
+        "(${1:index}, ${2:element}$0)",
+        "(${1:index}, ${2:element}$0)"
+      ]
+    ],
+    "reverse": [
+      "Reverse the array",
+      [
+        "($0)",
+        "($0)"
+      ]
+    ],
+    "sort": [
+      "Sort the array",
+      [
+        "($0)",
+        "(${1:sortType}$0)"
+      ]
+    ],
+    "slice": [
+      "Get a slice of the array",
+      [
+        "(${1:start}$0)",
+        "(${1:start}, ${2:count}$0)"
+      ]
+    ],
+    "map": [
+      "Map over array elements",
+      [
+        "(${1:closure}$0)",
+        "(${1:closure}$0)"
+      ]
+    ],
+    "filter": [
+      "Filter array elements",
+      [
+        "(${1:closure}$0)",
+        "(${1:closure}$0)"
+      ]
+    ],
+    "reduce": [
+      "Reduce array to single value",
+      [
+        "(${1:closure}, ${2:initial}$0)",
+        "(${1:closure}, ${2:initial}$0)"
+      ]
+    ],
+    "each": [
+      "Iterate over array elements",
+      [
+        "(${1:closure}$0)",
+        "(${1:closure}$0)"
+      ]
+    ],
+    "some": [
+      "Check if some elements match",
+      [
+        "(${1:closure}$0)",
+        "(${1:closure}$0)"
+      ]
+    ],
+    "every": [
+      "Check if all elements match",
+      [
+        "(${1:closure}$0)",
+        "(${1:closure}$0)"
+      ]
+    ]
+  },
+  "struct": {
+    "len": [
+      "Get the struct size",
+      [
+        "($0)",
+        "($0)"
+      ]
+    ],
+    "keyExists": [
+      "Check if a key exists",
+      [
+        "(${1:key}$0)",
+        "(${1:key}$0)"
+      ]
+    ],
+    "delete": [
+      "Delete a key from the struct",
+      [
+        "(${1:key}$0)",
+        "(${1:key}$0)"
+      ]
+    ],
+    "clear": [
+      "Clear all keys from the struct",
+      [
+        "($0)",
+        "($0)"
+      ]
+    ],
+    "keyArray": [
+      "Get an array of keys",
+      [
+        "($0)",
+        "($0)"
+      ]
+    ],
+    "valueArray": [
+      "Get an array of values",
+      [
+        "($0)",
+        "($0)"
+      ]
+    ],
+    "findKey": [
+      "Find a key by value",
+      [
+        "(${1:value}$0)",
+        "(${1:value}$0)"
+      ]
+    ],
+    "map": [
+      "Map over struct values",
+      [
+        "(${1:closure}$0)",
+        "(${1:closure}$0)"
+      ]
+    ],
+    "filter": [
+      "Filter struct entries",
+      [
+        "(${1:closure}$0)",
+        "(${1:closure}$0)"
+      ]
+    ],
+    "reduce": [
+      "Reduce struct to single value",
+      [
+        "(${1:closure}, ${2:initial}$0)",
+        "(${1:closure}, ${2:initial}$0)"
+      ]
+    ],
+    "each": [
+      "Iterate over struct entries",
+      [
+        "(${1:closure}$0)",
+        "(${1:closure}$0)"
+      ]
+    ],
+    "some": [
+      "Check if some entries match",
+      [
+        "(${1:closure}$0)",
+        "(${1:closure}$0)"
+      ]
+    ],
+    "every": [
+      "Check if all entries match",
+      [
+        "(${1:closure}$0)",
+        "(${1:closure}$0)"
+      ]
+    ]
+  },
+  "query": {
+    "len": [
+      "Get the query record count",
+      [
+        "($0)",
+        "($0)"
+      ]
+    ],
+    "addColumn": [
+      "Add a column to the query",
+      [
+        "(${1:name}$0)",
+        "(${1:name}, ${2:values}$0)"
+      ]
+    ],
+    "addRow": [
+      "Add a row to the query",
+      [
+        "($0)",
+        "(${1:data}$0)"
+      ]
+    ],
+    "deleteRow": [
+      "Delete a row from the query",
+      [
+        "(${1:row}$0)",
+        "(${1:row}$0)"
+      ]
+    ],
+    "getColumn": [
+      "Get a column as an array",
+      [
+        "(${1:name}$0)",
+        "(${1:name}$0)"
+      ]
+    ],
+    "getRow": [
+      "Get a row as a struct",
+      [
+        "(${1:row}$0)",
+        "(${1:row}$0)"
+      ]
+    ],
+    "slice": [
+      "Get a slice of the query",
+      [
+        "(${1:start}$0)",
+        "(${1:start}, ${2:count}$0)"
+      ]
+    ]
+  },
+  "date": {
+    "add": [
+      "Add time to a date",
+      [
+        "(${1:part}, ${2:amount}$0)",
+        "(${1:part}, ${2:amount}$0)"
+      ]
+    ],
+    "diff": [
+      "Calculate difference between dates",
+      [
+        "(${1:date2}$0)",
+        "(${1:date2}, ${2:part}$0)"
+      ]
+    ],
+    "format": [
+      "Format the date",
+      [
+        "($0)",
+        "(${1:mask}$0)"
+      ]
+    ],
+    "year": [
+      "Get the year",
+      [
+        "($0)",
+        "($0)"
+      ]
+    ],
+    "month": [
+      "Get the month",
+      [
+        "($0)",
+        "($0)"
+      ]
+    ],
+    "day": [
+      "Get the day",
+      [
+        "($0)",
+        "($0)"
+      ]
+    ],
+    "hour": [
+      "Get the hour",
+      [
+        "($0)",
+        "($0)"
+      ]
+    ],
+    "minute": [
+      "Get the minute",
+      [
+        "($0)",
+        "($0)"
+      ]
+    ],
+    "second": [
+      "Get the second",
+      [
+        "($0)",
+        "($0)"
+      ]
+    ]
+  }
+}
