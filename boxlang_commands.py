@@ -22,18 +22,8 @@ class BoxlangFormatCommand(sublime_plugin.TextCommand):
         if not file_path:
             sublime.status_message('BoxLang: Save the file first to format')
             return
-        project_dir = os.path.dirname(file_path)
-        cfformat_path = os.path.join(project_dir, '.cfformat.json')
-        bxformat_path = os.path.join(project_dir, '.bxformat.json')
-        if os.path.isfile(cfformat_path) and (not os.path.isfile(bxformat_path)):
-            result = sublime.yes_no_cancel_dialog('Found legacy .cfformat.json configuration file.\n\nBoxLang uses .bxformat.json for formatting settings.\n\nWould you like to convert .cfformat.json to .bxformat.json?', 'Convert', 'Ignore')
-            if result == sublime.DIALOG_YES:
-                try:
-                    import shutil
-                    shutil.copy(cfformat_path, bxformat_path)
-                    sublime.status_message('BoxLang: Created .bxformat.json from .cfformat.json')
-                except Exception:
-                    sublime.status_message('BoxLang: Failed to create .bxformat.json')
+        self.view.run_command('save')
+        config_path = self._find_format_config(file_path)
         sublime.status_message('BoxLang: Formatting...')
 
         def on_format(success, error):
@@ -45,7 +35,11 @@ class BoxlangFormatCommand(sublime_plugin.TextCommand):
 
         def _run_format():
             try:
-                proc = subprocess.Popen([bx_path, 'format', file_path], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+                cmd = [bx_path, 'format']
+                if config_path:
+                    cmd.extend(['--config', config_path])
+                cmd.append(file_path)
+                proc = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
                 stdout, stderr = proc.communicate()
                 if proc.returncode == 0:
                     sublime.set_timeout(lambda: on_format(True, None))
@@ -56,6 +50,26 @@ class BoxlangFormatCommand(sublime_plugin.TextCommand):
                 sublime.set_timeout(lambda e=str(exc): on_format(False, e))
 
         threading.Thread(target=_run_format, daemon=True).start()
+
+    def _find_format_config(self, file_path):
+        """Find .bxformat.json config starting from file directory up to project root."""
+        file_dir = os.path.dirname(file_path)
+        window = self.view.window()
+        project_roots = [f for f in (window.folders() if window else [])]
+        search_dirs = [file_dir] + project_roots
+        checked = set()
+        for start_dir in search_dirs:
+            current = start_dir
+            while current and current not in checked:
+                checked.add(current)
+                config = os.path.join(current, '.bxformat.json')
+                if os.path.isfile(config):
+                    return config
+                parent = os.path.dirname(current)
+                if parent == current:
+                    break
+                current = parent
+        return None
 
 class BoxlangControllerViewToggleCommand(sublime_plugin.TextCommand):
     """Toggle between controller and view files."""
