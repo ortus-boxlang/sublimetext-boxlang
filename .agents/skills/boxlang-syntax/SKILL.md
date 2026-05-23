@@ -11,9 +11,8 @@ Use this skill when working with Sublime Text syntax definitions for BoxLang fil
 
 | File | Scope | Extensions | Purpose |
 |------|-------|------------|---------|
-| `syntaxes/BoxLang.sublime-syntax` | `embedding.boxlang` | `.bx`, `.bxs`, `.bxm` | Main entry syntax, routes to script or HTML |
-| `syntaxes/BoxLangScript.sublime-syntax` | `source.boxlang.script` | `.bxs` | Full script-mode syntax |
-| `syntaxes/BoxLangModule.sublime-syntax` | `embedding.boxlang.module` | `.bxm` | Module template syntax (extends main) |
+| `syntaxes/BoxLang.sublime-syntax` | `source.boxlang` | `.bx`, `.bxs` | Script syntax for classes and scripts |
+| `syntaxes/BoxLangMarkup.sublime-syntax` | `embedding.boxlang.markup` | `.bxm` | Markup syntax for templates |
 
 ## Key Syntax Rules
 
@@ -81,10 +80,10 @@ return, schedule, setting, sleep, throw, trace, zipparam
 
 ## Adding New Syntax Features
 
-1. **New reserved word:** Add to `reserved_word` variable in all three syntax files
+1. **New reserved word:** Add to `reserved_word` variable in both syntax files
 2. **New storage type:** Add to `storage_types` variable
-3. **New tag:** Add context in `BoxLang.sublime-syntax` under `tags:` include
-4. **New operator:** Add to `operators` context in `BoxLangScript.sublime-syntax`
+3. **New tag:** Add context in `BoxLangMarkup.sublime-syntax` under `tags:` include
+4. **New operator:** Add to `operators` context in `BoxLang.sublime-syntax`
 5. **New scope style:** Update `boxlang.sublime-settings` with style entry
 
 ## Testing Syntax Changes

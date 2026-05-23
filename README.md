@@ -10,11 +10,13 @@ Comprehensive BoxLang language support for Sublime Text 4. Provides syntax highl
 ## Features
 
 ### Syntax Highlighting
+
 - **`.bx`** — Script classes with full syntax support
 - **`.bxs`** — Script-only files
 - **`.bxm`** — Module templates with embedded script blocks
 
 ### Intelligent Completions
+
 - **560 Built-in Functions** with parameter hints and snippet insertion
 - **41 BoxLang Tags** (`bx:` components) with attribute completions
 - **72 Member Functions** for native types (string, array, struct, query, numeric)
@@ -23,12 +25,14 @@ Comprehensive BoxLang language support for Sublime Text 4. Provides syntax highl
 - **Component Indexing** with inheritance resolution for project-wide completions
 
 ### Inline Documentation
+
 - **F1 Popup** — Full documentation with parameter references
 - **Hover Docs** — Quick info on mouse hover
 - **Completion Docs** — Parameter hints during auto-complete
 - **Go to Docs** — Navigate to [boxlang.ortusbooks.com](https://boxlang.ortusbooks.com)
 
 ### Developer Tools
+
 - **Code Formatting** via `boxlang format` CLI
 - **Build System** — Run, compile, debug, and audit BoxLang files
 - **Go to Definition** — Ctrl/Cmd+Click to navigate to classes and functions
@@ -83,20 +87,22 @@ Re-run the wizard anytime: `BoxLang: Run Setup Wizard` (Command Palette)
 
 ## Key Bindings
 
-| Shortcut | Action |
-|----------|--------|
-| `F1` | Show inline documentation |
-| `Ctrl+F1` | Toggle controller/view |
-| `Shift+Alt+F` | Format code |
-| `Shift+Alt+D` | Inject DI property |
-| `Ctrl+Alt+D` | Insert `writeDump()` |
-| `Ctrl+Shift+O` | Insert `writeOutput()` |
-| `Ctrl+Alt+A` | Insert `abort;` |
-| `#` | Wrap selection in `##` |
-| `Ctrl/Cmd+Click` | Go to definition |
-| `F4` | Next parse error |
-| `Shift+F4` | Previous parse error |
-| `Ctrl+B` | Build & run |
+| Action | macOS | Linux | Windows |
+|--------|-------|-------|---------|
+| Show inline documentation | `F1` | `F1` | `F1` |
+| Toggle controller/view | `Ctrl+F1` | `Ctrl+F1` | `Ctrl+F1` |
+| Format code | `Shift+Option+F` | `Shift+Alt+F` | `Shift+Alt+F` |
+| Inject DI property | `Shift+Option+D` | `Shift+Alt+D` | `Shift+Alt+D` |
+| Insert `writeDump()` | `Ctrl+Option+D` | `Ctrl+Alt+D` | `Ctrl+Alt+D` |
+| Insert `writeOutput()` | `Ctrl+Shift+O` | `Ctrl+Shift+O` | `Ctrl+Shift+O` |
+| Insert `abort;` | `Ctrl+Option+A` | `Ctrl+Alt+A` | `Ctrl+Alt+A` |
+| Wrap selection in `##` | `#` | `#` | `#` |
+| Go to definition | `Cmd+Click` (also `Ctrl+Click`) | `Ctrl+Click` | `Ctrl+Click` |
+| Next parse error | `F4` | `F4` | `F4` |
+| Previous parse error | `Shift+F4` | `Shift+F4` | `Shift+F4` |
+| Build & run (Sublime default) | `Cmd+B` | `Ctrl+B` | `Ctrl+B` |
+
+> Note: On some macOS keyboards, use `Fn` with function keys (`F1`, `F4`, etc.) if media keys are enabled.
 
 ---
 
@@ -346,6 +352,7 @@ Completions and documentation are provided by pluggable modules:
 ### Type Inference
 
 Medium-depth type resolution from:
+
 - Literal values (`"string"`, `123`, `[]`, `{}`, `true/false`)
 - `new` expressions (`new UserService()` → `component:UserService`)
 - `createObject()` calls
@@ -390,6 +397,7 @@ Medium-depth type resolution from:
 ## Roadmap
 
 ### Phase 3
+
 - [ ] `applicationbx` plugin (Application.cfc-like completions)
 - [ ] `in_file_completions` plugin (in-file symbol completions)
 - [ ] Auto-close tags on `>`
@@ -397,6 +405,7 @@ Medium-depth type resolution from:
 - [ ] Auto-compile on save
 
 ### Phase 4
+
 - [ ] Java class introspection
 - [ ] Disk-persistent index
 - [ ] Parallel indexing
@@ -404,6 +413,7 @@ Medium-depth type resolution from:
 - [ ] Symbol renaming
 
 ### Phase 5
+
 - [ ] MCP server integration for live docs
 - [ ] LSP compatibility layer
 - [ ] Debug adapter protocol

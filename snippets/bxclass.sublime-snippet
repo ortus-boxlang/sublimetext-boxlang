@@ -1,6 +1,5 @@
 <snippet>
     <content><![CDATA[class ${1:ClassName} {
-	extends = "${2:BaseClass}";
 
 	function init() {
 		${0:// constructor code}

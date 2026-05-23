@@ -56,7 +56,7 @@ def get_inline_documentation(boxlang_view, doc_type):
         if (
             doc_type == "hover_doc"
             and doc_name in ["bx:component", "bx:interface", "bx:function"]
-            and boxlang_view.view.match_selector(boxlang_view.position, "source.boxlang.script")
+            and boxlang_view.view.match_selector(boxlang_view.position, "source.boxlang")
         ):
             return None
 

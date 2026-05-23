@@ -2,19 +2,17 @@
 ---
 
 name: BoxLang
-scope: embedding.boxlang
+scope: source.boxlang
 version: 2
 
 file_extensions:
   - bx
   - bxs
-  - bxm
 
 variables:
   identifier: '[_$[:alpha:]][_$[:alnum:]]*'
   dot_path_identifier: '[_$[:alnum:]][_$[:alnum:].]*'
   constant_identifier: '[[:upper:]][_$[:digit:][:upper:]]*\b'
-  attribute_name: '[_[:alpha:]][[:alnum:]_\-:]*'
   reserved_word: |-
     (?x:
       break|case|catch|continue|default|do|else|finally|for|function|if|import|in|new|return|
@@ -23,9 +21,10 @@ variables:
       final|static|public|private|package|remote|annotation
     )\b
 
+  boxlang_scope: \b(this|variables|thread|session|client|server|cgi|form|url|cookie|application|request|arguments|super)\b
+
   non_reserved_identifier: (?:(?!{{reserved_word}}){{identifier}})
 
-  param_attributes: \b(name|default|max|maxLength|min|pattern|type)\b
   access_modifier: \b(private|package|public|remote)\b
   storage_modifier: \b(static|final|abstract)\b
   storage_types: \b(?:any|array|binary|boolean|component|date|guid|numeric|query|string|struct|xml|uuid|void)\b
@@ -47,18 +46,15 @@ variables:
       =>
     )
   either_function_lookahead: (?:{{function_lookahead}}|{{arrow_func_lookahead}})
-  possible_arrow_function_begin: (?:\(|{{identifier}})
   function_assignment_lookahead: |-
     (?x:(?=
       \s* = \s*
       {{either_function_lookahead}}
     ))
-  function_call_after_lookahead: (?=\s*\()
 
   block_comment_contents: (?:(?:[^*]|\*(?!/))*)
   block_comment: (?:/\*{{block_comment_contents}}\*/)
   nothing: (?:(?:\s|{{block_comment}})*)
-  line_ending_ahead: (?={{nothing}}(?:/\*{{block_comment_contents}}|//.*)?$)
 
 contexts:
   prototype:
@@ -74,24 +70,29 @@ contexts:
       pop: true
 
   main:
-    - match: (?i)(?=^\s*(/\*|//|import\b|(class|abstract\s*class|final\s*class|interface)(\s+|{)))
-      push: scope:source.boxlang.script
-    - match: (?=\S)
-      push: html
+    - match: '\)|\}|\]'
+      scope: invalid.illegal.stray-bracket-end.boxlang
+    - include: import-statement
+    - include: statements
 
-  tags:
-    - include: comments
-    - include: bx-function
-    - include: bx-output
-    - include: bx-script
-    - include: bx-generic-tag
-
-  html:
+  statements:
+    - match: '\)|\}|\]'
+      scope: invalid.illegal.stray-bracket-end.boxlang
+      pop: true
     - match: (?=\S)
-      push:
-        - include: scope:text.html.basic
-      with_prototype:
-        - include: tags
+      push: statement
+
+  statement:
+    - match: \;
+      scope: punctuation.terminator.statement.empty.boxlang
+      pop: true
+    - include: class-declaration
+    - include: function-declaration
+    - include: variable-declaration
+    - include: conditional
+    - include: block
+    - include: flow-control
+    - include: expression-statement
 
   comments:
     - match: /\*\*(?!/|\*)
@@ -118,106 +119,287 @@ contexts:
         - match: \n
           pop: true
 
-  bx-generic-tag:
-    - match: (<)(bx:)(\w+)
-      captures:
-        1: punctuation.definition.tag.begin.boxlang
-        2: entity.name.tag.boxlang
-        3: entity.name.tag.boxlang
+  import-statement:
+    - match: \b(import)\b
+      scope: keyword.control.import.boxlang
       push:
-        - meta_scope: meta.tag.boxlang
-        - match: (/?>)
-          scope: punctuation.definition.tag.end.boxlang
+        - match: \;
+          scope: punctuation.terminator.statement.boxlang
           pop: true
-        - include: tag-attributes
+        - match: '{{dot_path_identifier}}'
+          scope: variable.other.import.boxlang
 
-  tag-attributes:
-    - match: (\w[\w\-]*)\s*(=)
-      captures:
-        1: entity.other.attribute-name.boxlang
-        2: punctuation.separator.key-value.boxlang
+  class-declaration:
+    - match: \b(class)\b
+      scope: keyword.declaration.class.boxlang storage.type.class.boxlang
       push:
-        - meta_scope: string.quoted.double.boxlang
-        - match: '"'
-          scope: punctuation.definition.string.end.boxlang
+        - match: \{
+          scope: punctuation.section.block.begin.boxlang
+          set: class-body
+        - match: \b(extends)\b
+          scope: keyword.declaration.extends.boxlang
+        - match: \b(implements)\b
+          scope: keyword.declaration.implements.boxlang
+        - match: '{{identifier}}'
+          scope: entity.name.class.boxlang
+
+  class-body:
+    - meta_scope: meta.class.body.boxlang
+    - match: \}
+      scope: punctuation.section.block.end.boxlang
+      pop: true
+    - include: function-declaration
+    - include: property-declaration
+
+  function-declaration:
+    - match: '{{function_declaration_lookahead}}'
+      scope: meta.function.declaration.boxlang
+      push:
+        - meta_scope: meta.function.declaration.boxlang
+        - match: '(?=\{)'
+          set: function-body
+        - match: \bfunction\b
+          scope: keyword.declaration.function.boxlang storage.type.function.boxlang
+        - match: '{{identifier}}'
+          scope: entity.name.function.boxlang
+        - match: \(
+          scope: punctuation.section.group.begin.boxlang
+          push: function-params
+        - match: ':'
+          scope: punctuation.separator.type.boxlang
+          push: return-type
+
+  function-params:
+    - meta_scope: meta.function.parameters.boxlang
+    - match: \)
+      scope: punctuation.section.group.end.boxlang
+      pop: true
+    - match: '{{identifier}}'
+      scope: variable.parameter.function.boxlang
+    - match: ':'
+      scope: punctuation.separator.type.boxlang
+      push: param-type
+    - match: ','
+      scope: punctuation.separator.parameters.boxlang
+
+  param-type:
+    - meta_scope: storage.type.boxlang
+    - match: '(?=[,)])'
+      pop: true
+    - match: '{{identifier}}'
+
+  return-type:
+    - meta_scope: storage.type.boxlang
+    - match: '(?=[\{(])'
+      pop: true
+    - match: '{{identifier}}'
+
+  function-body:
+    - match: \{
+      scope: punctuation.section.block.begin.boxlang
+      set:
+        - meta_scope: meta.function.body.boxlang
+        - match: \}
+          scope: punctuation.section.block.end.boxlang
           pop: true
-        - match: '"'
-          scope: punctuation.definition.string.begin.boxlang
-    - match: '(\w[\w\-]*)\s*(=)\s*'
-      captures:
-        1: entity.other.attribute-name.boxlang
-        2: punctuation.separator.key-value.boxlang
+        - include: statements
+
+  variable-declaration:
+    - match: \b(var)\b
+      scope: keyword.declaration.var.boxlang storage.type.boxlang
       push:
-        - meta_scope: string.quoted.single.boxlang
-        - match: "'"
-          scope: punctuation.definition.string.end.boxlang
+        - match: \;
+          scope: punctuation.terminator.statement.boxlang
           pop: true
-        - match: "'"
-          scope: punctuation.definition.string.begin.boxlang
+        - match: '{{identifier}}'
+          scope: variable.other.readwrite.boxlang
+        - match: '='
+          scope: keyword.operator.assignment.boxlang
+          push: expression
 
-  bx-function:
-    - match: (<)(bx:function\b)
-      captures:
-        1: punctuation.definition.tag.begin.boxlang
-        2: entity.name.tag.boxlang
+  conditional:
+    - match: \b(if|else\s+if|else|switch|case|default)\b
+      scope: keyword.control.conditional.boxlang
       push:
-        - meta_scope: meta.tag.function.boxlang
-        - match: '>'
-          scope: punctuation.definition.tag.end.boxlang
-          set: bx-function-body
-        - include: tag-attributes
+        - match: \{
+          scope: punctuation.section.block.begin.boxlang
+          set:
+            - meta_scope: meta.block.boxlang
+            - match: \}
+              scope: punctuation.section.block.end.boxlang
+              pop: true
+            - include: statements
+        - match: \(
+          scope: punctuation.section.group.begin.boxlang
+          push:
+            - meta_scope: meta.group.boxlang
+            - match: \)
+              scope: punctuation.section.group.end.boxlang
+              pop: true
+            - include: expression
 
-  bx-function-body:
-    - meta_content_scope: source.boxlang.script
-    - match: (</)(bx:function)(>)
-      captures:
-        1: punctuation.definition.tag.begin.boxlang
-        2: entity.name.tag.boxlang
-        3: punctuation.definition.tag.end.boxlang
+  flow-control:
+    - match: \b(break|continue)\b
+      scope: keyword.control.flow.boxlang
+      set: expect-semicolon
+    - match: \b(return)\b
+      scope: keyword.control.flow.return.boxlang
+      set: restricted-production
+    - match: \b(throw|rethrow)\b
+      scope: keyword.control.flow.throw.boxlang
+      set: restricted-production
+    - match: \b(abort)\b
+      scope: keyword.control.flow.boxlang
+      set: expect-semicolon
+
+  expect-semicolon:
+    - match: \;
+      scope: punctuation.terminator.statement.boxlang
       pop: true
-    - include: scope:source.boxlang.script
+    - match: (?=\S)
+      push: expression
 
-  bx-output:
-    - match: (<)(bx:output\b)
-      captures:
-        1: punctuation.definition.tag.begin.boxlang
-        2: entity.name.tag.boxlang
+  restricted-production:
+    - match: \;
+      scope: punctuation.terminator.statement.boxlang
+      pop: true
+    - match: (?=\S)
+      push: expression
+
+  block:
+    - match: \{
+      scope: punctuation.section.block.begin.boxlang
       push:
-        - meta_scope: meta.tag.output.boxlang
-        - match: '>'
-          scope: punctuation.definition.tag.end.boxlang
-          set: bx-output-body
-        - include: tag-attributes
+        - meta_scope: meta.block.boxlang
+        - match: \}
+          scope: punctuation.section.block.end.boxlang
+          pop: true
+        - include: statements
 
-  bx-output-body:
-    - match: (</)(bx:output)(>)
-      captures:
-        1: punctuation.definition.tag.begin.boxlang
-        2: entity.name.tag.boxlang
-        3: punctuation.definition.tag.end.boxlang
-      pop: true
-    - match: '(##)'
-      scope: constant.character.escape.hash.boxlang
-    - include: scope:text.html.basic
-
-  bx-script:
-    - match: (<)(bx:script\b)
-      captures:
-        1: punctuation.definition.tag.begin.boxlang
-        2: entity.name.tag.boxlang
+  expression-statement:
+    - match: (?=\S)
       push:
-        - meta_scope: meta.tag.script.boxlang
-        - match: '>'
-          scope: punctuation.definition.tag.end.boxlang
-          set: bx-script-body
-        - include: tag-attributes
+        - match: \;
+          scope: punctuation.terminator.statement.boxlang
+          pop: true
+        - include: expression
 
-  bx-script-body:
-    - meta_content_scope: source.boxlang.script
-    - match: (</)(bx:script)(>)
-      captures:
-        1: punctuation.definition.tag.begin.boxlang
-        2: entity.name.tag.boxlang
-        3: punctuation.definition.tag.end.boxlang
+  expression:
+    - include: scope-variable
+    - include: literal
+    - include: function-call
+    - include: member-access
+    - include: operators
+    - include: parentheses
+    - include: array-literal
+    - include: struct-literal
+
+  scope-variable:
+    - match: '{{boxlang_scope}}'
+      scope: variable.language.boxlang
+
+  literal:
+    - match: \b(true|false|null)\b
+      scope: constant.language.boxlang
+    - match: \b([0-9]+\.?[0-9]*)\b
+      scope: constant.numeric.boxlang
+    - match: '"'
+      scope: punctuation.definition.string.begin.boxlang
+      push: double-quoted-string
+    - match: "'"
+      scope: punctuation.definition.string.begin.boxlang
+      push: single-quoted-string
+
+  double-quoted-string:
+    - meta_scope: string.quoted.double.boxlang
+    - match: '"'
+      scope: punctuation.definition.string.end.boxlang
       pop: true
-    - include: scope:source.boxlang.script
+    - match: '\\.'
+      scope: constant.character.escape.boxlang
+
+  single-quoted-string:
+    - meta_scope: string.quoted.single.boxlang
+    - match: "'"
+      scope: punctuation.definition.string.end.boxlang
+      pop: true
+
+  function-call:
+    - match: '{{identifier}}\s*(?=\()'
+      scope: meta.function-call.boxlang entity.name.function.boxlang
+      push: function-call-args
+
+  function-call-args:
+    - match: \(
+      scope: punctuation.section.group.begin.boxlang
+      set:
+        - meta_scope: meta.function-call.arguments.boxlang
+        - match: \)
+          scope: punctuation.section.group.end.boxlang
+          pop: true
+        - include: expression
+
+  member-access:
+    - match: \.
+      scope: punctuation.accessor.boxlang
+      push:
+        - match: '{{identifier}}'
+          scope: variable.other.property.boxlang
+          pop: true
+
+  operators:
+    - match: '===|!==|==|!=|<=|>=|<|>'
+      scope: keyword.operator.comparison.boxlang
+    - match: '&&|\|\||!'
+      scope: keyword.operator.logical.boxlang
+    - match: '=>|->'
+      scope: keyword.operator.arrow.boxlang
+    - match: '[+\-*/%]=?'
+      scope: keyword.operator.arithmetic.boxlang
+    - match: '='
+      scope: keyword.operator.assignment.boxlang
+
+  parentheses:
+    - match: \(
+      scope: punctuation.section.group.begin.boxlang
+      push:
+        - meta_scope: meta.group.boxlang
+        - match: \)
+          scope: punctuation.section.group.end.boxlang
+          pop: true
+        - include: expression
+
+  array-literal:
+    - match: \[
+      scope: punctuation.section.array.begin.boxlang
+      push:
+        - meta_scope: meta.array.literal.boxlang
+        - match: \]
+          scope: punctuation.section.array.end.boxlang
+          pop: true
+        - include: expression
+
+  struct-literal:
+    - match: \{
+      scope: punctuation.section.struct.begin.boxlang
+      push:
+        - meta_scope: meta.struct.literal.boxlang
+        - match: \}
+          scope: punctuation.section.struct.end.boxlang
+          pop: true
+        - match: '{{identifier}}\s*:'
+          captures:
+            0: meta.struct-literal.key.boxlang
+            1: variable.other.readwrite.boxlang
+            2: punctuation.separator.key-value.boxlang
+        - include: expression
+
+  property-declaration:
+    - match: \b(property)\b
+      scope: keyword.declaration.property.boxlang
+      push:
+        - match: \;
+          scope: punctuation.terminator.statement.boxlang
+          pop: true
+        - match: '{{identifier}}'
+          scope: variable.other.property.boxlang

@@ -81,9 +81,8 @@ sublimetext-boxlang/
 │       ├── applicationbx/__init__.py # (empty - reserved for Application.cfc-like)
 │       └── in_file_completions/__init__.py # (empty - reserved)
 ├── syntaxes/
-│   ├── BoxLang.sublime-syntax        # Main syntax (embedding.boxlang) for .bx/.bxs/.bxm
-│   ├── BoxLangScript.sublime-syntax  # Script-only syntax (source.boxlang.script) for .bxs
-│   └── BoxLangModule.sublime-syntax  # Module syntax (embedding.boxlang.module) for .bxm
+│   ├── BoxLang.sublime-syntax        # Script syntax (source.boxlang) for .bx/.bxs
+│   └── BoxLangMarkup.sublime-syntax  # Markup syntax (embedding.boxlang.markup) for .bxm
 ├── settings/
 │   └── boxlang.sublime-settings      # All package settings
 ├── templates/

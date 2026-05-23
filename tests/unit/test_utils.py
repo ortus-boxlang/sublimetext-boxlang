@@ -77,7 +77,7 @@ class TestGetScopeRegionContainingPoint:
         """Test when scope is not found."""
         from src.utils import get_scope_region_containing_point
         mock_view = MagicMock()
-        mock_view.scope_name = MagicMock(return_value="source.boxlang.script")
+        mock_view.scope_name = MagicMock(return_value="source.boxlang")
         mock_view.find_by_selector = MagicMock(return_value=[])
 
         result = get_scope_region_containing_point(mock_view, 0, "entity.name.function")
@@ -101,7 +101,7 @@ class TestGetDotContext:
         from src.utils import get_dot_context
         mock_view = MagicMock()
         mock_view.substr = MagicMock(side_effect=lambda pos: "." if pos == 0 else "x")
-        mock_view.scope_name = MagicMock(return_value="source.boxlang.script")
+        mock_view.scope_name = MagicMock(return_value="source.boxlang")
         mock_view.match_selector = MagicMock(return_value=False)
 
         result = get_dot_context(mock_view, 0)
@@ -132,7 +132,7 @@ class TestGetFunction:
         from src.utils import get_function
         mock_view = MagicMock()
         mock_view.match_selector = MagicMock(return_value=False)
-        mock_view.scope_name = MagicMock(return_value="source.boxlang.script")
+        mock_view.scope_name = MagicMock(return_value="source.boxlang")
 
         result = get_function(mock_view, 0)
         expect(result).to_be_none()

@@ -5,7 +5,7 @@
     <key>name</key>
     <string>BoxLang Symbols</string>
     <key>scope</key>
-    <string>source.boxlang, source.boxlang.script</string>
+    <string>source.boxlang, embedding.boxlang.markup</string>
     <key>settings</key>
     <dict>
         <key>showInIndexedSymbolList</key>

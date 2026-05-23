@@ -52,7 +52,7 @@ class BoxlangFunctionCallParams:
 
         prev_pt = self.function_region.begin() - 1
         if boxlang_view.view.match_selector(
-            prev_pt, "embedding.boxlang source.boxlang.script punctuation.accessor.boxlang"
+            prev_pt, "source.boxlang punctuation.accessor.boxlang"
         ):
             self.method = True
             self.dot_context = boxlang_view.dot_context = boxlang_view.get_dot_context(
@@ -144,12 +144,12 @@ class BoxlangView:
 
     def determine_type(self):
         """Determine the context type at the current position."""
-        base_script_scope = "embedding.boxlang source.boxlang.script"
+        base_script_scope = "source.boxlang"
         self.type = None
 
         # Tag completions
         if self.view.match_selector(
-            self.prefix_start, "embedding.boxlang - source.boxlang.script"
+            self.prefix_start, "embedding.boxlang.markup - source.boxlang"
         ):
             self.type = "tag"
             self.set_tag_info()
@@ -175,7 +175,7 @@ class BoxlangView:
 
         # Script completions
         elif self.view.match_selector(
-            self.prefix_start, "embedding.boxlang source.boxlang.script"
+            self.prefix_start, "source.boxlang"
         ):
             self.type = "script"
             self.function_call_params = self.get_function_call_params(self.position)
@@ -205,7 +205,7 @@ class BoxlangView:
                 self.tag_location = "tag_attributes"
 
             if self.view.match_selector(
-                self.prefix_start, "source.boxlang.script meta.class.declaration"
+                self.prefix_start, "source.boxlang meta.class.declaration"
             ):
                 self.tag_name = "component"
             else:
@@ -258,7 +258,7 @@ class BoxlangView:
     def get_function_call_params(self, pt):
         """Get function call parameters at the given point."""
         if self.view.match_selector(
-            pt, "source.boxlang.script meta.function-call.arguments"
+            pt, "source.boxlang meta.function-call.arguments"
         ):
             return BoxlangFunctionCallParams(self, pt)
         return None

@@ -52,6 +52,30 @@
         "context": [{"key": "selector", "operator": "equal", "operand": "source.boxlang"}]
     },
 
+    // Navigate parse errors
+    {
+        "keys": ["f4"],
+        "command": "boxlang_next_error",
+        "context": [{"key": "selector", "operator": "equal", "operand": "source.boxlang"}]
+    },
+    {
+        "keys": ["shift+f4"],
+        "command": "boxlang_prev_error",
+        "context": [{"key": "selector", "operator": "equal", "operand": "source.boxlang"}]
+    },
+
+    // Build and run
+    {
+        "keys": ["ctrl+b"],
+        "command": "build",
+        "context": [{"key": "selector", "operator": "equal", "operand": "source.boxlang"}]
+    },
+    {
+        "keys": ["super+b"],
+        "command": "build",
+        "context": [{"key": "selector", "operator": "equal", "operand": "source.boxlang"}]
+    },
+
     // Wrap selection in #hash#
     {
         "keys": ["#"],

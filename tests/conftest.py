@@ -356,7 +356,7 @@ def mock_boxlang_view():
     mock_view.text_point = MagicMock(return_value=0)
     mock_view.rowcol = MagicMock(return_value=(0, 0))
     mock_view.sel = MagicMock(return_value=[MagicMock(begin=0)])
-    mock_view.scope_name = MagicMock(return_value="source.boxlang.script")
+    mock_view.scope_name = MagicMock(return_value="source.boxlang")
     view.view = mock_view
 
     return view
