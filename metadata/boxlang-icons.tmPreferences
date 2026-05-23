@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>name</key>
+    <string>BoxLang File Icons</string>
+    <key>scope</key>
+    <string>source.boxlang, embedding.boxlang.markup</string>
+    <key>settings</key>
+    <dict>
+        <key>icon</key>
+        <string>file_type_code</string>
+    </dict>
+</dict>
+</plist>

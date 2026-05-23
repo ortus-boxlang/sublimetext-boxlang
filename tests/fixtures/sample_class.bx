@@ -1,10 +1,6 @@
-@singleton
-class extends = "BaseService" implements = "IUserService"{
+class{
 
-	property name="test";
-	property name="test2" type="numeric" default=0;
-
-    /**
+	/**
      * Hint
      */
 	@annotationOne
@@ -20,21 +16,22 @@ class extends = "BaseService" implements = "IUserService"{
      * Find users by criteria
      */
 	@cached( true )
-    function find(struct criteria, numeric maxRows = 100) => query {
+    query function find(struct criteria, numeric maxRows = 100){
         return queryExecute("SELECT * FROM users", criteria);
     }
 
-    function getById(numeric id) => struct {
+    struct function getById(numeric id) {
         return find({ id: id }).first();
     }
 
-    private function _validate(struct data) => boolean {
+    private boolean function _validate(struct data) {
         return !isNull(data) && structKeyExists(data, "name");
     }
 
-    function save(struct user) => void {
+    void function save(struct user) {
         if ( _validate(user)) {
-            queryExecute("INSERT INTO users ...", user);
+            queryExecute("INSERT INTO users ...", user)
         }
     }
+
 }
