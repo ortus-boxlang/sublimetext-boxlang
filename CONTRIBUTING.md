@@ -7,7 +7,7 @@ This repository is a Sublime Text package, not the BoxLang runtime. Contribution
 ## Table of Contents
 
 - [Code of Conduct](#code-of-conduct)
-- [Where to Ask for Help](#where-to-ask-for-help)
+- [Support](#support)
 - [Reporting Bugs](#reporting-bugs)
 - [Submitting Changes](#submitting-changes)
 - [Development Setup](#development-setup)
@@ -21,13 +21,15 @@ This repository is a Sublime Text package, not the BoxLang runtime. Contribution
 
 Please follow the guidelines in [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md).
 
-## Where to Ask for Help
+## Support
 
 Use community channels for usage questions and discussion:
 
 - Ortus Community: https://community.ortussolutions.com
 - Box Team Slack: http://boxteam.ortussolutions.com/
 - Professional Support: https://www.ortussolutions.com/services/support
+
+Use GitHub issues for actionable bugs and feature requests specific to this repository.
 
 ## Reporting Bugs
 
