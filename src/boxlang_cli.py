@@ -101,15 +101,15 @@ def run_ast(file_path, callback=None):
 
     def _run():
         try:
-            result = subprocess.run([_boxlang_executable, '--bx-printast', file_path], capture_output=True, text=True, timeout=30)
-            if result.returncode == 0:
-                ast = json.loads(result.stdout)
+            returncode, stdout, stderr = _run_command([_boxlang_executable, '--bx-printast', file_path], timeout=30)
+            if returncode == 0:
+                ast = json.loads(stdout)
                 if callback:
                     callback(ast, None)
                 else:
                     return (ast, None)
             else:
-                error = result.stderr.strip()
+                error = stderr.strip()
                 if callback:
                     callback(None, error)
                 else:
@@ -148,15 +148,15 @@ def run_ast_code(code, callback=None):
 
     def _run():
         try:
-            result = subprocess.run([_boxlang_executable, '--bx-printast', '--bx-code', code], capture_output=True, text=True, timeout=30)
-            if result.returncode == 0:
-                ast = json.loads(result.stdout)
+            returncode, stdout, stderr = _run_command([_boxlang_executable, '--bx-printast', '--bx-code', code], timeout=30)
+            if returncode == 0:
+                ast = json.loads(stdout)
                 if callback:
                     callback(ast, None)
                 else:
                     return (ast, None)
             else:
-                error = result.stderr.strip()
+                error = stderr.strip()
                 if callback:
                     callback(None, error)
                 else:
@@ -195,14 +195,14 @@ def run_format(file_path, callback=None):
 
     def _run():
         try:
-            result = subprocess.run([_boxlang_executable, 'format', file_path], capture_output=True, text=True, timeout=60)
-            if result.returncode == 0:
+            returncode, stdout, stderr = _run_command([_boxlang_executable, 'format', file_path], timeout=60)
+            if returncode == 0:
                 if callback:
                     callback(True, None)
                 else:
                     return (True, None)
             else:
-                error = result.stderr.strip() or result.stdout.strip()
+                error = stderr.strip() or stdout.strip()
                 if callback:
                     callback(False, error)
                 else:
@@ -236,14 +236,14 @@ def run_compile(source_path, target_path, callback=None):
 
     def _run():
         try:
-            result = subprocess.run([_boxlang_executable, 'compile', '--source', source_path, '--target', target_path], capture_output=True, text=True, timeout=120)
-            if result.returncode == 0:
+            returncode, stdout, stderr = _run_command([_boxlang_executable, 'compile', '--source', source_path, '--target', target_path], timeout=120)
+            if returncode == 0:
                 if callback:
                     callback(True, None)
                 else:
                     return (True, None)
             else:
-                error = result.stderr.strip() or result.stdout.strip()
+                error = stderr.strip() or stdout.strip()
                 if callback:
                     callback(False, error)
                 else:

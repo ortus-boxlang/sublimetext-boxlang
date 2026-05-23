@@ -1,37 +1,45 @@
-class{
+class {
 
 	/**
-     * Hint
-     */
+	 * Hint
+	 */
 	@annotationOne
-	@annotationTwo( literal )
+	@annotationTwo( "literal" )
 	@annotationThree( "literalWithQuotes" )
-	@annotationArray( [ 1,2,3 ] )
-	@annotationStruct( { id:"1", name:"example" } )
-    function init() {
-        // Constructor
-    }
+	@annotationArray( [
+		1,
+		2,
+		3
+	] )
+	@annotationStruct( {
+		id   : "1",
+		name : "example"
+	} )
+	function init() {
 
-    /**
-     * Find users by criteria
-     */
+
+		// Constructor
+	}
+
+	/**
+	 * Find users by criteria
+	 */
 	@cached( true )
-    query function find(struct criteria, numeric maxRows = 100){
-        return queryExecute("SELECT * FROM users", criteria);
-    }
+	query function find( struct criteria, numeric maxRows = 100 ) {
+		return queryExecute( "SELECT * FROM users", criteria );
+	}
 
-    struct function getById(numeric id) {
-        return find({ id: id }).first();
-    }
+	struct function getById( numeric id ) {
+		return find( { id : id } ).first();
+	}
 
-    private boolean function _validate(struct data) {
-        return !isNull(data) && structKeyExists(data, "name");
-    }
+	private boolean function _validate( struct data ) {
+		return !isNull( data ) && structKeyExists( data, "name" );
+	}
 
-    void function save(struct user) {
-        if ( _validate(user)) {
-            queryExecute("INSERT INTO users ...", user)
-        }
-    }
-
+	void function save( struct user ) {
+		if ( _validate( user ) ) {
+			queryExecute( "INSERT INTO users ...", user );
+		}
+	}
 }

@@ -1,18 +1,14 @@
-// BoxLang Script File
 import model.UserService;
 import model.Config;
+// BoxLang Script File
 
 var config = new Config();
-var userService = new UserService(config);
+var userService = new UserService( config );
 
-var users = userService.find({ active: true });
+var users = userService.find( { active : true } );
 
-for (user in users) {
-    writeOutput(user.name & "<br>");
+for ( user in users ) {
+	writeOutput( user.name & "<br>" );
 }
 
-function greet(string name) => string {
-    return "Hello, #name#!";
-}
-
-writeDump(greet("World"));
+function greet( string name );

@@ -76,11 +76,7 @@ class TestBoxlangCLIRunAST:
 
     def test_run_ast_success(self, mocker):
         """Test successful AST parsing."""
-        mock_result = MagicMock()
-        mock_result.returncode = 0
-        mock_result.stdout = '{"statements": []}'
-        mock_result.stderr = ""
-        mocker.patch("subprocess.run", return_value=mock_result)
+        mocker.patch("src.boxlang_cli._run_command", return_value=(0, '{"statements": []}', ""))
 
         from src import boxlang_cli
         ast, error = boxlang_cli.run_ast("/path/to/file.bx")
@@ -90,11 +86,7 @@ class TestBoxlangCLIRunAST:
 
     def test_run_ast_cli_error(self, mocker):
         """Test CLI error handling."""
-        mock_result = MagicMock()
-        mock_result.returncode = 1
-        mock_result.stdout = ""
-        mock_result.stderr = "File not found"
-        mocker.patch("subprocess.run", return_value=mock_result)
+        mocker.patch("src.boxlang_cli._run_command", return_value=(1, "", "File not found"))
 
         from src import boxlang_cli
         ast, error = boxlang_cli.run_ast("/path/to/nonexistent.bx")
@@ -103,7 +95,7 @@ class TestBoxlangCLIRunAST:
 
     def test_run_ast_timeout(self, mocker):
         """Test timeout handling."""
-        mocker.patch("subprocess.run", side_effect=subprocess.TimeoutExpired("cmd", 30))
+        mocker.patch("src.boxlang_cli._run_command", side_effect=subprocess.TimeoutExpired("cmd", 30))
 
         from src import boxlang_cli
         ast, error = boxlang_cli.run_ast("/path/to/file.bx")
@@ -112,10 +104,7 @@ class TestBoxlangCLIRunAST:
 
     def test_run_ast_invalid_json(self, mocker):
         """Test invalid JSON handling."""
-        mock_result = MagicMock()
-        mock_result.returncode = 0
-        mock_result.stdout = "not valid json"
-        mocker.patch("subprocess.run", return_value=mock_result)
+        mocker.patch("src.boxlang_cli._run_command", return_value=(0, "not valid json", ""))
 
         from src import boxlang_cli
         ast, error = boxlang_cli.run_ast("/path/to/file.bx")
@@ -124,10 +113,7 @@ class TestBoxlangCLIRunAST:
 
     def test_run_ast_callback(self, mocker):
         """Test async callback execution."""
-        mock_result = MagicMock()
-        mock_result.returncode = 0
-        mock_result.stdout = '{"statements": []}'
-        mocker.patch("subprocess.run", return_value=mock_result)
+        mocker.patch("src.boxlang_cli._run_command", return_value=(0, '{"statements": []}', ""))
 
         from src import boxlang_cli
         callback = MagicMock()
@@ -144,10 +130,7 @@ class TestBoxlangCLIRunASTCode:
 
     def test_run_ast_code_success(self, mocker):
         """Test successful AST parsing from code string."""
-        mock_result = MagicMock()
-        mock_result.returncode = 0
-        mock_result.stdout = '{"statements": []}'
-        mocker.patch("subprocess.run", return_value=mock_result)
+        mocker.patch("src.boxlang_cli._run_command", return_value=(0, '{"statements": []}', ""))
 
         from src import boxlang_cli
         ast, error = boxlang_cli.run_ast_code("class Test {}")
@@ -156,10 +139,7 @@ class TestBoxlangCLIRunASTCode:
 
     def test_run_ast_code_error(self, mocker):
         """Test error handling for code string."""
-        mock_result = MagicMock()
-        mock_result.returncode = 1
-        mock_result.stderr = "Syntax error"
-        mocker.patch("subprocess.run", return_value=mock_result)
+        mocker.patch("src.boxlang_cli._run_command", return_value=(1, "", "Syntax error"))
 
         from src import boxlang_cli
         ast, error = boxlang_cli.run_ast_code("invalid code")
@@ -172,9 +152,7 @@ class TestBoxlangCLIRunFormat:
 
     def test_run_format_success(self, mocker):
         """Test successful formatting."""
-        mock_result = MagicMock()
-        mock_result.returncode = 0
-        mocker.patch("subprocess.run", return_value=mock_result)
+        mocker.patch("src.boxlang_cli._run_command", return_value=(0, "", ""))
 
         from src import boxlang_cli
         success, error = boxlang_cli.run_format("/path/to/file.bx")
@@ -183,10 +161,7 @@ class TestBoxlangCLIRunFormat:
 
     def test_run_format_error(self, mocker):
         """Test format error handling."""
-        mock_result = MagicMock()
-        mock_result.returncode = 1
-        mock_result.stderr = "Format error"
-        mocker.patch("subprocess.run", return_value=mock_result)
+        mocker.patch("src.boxlang_cli._run_command", return_value=(1, "", "Format error"))
 
         from src import boxlang_cli
         success, error = boxlang_cli.run_format("/path/to/file.bx")
@@ -199,9 +174,7 @@ class TestBoxlangCLIRunCompile:
 
     def test_run_compile_success(self, mocker):
         """Test successful compilation."""
-        mock_result = MagicMock()
-        mock_result.returncode = 0
-        mocker.patch("subprocess.run", return_value=mock_result)
+        mocker.patch("src.boxlang_cli._run_command", return_value=(0, "", ""))
 
         from src import boxlang_cli
         success, error = boxlang_cli.run_compile("/src", "/bin")
@@ -210,10 +183,7 @@ class TestBoxlangCLIRunCompile:
 
     def test_run_compile_error(self, mocker):
         """Test compile error handling."""
-        mock_result = MagicMock()
-        mock_result.returncode = 1
-        mock_result.stderr = "Compile error"
-        mocker.patch("subprocess.run", return_value=mock_result)
+        mocker.patch("src.boxlang_cli._run_command", return_value=(1, "", "Compile error"))
 
         from src import boxlang_cli
         success, error = boxlang_cli.run_compile("/src", "/bin")
