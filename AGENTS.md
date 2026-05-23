@@ -27,7 +27,7 @@ The package **requires** the BoxLang CLI for core features:
 | `boxlang --bx-printast --bx-code "..."` | AST parsing from string (for `<bx:script>` blocks) |
 | `boxlang format <file>` | Code formatting |
 | `boxlang compile --source <src> --target <tgt>` | Compilation to bytecode |
-| `boxlang --bx-debug <file>` | Run with Debug execution |
+| `boxlang --bx-debug <file>` | Run with Debug |
 | `boxlang featureaudit --source <src>` | Feature audit |
 
 ## Architecture
