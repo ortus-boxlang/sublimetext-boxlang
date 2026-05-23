@@ -1,0 +1,11 @@
+{
+  "version": "0.1.0",
+  "branches": {
+    "development": "development",
+    "release": "main"
+  },
+  "release": {
+    "tag_prefix": "v",
+    "source": "main"
+  }
+}
