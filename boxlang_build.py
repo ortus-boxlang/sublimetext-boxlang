@@ -26,7 +26,7 @@ def _show_path_error(window):
 class BoxlangRunCommand(sublime_plugin.WindowCommand):
     """Run the current BoxLang file."""
 
-    def run(self, with_args=False):
+    def run(self):
         view = self.window.active_view()
         if not view:
             return
@@ -38,13 +38,27 @@ class BoxlangRunCommand(sublime_plugin.WindowCommand):
         if not bx_path:
             _show_path_error(self.window)
             return
-        if with_args:
+        self.window.run_command('exec', {'shell_cmd': '{} "{}"'.format(bx_path, file_path), 'file_regex': '(?:Error compiling.*Line: ([0-9]+) Col: ([0-9]+) - (.*))'})
 
-            def on_done(args):
-                self.window.run_command('exec', {'shell_cmd': '{} "{}" {}'.format(bx_path, file_path, args), 'file_regex': '(?:Error compiling.*Line: ([0-9]+) Col: ([0-9]+) - (.*))'})
-            self.window.show_input_panel('Arguments:', '', on_done, None, None)
-        else:
-            self.window.run_command('exec', {'shell_cmd': '{} "{}"'.format(bx_path, file_path), 'file_regex': '(?:Error compiling.*Line: ([0-9]+) Col: ([0-9]+) - (.*))'})
+class BoxlangRunWithArgsCommand(sublime_plugin.WindowCommand):
+    """Run the current BoxLang file with user-provided arguments."""
+
+    def run(self):
+        view = self.window.active_view()
+        if not view:
+            return
+        file_path = view.file_name()
+        if not file_path:
+            sublime.status_message('BoxLang: Save the file first to run')
+            return
+        bx_path = _get_boxlang_path()
+        if not bx_path:
+            _show_path_error(self.window)
+            return
+
+        def on_done(args):
+            self.window.run_command('exec', {'shell_cmd': '{} "{}" {}'.format(bx_path, file_path, args), 'file_regex': '(?:Error compiling.*Line: ([0-9]+) Col: ([0-9]+) - (.*))'})
+        self.window.show_input_panel('Arguments:', '', on_done, None, None)
 
 class BoxlangCompileCommand(sublime_plugin.WindowCommand):
     """Compile the current BoxLang file or project."""

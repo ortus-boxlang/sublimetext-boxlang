@@ -4,8 +4,7 @@
     "variants": [
         {
             "name": "BoxLang: Run with Arguments",
-            "target": "boxlang_run",
-            "args": { "with_args": true }
+            "target": "boxlang_run_with_args"
         },
         {
             "name": "BoxLang: Compile File",
