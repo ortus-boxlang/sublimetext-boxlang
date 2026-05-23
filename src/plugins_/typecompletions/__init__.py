@@ -7,7 +7,7 @@ new expressions, literals, and function return types.
 import sublime
 from ... import utils
 from ...type_resolver import TypeResolver
-from ...component_index import component_index
+from ... import component_index
 
 SIDE_COLOR = "color(#4C9BB0 blend(var(--background) 60%))"
 

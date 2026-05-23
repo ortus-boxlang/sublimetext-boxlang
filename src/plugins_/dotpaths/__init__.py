@@ -4,7 +4,7 @@ Provides completions for import statements, new operator, createObject, and exte
 """
 
 import sublime
-from ...component_index import component_index
+from ... import component_index
 from ... import utils
 
 projects = {}

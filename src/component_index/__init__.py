@@ -10,6 +10,7 @@ import sqlite3
 import hashlib
 import json
 import sublime
+import sublime_plugin
 from .. import utils
 from ..component_parser import parse_file
 from .. import boxlang_cli

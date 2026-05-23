@@ -40,7 +40,7 @@ def _update_all_status_bars():
 
 def _update_status_bar(view):
     """Update status bar for a single view."""
-    if not utils.get_setting("boxlang_status_bar_enabled", True):
+    if not utils.get_setting("boxlang_status_bar_enabled"):
         view.erase_status(_STATUS_KEY_VERSION)
         view.erase_status(_STATUS_KEY_INDEXING)
         view.erase_status(_STATUS_KEY_ERRORS)

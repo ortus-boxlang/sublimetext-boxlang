@@ -1,0 +1,40 @@
+@singleton
+class extends = "BaseService" implements = "IUserService"{
+
+	property name="test";
+	property name="test2" type="numeric" default=0;
+
+    /**
+     * Hint
+     */
+	@annotationOne
+	@annotationTwo( literal )
+	@annotationThree( "literalWithQuotes" )
+	@annotationArray( [ 1,2,3 ] )
+	@annotationStruct( { id:"1", name:"example" } )
+    function init() {
+        // Constructor
+    }
+
+    /**
+     * Find users by criteria
+     */
+	@cached( true )
+    function find(struct criteria, numeric maxRows = 100) => query {
+        return queryExecute("SELECT * FROM users", criteria);
+    }
+
+    function getById(numeric id) => struct {
+        return find({ id: id }).first();
+    }
+
+    private function _validate(struct data) => boolean {
+        return !isNull(data) && structKeyExists(data, "name");
+    }
+
+    function save(struct user) => void {
+        if ( _validate(user)) {
+            queryExecute("INSERT INTO users ...", user);
+        }
+    }
+}

@@ -4,7 +4,7 @@ Provides completions for variables that match indexed components.
 """
 
 import sublime
-from ...component_index import component_index
+from ... import component_index
 from ... import utils
 
 SIDE_COLOR = "color(#4C9BB0 blend(var(--background) 60%))"

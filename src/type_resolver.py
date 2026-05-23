@@ -8,7 +8,7 @@ import sublime
 from . import utils
 from . import buffer_metadata
 from .component_parser import ast_parser
-from .component_index import component_index
+from . import component_index
 
 KNOWN_TYPES = {
     "string", "numeric", "number", "boolean", "array", "struct", "map",
