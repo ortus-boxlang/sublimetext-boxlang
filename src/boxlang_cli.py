@@ -12,24 +12,43 @@ _boxlang_executable = 'boxlang'
 _detection_complete = False
 _detection_callbacks = []
 
-def initialize():
-    """Initialize and detect BoxLang installation."""
-    global _boxlang_installed, _boxlang_version, _detection_complete
+def _find_boxlang_executable():
+    """Find BoxLang executable in common locations."""
     settings = sublime.load_settings('boxlang.sublime-settings')
     custom_path = settings.get('boxlang_executable_path')
     if custom_path:
-        global _boxlang_executable
-        _boxlang_executable = custom_path
+        return custom_path
+    candidates = [os.path.expanduser('~/.bvm/current/bin/boxlang'), '/usr/local/bin/boxlang', os.path.expanduser('~/.local/bin/boxlang'), '/usr/local/boxlang/bin/boxlang', os.path.expanduser('~/.local/boxlang/bin/boxlang'), 'c:\\boxlang\\bin\\boxlang.bat', os.path.expandvars('${USERPROFILE}\\.local\\bin\\boxlang.bat')]
+    for candidate in candidates:
+        if os.path.isfile(candidate):
+            return candidate
+    return 'boxlang'
+
+def initialize():
+    """Initialize and detect BoxLang installation."""
+    global _boxlang_installed, _boxlang_version, _boxlang_executable, _detection_complete
+    _boxlang_executable = _find_boxlang_executable()
     threading.Thread(target=_detect_boxlang, daemon=True).start()
+
+def _run_command(args, timeout=30):
+    """Run a subprocess command compatible with Python 3.3."""
+    proc = subprocess.Popen(args, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+    try:
+        stdout, stderr = proc.communicate(timeout=timeout)
+        return proc.returncode, stdout.decode('utf-8'), stderr.decode('utf-8')
+    except subprocess.TimeoutExpired:
+        proc.kill()
+        stdout, stderr = proc.communicate()
+        raise
 
 def _detect_boxlang():
     """Detect BoxLang installation by running boxlang --version."""
     global _boxlang_installed, _boxlang_version, _detection_complete
     try:
-        result = subprocess.run([_boxlang_executable, '--version'], capture_output=True, text=True, timeout=10)
-        if result.returncode == 0 and result.stdout.strip():
+        returncode, stdout, stderr = _run_command([_boxlang_executable, '--version'], timeout=10)
+        if returncode == 0 and stdout.strip():
             _boxlang_installed = True
-            version_line = result.stdout.strip().split('\n')[0]
+            version_line = stdout.strip().split('\n')[0]
             version_match = _parse_version(version_line)
             _boxlang_version = version_match or version_line
         else:

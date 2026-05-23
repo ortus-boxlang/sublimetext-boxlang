@@ -25,38 +25,31 @@
     },
     {
         "caption": "BoxLang: Format Code",
-        "command": "boxlang_format",
-        "context": [{ "key": "selector", "operator": "equal", "operand": "source.boxlang, embedding.boxlang.markup" }]
+        "command": "boxlang_format"
     },
     {
         "caption": "BoxLang: Show Documentation",
         "command": "boxlang_inline_documentation",
-        "args": { "doc_type": "inline_doc" },
-        "context": [{ "key": "selector", "operator": "equal", "operand": "source.boxlang, embedding.boxlang.markup" }]
+        "args": { "doc_type": "inline_doc" }
     },
     {
         "caption": "BoxLang: Go to Definition",
-        "command": "boxlang_goto_file",
-        "context": [{ "key": "selector", "operator": "equal", "operand": "source.boxlang, embedding.boxlang.markup" }]
+        "command": "boxlang_goto_file"
     },
     {
         "caption": "BoxLang: Next Error",
-        "command": "boxlang_next_error",
-        "context": [{ "key": "selector", "operator": "equal", "operand": "source.boxlang, embedding.boxlang.markup" }]
+        "command": "boxlang_next_error"
     },
     {
         "caption": "BoxLang: Previous Error",
-        "command": "boxlang_prev_error",
-        "context": [{ "key": "selector", "operator": "equal", "operand": "source.boxlang, embedding.boxlang.markup" }]
+        "command": "boxlang_prev_error"
     },
     {
         "caption": "BoxLang: Toggle Controller/View",
-        "command": "boxlang_controller_view_toggle",
-        "context": [{ "key": "selector", "operator": "equal", "operand": "source.boxlang, embedding.boxlang.markup" }]
+        "command": "boxlang_controller_view_toggle"
     },
     {
         "caption": "BoxLang: Inject Property",
-        "command": "boxlang_inject_property",
-        "context": [{ "key": "selector", "operator": "equal", "operand": "source.boxlang, embedding.boxlang.markup" }]
+        "command": "boxlang_inject_property"
     }
 ]
