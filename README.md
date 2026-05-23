@@ -114,7 +114,7 @@ Re-run the wizard anytime: `BoxLang: Run Setup Wizard` (Command Palette)
 | **Run with Arguments** | `boxlang "$file" ${args}` | Execute with CLI args |
 | **Compile File** | `boxlang compile --source "$file" --target "./bin"` | Compile single file |
 | **Compile Project** | `boxlang compile --source "$file_path" --target "./bin"` | Compile entire project |
-| **Debug** | `boxlang --bx-debug "$file"` | Run with debug output |
+| **Run with Debug** | `boxlang --bx-debug "$file"` | Run with debug output |
 | **Feature Audit** | `boxlang featureaudit --source "$file_path"` | Audit CFML→BoxLang compatibility |
 
 ---

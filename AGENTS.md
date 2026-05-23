@@ -27,7 +27,7 @@ The package **requires** the BoxLang CLI for core features:
 | `boxlang --bx-printast --bx-code "..."` | AST parsing from string (for `<bx:script>` blocks) |
 | `boxlang format <file>` | Code formatting |
 | `boxlang compile --source <src> --target <tgt>` | Compilation to bytecode |
-| `boxlang --bx-debug <file>` | Debug execution |
+| `boxlang --bx-debug <file>` | Run with Debug execution |
 | `boxlang featureaudit --source <src>` | Feature audit |
 
 ## Architecture
@@ -322,7 +322,7 @@ All settings in `settings/boxlang.sublime-settings`:
 | Run with Arguments | `boxlang "$file" ${args}` |
 | Compile File | `boxlang compile --source "$file" --target "./bin"` |
 | Compile Project | `boxlang compile --source "$file_path" --target "./bin"` |
-| Debug | `boxlang --bx-debug "$file"` |
+| Run with Debug | `boxlang --bx-debug "$file"` |
 | Feature Audit | `boxlang featureaudit --source "$file_path"` |
 
 ## Completion Data Generation

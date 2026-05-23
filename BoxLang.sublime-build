@@ -18,7 +18,7 @@
             "args": { "scope": "project" }
         },
         {
-            "name": "BoxLang: Debug",
+            "name": "BoxLang: Run with Debug",
             "target": "boxlang_debug"
         },
         {
