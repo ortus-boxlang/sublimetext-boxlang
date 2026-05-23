@@ -224,8 +224,8 @@ class BoxlangPlugin:
 | `cfcs` | Variable-to-component mapping completions and go-to-definition |
 | `dotpaths` | Import/new/createObject dot-path completions |
 | `typecompletions` | Type-aware member method completions (uses TypeResolver) |
-| `applicationbx` | (empty - reserved) |
-| `in_file_completions` | (empty - reserved) |
+| `applicationbx` | Application.bx lifecycle method completions (onApplicationStart, onRequestStart, etc.) |
+| `in_file_completions` | Current file symbol completions (functions, variables, properties) |
 
 ### `type_resolver.py` — Type Inference Engine
 Medium-depth type inference (not full static analysis).
@@ -341,13 +341,89 @@ First-run wizard (`src/commands/wizard.py`):
 
 Re-run via Command Palette: `BoxLang: Run Setup Wizard`
 
+## Scope Selectors
+
+### Script Syntax (`source.boxlang`)
+- `variable.language.boxlang` — Highlights BoxLang language scopes: `this`, `variables`, `thread`, `session`, `client`, `server`, `cgi`, `form`, `url`, `cookie`, `application`, `request`, `arguments`, `super`
+- `storage.modifier.boxlang` — `static`, `final`, `abstract` modifiers
+- `storage.type.primitive.boxlang` — Built-in types: `any`, `array`, `boolean`, `numeric`, `string`, `struct`, etc.
+- `storage.type.object.boxlang` — Component/class types
+- `storage.type.function.boxlang` — `function` keyword and function type
+- `storage.type.void.boxlang` — `void` return type
+- `entity.name.class.boxlang` — Class names in `new` expressions and declarations
+- `entity.name.function.boxlang` — Function names in declarations and calls
+- `meta.function.declaration.boxlang` — Full function declaration scope
+- `meta.function.parameters.boxlang` — Function parameter scope
+- `meta.function.body.boxlang` — Function body scope
+- `meta.class.declaration.boxlang` — Class declaration scope
+- `meta.class.body.boxlang` — Class body scope
+- `meta.block.static.boxlang` — Static block scope (`static { }`)
+- `meta.instance.constructor.boxlang` — `new` constructor scope
+- `meta.struct-literal.boxlang` — Struct literal scope
+- `meta.sequence.boxlang` — Array literal scope
+- `meta.import.boxlang` — Import statement scope
+- `meta.switch.boxlang`, `meta.for.boxlang`, `meta.while.boxlang`, `meta.try.boxlang`, `meta.catch.boxlang`, `meta.finally.boxlang`, `meta.conditional.boxlang` — Control flow meta scopes
+- `meta.binding.name.boxlang` — Variable binding scope
+- `meta.binding.destructuring.sequence.boxlang` — Array destructuring
+- `meta.binding.destructuring.mapping.boxlang` — Struct destructuring
+- `meta.property.boxlang` — Property access scope
+- `meta.property.constant.boxlang` — Constant property access (UPPER_CASE)
+- `meta.parameter.optional.boxlang` — Optional parameter with default value
+- `punctuation.accessor.boxlang` — `.` accessor
+- `punctuation.accessor.safe.boxlang` — `?.` safe accessor
+- `punctuation.accessor.static.boxlang` — `::` static accessor
+- `punctuation.section.parameters.begin/end.boxlang` — Function parameter parentheses
+- `keyword.operator.word.new.boxlang` — `new` keyword
+- `keyword.operator.ternary.boxlang` — `?` and `:` ternary operators
+- `keyword.operator.spread.boxlang` — `...` spread operator
+- `keyword.operator.rest.boxlang` — `...` rest parameter
+- `keyword.operator.logical.binary.boxlang` — `&&`, `||`, `and`, `or`, `xor`
+- `keyword.operator.comparison.binary.boxlang` — `===`, `!==`, `==`, `!=`, `<>`
+- `keyword.operator.relational.binary.boxlang` — `<=`, `>=`, `<`, `>`
+- `keyword.operator.arithmetic.binary.boxlang` — `+`, `-`, `*`, `/`, `%`, `mod`
+- `keyword.operator.assignment.augmented.binary.boxlang` — `+=`, `-=`, `*=`, `/=`, `%=`, `&=`
+- `keyword.operator.concat.binary.boxlang` — `&` string concat
+- `keyword.operator.binary.boxlang` — `in` operator
+- `keyword.operator.arithmetic.postfix.boxlang` — `++`, `--` postfix
+- `keyword.control.static.boxlang` — `static` keyword for static blocks
+- `keyword.control.conditional.switch.boxlang` — `switch` keyword
+- `keyword.control.conditional.case.boxlang` — `case` keyword
+- `keyword.control.conditional.default.boxlang` — `default` keyword
+- `keyword.control.loop.for.boxlang` — `for` keyword
+- `keyword.control.loop.while.boxlang` — `while` keyword
+- `keyword.control.loop.do-while.boxlang` — `do` keyword
+- `keyword.control.exception.try.boxlang` — `try` keyword
+- `keyword.control.exception.catch.boxlang` — `catch` keyword
+- `keyword.control.exception.finally.boxlang` — `finally` keyword
+- `keyword.control.flow.break.boxlang` — `break` keyword
+- `keyword.control.flow.continue.boxlang` — `continue` keyword
+- `keyword.control.flow.return.boxlang` — `return` keyword
+- `keyword.control.flow.throw.boxlang` — `throw`/`rethrow` keywords
+- `keyword.other.required.parameter.boxlang` — `required` parameter modifier
+- `entity.name.label.boxlang` — Loop labels
+- `variable.label.boxlang` — Label reference after `break`/`continue`
+- `support.type.exception.boxlang` — Exception type in catch binding
+- `variable.function.boxlang` — Function call (non-method)
+- `variable.other.object.boxlang` — Variable followed by `.` or `[`
+- `variable.other.constant.boxlang` — UPPER_CASE constant identifiers
+- `variable.type.boxlang` — Java type in `new java`
+- `constant.language.boolean.true.boxlang` — `true` literal
+- `constant.language.boolean.false.boxlang` — `false` literal
+- `constant.language.null.boxlang` — `null` literal
+- `constant.numeric.boxlang` — Numeric literals (int, float, hex `0x...`)
+- `constant.character.escape.boxlang` — String escape sequences
+- `entity.other.function-parameter.boxlang` — Named parameter in function call
+- `storage.type.object.array.boxlang` — Array type with `[]` brackets
+
+### Markup Syntax (`embedding.boxlang.markup`)
+- Delegates embedded `<bx:script>` and `<bx:function>` blocks to `source.boxlang`
+
 ## Known Limitations
 
 1. **AST for `.bxm`** — `boxlang --bx-printast` does not support `.bxm`/`.cfm` markup files yet; uses flexible tag parser instead
 2. **AST class parsing** — BoxLang v1.13.0 parses `class` as `BoxIdentifier` expressions, not `BoxClassDeclaration` — requires sequential statement pattern matching
 3. **Java class introspection** — Deferred to later phase; `createObject("java", "...")` types resolve as `"any"`
 4. **MCP server** — `https://boxlang.ortusbooks.com/~gitbook/mcp` available but deferred to Phase 5
-5. **Empty plugins** — `applicationbx` and `in_file_completions` are placeholders
 
 ## Related Projects
 

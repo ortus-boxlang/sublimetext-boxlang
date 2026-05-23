@@ -134,7 +134,7 @@ contexts:
         - include: tag-attributes
 
   bx-function-body:
-    - meta_content_scope: source.boxlang.script
+    - meta_content_scope: source.boxlang
     - match: (</)(bx:function)(>)
       captures:
         1: punctuation.definition.tag.begin.boxlang
@@ -196,7 +196,7 @@ contexts:
         - include: tag-attributes
 
   bx-script-body:
-    - meta_content_scope: source.boxlang.script
+    - meta_content_scope: source.boxlang
     - match: (</)(bx:script)(>)
       captures:
         1: punctuation.definition.tag.begin.boxlang
