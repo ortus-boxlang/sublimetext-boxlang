@@ -185,5 +185,5 @@ class TypeResolver:
     def _get_member_type_for_known_type(self, type_name, member_name):
         """Get the return type of a member method on a known type."""
         member_methods = {'string': {'len': 'numeric', 'length': 'numeric', 'left': 'string', 'right': 'string', 'mid': 'string', 'trim': 'string', 'lCase': 'string', 'uCase': 'string', 'replace': 'string', 'find': 'numeric', 'split': 'array', 'substring': 'string', 'toNumeric': 'numeric', 'toBoolean': 'boolean'}, 'array': {'len': 'numeric', 'length': 'numeric', 'append': 'void', 'prepend': 'void', 'delete': 'void', 'sort': 'array', 'reverse': 'array', 'slice': 'array', 'find': 'numeric', 'contains': 'boolean', 'isEmpty': 'boolean'}, 'struct': {'len': 'numeric', 'length': 'numeric', 'keyArray': 'array', 'valueArray': 'array', 'delete': 'void', 'clear': 'void', 'isEmpty': 'boolean', 'keyExists': 'boolean'}, 'query': {'len': 'numeric', 'length': 'numeric', 'columnArray': 'array', 'addColumn': 'void', 'deleteRow': 'void'}, 'numeric': {'abs': 'numeric', 'ceiling': 'numeric', 'floor': 'numeric', 'round': 'numeric', 'toString': 'string'}}
-        type_methods = type_methods if (type_methods := member_methods.get(type_name)) else {}
+        type_methods = member_methods.get(type_name, {})
         return type_methods.get(member_name, 'any')

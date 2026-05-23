@@ -34,7 +34,9 @@ contexts:
     - include: bx-function
     - include: bx-output
     - include: bx-script
+    - include: bx-generic-closing-tag
     - include: bx-generic-tag
+    - include: interpolation
     - match: '(##)'
       scope: constant.character.escape.hash.boxlang
     - include: html-with-boxlang
@@ -45,7 +47,9 @@ contexts:
         - include: bx-function
         - include: bx-output
         - include: bx-script
+        - include: bx-generic-closing-tag
         - include: bx-generic-tag
+        - include: interpolation
         - match: '(##)'
           scope: constant.character.escape.hash.boxlang
 
@@ -61,9 +65,29 @@ contexts:
         - include: bx-function
         - include: bx-output
         - include: bx-script
+        - include: bx-generic-closing-tag
         - include: bx-generic-tag
+        - include: interpolation
         - match: '(##)'
           scope: constant.character.escape.hash.boxlang
+
+  interpolation:
+    - match: '#(?!#)'
+      scope: punctuation.definition.interpolation.begin.boxlang
+      push:
+        - meta_scope: meta.interpolation.boxlang
+        - match: '#'
+          scope: punctuation.definition.interpolation.end.boxlang
+          pop: true
+        - include: scope:source.boxlang
+
+  bx-generic-closing-tag:
+    - match: (</)(bx:)([[:alpha:]][[:alnum:]_\-]*)(\s*)(>)
+      captures:
+        1: punctuation.definition.tag.begin.boxlang
+        2: entity.name.tag.boxlang
+        3: entity.name.tag.boxlang
+        5: punctuation.definition.tag.end.boxlang
 
   comments:
     - match: /\*\*(?!/|\*)
@@ -99,7 +123,7 @@ contexts:
           pop: true
 
   bx-generic-tag:
-    - match: (<)(bx:)(\w+)
+    - match: (<)(bx:)([[:alpha:]][[:alnum:]_\-]*)
       captures:
         1: punctuation.definition.tag.begin.boxlang
         2: entity.name.tag.boxlang
