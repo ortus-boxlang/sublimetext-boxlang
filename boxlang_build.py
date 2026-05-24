@@ -7,6 +7,17 @@ import sublime_plugin
 import os
 from .src import utils
 
+
+def _get_project_root(window, file_path):
+    """Resolve the owning project folder for a file path, if available."""
+    folders = window.folders() if window else []
+    normalized_file = os.path.normpath(file_path)
+    for folder in folders:
+        normalized_folder = os.path.normpath(folder)
+        if normalized_file == normalized_folder or normalized_file.startswith(normalized_folder + os.sep):
+            return folder
+    return os.path.dirname(file_path)
+
 def _get_boxlang_path():
     """Get the configured BoxLang executable path, checking common locations."""
     path = utils.get_setting('boxlang_executable_path')
@@ -77,9 +88,24 @@ class BoxlangCompileCommand(sublime_plugin.WindowCommand):
         if not bx_path:
             _show_path_error(self.window)
             return
-        target = utils.get_setting('boxlang_compile_target') or './bin'
+        configured_target = utils.get_setting('boxlang_compile_target') or 'bin'
+        project_root = _get_project_root(self.window, file_path)
+
+        if os.path.isabs(configured_target):
+            target_root = configured_target
+        else:
+            target_root = os.path.normpath(os.path.join(project_root, configured_target))
+
         if scope == 'project':
-            file_path = os.path.dirname(file_path)
+            file_path = project_root
+            target = target_root
+        else:
+            source_parent = os.path.dirname(file_path)
+            rel_parent = os.path.relpath(source_parent, project_root)
+            target_dir = target_root if rel_parent == os.curdir else os.path.join(target_root, rel_parent)
+            target = os.path.join(target_dir, os.path.basename(file_path))
+
+        target = os.path.normpath(target)
         self.window.run_command('exec', {'shell_cmd': '{} compile --source "{}" --target "{}"'.format(bx_path, file_path, target), 'file_regex': '(?:Error compiling.*Line: ([0-9]+) Col: ([0-9]+) - (.*))'})
 
 class BoxlangDebugCommand(sublime_plugin.WindowCommand):
