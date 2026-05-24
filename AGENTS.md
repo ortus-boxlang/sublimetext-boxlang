@@ -75,7 +75,7 @@ sublimetext-boxlang/
 │       │   ├── boxlang_functions.json # 560 BIFs
 │       │   └── boxlang_member_functions.json # 72 member functions
 │       ├── boxdocs/__init__.py       # URL-based inline docs (boxlang.ortusbooks.com)
-│       ├── cfcs/__init__.py          # Indexed component variable completions
+│       ├── classes/__init__.py       # Indexed component variable completions
 │       ├── dotpaths/__init__.py      # Import/new/createObject dot-path completions
 │       ├── typecompletions/__init__.py # Type-aware member method completions
 │       ├── applicationbx/__init__.py # (empty - reserved for Application.bx-like)

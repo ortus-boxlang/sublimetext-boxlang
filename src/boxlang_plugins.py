@@ -4,7 +4,7 @@ BoxLang plugin loader.
 import importlib
 from .plugins_.plugin import BoxlangPlugin
 
-directory = ['basecompletions', 'boxdocs', 'cfcs', 'dotpaths', 'typecompletions', 'applicationbx', 'in_file_completions']
+directory = ['basecompletions', 'boxdocs', 'classes', 'dotpaths', 'typecompletions', 'applicationbx', 'in_file_completions']
 plugins = []
 
 _package = __name__.rsplit('.', 1)[0]

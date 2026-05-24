@@ -1,6 +1,6 @@
 """
-Indexed component completions for BoxLang.
-Provides completions for variables that match indexed components.
+Indexed class completions for BoxLang.
+Provides completions for variables that match indexed classes.
 """
 import sublime
 from ... import component_index
@@ -9,7 +9,7 @@ SIDE_COLOR = 'color(#4C9BB0 blend(var(--background) 60%))'
 variable_mappings = {}
 
 def build_variable_mappings(project_name):
-    """Build mappings from variable names to components."""
+    """Build mappings from variable names to classes."""
     global variable_mappings
     variable_mappings[project_name] = {}
     project_data = _get_project_data(project_name)
@@ -34,10 +34,6 @@ def build_variable_mappings(project_name):
                         var_name = template.replace('{class}', class_name)
                         var_name = var_name.replace('{class_folder}', folder_name)
                         var_name = var_name.replace('{class_folder_singularized}', folder_singular)
-                        # Backward-compatible placeholders.
-                        var_name = var_name.replace('{cfc}', class_name)
-                        var_name = var_name.replace('{cfc_folder}', folder_name)
-                        var_name = var_name.replace('{cfc_folder_singularized}', folder_singular)
                         var_name = var_name.replace('{entityname}', class_name)
                         dot_path = _file_to_dot_path(os.path.join(root, f), project_name, project_data)
                         if dot_path:

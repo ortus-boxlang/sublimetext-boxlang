@@ -140,6 +140,6 @@ class TestPluginLoader:
         from src import boxlang_plugins
         expect(boxlang_plugins.directory).to_contain("basecompletions")
         expect(boxlang_plugins.directory).to_contain("boxdocs")
-        expect(boxlang_plugins.directory).to_contain("cfcs")
+        expect(boxlang_plugins.directory).to_contain("classes")
         expect(boxlang_plugins.directory).to_contain("dotpaths")
         expect(boxlang_plugins.directory).to_contain("typecompletions")

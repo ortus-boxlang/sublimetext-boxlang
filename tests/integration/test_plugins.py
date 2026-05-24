@@ -50,10 +50,10 @@ class TestPluginModuleImports:
         from src.plugins_ import boxdocs
         expect(boxdocs).not_to_be_none()
 
-    def test_import_cfcs(self, mock_sublime):
-        """Test that cfcs module can be imported."""
-        from src.plugins_ import cfcs
-        expect(cfcs).not_to_be_none()
+    def test_import_classes(self, mock_sublime):
+        """Test that classes module can be imported."""
+        from src.plugins_ import classes
+        expect(classes).not_to_be_none()
 
     def test_import_dotpaths(self, mock_sublime):
         """Test that dotpaths module can be imported."""
