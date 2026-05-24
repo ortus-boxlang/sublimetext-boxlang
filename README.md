@@ -136,6 +136,7 @@ Open settings: `BoxLang: Settings` (Command Palette)
 | `boxlang_format_on_save` | `false` | Auto-format on save |
 | `boxlang_hover_docs` | `true` | Enable hover documentation |
 | `boxlang_completion_docs` | `true` | Enable completion docs popup |
+| `boxlang_class_folders` | `[]` | Class folders for indexing and variable mapping |
 
 ### Project Configuration
 
@@ -144,10 +145,10 @@ Add to your `.sublime-project` file:
 ```json
 {
   "settings": {
-    "boxlang_cfc_folders": [
+    "boxlang_class_folders": [
       {
         "path": "model",
-        "variable_names": ["{cfc}", "{cfc_folder_singularized}"],
+        "variable_names": ["{class}", "{class_folder_singularized}"],
         "accessors": true
       }
     ]
@@ -345,7 +346,7 @@ Completions and documentation are provided by pluggable modules:
 |--------|---------|
 | `basecompletions` | BIFs, tags, member functions from JSON data |
 | `boxdocs` | URL-based inline documentation |
-| `cfcs` | Variable-to-component completions |
+| `classes` | Variable-to-component completions |
 | `dotpaths` | Import/new/createObject dot-path completions |
 | `typecompletions` | Type-aware member method completions |
 
@@ -398,7 +399,7 @@ Medium-depth type resolution from:
 
 ### Phase 3
 
-- [ ] `applicationbx` plugin (Application.cfc-like completions)
+- [ ] `applicationbx` plugin (Application.bx-like completions)
 - [ ] `in_file_completions` plugin (in-file symbol completions)
 - [ ] Auto-close tags on `>`
 - [ ] Auto-format on save

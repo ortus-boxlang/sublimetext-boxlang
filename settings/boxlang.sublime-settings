@@ -57,6 +57,10 @@
     "boxlang_controller_folders": ["controllers", "handlers"],
     "boxlang_view_folders": ["views"],
 
+    // Class folders used for project indexing and variable mappings
+    // Variable template placeholders: {class}, {class_folder}, {class_folder_singularized}, {entityname}
+    "boxlang_class_folders": [],
+
     // TestBox settings
     "boxlang_testbox_enabled": true,
     "boxlang_testbox_folders": ["tests"],

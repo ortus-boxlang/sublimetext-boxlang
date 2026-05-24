@@ -15,26 +15,30 @@ def build_variable_mappings(project_name):
     project_data = _get_project_data(project_name)
     if not project_data:
         return
-    cfc_folders = project_data.get('boxlang_cfc_folders', [])
-    if not cfc_folders:
-        cfc_folders = utils.get_setting('boxlang_cfc_folders') or []
-    for folder_config in cfc_folders:
+    class_folders = project_data.get('boxlang_class_folders', [])
+    if not class_folders:
+        class_folders = utils.get_setting('boxlang_class_folders') or []
+    for folder_config in class_folders:
         folder_path = utils.normalize_path(folder_config['path'], project_name)
-        variable_templates = folder_config.get('variable_names', ['{cfc}'])
+        variable_templates = folder_config.get('variable_names', ['{class}'])
         accessors = folder_config.get('accessors', True)
         if not os.path.isdir(folder_path):
             continue
         for root, dirs, files in os.walk(folder_path):
             for f in files:
                 if f.endswith('.bx'):
-                    cfc_name = f[:-3]
+                    class_name = f[:-3]
                     folder_name = os.path.basename(root)
                     folder_singular = folder_name.rstrip('s')
                     for template in variable_templates:
-                        var_name = template.replace('{cfc}', cfc_name)
+                        var_name = template.replace('{class}', class_name)
+                        var_name = var_name.replace('{class_folder}', folder_name)
+                        var_name = var_name.replace('{class_folder_singularized}', folder_singular)
+                        # Backward-compatible placeholders.
+                        var_name = var_name.replace('{cfc}', class_name)
                         var_name = var_name.replace('{cfc_folder}', folder_name)
                         var_name = var_name.replace('{cfc_folder_singularized}', folder_singular)
-                        var_name = var_name.replace('{entityname}', cfc_name)
+                        var_name = var_name.replace('{entityname}', class_name)
                         dot_path = _file_to_dot_path(os.path.join(root, f), project_name, project_data)
                         if dot_path:
                             metadata = component_index.get_indexed_metadata(project_name, dot_path)

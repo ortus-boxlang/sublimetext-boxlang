@@ -84,11 +84,11 @@ def index_project(project_name, callback=None):
     if not project_data:
         indexing_in_progress[project_name] = False
         return
-    cfc_folders = project_data.get('boxlang_cfc_folders', [])
-    if not cfc_folders:
-        cfc_folders = utils.get_setting('boxlang_cfc_folders') or []
+    class_folders = project_data.get('boxlang_class_folders', [])
+    if not class_folders:
+        class_folders = utils.get_setting('boxlang_class_folders') or []
     files_to_index = []
-    for folder_config in cfc_folders:
+    for folder_config in class_folders:
         folder_path = utils.normalize_path(folder_config['path'], project_name)
         if os.path.isdir(folder_path):
             for root, dirs, files in os.walk(folder_path):

@@ -91,7 +91,7 @@ When BoxLang CLI is not available, syntax highlighting still works. Indexing and
 │  │  ┌──────▼─────────────────▼────────────────────▼─────────┐  │   │
 │  │  │              Completion Orchestrator                   │  │   │
 │  │  │  ┌──────────┐ ┌──────────┐ ┌──────────┐ ┌──────────┐ │  │   │
-│  │  │  │basecomp  │ │ boxdocs  │ │  cfcs    │ │ dotpaths │ │  │   │
+│  │  │  │basecomp  │ │ boxdocs  │ │ classes  │ │ dotpaths │ │  │   │
 │  │  │  └──────────┘ └──────────┘ └──────────┘ └──────────┘ │  │   │
 │  │  │  ┌──────────┐ ┌──────────┐                            │  │   │
 │  │  │  │ typecomp │ │   ...    │                            │  │   │
@@ -238,7 +238,7 @@ completions.get_completions(view, position, prefix)
     │
     ├── For each plugin:
     │   ├── basecompletions → member function completions
-    │   ├── cfcs → variable-to-component completions
+    │   ├── classes → variable-to-component completions
     │   ├── dotpaths → component method completions
     │   └── typecompletions → type-aware method completions
     │
@@ -263,7 +263,7 @@ inline_documentation.py
     │
     ├── For each plugin: get_inline_documentation(boxlang_view, "inline_doc")
     │   ├── boxdocs → URL-based docs from ortusbooks.com
-    │   ├── cfcs → component variable documentation
+    │   ├── classes → component variable documentation
     │   └── ... → other plugin docs
     │
     ├── Sort by priority
@@ -293,7 +293,7 @@ class BoxlangPlugin:
 
 ```python
 # boxlang_plugins.py
-directory = ["basecompletions", "boxdocs", "cfcs", "dotpaths", "typecompletions", ...]
+directory = ["basecompletions", "boxdocs", "classes", "dotpaths", "typecompletions", ...]
 
 for p in directory:
     m = importlib.import_module(".plugins_." + p, __package__)
@@ -411,7 +411,7 @@ TypeResolver.resolve_dot_chain_type(dot_context)
 |--------|---------|----------|-------------|
 | `basecompletions` | All | 0 | BIFs, tags, member functions from JSON |
 | `dotpaths` | Script/Dot | 0 | Import/new/createObject dot-paths |
-| `cfcs` | Script/Dot | 0 | Variable-to-component completions |
+| `classes` | Script/Dot | 0 | Variable-to-component completions |
 | `typecompletions` | Dot | 10 | Type-aware member method completions |
 
 ### Completion Styles
@@ -472,7 +472,7 @@ TypeResolver.resolve_dot_chain_type(dot_context)
 index_project(project_name, callback)
     │
     ├── Get project data (.sublime-project)
-    │   └── boxlang_cfc_folders configuration
+    │   └── boxlang_class_folders configuration
     │
     ├── Walk configured folders
     │   └── Collect all .bx/.bxs files
@@ -566,10 +566,10 @@ In `.sublime-project`:
 ```json
 {
   "settings": {
-    "boxlang_cfc_folders": [
+        "boxlang_class_folders": [
       {
         "path": "model",
-        "variable_names": ["{cfc}", "{cfc_folder_singularized}"],
+                "variable_names": ["{class}", "{class_folder_singularized}"],
         "accessors": true
       }
     ]
@@ -735,7 +735,7 @@ All potentially blocking operations run in background threads:
 - [x] Code snippets
 
 ### Phase 3
-- [ ] `applicationbx` plugin (Application.cfc-like completions)
+- [ ] `applicationbx` plugin (Application.bx-like completions)
 - [ ] `in_file_completions` plugin (in-file symbol completions)
 - [ ] Auto-close tags on `>`
 - [ ] Auto-format on save

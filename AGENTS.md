@@ -78,7 +78,7 @@ sublimetext-boxlang/
 │       ├── cfcs/__init__.py          # Indexed component variable completions
 │       ├── dotpaths/__init__.py      # Import/new/createObject dot-path completions
 │       ├── typecompletions/__init__.py # Type-aware member method completions
-│       ├── applicationbx/__init__.py # (empty - reserved for Application.cfc-like)
+│       ├── applicationbx/__init__.py # (empty - reserved for Application.bx-like)
 │       └── in_file_completions/__init__.py # (empty - reserved)
 ├── syntaxes/
 │   ├── BoxLang.sublime-syntax        # Script syntax (source.boxlang) for .bx/.bxs
@@ -174,10 +174,10 @@ Indexes all `.bx`/`.bxs` files in configured project folders.
 **Project Configuration** (in `.sublime-project`):
 ```json
 {
-  "boxlang_cfc_folders": [
+  "boxlang_class_folders": [
     {
       "path": "model",
-      "variable_names": ["{cfc}", "{cfc_folder_singularized}"],
+      "variable_names": ["{class}", "{class_folder_singularized}"],
       "accessors": true
     }
   ],
@@ -221,7 +221,7 @@ class BoxlangPlugin:
 |--------|---------|
 | `basecompletions` | BIFs (560), tags (41), member functions (72) from JSON data |
 | `boxdocs` | Inline documentation linking to boxlang.ortusbooks.com |
-| `cfcs` | Variable-to-component mapping completions and go-to-definition |
+| `classes` | Variable-to-component mapping completions and go-to-definition |
 | `dotpaths` | Import/new/createObject dot-path completions |
 | `typecompletions` | Type-aware member method completions (uses TypeResolver) |
 | `applicationbx` | Application.bx lifecycle method completions (onApplicationStart, onRequestStart, etc.) |
