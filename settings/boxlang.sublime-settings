@@ -16,12 +16,12 @@
     // "basic" - only the function name
     // "required" - only required params (default)
     // "full" - all params and types
-    "boxlang_cfc_completions": "required",
+    "boxlang_class_completions": "required",
 
     // Component completion names
     // "basic" - only the function name (default)
     // "full" - includes `():returntype` (e.g., `getSomething():struct`)
-    "boxlang_cfc_completion_names": "basic",
+    "boxlang_class_completion_names": "basic",
 
     // Provide method completions for variables referring to instantiated components
     "boxlang_instantiated_component_completions": true,

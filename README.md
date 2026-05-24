@@ -112,9 +112,9 @@ Re-run the wizard anytime: `BoxLang: Run Setup Wizard` (Command Palette)
 |---------|---------|----------|
 | **Run** | `boxlang "$file"` | Execute current file |
 | **Run with Arguments** | `boxlang "$file" ${args}` | Execute with CLI args |
+| **Run with Debug** | `boxlang --bx-debug "$file"` | Run with Debug output |
 | **Compile File** | `boxlang compile --source "$file" --target "./bin"` | Compile single file |
 | **Compile Project** | `boxlang compile --source "$file_path" --target "./bin"` | Compile entire project |
-| **Run with Debug** | `boxlang --bx-debug "$file"` | Run with Debug output |
 | **Feature Audit** | `boxlang featureaudit --source "$file_path"` | Audit CFML→BoxLang compatibility |
 
 ---
@@ -130,8 +130,8 @@ Open settings: `BoxLang: Settings` (Command Palette)
 | `boxlang_executable_path` | `null` | Custom BoxLang CLI path |
 | `boxlang_enable_cfml_fallback` | `false` | Enable `.cfc`/`.cfm`/`.cfs` support |
 | `boxlang_bif_completions` | `"required"` | BIF style: `basic`, `required`, `full` |
-| `boxlang_cfc_completions` | `"required"` | Component style: `basic`, `required`, `full` |
-| `boxlang_cfc_completion_names` | `"basic"` | Include return type: `basic`, `full` |
+| `boxlang_class_completions` | `"required"` | Component style: `basic`, `required`, `full` |
+| `boxlang_class_completion_names` | `"basic"` | Include return type: `basic`, `full` |
 | `boxlang_auto_compile_on_save` | `false` | Auto-compile to `./bin` on save |
 | `boxlang_format_on_save` | `false` | Auto-format on save |
 | `boxlang_hover_docs` | `true` | Enable hover documentation |

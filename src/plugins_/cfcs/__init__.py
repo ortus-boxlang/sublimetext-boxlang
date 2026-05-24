@@ -97,8 +97,8 @@ def _get_component_completions(project_name, dot_path, metadata, include_accesso
     """Get completions for a component's methods."""
     completions = []
     functions = metadata.get('functions', {})
-    completion_style = utils.get_setting('boxlang_cfc_completions') or 'required'
-    completion_names = utils.get_setting('boxlang_cfc_completion_names') or 'basic'
+    completion_style = utils.get_setting('boxlang_class_completions') or 'required'
+    completion_names = utils.get_setting('boxlang_class_completion_names') or 'basic'
     for func_name, func_meta in functions.items():
         if func_meta.get('access') == 'private':
             continue

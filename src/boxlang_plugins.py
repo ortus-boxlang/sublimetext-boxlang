@@ -7,6 +7,8 @@ from .plugins_.plugin import BoxlangPlugin
 directory = ['basecompletions', 'boxdocs', 'cfcs', 'dotpaths', 'typecompletions', 'applicationbx', 'in_file_completions']
 plugins = []
 
+_package = __name__.rsplit('.', 1)[0]
+
 
 class ModulePluginAdapter(BoxlangPlugin):
     """Adapter for legacy module-style plugins."""
@@ -38,7 +40,7 @@ class ModulePluginAdapter(BoxlangPlugin):
 
 for p in directory:
     try:
-        m = importlib.import_module('.plugins_.' + p, __package__)
+        m = importlib.import_module('.plugins_.' + p, _package)
         globals()[p] = m
         module_has_hooks = False
         for a in dir(m):

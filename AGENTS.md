@@ -276,8 +276,8 @@ All settings in `settings/boxlang.sublime-settings`:
 | `boxlang_executable_path` | `null` | Custom BoxLang CLI path |
 | `boxlang_enable_cfml_fallback` | `false` | Enable `.cfc`/`.cfm`/`.cfs` support |
 | `boxlang_bif_completions` | `"required"` | BIF completion style: `basic`/`required`/`full` |
-| `boxlang_cfc_completions` | `"required"` | Component completion style |
-| `boxlang_cfc_completion_names` | `"basic"` | Include return type in name: `basic`/`full` |
+| `boxlang_class_completions` | `"required"` | Component completion style |
+| `boxlang_class_completion_names` | `"basic"` | Include return type in name: `basic`/`full` |
 | `boxlang_instantiated_component_completions` | `true` | Variable-to-component completions |
 | `boxlang_auto_insert_closing_tag` | `false` | Auto-insert closing tag on `>` |
 | `boxlang_between_tag_pair` | `"default"` | Enter behavior between tags |

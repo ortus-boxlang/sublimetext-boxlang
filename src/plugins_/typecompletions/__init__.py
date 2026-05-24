@@ -39,8 +39,8 @@ def _get_component_member_completions(component_path, boxlang_view):
     if not metadata:
         return completions
     functions = metadata.get('functions', {})
-    completion_style = utils.get_setting('boxlang_cfc_completions') or 'required'
-    completion_names = utils.get_setting('boxlang_cfc_completion_names') or 'basic'
+    completion_style = utils.get_setting('boxlang_class_completions') or 'required'
+    completion_names = utils.get_setting('boxlang_class_completion_names') or 'basic'
     for func_name, func_meta in sorted(functions.items()):
         if func_meta.get('access') == 'private':
             continue

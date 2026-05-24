@@ -26,7 +26,7 @@ def _show_path_error(window):
 class BoxlangRunCommand(sublime_plugin.WindowCommand):
     """Run the current BoxLang file."""
 
-    def run(self):
+    def run(self, args=None, **kwargs):
         view = self.window.active_view()
         if not view:
             return
@@ -43,7 +43,7 @@ class BoxlangRunCommand(sublime_plugin.WindowCommand):
 class BoxlangRunWithArgsCommand(sublime_plugin.WindowCommand):
     """Run the current BoxLang file with user-provided arguments."""
 
-    def run(self):
+    def run(self, args=None, **kwargs):
         view = self.window.active_view()
         if not view:
             return
@@ -63,7 +63,9 @@ class BoxlangRunWithArgsCommand(sublime_plugin.WindowCommand):
 class BoxlangCompileCommand(sublime_plugin.WindowCommand):
     """Compile the current BoxLang file or project."""
 
-    def run(self, scope='file'):
+    def run(self, scope='file', args=None, **kwargs):
+        if isinstance(args, dict):
+            scope = args.get('scope', scope)
         view = self.window.active_view()
         if not view:
             return
@@ -83,7 +85,7 @@ class BoxlangCompileCommand(sublime_plugin.WindowCommand):
 class BoxlangDebugCommand(sublime_plugin.WindowCommand):
     """Debug the current BoxLang file."""
 
-    def run(self):
+    def run(self, args=None, **kwargs):
         view = self.window.active_view()
         if not view:
             return
@@ -100,7 +102,7 @@ class BoxlangDebugCommand(sublime_plugin.WindowCommand):
 class BoxlangAuditCommand(sublime_plugin.WindowCommand):
     """Run feature audit on the current BoxLang file."""
 
-    def run(self):
+    def run(self, args=None, **kwargs):
         view = self.window.active_view()
         if not view:
             return
