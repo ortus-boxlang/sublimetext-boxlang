@@ -62,12 +62,15 @@ for p in directory:
             'get_method_preview'
         )):
             plugins.append(ModulePluginAdapter(m))
-    except ImportError:
-        pass
+    except ImportError as exc:
+        print('BoxLang: failed to import plugin {} ({})'.format(p, exc))
 
 def _plugin_loaded():
     """Called after all plugins are loaded."""
     for p in directory:
         m = globals().get(p)
         if m and '_plugin_loaded' in m.__dict__:
-            m._plugin_loaded()
+            try:
+                m._plugin_loaded()
+            except Exception as exc:
+                print('BoxLang: plugin init failed for {} ({})'.format(p, exc))

@@ -59,7 +59,13 @@
 
     // Class folders used for project indexing and variable mappings
     // Variable template placeholders: {class}, {class_folder}, {class_folder_singularized}, {entityname}
-    "boxlang_class_folders": [],
+    "boxlang_class_folders": [
+        {
+            "path": ".",
+            "variable_names": ["{class}", "{class_folder_singularized}"],
+            "accessors": true
+        }
+    ],
 
     // TestBox settings
     "boxlang_testbox_enabled": true,

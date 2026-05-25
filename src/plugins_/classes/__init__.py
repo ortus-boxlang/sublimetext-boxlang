@@ -8,6 +8,16 @@ from ... import utils
 SIDE_COLOR = 'color(#4C9BB0 blend(var(--background) 60%))'
 variable_mappings = {}
 
+
+def _get_class_folders(project_data):
+    """Get configured class folders, defaulting to the project root."""
+    class_folders = project_data.get('boxlang_class_folders', []) if project_data else []
+    if not class_folders:
+        class_folders = utils.get_setting('boxlang_class_folders') or []
+    if not class_folders:
+        class_folders = [{'path': '.', 'variable_names': ['{class}', '{class_folder_singularized}'], 'accessors': True}]
+    return class_folders
+
 def build_variable_mappings(project_name):
     """Build mappings from variable names to classes."""
     global variable_mappings
@@ -15,9 +25,7 @@ def build_variable_mappings(project_name):
     project_data = _get_project_data(project_name)
     if not project_data:
         return
-    class_folders = project_data.get('boxlang_class_folders', [])
-    if not class_folders:
-        class_folders = utils.get_setting('boxlang_class_folders') or []
+    class_folders = _get_class_folders(project_data)
     for folder_config in class_folders:
         folder_path = utils.normalize_path(folder_config['path'], project_name)
         variable_templates = folder_config.get('variable_names', ['{class}'])
@@ -178,14 +186,6 @@ def get_completions(boxlang_view):
     elif boxlang_view.type == 'script':
         return get_script_completions(boxlang_view)
     return None
-
-def get_inline_documentation(boxlang_view, doc_type):
-    """Get inline documentation."""
-    return get_inline_documentation(boxlang_view, doc_type)
-
-def get_goto_boxlang_file(boxlang_view):
-    """Get file navigation."""
-    return get_goto_boxlang_file(boxlang_view)
 
 def _plugin_loaded():
     """Build variable mappings when plugin loads."""

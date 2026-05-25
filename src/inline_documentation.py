@@ -21,7 +21,11 @@ def get_inline_documentation(boxlang_view, doc_type):
     """Get inline documentation from all plugins."""
     docs = []
     for p in boxlang_plugins.plugins:
-        inline_doc = p.get_inline_documentation(boxlang_view, doc_type)
+        try:
+            inline_doc = p.get_inline_documentation(boxlang_view, doc_type)
+        except Exception as exc:
+            print('BoxLang: inline docs plugin failure {} ({})'.format(type(p).__name__, exc))
+            continue
         if inline_doc:
             docs.append(inline_doc)
     return docs

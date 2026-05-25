@@ -136,7 +136,7 @@ Open settings: `BoxLang: Settings` (Command Palette)
 | `boxlang_format_on_save` | `false` | Auto-format on save |
 | `boxlang_hover_docs` | `true` | Enable hover documentation |
 | `boxlang_completion_docs` | `true` | Enable completion docs popup |
-| `boxlang_class_folders` | `[]` | Class folders for indexing and variable mapping |
+| `boxlang_class_folders` | `[ { "path": ".", ... } ]` | Class folders for indexing and variable mapping (defaults to project root) |
 
 ### Project Configuration
 
@@ -147,7 +147,7 @@ Add to your `.sublime-project` file:
   "settings": {
     "boxlang_class_folders": [
       {
-        "path": "model",
+        "path": ".",
         "variable_names": ["{class}", "{class_folder_singularized}"],
         "accessors": true
       }

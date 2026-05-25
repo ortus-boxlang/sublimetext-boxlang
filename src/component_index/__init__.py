@@ -16,6 +16,16 @@ from .. import boxlang_cli
 project_indexes = {}
 indexing_in_progress = {}
 
+
+def _get_class_folders(project_data):
+    """Get configured class folders, defaulting to the project root."""
+    class_folders = project_data.get('boxlang_class_folders', []) if project_data else []
+    if not class_folders:
+        class_folders = utils.get_setting('boxlang_class_folders') or []
+    if not class_folders:
+        class_folders = [{'path': '.', 'variable_names': ['{class}', '{class_folder_singularized}'], 'accessors': True}]
+    return class_folders
+
 def get_indexed_metadata(project_name, dot_path):
     """Get metadata for an indexed component by dot path."""
     if project_name not in project_indexes:
@@ -84,9 +94,7 @@ def index_project(project_name, callback=None):
     if not project_data:
         indexing_in_progress[project_name] = False
         return
-    class_folders = project_data.get('boxlang_class_folders', [])
-    if not class_folders:
-        class_folders = utils.get_setting('boxlang_class_folders') or []
+    class_folders = _get_class_folders(project_data)
     files_to_index = []
     for folder_config in class_folders:
         folder_path = utils.normalize_path(folder_config['path'], project_name)
@@ -116,7 +124,18 @@ def index_project(project_name, callback=None):
             except Exception:
                 pass
         indexing_in_progress[project_name] = False
+        try:
+            from ..plugins_ import classes
+            classes.build_variable_mappings(project_name)
+        except Exception as exc:
+            print('BoxLang: failed to refresh class mappings for {} ({})'.format(project_name, exc))
     threading.Thread(target=_index_files, daemon=True).start()
+
+
+def _plugin_loaded():
+    """Auto-index all open projects when the package loads."""
+    for project_name, _ in utils.get_project_list():
+        index_project(project_name)
 
 def _file_to_dot_path(file_path, project_name, project_data):
     """Convert a file path to a dotted path using project mappings."""

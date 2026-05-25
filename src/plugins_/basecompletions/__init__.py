@@ -9,12 +9,20 @@ SIDE_COLOR = 'color(#4C9BB0 blend(var(--background) 60%))'
 completions = {}
 function_names = []
 
+
+def ensure_loaded():
+    """Ensure completion payloads are loaded before serving completions."""
+    if 'boxlang_functions' not in completions or 'boxlang_tags' not in completions:
+        load_completions()
+
 def get_tags(boxlang_view):
     """Get tag completions."""
+    ensure_loaded()
     return boxlang_view.CompletionList(completions.get('boxlang_tags', []), 0, False)
 
 def get_tag_attributes(boxlang_view):
     """Get tag attribute completions."""
+    ensure_loaded()
     if not boxlang_view.tag_name:
         return None
     tag_name = boxlang_view.tag_name
@@ -31,6 +39,7 @@ def get_tag_attributes(boxlang_view):
 
 def get_script_completions(boxlang_view):
     """Get script completions."""
+    ensure_loaded()
     completion_list = []
     if boxlang_view.view.match_selector(boxlang_view.position, 'meta.function-call.arguments.boxlang,meta.function-call.arguments.method.boxlang'):
         completion_list.append(sublime.CompletionItem('argumentCollection', 'parameter struct', 'argumentCollection = ${1:parameters}', sublime.COMPLETION_FORMAT_SNIPPET, kind=(sublime.KIND_ID_VARIABLE, 'v', 'BoxLang')))
@@ -40,6 +49,7 @@ def get_script_completions(boxlang_view):
 
 def get_dot_completions(boxlang_view):
     """Get dot (member function) completions."""
+    ensure_loaded()
     completion_list = completions.get('boxlang_member_functions', {}).get(utils.get_setting('boxlang_bif_completions'), [])
     return boxlang_view.CompletionList(completion_list, 0, False)
 
