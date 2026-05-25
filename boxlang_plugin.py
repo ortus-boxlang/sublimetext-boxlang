@@ -8,6 +8,14 @@ import sublime_plugin
 from .src import completions, events, utils
 from .src import plugin_loaded as _src_plugin_loaded
 
+# Re-export sub-package commands at root level so ST4 discovers and registers them.
+from .src.commands.wizard import BoxlangRunWizardCommand
+from .src.component_index import BoxlangIndexProjectCommand
+from .src.inline_documentation import BoxlangInlineDocumentationCommand
+from .src.goto_boxlang_file import BoxlangGotoFileCommand
+from .src.error_panel import BoxlangNextErrorCommand, BoxlangPrevErrorCommand
+from .src.completions import BoxlangUpdateCompletionDocCommand
+
 
 def plugin_loaded():
     _src_plugin_loaded()

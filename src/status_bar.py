@@ -31,12 +31,16 @@ def _update_all_status_bars():
         for view in window.views():
             _update_status_bar(view)
 
+_BOXLANG_SCOPE = 'source.boxlang, embedding.boxlang.markup'
+
 def _update_status_bar(view):
     """Update status bar for a single view."""
-    if not utils.get_setting('boxlang_status_bar_enabled'):
+    if utils.get_setting('boxlang_status_bar_enabled') is False:
         view.erase_status(_STATUS_KEY_VERSION)
         view.erase_status(_STATUS_KEY_INDEXING)
         view.erase_status(_STATUS_KEY_ERRORS)
+        return
+    if not view.match_selector(0, _BOXLANG_SCOPE):
         return
     version = boxlang_cli.get_version()
     if version:
@@ -69,15 +73,15 @@ class BoxlangStatusUpdateListener(sublime_plugin.EventListener):
     """Update status bar on activation and loading."""
 
     def on_activated_async(self, view):
-        if view.match_selector(0, 'source.boxlang'):
+        if view.match_selector(0, _BOXLANG_SCOPE):
             _update_status_bar(view)
 
     def on_load_async(self, view):
-        if view.match_selector(0, 'source.boxlang'):
+        if view.match_selector(0, _BOXLANG_SCOPE):
             _update_status_bar(view)
 
     def on_post_save_async(self, view):
-        if view.match_selector(0, 'source.boxlang'):
+        if view.match_selector(0, _BOXLANG_SCOPE):
             _update_status_bar(view)
 
 def _plugin_loaded():

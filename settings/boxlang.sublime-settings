@@ -95,6 +95,9 @@
     "boxlang_log_in_file_parse_time": false,
     "boxlang_log_doc_time": false,
 
+    // Show BoxLang version/status in the status bar
+    "boxlang_status_bar_enabled": true,
+
     // Wizard flag (do not edit manually)
     "boxlang_wizard_completed": false
 }
