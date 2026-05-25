@@ -24,6 +24,13 @@ If not installed, visit [boxlang.ortusbooks.com](https://boxlang.ortusbooks.com)
 - **Inline Documentation** — F1 for full docs, hover for quick info
 - **Project Component Indexing** with inheritance resolution
 
+## File Icons
+
+- Native fallback icons are included and work without any additional package.
+- Optional enhanced per-extension icons (`.bx`, `.bxs`, `.bxm`) are available when `A File Icon` is installed.
+
+If custom icons do not appear, fallback icons should still be shown. Restart Sublime Text after changing icon-related packages.
+
 ## First Run
 
 On first launch, the setup wizard will guide you through detecting BoxLang and configuring optional CFML fallback support.
@@ -33,7 +40,7 @@ Re-run anytime via Command Palette: `BoxLang: Run Setup Wizard`
 ## Key Bindings
 
 | Action | Shortcut |
-|--------|----------|
+| ------ | -------- |
 | Show inline documentation | `F1` |
 | Go to definition | `Ctrl/Cmd+Click` |
 | Format code | `Shift+Alt+F` |

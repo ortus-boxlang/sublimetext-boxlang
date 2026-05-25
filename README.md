@@ -15,6 +15,17 @@ Comprehensive BoxLang language support for Sublime Text 4. Provides syntax highl
 - **`.bxs`** — Script-only files
 - **`.bxm`** — Module templates with embedded script blocks
 
+### File Icons
+
+- **Native fallback (default):** BoxLang ships scope-based icon preferences so users see meaningful icons without installing extra packages.
+- **Optional enhanced icons:** If `A File Icon` is installed, per-extension custom icons from `File Icons.sublime-settings` are used for `.bx`, `.bxs`, and `.bxm`.
+
+Fallback mapping intent:
+
+- **`.bx`** — class-oriented icon
+- **`.bxs`** — script/source-oriented icon
+- **`.bxm`** — markup/template-oriented icon
+
 ### Intelligent Completions
 
 - **560 Built-in Functions** with parameter hints and snippet insertion
@@ -70,6 +81,10 @@ git clone https://github.com/ortus-boxlang/sublimetext-boxlang.git \
 ```
 
 Then restart Sublime Text.
+
+### Optional Icon Enhancement
+
+To use BoxLang-branded per-extension PNG icons in the sidebar, install `A File Icon` from Package Control. Without it, Sublime still uses native fallback icons configured by this package.
 
 ---
 

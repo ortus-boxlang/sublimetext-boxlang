@@ -1,0 +1,12 @@
+%YAML 1.2
+---
+
+name: BoxLang Script
+scope: source.boxlang.script
+version: 2
+hidden: true
+
+file_extensions:
+  - bxs
+
+extends: Packages/BoxLang/syntaxes/BoxLang.sublime-syntax

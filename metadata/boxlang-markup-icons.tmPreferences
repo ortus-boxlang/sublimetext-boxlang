@@ -3,13 +3,13 @@
 <plist version="1.0">
 <dict>
     <key>name</key>
-    <string>BoxLang Class File Icon</string>
+    <string>BoxLang Markup File Icon</string>
     <key>scope</key>
-    <string>source.boxlang - source.boxlang.script</string>
+    <string>embedding.boxlang.markup - source.boxlang</string>
     <key>settings</key>
     <dict>
         <key>icon</key>
-        <string>file_type_class</string>
+        <string>file_type_markup</string>
     </dict>
 </dict>
 </plist>
