@@ -4,7 +4,7 @@ Provides completions for symbols defined in the current file (functions, variabl
 """
 import re
 import sublime
-from .plugin import BoxlangPlugin
+from ..plugin import BoxlangPlugin
 SIDE_COLOR = 'color(#4C9BB0 blend(var(--background) 60%))'
 
 def parse_file_symbols(view):
