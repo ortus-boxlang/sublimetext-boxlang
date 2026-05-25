@@ -130,16 +130,38 @@ When BoxLang CLI is not available, syntax highlighting still works. Indexing and
 
 ## Module Deep Dive
 
-### `src/__init__.py` — Plugin Entry Point
+### `boxlang_plugin.py` — Root Plugin Entry Point
 
-**Responsibility:** Initialize the package when Sublime Text loads it.
+**Responsibility:** The top-level file that Sublime Text 4 discovers. ST4 only reliably registers `EventListener` subclasses and `plugin_loaded()` from root-level package files — not from sub-packages.
+
+**Why this file exists:** Sub-package modules like `src/completions.py` previously defined `EventListener` subclasses, but ST4 never discovered them. Moving all listeners to `boxlang_plugin.py` fixes completions, hover docs, and buffer metadata tracking.
 
 **Lifecycle:**
-1. `plugin_loaded()` — Called by Sublime Text on package load
+
+1. `plugin_loaded()` — Delegates to `src._plugin_loaded()`
+2. `BoxlangEventListener` — Triggers all events: `on_load_async`, `on_close`, `on_modified_async`, `on_post_save_async`, `on_query_completions`, `on_hover`, `on_post_text_command`
+
+**Command Re-export:**
+Sub-package command classes are imported at module level so ST4 discovers and registers them:
+```python
+from .src.commands.wizard import BoxlangRunWizardCommand
+from .src.component_index import BoxlangIndexProjectCommand
+from .src.inline_documentation import BoxlangInlineDocumentationCommand
+from .src.goto_boxlang_file import BoxlangGotoFileCommand
+from .src.error_panel import BoxlangNextErrorCommand, BoxlangPrevErrorCommand
+from .src.completions import BoxlangUpdateCompletionDocCommand
+```
+
+### `src/__init__.py` — Src-Level Initialization
+
+**Responsibility:** Initialize the `src/` package when called by `boxlang_plugin.py`.
+
+**Lifecycle:**
+
+1. `plugin_loaded()` — Called by the root-level `boxlang_plugin.plugin_loaded()`
    - Initialize BoxLang CLI detection (background thread)
-   - Run first-time wizard if not completed
-   - Notify all modules via `_plugin_loaded()` hook
-2. `plugin_unloaded()` — Called on package unload
+   - Show wizard after CLI detection completes (deferred via `on_detection_complete` callback to avoid race condition)
+   - Iterate all imported modules and call `_plugin_loaded()` on each
 
 **Command Registration:**
 Scans all loaded modules for classes ending in `Command` and registers them with Sublime Text.
@@ -293,14 +315,16 @@ class BoxlangPlugin:
 
 ```python
 # boxlang_plugins.py
-directory = ["basecompletions", "boxdocs", "classes", "dotpaths", "typecompletions", ...]
+directory = ["basecompletions", "boxdocs", "classes", "dotpaths",
+             "typecompletions", "applicationbx", "in_file_completions"]
 
 for p in directory:
     m = importlib.import_module(".plugins_." + p, __package__)
     for a in dir(m):
-        v = m.__dict__[a]
+        v = getattr(m, a)
         if a == "BoxlangPlugin" and issubclass(v, BoxlangPlugin):
             plugins.append(v())
+        # Module-style plugins (functions instead of class) wrapped via ModulePluginAdapter
 ```
 
 ### Plugin Contract
@@ -646,28 +670,45 @@ When `boxlang_auto_compile_on_save: true`:
 
 ```
 tests/
-├── conftest.py           # Pytest fixtures
-├── expectations.py       # TestBox-style assertions
-├── run_tests.py          # Test runner CLI
-├── unit/                 # Unit tests
-├── integration/          # Integration tests
-└── fixtures/             # Test fixture files
+├── conftest.py               # Pytest fixtures and Sublime Text mocks
+├── expectations.py           # TestBox-style fluent assertions
+├── run_tests.py              # Test runner CLI
+├── pytest.ini                # Pytest configuration
+├── requirements.txt          # Test dependencies (pytest, pytest-mock, pytest-cov)
+├── unit/                     # Unit tests (14 files, 236 tests)
+│   ├── test_ast_parser.py
+│   ├── test_tag_parser.py
+│   ├── test_type_resolver.py
+│   ├── test_cli.py
+│   ├── test_events.py
+│   ├── test_utils.py
+│   ├── test_error_panel.py
+│   ├── test_status_bar.py
+│   ├── test_documentation_helpers.py
+│   ├── test_parser_router.py
+│   ├── test_wizard.py
+│   └── test_bug_fixes.py     # Regression tests for all reviewed bugs
+├── integration/              # Integration tests
+│   ├── test_completions.py
+│   ├── test_indexing.py
+│   └── test_plugins.py
+└── fixtures/                 # Sample BoxLang files
 ```
 
 ### Running Tests
 
 ```bash
 # All tests
-python -m pytest tests/
+python3 -m pytest tests/
 
 # With coverage
-python -m pytest tests/ --cov=src --cov-report=html
+python3 -m pytest tests/ --cov=src --cov-report=html
 
 # Specific file
-python -m pytest tests/unit/test_ast_parser.py -v
+python3 -m pytest tests/unit/test_ast_parser.py -v
 
 # Using test runner
-python tests/run_tests.py --coverage --verbose
+python3 tests/run_tests.py --coverage --verbose
 ```
 
 ### TestBox-Style Expectations
@@ -726,17 +767,21 @@ All potentially blocking operations run in background threads:
 
 ## Future Roadmap
 
-### Phase 2 (Current)
+### Phase 2 (Complete)
+
 - [x] Error panel with F4 navigation
 - [x] Type inference engine (medium depth)
 - [x] Type-aware completions
 - [x] Status bar integration
 - [x] Mouse bindings for go-to-definition
 - [x] Code snippets
+- [x] Root-level event listener registration (`boxlang_plugin.py`)
+- [x] Sub-package command re-export
+- [x] `applicationbx` plugin (Application.bx lifecycle completions)
+- [x] `in_file_completions` plugin (current-file function/variable completions)
 
-### Phase 3
-- [ ] `applicationbx` plugin (Application.bx-like completions)
-- [ ] `in_file_completions` plugin (in-file symbol completions)
+### Phase 3 (Current)
+
 - [ ] Auto-close tags on `>`
 - [ ] Auto-format on save
 - [ ] Auto-compile on save

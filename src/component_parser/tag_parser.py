@@ -5,6 +5,7 @@ Handles self-closing tags, paired tags, and <bx:script> blocks.
 import re
 import json
 from .. import boxlang_cli
+from .ast_parser import ASTParser
 SELF_CLOSING_TAGS = {'abort', 'associate', 'break', 'continue', 'dump', 'exit', 'flush', 'httpparam', 'include', 'invokeargument', 'log', 'param', 'procparam', 'procresult', 'queryparam', 'rethrow', 'return', 'schedule', 'setting', 'sleep', 'throw', 'trace', 'zipparam'}
 OPTIONAL_BODY_TAGS = {'cache', 'execute', 'http', 'invoke', 'invokeargument', 'object', 'processingdirective', 'thread', 'transaction', 'zip'}
 REQUIRED_BODY_TAGS = {'lock', 'loop', 'output', 'query', 'savecontent', 'silent', 'storedproc', 'timer', 'xml'}
@@ -127,4 +128,3 @@ class TagParser:
                 func_meta = ASTParser._extract_function(stmt)
                 functions[func_meta['name']] = func_meta
         return {'functions': functions}
-from .ast_parser import ASTParser

@@ -39,6 +39,7 @@ class BoxlangFunctionCallParams:
             last_key = last_key.replace(scope_name, '')
         separator_scope += last_key
         start = self.params_region.begin() + 1
+        end = self.params_region.end() - 1  # exclude closing paren
         for pt in range(self.params_region.begin() + 1, self.params_region.end()):
             if pt == position:
                 self.current_index = len(self.params)
@@ -47,7 +48,7 @@ class BoxlangFunctionCallParams:
                 param = re.match(BoxlangFunctionCallParams.param_regex, current_element)
                 self.params.append(param.groups())
                 start = pt + 1
-        final_element = boxlang_view.view.substr(sublime.Region(start, pt)).strip()
+        final_element = boxlang_view.view.substr(sublime.Region(start, end)).strip()
         if len(final_element) > 0 or start != self.params_region.begin() + 1:
             param = re.match(BoxlangFunctionCallParams.param_regex, final_element)
             self.params.append(param.groups())
@@ -138,7 +139,7 @@ class BoxlangView:
 
     def get_struct_context(self, pt, cachable=True):
         """Get the struct context at the given point."""
-        if not cachable or pt not in self._cache['get_function']:
+        if not cachable or pt not in self._cache['get_struct_context']:
             self._cache['get_struct_context'][pt] = utils.get_struct_context(self.view, pt)
         return self._cache['get_struct_context'][pt]
 

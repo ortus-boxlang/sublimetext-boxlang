@@ -27,8 +27,6 @@ def plugin_loaded():
         boxlang_cli.on_detection_complete(
             lambda installed, version: sublime.set_timeout(wizard.show_wizard, 500)
         )
-    if hasattr(status_bar, '_plugin_loaded'):
-        status_bar._plugin_loaded()
     for k, v in globals().items():
         try:
             if '_plugin_loaded' in v.__dict__:

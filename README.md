@@ -195,7 +195,7 @@ Add to your `.sublime-project` file:
 
 ## Running Tests
 
-The package includes a comprehensive test suite with **218 tests** using pytest and TestBox-style expectations.
+The package includes a comprehensive test suite with **236 tests** using pytest and TestBox-style expectations.
 
 ### Quick Start
 
@@ -262,7 +262,7 @@ tests/
 ├── run_tests.py             # Custom test runner CLI
 ├── pytest.ini               # Pytest configuration
 ├── requirements.txt         # Test dependencies
-├── unit/                    # Unit tests (13 files, 179 tests)
+├── unit/                    # Unit tests (14 files, 218 tests)
 │   ├── test_ast_parser.py
 │   ├── test_tag_parser.py
 │   ├── test_type_resolver.py
@@ -273,8 +273,9 @@ tests/
 │   ├── test_status_bar.py
 │   ├── test_documentation_helpers.py
 │   ├── test_parser_router.py
-│   └── test_wizard.py
-├── integration/             # Integration tests (3 files, 39 tests)
+│   ├── test_wizard.py
+│   └── test_bug_fixes.py    # Regression tests for all reviewed bugs
+├── integration/             # Integration tests (3 files, 18 tests)
 │   ├── test_completions.py
 │   ├── test_indexing.py
 │   └── test_plugins.py
@@ -348,22 +349,24 @@ Tests run automatically on push and pull requests via GitHub Actions (Python 3.1
 
 ### Parsing Strategy
 
-| File Type | Parser | Method |
-|-----------|--------|--------|
-| `.bx` / `.bxs` | AST Parser | `boxlang --bx-printast` (100% accuracy) |
-| `.bxm` | Tag Parser | Flexible tokenizer (not strict XML) |
+| File Type       | Parser     | Method                                  |
+| --------------- | ---------- | --------------------------------------- |
+| `.bx` / `.bxs`  | AST Parser | `boxlang --bx-printast` (100% accuracy) |
+| `.bxm`          | Tag Parser | Flexible tokenizer (not strict XML)     |
 
 ### Plugin System
 
 Completions and documentation are provided by pluggable modules:
 
-| Plugin | Purpose |
-|--------|---------|
-| `basecompletions` | BIFs, tags, member functions from JSON data |
-| `boxdocs` | URL-based inline documentation |
-| `classes` | Variable-to-component completions |
-| `dotpaths` | Import/new/createObject dot-path completions |
-| `typecompletions` | Type-aware member method completions |
+| Plugin                | Purpose                                                    |
+| --------------------- | ---------------------------------------------------------- |
+| `basecompletions`     | BIFs, tags, member functions from JSON data                |
+| `boxdocs`             | URL-based inline documentation                             |
+| `classes`             | Variable-to-component completions                          |
+| `dotpaths`            | Import/new/createObject dot-path completions               |
+| `typecompletions`     | Type-aware member method completions                       |
+| `applicationbx`       | Application.bx lifecycle method completions                |
+| `in_file_completions` | Current-file function, variable, and property completions  |
 
 ### Type Inference
 

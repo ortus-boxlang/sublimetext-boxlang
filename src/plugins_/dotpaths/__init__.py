@@ -59,8 +59,8 @@ def map_paths(dot_paths):
                 path_map[key].append(path_part_dict)
     return path_map
 
-def get_completions(project_name, dot_path, completion_type):
-    """Get completions for a given dot path."""
+def _lookup_completions(project_name, dot_path, completion_type):
+    """Look up pre-built completions for a given dot path key."""
     if dot_path is not None and dot_path.lower() in projects[project_name][completion_type]:
         return projects[project_name][completion_type][dot_path.lower()]
     return []
@@ -99,7 +99,7 @@ def get_script_completions(boxlang_view):
                 dot_path = '.'.join(parts[:-1])
             else:
                 dot_path = ''
-            completions = get_completions(boxlang_view.project_name, dot_path, 'path_completions')
+            completions = _lookup_completions(boxlang_view.project_name, dot_path, 'path_completions')
             if completions:
                 return boxlang_view.CompletionList(completions, 0, False)
     if boxlang_view.view.match_selector(boxlang_view.position - 1, 'meta.instance.constructor.boxlang'):
@@ -112,7 +112,7 @@ def get_script_completions(boxlang_view):
                 dot_path = '.'.join(parts[:-1])
             else:
                 dot_path = ''
-            completions = get_completions(boxlang_view.project_name, dot_path, 'constructor_completions')
+            completions = _lookup_completions(boxlang_view.project_name, dot_path, 'constructor_completions')
             if completions:
                 return boxlang_view.CompletionList(completions, 0, False)
     if boxlang_view.view.match_selector(boxlang_view.position, 'meta.function-call.support.createcomponent.boxlang string.quoted'):
@@ -127,7 +127,7 @@ def get_script_completions(boxlang_view):
                 dot_path = '.'.join(parts[:-1])
             else:
                 dot_path = ''
-            completions = get_completions(boxlang_view.project_name, dot_path, 'path_completions')
+            completions = _lookup_completions(boxlang_view.project_name, dot_path, 'path_completions')
             if completions:
                 return boxlang_view.CompletionList(completions, 0, False)
     return None

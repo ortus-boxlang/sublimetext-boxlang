@@ -69,13 +69,13 @@ def get_view_metadata(view):
 
 def on_view_loaded(view):
     """Handle view loaded event."""
-    if not view.match_selector(0, 'embedding.boxlang'):
+    if not view.match_selector(0, 'source.boxlang, embedding.boxlang'):
         return
     get_view_metadata(view)
 
 def on_view_modified(view):
     """Handle view modified event."""
-    if not view.match_selector(0, 'embedding.boxlang'):
+    if not view.match_selector(0, 'source.boxlang, embedding.boxlang'):
         return
     if view.buffer_id() in buffer_metadata_cache:
         last_updated, meta = buffer_metadata_cache[view.buffer_id()]

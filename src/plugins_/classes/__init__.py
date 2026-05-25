@@ -2,6 +2,7 @@
 Indexed class completions for BoxLang.
 Provides completions for variables that match indexed classes.
 """
+import os
 import sublime
 from ... import component_index
 from ... import utils
@@ -191,4 +192,3 @@ def _plugin_loaded():
     """Build variable mappings when plugin loads."""
     for project_name, _ in utils.get_project_list():
         build_variable_mappings(project_name)
-import os
