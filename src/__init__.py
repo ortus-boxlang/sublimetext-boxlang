@@ -3,6 +3,7 @@ BoxLang Language Support for Sublime Text
 """
 import sublime
 from . import boxlang_cli
+from . import boxlang_plugins
 from . import completions
 from . import component_index
 from . import error_panel

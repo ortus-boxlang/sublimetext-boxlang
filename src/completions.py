@@ -63,18 +63,3 @@ class BoxlangUpdateCompletionDocCommand(sublime_plugin.TextCommand):
                 inline_documentation.display_documentation(self.view, docs, 'completion_doc', 0)
             else:
                 self.view.hide_popup()
-
-
-class BoxlangCompletionsListener(sublime_plugin.EventListener):
-    """Sublime completion bridge for BoxLang scopes."""
-
-    def on_query_completions(self, view, prefix, locations):
-        if not locations:
-            return None
-        position = locations[0]
-        if not view.match_selector(max(0, position - 1), 'source.boxlang, embedding.boxlang.markup'):
-            return None
-        completion_list = get_completions(view, position, prefix)
-        if not completion_list:
-            return None
-        return (completion_list, sublime.INHIBIT_WORD_COMPLETIONS)
