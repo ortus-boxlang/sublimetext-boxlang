@@ -20,8 +20,13 @@ command_list = []
 def plugin_loaded():
     """Called when the plugin is loaded."""
     boxlang_cli.initialize()
+    # Show wizard after CLI detection finishes (runs in a background thread).
+    # Calling show_wizard() immediately would always report "not found" because
+    # detection hasn't completed yet.
     if not wizard.wizard_completed():
-        wizard.show_wizard()
+        boxlang_cli.on_detection_complete(
+            lambda installed, version: sublime.set_timeout(wizard.show_wizard, 500)
+        )
     if hasattr(status_bar, '_plugin_loaded'):
         status_bar._plugin_loaded()
     for k, v in globals().items():
