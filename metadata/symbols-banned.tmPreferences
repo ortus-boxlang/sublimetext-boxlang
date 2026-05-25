@@ -3,15 +3,15 @@
 <plist version="1.0">
 <dict>
     <key>name</key>
-    <string>BoxLang Symbols - Functions</string>
+    <string>BoxLang Symbols - Banned</string>
     <key>scope</key>
-    <string>meta.function.declaration.boxlang entity.name.function.boxlang, meta.tag.function.boxlang entity.name.function.boxlang</string>
+    <string>meta.function-call.boxlang entity.name.function.boxlang</string>
     <key>settings</key>
     <dict>
         <key>showInSymbolList</key>
-        <integer>1</integer>
+        <integer>0</integer>
         <key>showInIndexedSymbolList</key>
-        <integer>1</integer>
+        <integer>0</integer>
     </dict>
 </dict>
 </plist>

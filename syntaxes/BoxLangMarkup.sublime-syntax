@@ -169,7 +169,36 @@ contexts:
         - match: '>'
           scope: punctuation.definition.tag.end.boxlang
           set: bx-function-body
+        - include: bx-function-name
         - include: tag-attributes
+
+  bx-function-name:
+    - match: (?i:\bname\b)
+      scope: entity.other.attribute-name.boxlang
+      push:
+        - match: '='
+          scope: punctuation.separator.key-value.boxlang
+          set:
+            - match: '"'
+              scope: punctuation.definition.string.begin.boxlang
+              set:
+                - meta_scope: string.quoted.double.boxlang
+                - match: '"'
+                  scope: punctuation.definition.string.end.boxlang
+                  pop: true
+                - match: '[^"]+'
+                  scope: entity.name.function.boxlang
+            - match: "'"
+              scope: punctuation.definition.string.begin.boxlang
+              set:
+                - meta_scope: string.quoted.single.boxlang
+                - match: "'"
+                  scope: punctuation.definition.string.end.boxlang
+                  pop: true
+                - match: "[^']+"
+                  scope: entity.name.function.boxlang
+            - include: else-pop
+        - include: else-pop
 
   bx-function-body:
     - meta_content_scope: source.boxlang

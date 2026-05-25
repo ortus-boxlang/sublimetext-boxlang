@@ -3,9 +3,9 @@
 <plist version="1.0">
 <dict>
     <key>name</key>
-    <string>BoxLang Symbols - Functions</string>
+    <string>BoxLang Symbols - Classes</string>
     <key>scope</key>
-    <string>meta.function.declaration.boxlang entity.name.function.boxlang, meta.tag.function.boxlang entity.name.function.boxlang</string>
+    <string>source.boxlang meta.class.declaration.boxlang entity.name.class.boxlang</string>
     <key>settings</key>
     <dict>
         <key>showInSymbolList</key>

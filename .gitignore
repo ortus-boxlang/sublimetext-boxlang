@@ -35,3 +35,4 @@ bin/**
 *.log
 .env
 .env.*
+.claude/settings.json
