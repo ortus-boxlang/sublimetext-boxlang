@@ -38,9 +38,15 @@ def get_inline_documentation(boxlang_view, doc_type):
         doc_attr_or_arg = boxlang_view.tag_attribute_name
         if doc_type == 'hover_doc' and doc_name in ['bx:component', 'bx:interface', 'bx:function'] and boxlang_view.view.match_selector(boxlang_view.position, 'source.boxlang'):
             return None
+    elif boxlang_view.view.match_selector(boxlang_view.position, 'support.function.boxlang'):
+        word_region = boxlang_view.view.word(boxlang_view.position)
+        doc_name = boxlang_view.view.substr(word_region).lower()
+        doc_regions = [boxlang_view.view.full_line(word_region.begin())]
     elif boxlang_view.view.match_selector(boxlang_view.position, 'meta.function-call.support.boxlang'):
-        doc_name, function_name_region, function_args_region = boxlang_view.get_function_call(boxlang_view.position, True)
-        doc_regions = [boxlang_view.view.full_line(function_name_region.begin())]
+        result = boxlang_view.get_function_call(boxlang_view.position, True)
+        if result:
+            doc_name, function_name_region, _ = result
+            doc_regions = [boxlang_view.view.full_line(function_name_region.begin())]
     if doc_name:
         lookup_name = doc_name
         if lookup_name.startswith('bx:'):
@@ -70,12 +76,20 @@ def get_completion_docs(boxlang_view):
 
 def get_goto_boxlang_file(boxlang_view):
     """Get URL for documentation navigation."""
-    if boxlang_view.view.match_selector(boxlang_view.position, 'meta.function-call.support.boxlang'):
-        doc_name, _, _ = boxlang_view.get_function_call(boxlang_view.position, True)
+    if boxlang_view.view.match_selector(boxlang_view.position, 'support.function.boxlang'):
+        doc_name = boxlang_view.view.substr(boxlang_view.view.word(boxlang_view.position)).lower()
         if doc_name:
             url = _get_bif_url(doc_name)
             if url:
                 return boxlang_view.GotoBoxlangFile(url, None)
+    elif boxlang_view.view.match_selector(boxlang_view.position, 'meta.function-call.support.boxlang'):
+        result = boxlang_view.get_function_call(boxlang_view.position, True)
+        if result:
+            doc_name, _, _ = result
+            if doc_name:
+                url = _get_bif_url(doc_name)
+                if url:
+                    return boxlang_view.GotoBoxlangFile(url, None)
     elif boxlang_view.view.match_selector(boxlang_view.position, 'meta.tag.boxlang,meta.tag.script.boxlang,meta.tag.script.bx.boxlang'):
         doc_name = utils.get_tag_name(boxlang_view.view, boxlang_view.position)
         if doc_name:
@@ -91,13 +105,17 @@ def _get_boxdoc(name):
     try:
         from ..basecompletions import completions
         functions_data = completions.get('boxlang_functions', {})
-        if name.lower() in {k.lower(): v for k, v in functions_data.items()}:
-            func_data = functions_data.get(name) or functions_data.get(name.lower())
+        lower_func_map = {k.lower(): k for k in functions_data}
+        canonical_name = lower_func_map.get(name.lower())
+        if canonical_name:
+            func_data = functions_data[canonical_name]
             if func_data:
-                return {'type': 'function', 'name': name, 'description': func_data[0] if len(func_data) > 0 else '', 'params': _extract_params(func_data), 'returns': ''}
+                return {'type': 'function', 'name': canonical_name, 'description': func_data[0] if len(func_data) > 0 else '', 'params': _extract_params(func_data), 'returns': ''}
         tags_data = completions.get('boxlang_tags', {})
-        if name.lower() in {k.lower(): v for k, v in tags_data.items()}:
-            tag_data = tags_data.get(name) or tags_data.get(name.lower())
+        lower_tag_map = {k.lower(): k for k in tags_data}
+        canonical_tag = lower_tag_map.get(name.lower())
+        if canonical_tag:
+            tag_data = tags_data[canonical_tag]
             if tag_data:
                 attrs = tag_data.get('attributes', [[], []]) if isinstance(tag_data, dict) else tag_data
                 if isinstance(attrs, list) and len(attrs) > 0 and isinstance(attrs[0], list):
@@ -107,7 +125,7 @@ def _get_boxdoc(name):
                     params.extend([{'name': a, 'required': False, 'type': 'any'} for a in optional])
                 else:
                     params = []
-                return {'type': 'tag', 'name': name, 'description': 'BoxLang component: {}'.format(name), 'params': params}
+                return {'type': 'tag', 'name': canonical_tag, 'description': 'BoxLang component: {}'.format(canonical_tag), 'params': params}
     except Exception:
         pass
     return None

@@ -14,7 +14,7 @@ from .boxlang_view import BoxlangView
 DOC_TEMPLATE = ''
 COMPLETION_DOC_TEMPLATE = ''
 PAGINATION_TEMPLATE = ''
-SELECTORS = ['constant.language', 'entity.name.class', 'entity.name.function', 'entity.name.tag.boxlang', 'entity.other.attribute-name', 'entity.other.inherited-class', 'storage.modifier', 'storage.type', 'string.quoted', 'variable.language', 'variable.parameter.function']
+SELECTORS = ['constant.language', 'entity.name.class', 'entity.name.function', 'entity.name.tag.boxlang', 'entity.other.attribute-name', 'entity.other.inherited-class', 'storage.modifier', 'storage.type', 'string.quoted', 'support.function', 'variable.language', 'variable.parameter.function']
 doc_window = None
 
 def get_inline_documentation(boxlang_view, doc_type):

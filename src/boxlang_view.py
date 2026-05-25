@@ -26,7 +26,7 @@ class BoxlangFunctionCallParams:
         self.current_index = None
         self.params = []
         self.function_name, self.function_region, self.params_region = boxlang_view.get_function_call(position)
-        if 'support' in boxlang_view.view.scope_name(self.function_region.begin()).strip().split(' ')[-1]:
+        if boxlang_view.view.match_selector(self.function_region.begin(), 'meta.function-call.support'):
             self.support = True
         prev_pt = self.function_region.begin() - 1
         if boxlang_view.view.match_selector(prev_pt, 'source.boxlang punctuation.accessor.boxlang'):

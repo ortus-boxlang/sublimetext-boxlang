@@ -66,6 +66,80 @@ variables:
       | "(?:[^\\"]|\\.)*"
     )
 
+  bif_names: |-
+    (?x:
+      Abs | Acos | ApplicationRestart | ApplicationStartTime | ApplicationStop | ArrayAppend | ArrayAvg | ArrayChunk |
+      ArrayClear | ArrayContains | ArrayContainsNoCase | ArrayDelete | ArrayDeleteAt | ArrayDeleteNoCase | ArrayEach | ArrayEvery |
+      ArrayFilter | ArrayFind | ArrayFindAll | ArrayFindAllNoCase | ArrayFindFirst | ArrayFindNoCase | ArrayFirst | ArrayFlatMap |
+      ArrayFlatten | ArrayGetMetadata | ArrayGroupBy | ArrayIndexExists | ArrayInsertAt | ArrayIsDefined | ArrayIsEmpty | ArrayLast |
+      ArrayLen | ArrayMap | ArrayMax | ArrayMedian | ArrayMerge | ArrayMid | ArrayMin | ArrayNew |
+      ArrayNone | ArrayPop | ArrayPrepend | ArrayPush | ArrayRange | ArrayReduce | ArrayReduceRight | ArrayReject |
+      ArrayResize | ArrayReverse | ArraySet | ArrayShift | ArraySlice | ArraySome | ArraySort | ArraySplice |
+      ArraySum | ArraySwap | ArrayToList | ArrayToStruct | ArrayTranspose | ArrayUnique | ArrayUnshift | ArrayZip |
+      Ascii | Asin | AsyncAll | AsyncAllApply | AsyncAny | AsyncRun | Atn | Attempt |
+      BinaryDecode | BinaryEncode | BitAnd | BitMaskClear | BitMaskRead | BitMaskSet | BitNot | BitOr |
+      BitSh | BitShln | BitShrn | BitXor | BooleanFormat | BoxAnnounce | BoxAnnounceAsync | BoxAST |
+      BoxLangBIFProxy | BoxModuleReload | BoxRegisterInterceptionPoints | BoxRegisterInterceptor | BoxRegisterRequestInterceptor | BoxUnregisterInterceptor | BoxUnregisterRequestInterceptor | Cache |
+      CacheFilter | CacheNames | CacheProviders | CacheService | CallStackGet | CamelCase | Ceiling | Char |
+      CharsetDecode | CharsetEncode | ClearLocale | ClearTimezone | CLIClear | CLIExit | CLIGetArgs | CLIRead |
+      Compare | CompareNoCase | Compress | ContractPath | Cos | CreateDate | CreateDateTime | CreateDynamicProxy |
+      CreateGUID | CreateObject | CreateODBCDate | CreateODBCDateTime | CreateODBCTime | CreateTempDirectory | CreateTempFile | CreateTime |
+      CreateTimeSpan | CreateUUID | CurrencyFormat | DataNavigate | DateAdd | DateCompare | DateConvert | DateDiff |
+      DateFormat | DatePart | DateTimeFormat | Day | DayOfWeek | DayOfWeekAsString | DayOfWeekShortAsString | DayOfYear |
+      DaysInMonth | DaysInYear | DE | DebugBoxContexts | DecimalFormat | DecrementValue | Decrypt | DecryptBinary |
+      DirectoryCopy | DirectoryCreate | DirectoryDelete | DirectoryExists | DirectoryList | DirectoryMove | DirectoryRename | DollarFormat |
+      Dump | Duplicate | Echo | EncodeForHTML | Encrypt | EncryptBinary | ExecutorDelete | ExecutorGet |
+      ExecutorHas | ExecutorList | ExecutorNew | ExecutorShutdown | ExecutorStatus | Exp | ExpandPath | Extract |
+      FileAppend | FileClose | FileCopy | FileDelete | FileExists | FileGetMimeType | FileInfo | FileIsEOF |
+      FileMove | FileOpen | FileRead | FileReadBinary | FileReadLine | FileSeek | FileSetAccessMode | FileSetAttribute |
+      FileSetLastModified | FileSkipBytes | FileUpload | FileUploadAll | FileWrite | FileWriteLine | Find | FindNoCase |
+      FindOneOf | FirstDayOfMonth | Fix | Floor | FormatBaseN | Forward | FutureNew | GeneratePBKDFKey |
+      GenerateSecretKey | GetApplicationMetadata | GetBaseTagData | GetBaseTagList | GetBaseTemplatePath | GetBoxCache | GetBoxCacheFilter | GetBoxCacheNames |
+      GetBoxCacheProviders | GetBoxCacheService | GetBoxContext | GetBoxRuntime | GetBoxVersionInfo | GetCanonicalPath | GetClassMetadata | GetComponentList |
+      GetComponentMetadata | GetContextRoot | GetCurrentTemplatePath | GetDirectoryFromPath | GetFileFromPath | GetFileInfo | GetFunctionCalledName | GetFunctionList |
+      GetHTTPRequestData | GetHTTPTimeString | GetLocale | GetLocaleDisplayName | GetLocaleInfo | GetMetaData | GetModuleInfo | GetModuleList |
+      GetNumericDate | GetPageContext | GetRequestClassLoader | GetSemver | GetSystemSetting | GetTempDirectory | GetTempFile | GetTickCount |
+      GetTime | GetTimezone | GetTimezoneInfo | GetToken | Hash | Hash40 | Hmac | Hour |
+      HtmlEditFormat | HtmlFooter | HtmlHead | HTTP | IIF | IncrementValue | InputBaseN | Insert |
+      Int | Invoke | IsArray | IsBinary | IsBoolean | IsClosure | IsCurrency | IsCustomFunction |
+      IsDate | IsDateObject | IsDebugMode | IsDefined | IsEmpty | IsFileObject | IsInstanceOf | IsInThread |
+      IsInTransaction | IsIPv6 | IsJSON | IsLeapYear | IsLocalHost | IsNull | IsNumeric | IsNumericDate |
+      IsObject | IsQuery | IsSimpleValue | IsStruct | IsThreadAlive | IsThreadInterrupted | IsValid | IsWithinTransaction |
+      IsXML | IsXmlAttribute | IsXMLDoc | IsXMLElem | IsXMLNode | IsXMLRoot | IsZipFile | JavaCast |
+      JSONDeserialize | JSONPrettify | JSONSerialize | JSStringFormat | Justify | KebabCase | Key | LCase |
+      Left | Len | ListAppend | ListAvg | ListChangeDelims | ListCompact | ListContains | ListContainsNoCase |
+      ListDeleteAt | ListEach | ListEvery | ListFilter | ListFind | ListFindNoCase | ListFirst | ListGetAt |
+      ListGetEndings | ListIndexExists | ListInsertAt | ListItemTrim | ListLast | ListLen | ListMap | ListNone |
+      ListPrepend | ListQualify | ListReduce | ListReduceRight | ListRemoveDuplicates | ListRest | ListSetAt | ListSome |
+      ListSort | ListToArray | ListTrim | ListValueCount | ListValueCountNoCase | LJustify | Location | Log |
+      Log10 | LSCurrencyFormat | LSIsCurrency | LSIsNumeric | LSNumberFormat | LSParseCurrency | LSParseNumber | LTrim |
+      Max | Mid | Millisecond | Min | Minute | Month | MonthAsString | MonthShortAsString |
+      Nanosecond | Now | NullValue | NumberFormat | ObjectDeserialize | ObjectSerialize | Offset | PagePoolClear |
+      ParagraphFormat | ParseCurrency | ParseDateTime | ParseNumber | PascalCase | Pi | PrecisionEvaluate | PreserveSingleQuotes |
+      Print | Println | PropertyFile | Quarter | QueryAddColumn | QueryAddRow | QueryAppend | QueryClear |
+      QueryColumnArray | QueryColumnCount | QueryColumnData | QueryColumnExists | QueryColumnList | QueryCurrentRow | QueryDeleteColumn | QueryDeleteRow |
+      QueryEach | QueryEvery | QueryExecute | QueryFilter | QueryGetCell | QueryGetResult | QueryInsertAt | QueryKeyExists |
+      QueryMap | QueryNew | QueryNone | QueryPrepend | QueryRecordCount | QueryReduce | QueryRegisterFunction | QueryReverse |
+      QueryRowData | QueryRowSwap | QuerySetCell | QuerySetRow | QuerySlice | QuerySome | QuerySort | QueryStringToStruct |
+      Rand | Randomize | RandRange | ReEscape | ReFind | ReFindNoCase | ReMatch | ReMatchNoCase |
+      RemoveChars | RepeatString | Replace | ReplaceList | ReplaceListNoCase | ReplaceNoCase | ReReplace | ReReplaceNoCase |
+      Reverse | Right | RJustify | Round | RTrim | RunAsync | RunThreadInContext | SchedulerGet |
+      SchedulerGetAll | SchedulerList | SchedulerRestart | SchedulerShutdown | SchedulerStart | Second | SessionInvalidate | SessionRotate |
+      SessionStartTime | SetEncoding | SetLocale | SetTimezone | Sgn | Sin | Sleep | Slugify |
+      SnakeCase | SOAP | SpanExcluding | SpanIncluding | SQLPrettify | Sqr | StringBind | StringEach |
+      StringEvery | StringFilter | StringLen | StringMap | StringReduce | StringReduceRight | StringSome | StringSort |
+      StripCR | StructAppend | StructClear | StructCopy | StructCount | StructDelete | StructEach | StructEquals |
+      StructEvery | StructFilter | StructFind | StructFindKey | StructFindValue | StructGet | StructGetMetadata | StructInsert |
+      StructIsCaseSensitive | StructIsEmpty | StructIsOrdered | StructKeyArray | StructKeyExists | StructKeyList | StructKeyTranslate | StructMap |
+      StructNew | StructNone | StructReduce | StructSome | StructSort | StructToQueryString | StructToSorted | StructUpdate |
+      StructValueArray | SystemCacheClear | SystemExecute | SystemOutput | Tan | ThreadInterrupt | ThreadJoin | ThreadNew |
+      ThreadTerminate | Throw | TimeFormat | TimeUnits | ToBase64 | ToBinary | ToModifiable | ToNumeric |
+      ToScript | ToString | ToUnmodifiable | Trace | TransactionCommit | TransactionRollback | TransactionSetSavepoint | TranspileCollectionKeySwap |
+      Trim | TrueFalseFormat | UCase | UCFirst | URLDecode | URLEncodedFormat | Val | Week |
+      WeekOfYear | Wrap | WriteDump | WriteLog | WriteOutput | XMLChildPos | XMLElemNew | XMLFormat |
+      XMLGetNodeType | XMLNew | XMLParse | XMLSearch | XMLTransform | XMLValidate | Year | YesNoFormat
+    )
+
 contexts:
   prototype:
     - include: comments
@@ -1141,6 +1215,7 @@ contexts:
         - include: struct-property
 
   function-call:
+    - include: bif-call
     - match: ({{identifier}})(?=\s*\()
       scope: variable.function.boxlang
       set:
@@ -1151,6 +1226,39 @@ contexts:
     - meta_include_prototype: false
     - meta_scope: meta.function-call.boxlang
     - include: immediately-pop
+
+  bif-call:
+    - match: (?i)\b({{bif_names}})(?=\s*\()
+      captures:
+        1: support.function.boxlang
+      set:
+        - bif-call-meta
+        - bif-call-arguments
+
+  bif-call-meta:
+    - meta_include_prototype: false
+    - meta_scope: meta.function-call.support.boxlang
+    - include: immediately-pop
+
+  bif-call-arguments:
+    - meta_content_scope: meta.function-call.support.boxlang
+    - match: \(
+      scope: punctuation.section.group.begin.boxlang
+      set:
+        - meta_scope: meta.function-call.arguments.support.boxlang
+        - match: \)
+          scope: punctuation.section.group.end.boxlang
+          pop: true
+        - match: ','
+          scope: punctuation.separator.function-call.support.boxlang
+        - match: \b({{identifier}})\s*(?:(=)(?![=>])|(:)(?!:))
+          captures:
+            1: entity.other.function-parameter.boxlang
+            2: keyword.operator.assignment.boxlang
+            3: punctuation.separator.key-value.boxlang
+          push: expression-no-comma
+        - include: expressions-no-comma
+    - include: else-pop
 
   method-call:
     - match: '{{identifier}}'
