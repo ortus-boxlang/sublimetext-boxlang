@@ -291,35 +291,37 @@ contexts:
         - meta_scope: meta.import.boxlang
         - match: (?=\n|;)
           pop: true
-        - match: \b(as)\b
+        - match: '\b(as)\b'
           scope: keyword.control.import.alias.boxlang
-        - match: '([[:alpha:]][_$[:alnum:]]*)$'
-          scope: entity.name.class.import.alias.boxlang
-        - match: \b(bx|java|whatever|coldfusion|cfml):
+          push: import-alias
+        - match: '\b(bx|java|whatever|coldfusion|cfml):'
           scope: keyword.control.import.prefix.boxlang
           push:
-            - import-path-after-prefix
-        - match: '({{dot_path_identifier}})'
-          captures:
-            1: meta.path.import.boxlang
-          push:
-            - import-path-end
+            - import-class-name
+            - import-path-segments
         - match: \*
           scope: constant.other.wildcard.import.boxlang
+        - match: (?=\S)
+          push:
+            - import-class-name
+            - import-path-segments
         - include: else-pop
 
-  import-path-after-prefix:
-    - match: '({{dot_path_identifier}})'
-      captures:
-        1: meta.path.import.boxlang
-      set:
-        - import-path-end
+  import-alias:
+    - match: '([[:alpha:]][_$[:alnum:]]*)'
+      scope: entity.name.class.import.alias.boxlang
+      pop: true
     - include: else-pop
 
-  import-path-end:
-    - match: \.([[:alpha:]][_$[:alnum:]]*)
-      captures:
-        1: entity.name.class.import.boxlang
+  import-path-segments:
+    - match: '([_$[:alnum:]]+)\.'
+      scope: meta.path.import.boxlang
+    - include: else-pop
+
+  import-class-name:
+    - match: '([[:alpha:]][_$[:alnum:]]*)'
+      scope: entity.name.class.import.boxlang
+      pop: true
     - include: else-pop
 
   class-declaration:
