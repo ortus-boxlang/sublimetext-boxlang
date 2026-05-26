@@ -84,5 +84,14 @@
             {"key": "selector", "operator": "equal", "operand": "source.boxlang"},
             {"key": "selection_empty", "operator": "equal", "operand": false, "match_all": true}
         ]
+    },
+
+    // Auto-close bx: tags in markup files when boxlang_auto_insert_closing_tag is enabled
+    {
+        "keys": [">"],
+        "command": "boxlang_auto_close_tag",
+        "context": [
+            {"key": "selector", "operator": "equal", "operand": "embedding.boxlang.markup"}
+        ]
     }
 ]

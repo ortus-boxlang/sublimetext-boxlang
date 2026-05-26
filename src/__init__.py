@@ -2,6 +2,7 @@
 BoxLang Language Support for Sublime Text
 """
 import sublime
+from . import auto_close_tag
 from . import boxlang_cli
 from . import boxlang_plugins
 from . import completions

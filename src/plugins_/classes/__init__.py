@@ -161,15 +161,28 @@ def _build_documentation(boxlang_view, var_name, mapping, region):
 def _file_to_dot_path(file_path, project_name, project_data):
     """Convert file path to dot path."""
     mappings = project_data.get('mappings', [])
-    for mapping in mappings:
-        mapping_path = utils.normalize_mapping(mapping, project_name)['path']
-        mapping_prefix = mapping['mapping']
-        if file_path.startswith(mapping_path):
-            rel_path = file_path[len(mapping_path):].lstrip('/')
-            dot_path = mapping_prefix.rstrip('/') + '/' + rel_path.replace('/', '.')
-            if dot_path.endswith('.bx'):
-                dot_path = dot_path[:-3]
-            return dot_path
+    if mappings:
+        for mapping in mappings:
+            mapping_path = utils.normalize_mapping(mapping, project_name)['path']
+            mapping_prefix = mapping['mapping']
+            if file_path.startswith(mapping_path):
+                rel_path = file_path[len(mapping_path):].lstrip('/')
+                dot_path = mapping_prefix.rstrip('/') + '/' + rel_path.replace('/', '.')
+                if dot_path.endswith('.bx'):
+                    dot_path = dot_path[:-3]
+                return dot_path
+    else:
+        for folder_config in _get_class_folders(project_data):
+            folder_path = utils.normalize_path(folder_config['path'], project_name)
+            prefix = folder_path + '/'
+            if file_path.startswith(prefix):
+                rel = file_path[len(prefix):]
+                dot = rel.replace('/', '.').replace('\\', '.')
+                if dot.endswith('.bx'):
+                    dot = dot[:-3]
+                elif dot.endswith('.bxs'):
+                    dot = dot[:-4]
+                return dot
     return None
 
 def _get_project_data(project_name):
@@ -178,6 +191,15 @@ def _get_project_data(project_name):
         if window.project_file_name():
             if utils.normalize_path(window.project_file_name()) == project_name:
                 return window.project_data()
+    # Fallback: project_name is a folder path (no .sublime-project open)
+    for window in sublime.windows():
+        folders = [utils.normalize_path(f) for f in window.folders()]
+        if project_name in folders:
+            return {
+                'boxlang_class_folders': [
+                    {'path': '.', 'variable_names': ['{class}', '{class_folder_singularized}'], 'accessors': True}
+                ]
+            }
     return None
 
 def get_completions(boxlang_view):

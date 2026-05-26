@@ -5,12 +5,13 @@ in a top-level package file so Sublime Text registers them correctly.
 """
 import sublime
 import sublime_plugin
-from .src import completions, events, utils
+from .src import completions, events
 from .src import plugin_loaded as _src_plugin_loaded
 
 # Re-export sub-package commands at root level so ST4 discovers and registers them.
+from .src.auto_close_tag import BoxlangAutoCloseTagCommand
 from .src.commands.wizard import BoxlangRunWizardCommand
-from .src.component_index import BoxlangIndexProjectCommand
+from .src.component_index import BoxlangIndexProjectCommand, BoxlangCreateProjectCommand
 from .src.inline_documentation import BoxlangInlineDocumentationCommand
 from .src.goto_boxlang_file import BoxlangGotoFileCommand
 from .src.error_panel import BoxlangNextErrorCommand, BoxlangPrevErrorCommand
@@ -69,9 +70,9 @@ class BoxlangEventListener(sublime_plugin.EventListener):
             {"pt": point, "doc_type": "hover_doc"},
         )
 
-    # ── re-trigger completions after commit ───────────────────────────────────
+    # ── re-trigger completions after commit ──────────────────────────────────
 
-    def on_post_text_command(self, view, command_name, args):
+    def on_post_text_command(self, view, command_name, _args):
         if command_name != "commit_completion":
             return
         pos = view.sel()[0].begin()

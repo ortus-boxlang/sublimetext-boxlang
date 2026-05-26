@@ -140,17 +140,31 @@ def _plugin_loaded():
 def _file_to_dot_path(file_path, project_name, project_data):
     """Convert a file path to a dotted path using project mappings."""
     mappings = project_data.get('mappings', [])
-    for mapping in mappings:
-        mapping_path = utils.normalize_mapping(mapping, project_name)['path']
-        mapping_prefix = mapping['mapping']
-        if file_path.startswith(mapping_path):
-            rel_path = file_path[len(mapping_path):].lstrip('/')
-            dot_path = mapping_prefix.rstrip('/') + '/' + rel_path.replace('/', '.')
-            if dot_path.endswith('.bx'):
-                dot_path = dot_path[:-3]
-            elif dot_path.endswith('.bxs'):
-                dot_path = dot_path[:-4]
-            return dot_path
+    if mappings:
+        for mapping in mappings:
+            mapping_path = utils.normalize_mapping(mapping, project_name)['path']
+            mapping_prefix = mapping['mapping']
+            if file_path.startswith(mapping_path):
+                rel_path = file_path[len(mapping_path):].lstrip('/')
+                dot_path = mapping_prefix.rstrip('/') + '/' + rel_path.replace('/', '.')
+                if dot_path.endswith('.bx'):
+                    dot_path = dot_path[:-3]
+                elif dot_path.endswith('.bxs'):
+                    dot_path = dot_path[:-4]
+                return dot_path
+    else:
+        # No mappings: derive dot path relative to the class folder roots
+        for folder_config in _get_class_folders(project_data):
+            folder_path = utils.normalize_path(folder_config['path'], project_name)
+            prefix = folder_path + '/'
+            if file_path.startswith(prefix):
+                rel = file_path[len(prefix):]
+                dot = rel.replace('/', '.').replace('\\', '.')
+                if dot.endswith('.bx'):
+                    dot = dot[:-3]
+                elif dot.endswith('.bxs'):
+                    dot = dot[:-4]
+                return dot
     return None
 
 def get_dot_paths(project_name):
@@ -241,20 +255,49 @@ def _extend_metadata(metadata, project_name):
     return extended
 
 def _get_project_data(project_name):
-    """Get project data from the project file."""
+    """Get project data from the project file, or synthesize it from open folders."""
     for window in sublime.windows():
         if window.project_file_name():
             if utils.normalize_path(window.project_file_name()) == project_name:
                 return window.project_data()
+    # Fallback: project_name is a folder path (no .sublime-project open)
+    for window in sublime.windows():
+        folders = [utils.normalize_path(f) for f in window.folders()]
+        if project_name in folders:
+            return {
+                'boxlang_class_folders': [
+                    {'path': '.', 'variable_names': ['{class}', '{class_folder_singularized}'], 'accessors': True}
+                ]
+            }
     return None
 
 class BoxlangIndexProjectCommand(sublime_plugin.WindowCommand):
     """Command to index the active project."""
 
     def run(self):
+        if not utils.has_project_file(self.window):
+            folders = self.window.folders()
+            if not folders:
+                sublime.status_message('BoxLang: No project or open folder found')
+                return
+            result = sublime.yes_no_cancel_dialog(
+                'BoxLang: No project file found\n\n'
+                'A .sublime-project file enables full indexing with dot-path\n'
+                'resolution and per-project settings.\n\n'
+                'Would you like to create one with BoxLang defaults?',
+                'Create Project File',
+                'Index Without Project File'
+            )
+            if result == sublime.DIALOG_YES:
+                self.window.run_command('boxlang_create_project')
+                return
+            elif result == sublime.DIALOG_CANCEL:
+                return
+            # DIALOG_NO: fall through to folder-based indexing
+
         project_name = utils.get_project_name_from_window(self.window)
         if not project_name:
-            sublime.status_message('BoxLang: No project file found')
+            sublime.status_message('BoxLang: No project or open folder found')
             return
         sublime.status_message('BoxLang: Indexing project...')
 
@@ -263,3 +306,60 @@ class BoxlangIndexProjectCommand(sublime_plugin.WindowCommand):
             if indexed == total:
                 sublime.status_message('BoxLang: Indexing complete ({} files)'.format(total))
         index_project(project_name, callback=progress_callback)
+
+
+class BoxlangCreateProjectCommand(sublime_plugin.WindowCommand):
+    """Create a .sublime-project file with sensible BoxLang defaults."""
+
+    def run(self):
+        folders = self.window.folders()
+        if not folders:
+            sublime.status_message('BoxLang: No open folder — open a folder first')
+            return
+
+        root = folders[0]
+        project_name = os.path.basename(root)
+        project_file = os.path.join(root, project_name + '.sublime-project')
+
+        if os.path.isfile(project_file):
+            result = sublime.yes_no_cancel_dialog(
+                'BoxLang: Project file already exists:\n{}\n\nOverwrite it?'.format(project_file),
+                'Overwrite',
+                'Open Existing'
+            )
+            if result == sublime.DIALOG_NO:
+                self.window.open_file(project_file)
+                return
+            elif result == sublime.DIALOG_CANCEL:
+                return
+
+        project_data = {
+            "folders": [{"path": "."}],
+            "settings": {
+                "boxlang_class_folders": [
+                    {
+                        "path": ".",
+                        "variable_names": ["{class}", "{class_folder_singularized}"],
+                        "accessors": True
+                    }
+                ]
+            },
+            "mappings": [
+                {"path": root, "mapping": "/"}
+            ]
+        }
+
+        import json
+        try:
+            with open(project_file, 'w', encoding='utf-8') as f:
+                json.dump(project_data, f, indent=2)
+        except OSError as exc:
+            sublime.error_message('BoxLang: Could not write project file:\n{}'.format(exc))
+            return
+
+        self.window.open_file(project_file)
+        sublime.set_timeout(lambda: sublime.status_message(
+            'BoxLang: Created {}  —  use Project → Open Project to activate it'.format(
+                os.path.basename(project_file)
+            )
+        ), 100)

@@ -11,28 +11,46 @@ def get_plugin_name():
     return __package__.split('.')[0]
 
 def get_project_list():
-    """Return a list of (project_file_path, project_data) tuples."""
+    """Return a list of (project_name, project_data) tuples for all open windows."""
     project_list = []
+    seen = set()
     for window in sublime.windows():
         if window.project_file_name():
-            project_tuple = (normalize_path(window.project_file_name()), window.project_data())
-            project_list.append(project_tuple)
+            name = normalize_path(window.project_file_name())
+            if name not in seen:
+                seen.add(name)
+                project_list.append((name, window.project_data()))
+        elif window.folders():
+            name = normalize_path(window.folders()[0])
+            if name not in seen:
+                seen.add(name)
+                project_list.append((name, None))
     return project_list
 
 def get_project_name(view):
-    """Return the project file path for the given view."""
+    """Return the project file path for the given view, falling back to the first open folder."""
     if view.window():
         project_file_name = view.window().project_file_name()
         if project_file_name:
             return normalize_path(project_file_name)
+        folders = view.window().folders()
+        if folders:
+            return normalize_path(folders[0])
     return None
 
 def get_project_name_from_window(window):
-    """Return the project file path for the given window."""
+    """Return the project file path, falling back to the first open folder."""
     project_file_name = window.project_file_name()
     if project_file_name:
         return normalize_path(project_file_name)
+    folders = window.folders()
+    if folders:
+        return normalize_path(folders[0])
     return None
+
+def has_project_file(window):
+    """Return True if the window has an actual .sublime-project file."""
+    return bool(window.project_file_name())
 
 def normalize_path(path, root_path=None):
     """Normalize a file path to use forward slashes."""
@@ -156,11 +174,12 @@ def get_tag_name(view, pos):
     """Get the tag name at the given position."""
     tag_scope = 'meta.tag.boxlang - punctuation.definition.tag.begin, meta.tag.custom.boxlang - punctuation.definition.tag.begin, meta.tag.script.boxlang, meta.tag.script.bx.boxlang'
     tag_name_scope = 'entity.name.tag.boxlang, entity.name.tag.custom.boxlang, entity.name.tag.script.boxlang'
-    tag_regions = view.find_by_selector(tag_scope)
     tag_name_regions = view.find_by_selector(tag_name_scope)
-    for tag_region, tag_name_region in zip(tag_regions, tag_name_regions):
+    for tag_region in view.find_by_selector(tag_scope):
         if tag_region.contains(pos):
-            return view.substr(tag_name_region).lower()
+            for tag_name_region in tag_name_regions:
+                if tag_region.contains(tag_name_region):
+                    return view.substr(tag_name_region).lower()
     return None
 
 def get_tag_attribute_name(view, pos):

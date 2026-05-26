@@ -1,5 +1,6 @@
 {
   "<bx:RedisLock>": {
+    "attribute_values": {},
     "attributes": [
       [
         "name",
@@ -11,20 +12,20 @@
         "throwOnTimeout",
         "bypass"
       ]
-    ],
-    "attribute_values": {}
+    ]
   },
   "Abort": {
+    "attribute_values": {},
     "attributes": [
       [],
       [
         "showerror",
         "type"
       ]
-    ],
-    "attribute_values": {}
+    ]
   },
   "AjaxImport": {
+    "attribute_values": {},
     "attributes": [
       [],
       [
@@ -33,10 +34,10 @@
         "scriptSrc",
         "params"
       ]
-    ],
-    "attribute_values": {}
+    ]
   },
   "AjaxProxy": {
+    "attribute_values": {},
     "attributes": [
       [
         "bind"
@@ -46,19 +47,19 @@
         "onError",
         "onSuccess"
       ]
-    ],
-    "attribute_values": {}
+    ]
   },
   "Application": {
+    "attribute_values": {},
     "attributes": [
       [],
       [
         "name"
       ]
-    ],
-    "attribute_values": {}
+    ]
   },
   "Associate": {
+    "attribute_values": {},
     "attributes": [
       [
         "baseTag"
@@ -66,10 +67,10 @@
       [
         "dataCollection"
       ]
-    ],
-    "attribute_values": {}
+    ]
   },
   "Cache": {
+    "attribute_values": {},
     "attributes": [
       [],
       [
@@ -94,10 +95,10 @@
         "username",
         "dependsOn"
       ]
-    ],
-    "attribute_values": {}
+    ]
   },
   "Chart": {
+    "attribute_values": {},
     "attributes": [
       [],
       [
@@ -120,10 +121,10 @@
         "borderWidth",
         "borderRadius"
       ]
-    ],
-    "attribute_values": {}
+    ]
   },
   "Chartdata": {
+    "attribute_values": {},
     "attributes": [
       [
         "item"
@@ -134,10 +135,10 @@
         "y",
         "r"
       ]
-    ],
-    "attribute_values": {}
+    ]
   },
   "Chartseries": {
+    "attribute_values": {},
     "attributes": [
       [
         "type"
@@ -153,20 +154,41 @@
         "valueColumn",
         "data"
       ]
-    ],
-    "attribute_values": {}
+    ]
   },
   "Component": {
+    "attribute_values": {
+      "accessors": [
+        "true",
+        "false"
+      ],
+      "output": [
+        "true",
+        "false"
+      ],
+      "persistent": [
+        "true",
+        "false"
+      ]
+    },
     "attributes": [
       [],
       [
-        "template",
-        "name"
+        "extends",
+        "implements",
+        "accessors",
+        "persistent",
+        "output",
+        "hint",
+        "displayname",
+        "namespace",
+        "name",
+        "template"
       ]
-    ],
-    "attribute_values": {}
+    ]
   },
   "Content": {
+    "attribute_values": {},
     "attributes": [
       [],
       [
@@ -176,10 +198,10 @@
         "variable",
         "reset"
       ]
-    ],
-    "attribute_values": {}
+    ]
   },
   "Cookie": {
+    "attribute_values": {},
     "attributes": [
       [
         "name"
@@ -194,10 +216,10 @@
         "domain",
         "encodevalue"
       ]
-    ],
-    "attribute_values": {}
+    ]
   },
   "CouchbaseLock": {
+    "attribute_values": {},
     "attributes": [
       [
         "name",
@@ -209,10 +231,10 @@
         "throwOnTimeout",
         "bypass"
       ]
-    ],
-    "attribute_values": {}
+    ]
   },
   "DBInfo": {
+    "attribute_values": {},
     "attributes": [
       [
         "type",
@@ -225,10 +247,10 @@
         "dbname",
         "filter"
       ]
-    ],
-    "attribute_values": {}
+    ]
   },
   "Directory": {
+    "attribute_values": {},
     "attributes": [
       [
         "action",
@@ -246,17 +268,17 @@
         "recurse",
         "createPath"
       ]
-    ],
-    "attribute_values": {}
+    ]
   },
   "DistributedLock": {
+    "attribute_values": {},
     "attributes": [
       [],
       []
-    ],
-    "attribute_values": {}
+    ]
   },
   "Div": {
+    "attribute_values": {},
     "attributes": [
       [],
       [
@@ -268,10 +290,10 @@
         "class",
         "style"
       ]
-    ],
-    "attribute_values": {}
+    ]
   },
   "Document": {
+    "attribute_values": {},
     "attributes": [
       [],
       [
@@ -318,20 +340,20 @@
         "formsType",
         "name"
       ]
-    ],
-    "attribute_values": {}
+    ]
   },
   "DocumentItem": {
+    "attribute_values": {},
     "attributes": [
       [],
       [
         "type",
         "evalAtPrint"
       ]
-    ],
-    "attribute_values": {}
+    ]
   },
   "DocumentSection": {
+    "attribute_values": {},
     "attributes": [
       [],
       [
@@ -347,10 +369,10 @@
         "authPassword",
         "authUser"
       ]
-    ],
-    "attribute_values": {}
+    ]
   },
   "Dump": {
+    "attribute_values": {},
     "attributes": [
       [],
       [
@@ -363,10 +385,10 @@
         "format",
         "showUDFs"
       ]
-    ],
-    "attribute_values": {}
+    ]
   },
   "Execute": {
+    "attribute_values": {},
     "attributes": [
       [
         "name"
@@ -382,19 +404,19 @@
         "errorVariable",
         "exitCode"
       ]
-    ],
-    "attribute_values": {}
+    ]
   },
   "Exit": {
+    "attribute_values": {},
     "attributes": [
       [],
       [
         "method"
       ]
-    ],
-    "attribute_values": {}
+    ]
   },
   "Feed": {
+    "attribute_values": {},
     "attributes": [
       [],
       [
@@ -417,10 +439,10 @@
         "feedType",
         "escapeChars"
       ]
-    ],
-    "attribute_values": {}
+    ]
   },
   "File": {
+    "attribute_values": {},
     "attributes": [
       [
         "action"
@@ -442,17 +464,17 @@
         "fixnewline",
         "cachedwithin"
       ]
-    ],
-    "attribute_values": {}
+    ]
   },
   "Flush": {
+    "attribute_values": {},
     "attributes": [
       [],
       []
-    ],
-    "attribute_values": {}
+    ]
   },
   "Grid": {
+    "attribute_values": {},
     "attributes": [
       [],
       [
@@ -474,10 +496,10 @@
         "class",
         "style"
       ]
-    ],
-    "attribute_values": {}
+    ]
   },
   "GridColumn": {
+    "attribute_values": {},
     "attributes": [
       [
         "name"
@@ -489,10 +511,10 @@
         "sortable",
         "display"
       ]
-    ],
-    "attribute_values": {}
+    ]
   },
   "GridRow": {
+    "attribute_values": {},
     "attributes": [
       [],
       [
@@ -504,10 +526,10 @@
         "class",
         "style"
       ]
-    ],
-    "attribute_values": {}
+    ]
   },
   "GridUpdate": {
+    "attribute_values": {},
     "attributes": [
       [],
       [
@@ -524,10 +546,10 @@
         "onSuccess",
         "onError"
       ]
-    ],
-    "attribute_values": {}
+    ]
   },
   "HTTP": {
+    "attribute_values": {},
     "attributes": [
       [
         "URL",
@@ -568,10 +590,10 @@
         "workstation",
         "httpVersion"
       ]
-    ],
-    "attribute_values": {}
+    ]
   },
   "HTTPParam": {
+    "attribute_values": {},
     "attributes": [
       [
         "type"
@@ -583,10 +605,10 @@
         "encoded",
         "mimetype"
       ]
-    ],
-    "attribute_values": {}
+    ]
   },
   "Header": {
+    "attribute_values": {},
     "attributes": [
       [],
       [
@@ -596,28 +618,28 @@
         "statusCode",
         "statusText"
       ]
-    ],
-    "attribute_values": {}
+    ]
   },
   "HtmlFooter": {
+    "attribute_values": {},
     "attributes": [
       [],
       [
         "text"
       ]
-    ],
-    "attribute_values": {}
+    ]
   },
   "HtmlHead": {
+    "attribute_values": {},
     "attributes": [
       [],
       [
         "text"
       ]
-    ],
-    "attribute_values": {}
+    ]
   },
   "Image": {
+    "attribute_values": {},
     "attributes": [
       [
         "action"
@@ -643,10 +665,10 @@
         "width",
         "writeType"
       ]
-    ],
-    "attribute_values": {}
+    ]
   },
   "Include": {
+    "attribute_values": {},
     "attributes": [
       [
         "template"
@@ -654,10 +676,10 @@
       [
         "externalOnly"
       ]
-    ],
-    "attribute_values": {}
+    ]
   },
   "Invoke": {
+    "attribute_values": {},
     "attributes": [
       [
         "method"
@@ -671,10 +693,10 @@
         "password",
         "timeout"
       ]
-    ],
-    "attribute_values": {}
+    ]
   },
   "InvokeArgument": {
+    "attribute_values": {},
     "attributes": [
       [
         "name"
@@ -682,10 +704,10 @@
       [
         "value"
       ]
-    ],
-    "attribute_values": {}
+    ]
   },
   "LDAP": {
+    "attribute_values": {},
     "attributes": [
       [],
       [
@@ -697,10 +719,10 @@
         "name",
         "start"
       ]
-    ],
-    "attribute_values": {}
+    ]
   },
   "Layout": {
+    "attribute_values": {},
     "attributes": [
       [],
       [
@@ -715,10 +737,10 @@
         "class",
         "name"
       ]
-    ],
-    "attribute_values": {}
+    ]
   },
   "LayoutArea": {
+    "attribute_values": {},
     "attributes": [
       [],
       [
@@ -731,10 +753,10 @@
         "width",
         "flex"
       ]
-    ],
-    "attribute_values": {}
+    ]
   },
   "Location": {
+    "attribute_values": {},
     "attributes": [
       [],
       [
@@ -742,10 +764,10 @@
         "addToken",
         "statusCode"
       ]
-    ],
-    "attribute_values": {}
+    ]
   },
   "Lock": {
+    "attribute_values": {},
     "attributes": [
       [],
       [
@@ -756,10 +778,10 @@
         "throwOnTimeout",
         "cacheName"
       ]
-    ],
-    "attribute_values": {}
+    ]
   },
   "Log": {
+    "attribute_values": {},
     "attributes": [
       [],
       [
@@ -769,10 +791,10 @@
         "type",
         "application"
       ]
-    ],
-    "attribute_values": {}
+    ]
   },
   "Loop": {
+    "attribute_values": {},
     "attributes": [
       [],
       [
@@ -795,10 +817,10 @@
         "label",
         "times"
       ]
-    ],
-    "attribute_values": {}
+    ]
   },
   "Mail": {
+    "attribute_values": {},
     "attributes": [
       [
         "from",
@@ -843,10 +865,10 @@
         "messageVariable",
         "messageIdentifier"
       ]
-    ],
-    "attribute_values": {}
+    ]
   },
   "MailParam": {
+    "attribute_values": {},
     "attributes": [
       [],
       [
@@ -858,10 +880,10 @@
         "fileName",
         "type"
       ]
-    ],
-    "attribute_values": {}
+    ]
   },
   "MailPart": {
+    "attribute_values": {},
     "attributes": [
       [
         "type"
@@ -870,10 +892,10 @@
         "charset",
         "wrapText"
       ]
-    ],
-    "attribute_values": {}
+    ]
   },
   "Object": {
+    "attribute_values": {},
     "attributes": [
       [
         "name",
@@ -881,10 +903,10 @@
         "className"
       ],
       []
-    ],
-    "attribute_values": {}
+    ]
   },
   "Output": {
+    "attribute_values": {},
     "attributes": [
       [],
       [
@@ -895,10 +917,10 @@
         "maxRows",
         "encodefor"
       ]
-    ],
-    "attribute_values": {}
+    ]
   },
   "PDF": {
+    "attribute_values": {},
     "attributes": [
       [],
       [
@@ -955,10 +977,10 @@
         "importFrom",
         "encodeall"
       ]
-    ],
-    "attribute_values": {}
+    ]
   },
   "PDFForm": {
+    "attribute_values": {},
     "attributes": [
       [
         "action",
@@ -973,10 +995,10 @@
         "fdfdata",
         "result"
       ]
-    ],
-    "attribute_values": {}
+    ]
   },
   "PDFFormParam": {
+    "attribute_values": {},
     "attributes": [
       [
         "name",
@@ -985,10 +1007,10 @@
       [
         "index"
       ]
-    ],
-    "attribute_values": {}
+    ]
   },
   "PDFParam": {
+    "attribute_values": {},
     "attributes": [
       [],
       [
@@ -1002,10 +1024,10 @@
         "coordinates",
         "note"
       ]
-    ],
-    "attribute_values": {}
+    ]
   },
   "Param": {
+    "attribute_values": {},
     "attributes": [
       [
         "name"
@@ -1017,10 +1039,10 @@
         "min",
         "pattern"
       ]
-    ],
-    "attribute_values": {}
+    ]
   },
   "Pod": {
+    "attribute_values": {},
     "attributes": [
       [],
       [
@@ -1030,10 +1052,10 @@
         "style",
         "class"
       ]
-    ],
-    "attribute_values": {}
+    ]
   },
   "ProcParam": {
+    "attribute_values": {},
     "attributes": [
       [],
       [
@@ -1046,10 +1068,10 @@
         "null",
         "DBVarName"
       ]
-    ],
-    "attribute_values": {}
+    ]
   },
   "ProcResult": {
+    "attribute_values": {},
     "attributes": [
       [
         "name"
@@ -1058,20 +1080,20 @@
         "resultSet",
         "maxRows"
       ]
-    ],
-    "attribute_values": {}
+    ]
   },
   "ProcessingDirective": {
+    "attribute_values": {},
     "attributes": [
       [],
       [
         "pageEncoding",
         "suppressWhiteSpace"
       ]
-    ],
-    "attribute_values": {}
+    ]
   },
   "Query": {
+    "attribute_values": {},
     "attributes": [
       [],
       [
@@ -1094,10 +1116,10 @@
         "result",
         "clientInfo"
       ]
-    ],
-    "attribute_values": {}
+    ]
   },
   "QueryParam": {
+    "attribute_values": {},
     "attributes": [
       [],
       [
@@ -1109,10 +1131,10 @@
         "list",
         "separator"
       ]
-    ],
-    "attribute_values": {}
+    ]
   },
   "SaveContent": {
+    "attribute_values": {},
     "attributes": [
       [
         "variable"
@@ -1121,10 +1143,10 @@
         "trim",
         "append"
       ]
-    ],
-    "attribute_values": {}
+    ]
   },
   "Schedule": {
+    "attribute_values": {},
     "attributes": [
       [
         "action"
@@ -1162,10 +1184,10 @@
         "cluster",
         "result"
       ]
-    ],
-    "attribute_values": {}
+    ]
   },
   "Setting": {
+    "attribute_values": {},
     "attributes": [
       [],
       [
@@ -1173,26 +1195,26 @@
         "showDebugOutput",
         "requestTimeout"
       ]
-    ],
-    "attribute_values": {}
+    ]
   },
   "Silent": {
+    "attribute_values": {},
     "attributes": [
       [],
       []
-    ],
-    "attribute_values": {}
+    ]
   },
   "Sleep": {
+    "attribute_values": {},
     "attributes": [
       [
         "time"
       ],
       []
-    ],
-    "attribute_values": {}
+    ]
   },
   "Spreadsheet": {
+    "attribute_values": {},
     "attributes": [
       [
         "action"
@@ -1224,10 +1246,10 @@
         "formula",
         "query"
       ]
-    ],
-    "attribute_values": {}
+    ]
   },
   "Stopwatch": {
+    "attribute_values": {},
     "attributes": [
       [],
       [
@@ -1235,10 +1257,10 @@
         "unit",
         "variable"
       ]
-    ],
-    "attribute_values": {}
+    ]
   },
   "StoredProc": {
+    "attribute_values": {},
     "attributes": [
       [
         "procedure"
@@ -1252,10 +1274,10 @@
         "username",
         "password"
       ]
-    ],
-    "attribute_values": {}
+    ]
   },
   "Thread": {
+    "attribute_values": {},
     "attributes": [
       [],
       [
@@ -1265,10 +1287,10 @@
         "priority",
         "timeout"
       ]
-    ],
-    "attribute_values": {}
+    ]
   },
   "Throw": {
+    "attribute_values": {},
     "attributes": [
       [],
       [
@@ -1279,10 +1301,10 @@
         "extendedinfo",
         "object"
       ]
-    ],
-    "attribute_values": {}
+    ]
   },
   "Timer": {
+    "attribute_values": {},
     "attributes": [
       [],
       [
@@ -1291,10 +1313,10 @@
         "unit",
         "variable"
       ]
-    ],
-    "attribute_values": {}
+    ]
   },
   "Tooltip": {
+    "attribute_values": {},
     "attributes": [
       [
         "for",
@@ -1304,10 +1326,10 @@
         "delay",
         "position"
       ]
-    ],
-    "attribute_values": {}
+    ]
   },
   "Trace": {
+    "attribute_values": {},
     "attributes": [
       [
         "text",
@@ -1318,10 +1340,10 @@
         "category",
         "extrainfo"
       ]
-    ],
-    "attribute_values": {}
+    ]
   },
   "Transaction": {
+    "attribute_values": {},
     "attributes": [
       [],
       [
@@ -1330,10 +1352,10 @@
         "savepoint",
         "datasource"
       ]
-    ],
-    "attribute_values": {}
+    ]
   },
   "WDDX": {
+    "attribute_values": {},
     "attributes": [
       [
         "action",
@@ -1346,19 +1368,19 @@
         "validate",
         "xmlconform"
       ]
-    ],
-    "attribute_values": {}
+    ]
   },
   "XML": {
+    "attribute_values": {},
     "attributes": [
       [
         "variable"
       ],
       []
-    ],
-    "attribute_values": {}
+    ]
   },
   "Zip": {
+    "attribute_values": {},
     "attributes": [
       [],
       [
@@ -1377,10 +1399,10 @@
         "variable",
         "compressionLevel"
       ]
-    ],
-    "attribute_values": {}
+    ]
   },
   "ZipParam": {
+    "attribute_values": {},
     "attributes": [
       [],
       [
@@ -1395,7 +1417,6 @@
         "password",
         "encryptionAlgorithm"
       ]
-    ],
-    "attribute_values": {}
+    ]
   }
 }

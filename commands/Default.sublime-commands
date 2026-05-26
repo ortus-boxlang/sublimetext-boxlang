@@ -24,6 +24,10 @@
         "command": "boxlang_index_project"
     },
     {
+        "caption": "BoxLang: Create Project File",
+        "command": "boxlang_create_project"
+    },
+    {
         "caption": "BoxLang: Format Code",
         "command": "boxlang_format"
     },

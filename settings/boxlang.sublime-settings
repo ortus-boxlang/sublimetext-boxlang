@@ -28,7 +28,7 @@
 
     // If true, when a ">" is typed to end a tag the corresponding closing tag
     // will be inserted after the cursor position
-    "boxlang_auto_insert_closing_tag": false,
+    "boxlang_auto_insert_closing_tag": true,
 
     // Controls what happens when cursor is between a tag pair and "enter" is pressed
     // "default" - inserts a newline character

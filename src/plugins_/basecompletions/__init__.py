@@ -102,14 +102,18 @@ def load_completions():
         tag_attributes = tag_info.get('attributes', [[], []])
         required_attrs = tag_attributes[0] if len(tag_attributes) > 0 else []
         optional_attrs = tag_attributes[1] if len(tag_attributes) > 1 else []
-        completions['boxlang_tags'].append(make_tag_completion(tag_name, required_attrs))
-        completions['boxlang_tags_in_script'].append(make_tag_completion(tag_name, required_attrs))
-        completions['boxlang_tag_attributes'][tag_name] = [sublime.CompletionItem(a, 'required', a + '="$1"', sublime.COMPLETION_FORMAT_SNIPPET, kind=(sublime.KIND_ID_MARKUP, 'a', tag_name)) for a in required_attrs]
-        completions['boxlang_tag_attributes'][tag_name].extend([sublime.CompletionItem(a, 'optional', a + '="$1"', sublime.COMPLETION_FORMAT_SNIPPET, kind=(sublime.KIND_ID_MARKUP, 'a', tag_name)) for a in optional_attrs])
+        tag_lower = tag_name.lower()
+        # Strip full-notation keys like "<bx:redislock>" → "redislock"
+        if tag_lower.startswith('<bx:') and tag_lower.endswith('>'):
+            tag_lower = tag_lower[4:-1]
+        completions['boxlang_tags'].append(make_tag_completion(tag_lower, required_attrs))
+        completions['boxlang_tags_in_script'].append(make_tag_completion(tag_lower, required_attrs))
+        completions['boxlang_tag_attributes'][tag_lower] = [sublime.CompletionItem(a, 'required', a + '="$1"', sublime.COMPLETION_FORMAT_SNIPPET, kind=(sublime.KIND_ID_MARKUP, 'a', tag_lower)) for a in required_attrs]
+        completions['boxlang_tag_attributes'][tag_lower].extend([sublime.CompletionItem(a, 'optional', a + '="$1"', sublime.COMPLETION_FORMAT_SNIPPET, kind=(sublime.KIND_ID_MARKUP, 'a', tag_lower)) for a in optional_attrs])
         tag_attribute_values = tag_info.get('attribute_values', {})
-        completions['boxlang_tag_attribute_values'][tag_name] = {}
+        completions['boxlang_tag_attribute_values'][tag_lower] = {}
         for attribute_name in sorted(tag_attribute_values.keys()):
-            completions['boxlang_tag_attribute_values'][tag_name][attribute_name] = [sublime.CompletionItem(v, attribute_name, v, sublime.COMPLETION_FORMAT_TEXT, kind=(sublime.KIND_ID_AMBIGUOUS, 'v', tag_name)) for v in tag_attribute_values[attribute_name]]
+            completions['boxlang_tag_attribute_values'][tag_lower][attribute_name] = [sublime.CompletionItem(v, attribute_name, v, sublime.COMPLETION_FORMAT_TEXT, kind=(sublime.KIND_ID_AMBIGUOUS, 'v', tag_lower)) for v in tag_attribute_values[attribute_name]]
     completions['boxlang_functions'] = {'basic': [], 'required': [], 'full': []}
     function_names = []
     functions_data = completions_data.get('boxlang_functions', {})
