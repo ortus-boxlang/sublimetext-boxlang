@@ -232,58 +232,16 @@ contexts:
         - match: \)
           scope: punctuation.section.parameters.end.annotation.boxlang
           pop: true
-        - match: (\w[\w\-]*)\s*(=)\s*(\")
-          captures:
-            1: entity.other.attribute-name.annotation.boxlang
-            2: punctuation.separator.key-value.annotation.boxlang
-            3: punctuation.definition.string.begin.boxlang
-          push:
-            - meta_include_prototype: false
-            - meta_scope: string.quoted.double.boxlang
-            - match: \"
-              scope: punctuation.definition.string.end.boxlang
-              pop: true
-            - match: '\\.'
-              scope: constant.character.escape.boxlang
-        - match: (\w[\w\-]*)\s*(=)\s*(')
-          captures:
-            1: entity.other.attribute-name.annotation.boxlang
-            2: punctuation.separator.key-value.annotation.boxlang
-            3: punctuation.definition.string.begin.boxlang
-          push:
-            - meta_include_prototype: false
-            - meta_scope: string.quoted.single.boxlang
-            - match: \'
-              scope: punctuation.definition.string.end.boxlang
-              pop: true
-            - match: '\\.'
-              scope: constant.character.escape.boxlang
+        - match: ','
+          scope: punctuation.separator.annotation.boxlang
         - match: '(\w[\w\-]*)\s*(=)'
           captures:
             1: entity.other.attribute-name.annotation.boxlang
             2: punctuation.separator.key-value.annotation.boxlang
-          push: annotation-attribute-value
-        - match: '{{identifier}}'
-          scope: variable.other.annotation-value.boxlang
-        - match: ','
-          scope: punctuation.separator.annotation.boxlang
-        - include: literal-number
-        - include: special-name
+          push: expression-no-comma
+        - include: expressions-no-comma
     - match: ''
       pop: true
-
-  annotation-attribute-value:
-    - match: (?i)\b(true|false)\b
-      scope: constant.language.boolean.boxlang
-      pop: true
-    - match: '{{storage_types}}'
-      scope: storage.type.boxlang
-      pop: true
-    - match: '{{identifier}}'
-      scope: variable.other.annotation-value.boxlang
-      pop: true
-    - include: literal-number
-    - include: else-pop
 
   import-statement:
     - match: \b(import)\b
