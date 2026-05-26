@@ -15,15 +15,14 @@ def build_url_maps():
     global BIF_URL_MAP, COMPONENT_URL_MAP
     try:
         from ..basecompletions import completions
+        params_data = completions.get('boxlang_function_params', {})
+        for func_name, entry in params_data.items():
+            url_path = entry.get('url_path', '') if isinstance(entry, dict) else ''
+            if url_path:
+                BIF_URL_MAP[func_name.lower()] = url_path
         tags_data = completions.get('boxlang_tags_data', {})
         for tag_name in tags_data:
             COMPONENT_URL_MAP[tag_name] = 'boxlang-language/reference/components/{}'.format(tag_name)
-    except Exception:
-        pass
-    try:
-        from ..basecompletions import function_names
-        for func_name in function_names:
-            BIF_URL_MAP[func_name.lower()] = 'boxlang-language/reference/built-in-functions/bifs/{}'.format(func_name)
     except Exception:
         pass
 
@@ -124,6 +123,8 @@ def _get_boxdoc(name):
                 'description': entry.get('description', ''),
                 'params': entry.get('params', []),
                 'returns': entry.get('returns', ''),
+                'category': entry.get('category', ''),
+                'url_path': entry.get('url_path', ''),
             }
         # 2. Raw functions data (snippet-based, fallback for any BIFs not in params)
         functions_data = completions.get('boxlang_functions_data', {})
@@ -184,11 +185,16 @@ def build_boxdoc(name, attr_or_arg, data):
     """Build documentation HTML."""
     doc = {'side_color': SIDE_COLOR, 'html': {}}
     if data['type'] == 'function':
-        doc['html']['links'] = [{'href': _get_bif_url(name), 'text': 'boxlang.ortusbooks.com/.../{}'.format(name)}]
+        url_path = data.get('url_path', '')
+        url = 'https://boxlang.ortusbooks.com/{}'.format(url_path) if url_path else _get_bif_url(name)
+        doc['html']['links'] = [{'href': url, 'text': 'boxlang.ortusbooks.com/.../{}'.format(name.lower())}]
     else:
-        doc['html']['links'] = [{'href': _get_component_url(name), 'text': 'boxlang.ortusbooks.com/.../{}'.format(name)}]
+        doc['html']['links'] = [{'href': _get_component_url(name), 'text': 'boxlang.ortusbooks.com/.../{}'.format(name.lower())}]
     doc['html']['header'] = _build_header(data, attr_or_arg)
     doc['html']['body'] = ''
+    category = data.get('category', '')
+    if category and not attr_or_arg:
+        doc['html']['body'] += '<p><span class="category-badge">{}</span></p>'.format(_format_category(category))
     if attr_or_arg:
         for param in data.get('params', []):
             if param.get('name', '').lower() == attr_or_arg.lower():
@@ -206,6 +212,11 @@ def build_boxdoc(name, attr_or_arg, data):
                 doc['html']['body'] += documentation_helpers.card(header, body)
     doc['html']['body'] = re.sub('`([^`\\n<>]+)`', '<span class="code">\\1</span>', doc['html']['body'])
     return doc
+
+
+def _format_category(category):
+    """Format a category slug for display (e.g. 'image-manipulation' → 'Image Manipulation')."""
+    return category.replace('-', ' ').replace('_', ' ').title()
 
 def _build_header(data, attr_or_arg=None, include_params=True):
     """Build signature header."""

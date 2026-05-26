@@ -401,6 +401,9 @@ def generate_bif_data(docs_path):
     for fpath in walk_md_files(bif_dir):
         data = parse_bif_file(fpath)
         if data:
+            rel = os.path.relpath(fpath, docs_path).replace(os.sep, '/').lower()
+            data['url_path'] = rel[:-3] if rel.endswith('.md') else rel
+            data['category'] = os.path.basename(os.path.dirname(fpath))
             results[data["name"]] = data
         else:
             missing.append(fpath)
@@ -414,6 +417,9 @@ def generate_bif_data(docs_path):
         for fpath in walk_md_files(ref_dir):
             data = parse_bif_file(fpath)
             if data:
+                rel = os.path.relpath(fpath, docs_path).replace(os.sep, '/').lower()
+                data['url_path'] = rel[:-3] if rel.endswith('.md') else rel
+                data['category'] = module_name
                 results[data["name"]] = data
             else:
                 missing.append(fpath)
@@ -537,13 +543,15 @@ def build_member_functions_json(member_data):
 def build_function_params_json(bif_data):
     """
     Full parameter data for the documentation popup.
-    {FuncName: {description, params: [{name, type, required, description, default}]}}
+    {FuncName: {description, params: [{name, type, required, description, default}], url_path, category}}
     """
     out = {}
     for name, data in sorted(bif_data.items()):
         out[name] = {
             "description": data["description"],
             "params": data["params"],
+            "url_path": data.get("url_path", ""),
+            "category": data.get("category", ""),
         }
     return out
 
