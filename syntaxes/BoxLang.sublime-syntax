@@ -253,8 +253,10 @@ contexts:
         - match: '\b(as)\b'
           scope: keyword.control.import.alias.boxlang
           push: import-alias
-        - match: '\b(bx|java|whatever|coldfusion|cfml):'
-          scope: entity.name.namespace.boxlang
+        - match: '\b(bx|java|whatever|coldfusion|cfml)(:)'
+          captures:
+            1: support.type.import.prefix.boxlang
+            2: punctuation.separator.namespace.boxlang
           push:
             - import-class-name
             - import-path-segments
