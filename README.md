@@ -520,24 +520,11 @@ git commit -m "chore: update completion data from boxlang-docs"
 ### Phase 3
 
 - [ ] Auto-close tags on `>`
-- [ ] Auto-format on save
-- [ ] Auto-compile on save
 
 ### Phase 4
 
 - [ ] Java class introspection
-- [ ] Disk-persistent index
-- [ ] Parallel indexing
-- [ ] Code lens support
-- [ ] Symbol renaming
 
-### Phase 5
-
-- [ ] MCP server integration for live docs
-- [ ] LSP compatibility layer
-- [ ] Debug adapter protocol
-
----
 
 ## Documentation
 
