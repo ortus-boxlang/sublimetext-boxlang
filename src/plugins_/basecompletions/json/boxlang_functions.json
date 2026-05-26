@@ -3394,6 +3394,20 @@
       "(${1:number}$0)"
     ]
   ],
+  "MCP": [
+    "Create a fluent MCP (Model Context Protocol) client for consuming external MCP servers. MCP enables AI applications to connect to tools, data sources, and external systems through a standardized protocol.",
+    [
+      "(${1:baseURL}$0)",
+      "(${1:baseURL}$0)"
+    ]
+  ],
+  "MCPServer": [
+    "Get or create an MCP (Model Context Protocol) server instance for registering and managing tools, resources, and prompts. MCP servers expose your application's capabilities to AI clients through a standardized protocol.",
+    [
+      "($0)",
+      "(${1:name}, ${2:description}, ${3:version}, ${4:cors}, ${5:statsEnabled}, ${6:force}$0)"
+    ]
+  ],
   "Max": [
     "Return larger of two numbers",
     [
@@ -5494,6 +5508,195 @@
       "(${1:value}$0)"
     ]
   ],
+  "aiAgent": [
+    "Create an autonomous AI Agent that can reason, use tools, maintain memory, and execute multi-step tasks.",
+    [
+      "($0)",
+      "(${1:name}, ${2:description}, ${3:instructions}, ${4:model}, ${5:memory}, ${6:tools}, ${7:subAgents}, ${8:params}, ${9:options}$0)"
+    ]
+  ],
+  "aiAgentRegistry": [
+    "Get the singleton global `AIAgentRegistry` instance for registering, resolving, and observing agents.",
+    [
+      "($0)",
+      "($0)"
+    ]
+  ],
+  "aiChat": [
+    "Initiate an AI chat conversation against the default or custom AI Provider with a simple, synchronous interface.",
+    [
+      "(${1:messages}$0)",
+      "(${1:messages}, ${2:params}, ${3:options}$0)"
+    ]
+  ],
+  "aiChatAsync": [
+    "Asynchronous version of `aiChat()` that returns a BoxLang Future for non-blocking AI requests.",
+    [
+      "(${1:messages}$0)",
+      "(${1:messages}, ${2:params}, ${3:options}$0)"
+    ]
+  ],
+  "aiChatRequest": [
+    "Create a reusable AI Chat Request object that can be sent to any AI service provider. This is useful for building requests programmatically, managing conversations, or testing AI workflows.",
+    [
+      "($0)",
+      "(${1:messages}, ${2:params}, ${3:options}, ${4:headers}$0)"
+    ]
+  ],
+  "aiChatStream": [
+    "Stream AI responses in real-time with a callback function, ideal for UI updates and long responses.",
+    [
+      "(${1:messages}, ${2:callback}$0)",
+      "(${1:messages}, ${2:callback}, ${3:params}, ${4:options}$0)"
+    ]
+  ],
+  "aiChunk": [
+    "Chunk text into smaller, manageable segments for AI processing, embeddings, or semantic search. Supports multiple chunking strategies including recursive, character, word, sentence, and paragraph-based splitting.",
+    [
+      "(${1:text}$0)",
+      "(${1:text}, ${2:options}$0)"
+    ]
+  ],
+  "aiDocuments": [
+    "Main entry point for document loading in AI workflows. Returns a fluent document loader for flexible configuration and execution.",
+    [
+      "(${1:source}$0)",
+      "(${1:source}, ${2:config}$0)"
+    ]
+  ],
+  "aiEmbed": [
+    "Generate vector embeddings for text using AI providers. Embeddings are numerical representations that capture semantic meaning, enabling semantic search, similarity comparison, clustering, and recommendations.",
+    [
+      "(${1:input}$0)",
+      "(${1:input}, ${2:params}, ${3:options}$0)"
+    ]
+  ],
+  "aiGlobalSkills": [
+    "Access the globally shared pool of AI skills that are automatically injected into every agent's system context.",
+    [
+      "($0)",
+      "($0)"
+    ]
+  ],
+  "aiImage": [
+    "Generate images from prompts using supported AI providers.",
+    [
+      "($0)",
+      "(${1:prompt}, ${2:params}, ${3:options}$0)"
+    ]
+  ],
+  "aiMemory": [
+    "Create AI memory instances for storing conversation history, context, or knowledge bases.",
+    [
+      "($0)",
+      "(${1:memory}, ${2:key}, ${3:userId}, ${4:conversationId}, ${5:config}$0)"
+    ]
+  ],
+  "aiMessage": [
+    "Build AI message structures fluently using a chainable API. Supports multiple roles (system, user, assistant, tool), template interpolation, and seamless integration with chat requests and pipelines.",
+    [
+      "($0)",
+      "(${1:message}$0)"
+    ]
+  ],
+  "aiModel": [
+    "Create an AI Model runnable that wraps a service provider for use in pipelines. This is the pipeline-friendly version of `aiService()`, designed for composable AI operations.",
+    [
+      "($0)",
+      "(${1:provider}, ${2:apiKey}, ${3:tools}, ${4:options}$0)"
+    ]
+  ],
+  "aiParallel": [
+    "Create a parallel runnable that fans-out a single input to multiple named runnables concurrently and collects results into a named struct.",
+    [
+      "($0)",
+      "(${1:runnables}$0)"
+    ]
+  ],
+  "aiPopulate": [
+    "Populate a class instance, struct, or array from JSON data or struct. This is useful for working with structured AI output, testing, custom workflows, or deserializing cached AI responses.",
+    [
+      "(${1:target}, ${2:data}$0)",
+      "(${1:target}, ${2:data}$0)"
+    ]
+  ],
+  "aiService": [
+    "Get a reference to a registered AI service provider. This is the direct invocation interface for AI providers, as opposed to `aiModel()` which creates pipeline-friendly runnables.",
+    [
+      "($0)",
+      "(${1:provider}, ${2:options}$0)"
+    ]
+  ],
+  "aiSkill": [
+    "Discover and load AI skills from a directory tree, a single file, or create an inline skill definition.",
+    [
+      "($0)",
+      "(${1:path}, ${2:name}, ${3:description}, ${4:content}, ${5:recurse}$0)"
+    ]
+  ],
+  "aiSpeak": [
+    "Convert text to natural-sounding speech audio using an AI provider.",
+    [
+      "($0)",
+      "(${1:text}, ${2:params}, ${3:options}$0)"
+    ]
+  ],
+  "aiTokens": [
+    "Estimate token count for AI processing. Useful for staying within model limits, estimating costs, and optimizing prompt size before sending to AI providers.",
+    [
+      "(${1:text}$0)",
+      "(${1:text}, ${2:options}$0)"
+    ]
+  ],
+  "aiTool": [
+    "Create callable function tools that AI agents can use to gather information or take actions.",
+    [
+      "(${1:name}$0)",
+      "(${1:name}, ${2:description}, ${3:callable}$0)"
+    ]
+  ],
+  "aiToolRegistry": [
+    "Returns the singleton `AIToolRegistry` instance for registering, discovering, and resolving AI tools globally.",
+    [
+      "($0)",
+      "($0)"
+    ]
+  ],
+  "aiTranscribe": [
+    "Transcribe audio from a file path, URL, or binary data into text using an AI provider.",
+    [
+      "($0)",
+      "(${1:audio}, ${2:params}, ${3:options}$0)"
+    ]
+  ],
+  "aiTransform": [
+    "Create an AI Transform Runnable that applies transformation functions to data in AI pipelines. Supports custom closures, built-in transformers, and chainable operations for data processing.",
+    [
+      "(${1:transformer}$0)",
+      "(${1:transformer}, ${2:config}$0)"
+    ]
+  ],
+  "aiTranslate": [
+    "Translate audio from any language directly into English text using an AI provider. Unlike `aiTranscribe()`, the output language is always English regardless of the source audio language.",
+    [
+      "($0)",
+      "(${1:audio}, ${2:params}, ${3:options}$0)"
+    ]
+  ],
+  "aiWebSearch": [
+    "Search the web using the configured or selected provider and return normalized results.",
+    [
+      "(${1:query}$0)",
+      "(${1:query}, ${2:options}$0)"
+    ]
+  ],
+  "aiWebSearchAsync": [
+    "Asynchronous variant of `aiWebSearch()` that returns a `BoxFuture`.",
+    [
+      "(${1:query}$0)",
+      "(${1:query}, ${2:options}$0)"
+    ]
+  ],
   "arrayIsEmpty": [
     "Determines whether an array contains data.",
     [
@@ -5532,92 +5735,92 @@
   "couchbaseGetBucket": [
     "Get a Couchbase bucket instance for bucket-level operations.",
     [
-      "($0)",
-      "($0)"
+      "(${1:cacheName}$0)",
+      "(${1:cacheName}$0)"
     ]
   ],
   "couchbaseGetCluster": [
     "Get the Couchbase cluster connection for cluster-level operations.",
     [
-      "($0)",
-      "($0)"
+      "(${1:cacheName}$0)",
+      "(${1:cacheName}$0)"
     ]
   ],
   "couchbaseGetCollection": [
     "Get a Couchbase collection instance for document operations.",
     [
-      "($0)",
-      "($0)"
+      "(${1:cacheName}$0)",
+      "(${1:cacheName}, ${2:scopeName}, ${3:collectionName}$0)"
     ]
   ],
   "couchbaseGetProvider": [
     "Get the Couchbase cache provider instance for direct access to provider methods.",
     [
-      "($0)",
-      "($0)"
+      "(${1:cacheName}$0)",
+      "(${1:cacheName}$0)"
     ]
   ],
   "couchbaseGetScope": [
     "Get a Couchbase scope instance within a bucket.",
     [
-      "($0)",
-      "($0)"
+      "(${1:cacheName}$0)",
+      "(${1:cacheName}, ${2:scopeName}$0)"
     ]
   ],
   "couchbaseLock": [
     "Acquire a distributed lock using Couchbase, with optional callback for automatic lock management.",
     [
-      "($0)",
-      "($0)"
+      "(${1:cacheName}, ${2:name}$0)",
+      "(${1:cacheName}, ${2:name}, ${3:timeout}, ${4:expires}, ${5:callback}, ${6:throwOnTimeout}$0)"
     ]
   ],
   "couchbaseQuery": [
     "Execute raw N1QL/SQL++ queries with optional parameters.",
     [
-      "($0)",
-      "($0)"
+      "(${1:cacheName}, ${2:query}$0)",
+      "(${1:cacheName}, ${2:query}, ${3:parameters}$0)"
     ]
   ],
   "couchbaseUnlock": [
     "Release a distributed lock acquired with `couchbaseLock()` in manual mode.",
     [
-      "($0)",
-      "($0)"
+      "(${1:cacheName}, ${2:name}, ${3:cas}$0)",
+      "(${1:cacheName}, ${2:name}, ${3:cas}$0)"
     ]
   ],
   "couchbaseVectorAdd": [
     "Store a vector document with text content, embedding, and metadata.",
     [
-      "($0)",
-      "($0)"
+      "(${1:cacheName}, ${2:text}, ${3:embedding}$0)",
+      "(${1:cacheName}, ${2:text}, ${3:embedding}, ${4:metadata}, ${5:userId}, ${6:conversationId}, ${7:id}$0)"
     ]
   ],
   "couchbaseVectorDelete": [
     "Delete a vector document by its ID.",
     [
-      "($0)",
-      "($0)"
+      "(${1:cacheName}, ${2:id}$0)",
+      "(${1:cacheName}, ${2:id}$0)"
     ]
   ],
   "couchbaseVectorGet": [
     "Retrieve a vector document by its ID.",
     [
-      "($0)",
-      "($0)"
+      "(${1:cacheName}, ${2:id}$0)",
+      "(${1:cacheName}, ${2:id}$0)"
     ]
   ],
   "couchbaseVectorList": [
     "List vector documents with optional filters for user, conversation, and metadata.",
     [
-      "($0)",
-      "($0)"
+      "(${1:cacheName}$0)",
+      "(${1:cacheName}, ${2:userId}, ${3:conversationId}, ${4:metadata}, ${5:limit}, ${6:offset}$0)"
     ]
   ],
   "couchbaseVectorSearch": [
     "Search documents by vector similarity using semantic search with KNN (K-Nearest Neighbors).",
     [
-      "($0)",
-      "($0)"
+      "(${1:cacheName}, ${2:collection}, ${3:embedding}$0)",
+      "(${1:cacheName}, ${2:collection}, ${3:embedding}, ${4:limit}, ${5:userId}, ${6:conversationId}, ${7:metadata}$0)"
     ]
   ],
   "createDate": [

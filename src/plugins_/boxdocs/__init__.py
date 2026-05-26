@@ -17,9 +17,13 @@ def build_url_maps():
         from ..basecompletions import completions
         params_data = completions.get('boxlang_function_params', {})
         for func_name, entry in params_data.items():
-            url_path = entry.get('url_path', '') if isinstance(entry, dict) else ''
-            if url_path:
-                BIF_URL_MAP[func_name.lower()] = url_path
+            if not isinstance(entry, dict):
+                continue
+            url_path = entry.get('url_path', '')
+            if not url_path:
+                continue
+            # url_path may be a full URL (external repos) or a relative path
+            BIF_URL_MAP[func_name.lower()] = url_path
         tags_data = completions.get('boxlang_tags_data', {})
         for tag_name in tags_data:
             COMPONENT_URL_MAP[tag_name] = 'boxlang-language/reference/components/{}'.format(tag_name)
@@ -172,7 +176,10 @@ def _extract_params(func_data):
 def _get_bif_url(name):
     """Get documentation URL for a built-in function."""
     if name.lower() in BIF_URL_MAP:
-        return 'https://boxlang.ortusbooks.com/{}'.format(BIF_URL_MAP[name.lower()])
+        stored = BIF_URL_MAP[name.lower()]
+        if stored.startswith('http'):
+            return stored
+        return 'https://boxlang.ortusbooks.com/{}'.format(stored)
     return 'https://boxlang.ortusbooks.com/boxlang-language/reference/built-in-functions/bifs/{}'.format(name)
 
 def _get_component_url(name):
@@ -186,8 +193,15 @@ def build_boxdoc(name, attr_or_arg, data):
     doc = {'side_color': SIDE_COLOR, 'html': {}}
     if data['type'] == 'function':
         url_path = data.get('url_path', '')
-        url = 'https://boxlang.ortusbooks.com/{}'.format(url_path) if url_path else _get_bif_url(name)
-        doc['html']['links'] = [{'href': url, 'text': 'boxlang.ortusbooks.com/.../{}'.format(name.lower())}]
+        if url_path.startswith('http'):
+            url = url_path
+        elif url_path:
+            url = 'https://boxlang.ortusbooks.com/{}'.format(url_path)
+        else:
+            url = _get_bif_url(name)
+        from urllib.parse import urlparse
+        host = urlparse(url).netloc or 'boxlang.ortusbooks.com'
+        doc['html']['links'] = [{'href': url, 'text': '{}/.../{}'.format(host, name.lower())}]
     else:
         doc['html']['links'] = [{'href': _get_component_url(name), 'text': 'boxlang.ortusbooks.com/.../{}'.format(name.lower())}]
     doc['html']['header'] = _build_header(data, attr_or_arg)

@@ -5,17 +5,19 @@ Generate BoxLang completion JSON files from the boxlang-docs repository.
 Usage:
     python3 scripts/generate_completions.py
     python3 scripts/generate_completions.py --docs-path /path/to/boxlang-docs
-    python3 scripts/generate_completions.py --update    # git pull docs repo first
+    python3 scripts/generate_completions.py --update    # git pull all docs repos first
+    python3 scripts/generate_completions.py --clone     # clone missing repos
 
 Outputs (written to src/plugins_/basecompletions/json/):
     boxlang_functions.json         - BIF name → [description, [req_snippet, full_snippet]]
     boxlang_tags.json              - tag name → {attributes: [[req], [opt]], attribute_values: {}}
     boxlang_member_functions.json  - type → {name → [description, [req_snippet, full_snippet]]}
-    boxlang_function_params.json   - BIF name → {description, params: [{name,type,required,description,default}]}
+    boxlang_function_params.json   - BIF name → {description, params: [{name,type,required,description,default}], url_path, category}
 
 Covers:
     - Core BIFs and components (boxlang-language/reference/)
     - Module BIFs and components (boxlang-framework/modularity/ and boxlang-framework/boxlang-plus/modules/)
+    - Extra module repos (e.g. bx-ai-docs at ai.ortusbooks.com)
 """
 
 import argparse
@@ -36,10 +38,29 @@ BIF_ROOT = "boxlang-language/reference/built-in-functions"
 COMPONENT_ROOT = "boxlang-language/reference/components"
 TYPES_ROOT = "boxlang-language/reference/types"
 
-# Directories to scan for module BIFs and components
+# Directories to scan for module BIFs and components within the main docs repo
 MODULE_ROOTS = [
     "boxlang-framework/modularity",
     "boxlang-framework/boxlang-plus/modules",
+]
+
+# Additional standalone docs repos for BoxLang modules.
+# Each entry:
+#   clone_url    - GitHub URL to clone from
+#   default_path - default local path (relative to the parent of this repo)
+#   url_base     - live docs base URL (used to build the href for popup links)
+#   bif_dirs     - list of dirs (relative to repo root) containing BIF .md files
+#   component_dirs - list of dirs containing component .md files
+#   module_name  - display name used as the category label
+EXTRA_DOCS_REPOS = [
+    {
+        "clone_url": "https://github.com/ortus-boxlang/bx-ai-docs",
+        "default_path": os.path.join(os.path.dirname(REPO_ROOT), "boxlang-modules", "bx-ai-docs"),
+        "url_base": "https://ai.ortusbooks.com",
+        "bif_dirs": ["advanced/reference/built-in-functions"],
+        "component_dirs": [],
+        "module_name": "BoxLang AI",
+    },
 ]
 
 # Member function type files → boxlang type name
@@ -161,13 +182,14 @@ def parse_bif_file(path):
                 description = strip_html(stripped)
                 break
 
-    # Arguments table — try ### Arguments first, then ## Arguments
+    # Arguments / Parameters table — handles ### Arguments, ## Arguments, ## Parameters
     params = []
     for i, line in enumerate(lines):
-        if re.match(r"^#{2,3}\s+Arguments", line.strip()):
+        if re.match(r"^#{2,3}\s+(Arguments|Parameters)\s*$", line.strip()):
             rows = parse_table_rows(lines, i + 1)
             for row in rows:
-                arg_name = row.get("argument", row.get("name", row.get("atrribute", row.get("attribute", ""))))
+                arg_name = row.get("argument", row.get("parameter", row.get("name",
+                           row.get("atrribute", row.get("attribute", "")))))
                 arg_name = re.sub(r"[`*]", "", arg_name).strip()
                 if not arg_name:
                     continue
@@ -427,6 +449,33 @@ def generate_bif_data(docs_path):
         if added:
             print(f"    {module_name}: +{added} BIFs")
 
+    # Extra standalone module docs repos
+    for repo in EXTRA_DOCS_REPOS:
+        repo_path = repo["default_path"]
+        if not os.path.isdir(repo_path):
+            print(f"  [skip] {repo['module_name']} docs not found at {repo_path}", file=sys.stderr)
+            continue
+        url_base = repo["url_base"].rstrip("/")
+        module_name = repo["module_name"]
+        before = len(results)
+        for bif_dir_rel in repo.get("bif_dirs", []):
+            bif_dir = os.path.join(repo_path, bif_dir_rel)
+            if not os.path.isdir(bif_dir):
+                continue
+            for fpath in walk_md_files(bif_dir):
+                data = parse_bif_file(fpath)
+                if data:
+                    rel = os.path.relpath(fpath, repo_path).replace(os.sep, '/').lower()
+                    url_path_part = rel[:-3] if rel.endswith('.md') else rel
+                    data['url_path'] = url_base + '/' + url_path_part
+                    data['category'] = module_name
+                    results[data["name"]] = data
+                else:
+                    missing.append(fpath)
+        added = len(results) - before
+        if added:
+            print(f"    {module_name}: +{added} BIFs")
+
     if missing:
         print(f"  [warn] Could not parse {len(missing)} BIF files", file=sys.stderr)
 
@@ -454,6 +503,25 @@ def generate_component_data(docs_path):
             data = parse_component_file(fpath)
             if data:
                 results[data["name"]] = data
+        added = len(results) - before
+        if added:
+            print(f"    {module_name}: +{added} components")
+
+    # Extra standalone module docs repos
+    for repo in EXTRA_DOCS_REPOS:
+        repo_path = repo["default_path"]
+        if not os.path.isdir(repo_path):
+            continue
+        module_name = repo["module_name"]
+        before = len(results)
+        for comp_dir_rel in repo.get("component_dirs", []):
+            comp_dir = os.path.join(repo_path, comp_dir_rel)
+            if not os.path.isdir(comp_dir):
+                continue
+            for fpath in walk_md_files(comp_dir):
+                data = parse_component_file(fpath)
+                if data:
+                    results[data["name"]] = data
         added = len(results) - before
         if added:
             print(f"    {module_name}: +{added} components")
@@ -581,7 +649,7 @@ def main():
 
     docs_path = os.path.abspath(args.docs_path)
 
-    # Clone if requested and missing
+    # Clone / update the main docs repo
     if not os.path.isdir(docs_path):
         if args.clone:
             print(f"Cloning {DOCS_REPO_URL} → {docs_path}")
@@ -593,6 +661,20 @@ def main():
     elif args.update:
         print(f"Updating {docs_path}...")
         subprocess.run(["git", "-C", docs_path, "pull", "--ff-only"], check=True)
+
+    # Clone / update extra module repos
+    for repo in EXTRA_DOCS_REPOS:
+        repo_path = repo["default_path"]
+        if not os.path.isdir(repo_path):
+            if args.clone:
+                print(f"Cloning {repo['clone_url']} → {repo_path}")
+                os.makedirs(os.path.dirname(repo_path), exist_ok=True)
+                subprocess.run(["git", "clone", "--depth=1", repo["clone_url"], repo_path], check=True)
+            else:
+                print(f"  [skip] {repo['module_name']} docs not found at {repo_path} (use --clone)", file=sys.stderr)
+        elif args.update:
+            print(f"Updating {repo['module_name']} docs at {repo_path}...")
+            subprocess.run(["git", "-C", repo_path, "pull", "--ff-only"], check=True)
 
     print(f"Reading docs from: {docs_path}")
 

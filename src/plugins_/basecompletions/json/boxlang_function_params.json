@@ -11870,6 +11870,69 @@
     "url_path": "boxlang-language/reference/built-in-functions/math/log10",
     "category": "math"
   },
+  "MCP": {
+    "description": "Create a fluent MCP (Model Context Protocol) client for consuming external MCP servers. MCP enables AI applications to connect to tools, data sources, and external systems through a standardized protocol.",
+    "params": [
+      {
+        "name": "baseURL",
+        "type": "string",
+        "required": true,
+        "description": "The base URL of the MCP server to connect to",
+        "default": null
+      }
+    ],
+    "url_path": "https://ai.ortusbooks.com/advanced/reference/built-in-functions/mcp",
+    "category": "BoxLang AI"
+  },
+  "MCPServer": {
+    "description": "Get or create an MCP (Model Context Protocol) server instance for registering and managing tools, resources, and prompts. MCP servers expose your application's capabilities to AI clients through a standardized protocol.",
+    "params": [
+      {
+        "name": "name",
+        "type": "string",
+        "required": false,
+        "description": "Unique name/identifier for the server instance",
+        "default": "\"default\""
+      },
+      {
+        "name": "description",
+        "type": "string",
+        "required": false,
+        "description": "Server description for MCP capabilities response",
+        "default": "\"BoxLang AI MCP Server\""
+      },
+      {
+        "name": "version",
+        "type": "string",
+        "required": false,
+        "description": "Server version",
+        "default": "\"1.0.0\""
+      },
+      {
+        "name": "cors",
+        "type": "string",
+        "required": false,
+        "description": "CORS allowed origin (empty = no CORS header, secure by default)",
+        "default": "\"\""
+      },
+      {
+        "name": "statsEnabled",
+        "type": "boolean",
+        "required": false,
+        "description": "Enable statistics tracking",
+        "default": "true"
+      },
+      {
+        "name": "force",
+        "type": "boolean",
+        "required": false,
+        "description": "Force rebuild of server instance even if exists",
+        "default": "false"
+      }
+    ],
+    "url_path": "https://ai.ortusbooks.com/advanced/reference/built-in-functions/mcpserver",
+    "category": "BoxLang AI"
+  },
   "Max": {
     "description": "Return larger of two numbers",
     "params": [
@@ -19389,6 +19452,703 @@
     "url_path": "boxlang-language/reference/built-in-functions/string/yesnoformat",
     "category": "string"
   },
+  "aiAgent": {
+    "description": "Create an autonomous AI Agent that can reason, use tools, maintain memory, and execute multi-step tasks.",
+    "params": [
+      {
+        "name": "name",
+        "type": "string",
+        "required": false,
+        "description": "The agent's name/identifier",
+        "default": "\"BxAi\""
+      },
+      {
+        "name": "description",
+        "type": "string",
+        "required": false,
+        "description": "The agent's role or purpose description",
+        "default": "\"\""
+      },
+      {
+        "name": "instructions",
+        "type": "string",
+        "required": false,
+        "description": "System instructions for agent behavior",
+        "default": "\"\""
+      },
+      {
+        "name": "model",
+        "type": "AiModel",
+        "required": false,
+        "description": "The AI model provider to use",
+        "default": "aiModel()"
+      },
+      {
+        "name": "memory",
+        "type": "any",
+        "required": false,
+        "description": "Single IAiMemory instance or array of memories",
+        "default": "aiMemory()"
+      },
+      {
+        "name": "tools",
+        "type": "array",
+        "required": false,
+        "description": "Array of Tool objects the agent can use",
+        "default": "[]"
+      },
+      {
+        "name": "subAgents",
+        "type": "array",
+        "required": false,
+        "description": "Array of sub-agents for task delegation",
+        "default": "[]"
+      },
+      {
+        "name": "params",
+        "type": "struct",
+        "required": false,
+        "description": "Additional provider parameters (temperature, max\\_tokens, etc.)",
+        "default": "{}"
+      },
+      {
+        "name": "options",
+        "type": "struct",
+        "required": false,
+        "description": "Additional options (timeout, logging, etc.)",
+        "default": "{}"
+      }
+    ],
+    "url_path": "https://ai.ortusbooks.com/advanced/reference/built-in-functions/aiagent",
+    "category": "BoxLang AI"
+  },
+  "aiAgentRegistry": {
+    "description": "Get the singleton global `AIAgentRegistry` instance for registering, resolving, and observing agents.",
+    "params": [],
+    "url_path": "https://ai.ortusbooks.com/advanced/reference/built-in-functions/aiagentregistry",
+    "category": "BoxLang AI"
+  },
+  "aiChat": {
+    "description": "Initiate an AI chat conversation against the default or custom AI Provider with a simple, synchronous interface.",
+    "params": [
+      {
+        "name": "messages",
+        "type": "any",
+        "required": true,
+        "description": "The messages to pass to the AI model. Can be a string, struct, array of messages, or AiMessage object",
+        "default": null
+      },
+      {
+        "name": "params",
+        "type": "struct",
+        "required": false,
+        "description": "Request parameters for the AI provider (e.g., `{ temperature: 0.5, max_tokens: 100, model: \"gpt-3.5-turbo\" }`)",
+        "default": null
+      },
+      {
+        "name": "options",
+        "type": "struct",
+        "required": false,
+        "description": "Request options for controlling behavior",
+        "default": null
+      }
+    ],
+    "url_path": "https://ai.ortusbooks.com/advanced/reference/built-in-functions/aichat",
+    "category": "BoxLang AI"
+  },
+  "aiChatAsync": {
+    "description": "Asynchronous version of `aiChat()` that returns a BoxLang Future for non-blocking AI requests.",
+    "params": [
+      {
+        "name": "messages",
+        "type": "any",
+        "required": true,
+        "description": "The messages to pass to the AI model (string, struct, array, or AiMessage)",
+        "default": null
+      },
+      {
+        "name": "params",
+        "type": "struct",
+        "required": false,
+        "description": "Request parameters for the AI provider",
+        "default": null
+      },
+      {
+        "name": "options",
+        "type": "struct",
+        "required": false,
+        "description": "Request options (provider, apiKey, returnFormat, timeout, logRequest, logRequestToConsole, logResponse, logResponseToConsole)",
+        "default": null
+      }
+    ],
+    "url_path": "https://ai.ortusbooks.com/advanced/reference/built-in-functions/aichatasync",
+    "category": "BoxLang AI"
+  },
+  "aiChatRequest": {
+    "description": "Create a reusable AI Chat Request object that can be sent to any AI service provider. This is useful for building requests programmatically, managing conversations, or testing AI workflows.",
+    "params": [
+      {
+        "name": "messages",
+        "type": "any",
+        "required": false,
+        "description": "Initial message(s) to add. Can be a string, struct, array of messages, or AiMessage object",
+        "default": "null"
+      },
+      {
+        "name": "params",
+        "type": "struct",
+        "required": false,
+        "description": "Request parameters for the AI provider (e.g., `{ temperature: 0.5, max_tokens: 100, model: \"gpt-3.5-turbo\" }`)",
+        "default": "{}"
+      },
+      {
+        "name": "options",
+        "type": "struct",
+        "required": false,
+        "description": "Request options (e.g., `{ provider: \"openai\", apiKey: \"...\", returnFormat: \"single\" }`)",
+        "default": "{}"
+      },
+      {
+        "name": "headers",
+        "type": "struct",
+        "required": false,
+        "description": "Custom HTTP headers to include with the request",
+        "default": "{}"
+      }
+    ],
+    "url_path": "https://ai.ortusbooks.com/advanced/reference/built-in-functions/aichatrequest",
+    "category": "BoxLang AI"
+  },
+  "aiChatStream": {
+    "description": "Stream AI responses in real-time with a callback function, ideal for UI updates and long responses.",
+    "params": [
+      {
+        "name": "messages",
+        "type": "any",
+        "required": true,
+        "description": "The messages to pass to the AI model",
+        "default": null
+      },
+      {
+        "name": "callback",
+        "type": "function",
+        "required": true,
+        "description": "Function called with each chunk: `function(chunk)`",
+        "default": null
+      },
+      {
+        "name": "params",
+        "type": "struct",
+        "required": false,
+        "description": "Request parameters for the AI provider",
+        "default": null
+      },
+      {
+        "name": "options",
+        "type": "struct",
+        "required": false,
+        "description": "Request options (provider, apiKey, timeout, logRequest, logRequestToConsole, logResponse, logResponseToConsole)",
+        "default": null
+      }
+    ],
+    "url_path": "https://ai.ortusbooks.com/advanced/reference/built-in-functions/aichatstream",
+    "category": "BoxLang AI"
+  },
+  "aiChunk": {
+    "description": "Chunk text into smaller, manageable segments for AI processing, embeddings, or semantic search. Supports multiple chunking strategies including recursive, character, word, sentence, and paragraph-based splitting.",
+    "params": [
+      {
+        "name": "text",
+        "type": "string",
+        "required": true,
+        "description": "The text to chunk into segments",
+        "default": "-"
+      },
+      {
+        "name": "options",
+        "type": "struct",
+        "required": false,
+        "description": "Configuration struct for chunking behavior",
+        "default": "{}"
+      }
+    ],
+    "url_path": "https://ai.ortusbooks.com/advanced/reference/built-in-functions/aichunk",
+    "category": "BoxLang AI"
+  },
+  "aiDocuments": {
+    "description": "Main entry point for document loading in AI workflows. Returns a fluent document loader for flexible configuration and execution.",
+    "params": [
+      {
+        "name": "source",
+        "type": "string",
+        "required": true,
+        "description": "Source to load from: file path, directory, URL, or SQL query",
+        "default": null
+      },
+      {
+        "name": "config",
+        "type": "struct",
+        "required": false,
+        "description": "Configuration options for the loader",
+        "default": null
+      }
+    ],
+    "url_path": "https://ai.ortusbooks.com/advanced/reference/built-in-functions/aidocuments",
+    "category": "BoxLang AI"
+  },
+  "aiEmbed": {
+    "description": "Generate vector embeddings for text using AI providers. Embeddings are numerical representations that capture semantic meaning, enabling semantic search, similarity comparison, clustering, and recommendations.",
+    "params": [
+      {
+        "name": "input",
+        "type": "any",
+        "required": true,
+        "description": "The text or array of texts to generate embeddings for",
+        "default": "-"
+      },
+      {
+        "name": "params",
+        "type": "struct",
+        "required": false,
+        "description": "Request parameters for the AI provider (e.g., `{ model: \"text-embedding-3-large\" }`)",
+        "default": "{}"
+      },
+      {
+        "name": "options",
+        "type": "struct",
+        "required": false,
+        "description": "Request options (e.g., `{ provider: \"openai\", returnFormat: \"embeddings\" }`)",
+        "default": "{}"
+      }
+    ],
+    "url_path": "https://ai.ortusbooks.com/advanced/reference/built-in-functions/aiembed",
+    "category": "BoxLang AI"
+  },
+  "aiGlobalSkills": {
+    "description": "Access the globally shared pool of AI skills that are automatically injected into every agent's system context.",
+    "params": [],
+    "url_path": "https://ai.ortusbooks.com/advanced/reference/built-in-functions/aiglobalskills",
+    "category": "BoxLang AI"
+  },
+  "aiImage": {
+    "description": "Generate images from prompts using supported AI providers.",
+    "params": [
+      {
+        "name": "prompt",
+        "type": "string",
+        "required": false,
+        "description": "Text prompt. If omitted, returns fluent `AiImageRequest` builder",
+        "default": null
+      },
+      {
+        "name": "params",
+        "type": "struct",
+        "required": false,
+        "description": "Provider API parameters (`model`, `n`, `size`, `quality`, `style`, `format`)",
+        "default": null
+      },
+      {
+        "name": "options",
+        "type": "struct",
+        "required": false,
+        "description": "High-level options (`provider`, `apiKey`, `outputFile`, logging, timeout)",
+        "default": null
+      }
+    ],
+    "url_path": "https://ai.ortusbooks.com/advanced/reference/built-in-functions/aiimage",
+    "category": "BoxLang AI"
+  },
+  "aiMemory": {
+    "description": "Create AI memory instances for storing conversation history, context, or knowledge bases.",
+    "params": [
+      {
+        "name": "memory",
+        "type": "string",
+        "required": false,
+        "description": "Memory type to create",
+        "default": "(config)"
+      },
+      {
+        "name": "key",
+        "type": "string",
+        "required": false,
+        "description": "Unique identifier for memory instance",
+        "default": "UUID"
+      },
+      {
+        "name": "userId",
+        "type": "string",
+        "required": false,
+        "description": "User identifier for multi-tenant isolation",
+        "default": "\"\""
+      },
+      {
+        "name": "conversationId",
+        "type": "string",
+        "required": false,
+        "description": "Conversation identifier for multiple conversations",
+        "default": "\"\""
+      },
+      {
+        "name": "config",
+        "type": "struct",
+        "required": false,
+        "description": "Configuration struct for the memory instance",
+        "default": "{}"
+      }
+    ],
+    "url_path": "https://ai.ortusbooks.com/advanced/reference/built-in-functions/aimemory",
+    "category": "BoxLang AI"
+  },
+  "aiMessage": {
+    "description": "Build AI message structures fluently using a chainable API. Supports multiple roles (system, user, assistant, tool), template interpolation, and seamless integration with chat requests and pipelines.",
+    "params": [
+      {
+        "name": "message",
+        "type": "any",
+        "required": false,
+        "description": "Initial message to add. Can be a string, struct, array, or AiMessage object",
+        "default": "null"
+      }
+    ],
+    "url_path": "https://ai.ortusbooks.com/advanced/reference/built-in-functions/aimessage",
+    "category": "BoxLang AI"
+  },
+  "aiModel": {
+    "description": "Create an AI Model runnable that wraps a service provider for use in pipelines. This is the pipeline-friendly version of `aiService()`, designed for composable AI operations.",
+    "params": [
+      {
+        "name": "provider",
+        "type": "string",
+        "required": false,
+        "description": "The provider to use (openai, claude, ollama, etc.)",
+        "default": "(config)"
+      },
+      {
+        "name": "apiKey",
+        "type": "string",
+        "required": false,
+        "description": "Optional API key override",
+        "default": "(config/env)"
+      },
+      {
+        "name": "tools",
+        "type": "any",
+        "required": false,
+        "description": "ITool instance or array of Tool instances for tool-augmented generation",
+        "default": "[]"
+      },
+      {
+        "name": "options",
+        "type": "struct",
+        "required": false,
+        "description": "Service configuration options (baseURL, timeout, headers, etc.) passed to provider (v2.1.0+)",
+        "default": "{}"
+      }
+    ],
+    "url_path": "https://ai.ortusbooks.com/advanced/reference/built-in-functions/aimodel",
+    "category": "BoxLang AI"
+  },
+  "aiParallel": {
+    "description": "Create a parallel runnable that fans-out a single input to multiple named runnables concurrently and collects results into a named struct.",
+    "params": [
+      {
+        "name": "runnables",
+        "type": "struct",
+        "required": false,
+        "description": "Named struct where each key becomes a result key and each value is an `IAiRunnable` (model, agent, pipeline, etc.)",
+        "default": null
+      }
+    ],
+    "url_path": "https://ai.ortusbooks.com/advanced/reference/built-in-functions/aiparallel",
+    "category": "BoxLang AI"
+  },
+  "aiPopulate": {
+    "description": "Populate a class instance, struct, or array from JSON data or struct. This is useful for working with structured AI output, testing, custom workflows, or deserializing cached AI responses.",
+    "params": [
+      {
+        "name": "target",
+        "type": "any",
+        "required": true,
+        "description": "The target to populate - class instance, array with single instance `[new MyClass()]`, or struct template",
+        "default": null
+      },
+      {
+        "name": "data",
+        "type": "any",
+        "required": true,
+        "description": "The data to populate from - JSON string or struct",
+        "default": null
+      }
+    ],
+    "url_path": "https://ai.ortusbooks.com/advanced/reference/built-in-functions/aipopulate",
+    "category": "BoxLang AI"
+  },
+  "aiService": {
+    "description": "Get a reference to a registered AI service provider. This is the direct invocation interface for AI providers, as opposed to `aiModel()` which creates pipeline-friendly runnables.",
+    "params": [
+      {
+        "name": "provider",
+        "type": "string",
+        "required": false,
+        "description": "The provider to use. If not provided, uses default from module configuration",
+        "default": "(config)"
+      },
+      {
+        "name": "options",
+        "type": "string/struct",
+        "required": false,
+        "description": "Configuration options or simple API key string. If string, treated as API key. If struct, can include: `apiKey`, `baseURL`, `timeout`, `headers`, `logRequest`, `logResponse`, `maxRetries`, etc. If not provided, uses configuration or `_API_KEY` environment variable",
+        "default": "(config/env)"
+      }
+    ],
+    "url_path": "https://ai.ortusbooks.com/advanced/reference/built-in-functions/aiservice",
+    "category": "BoxLang AI"
+  },
+  "aiSkill": {
+    "description": "Discover and load AI skills from a directory tree, a single file, or create an inline skill definition.",
+    "params": [
+      {
+        "name": "path",
+        "type": "string",
+        "required": false,
+        "description": "A directory or file path. If a directory, scanned recursively for `SKILL.md` files. If a file path, loads that skill directly. Defaults to `.ai/skills`.",
+        "default": null
+      },
+      {
+        "name": "name",
+        "type": "string",
+        "required": false,
+        "description": "Unique name for an inline skill (used when no `path` is given).",
+        "default": null
+      },
+      {
+        "name": "description",
+        "type": "string",
+        "required": false,
+        "description": "What the skill does and when to use it. If omitted, uses the first paragraph of the skill's markdown content.",
+        "default": null
+      },
+      {
+        "name": "content",
+        "type": "string",
+        "required": false,
+        "description": "Full instruction content for an inline skill (body text after YAML frontmatter).",
+        "default": null
+      },
+      {
+        "name": "recurse",
+        "type": "boolean",
+        "required": false,
+        "description": "Whether to scan subdirectories recursively when `path` is a directory. Defaults to `true`.",
+        "default": null
+      }
+    ],
+    "url_path": "https://ai.ortusbooks.com/advanced/reference/built-in-functions/aiskill",
+    "category": "BoxLang AI"
+  },
+  "aiSpeak": {
+    "description": "Convert text to natural-sounding speech audio using an AI provider.",
+    "params": [
+      {
+        "name": "text",
+        "type": "string",
+        "required": false,
+        "description": "The text content to synthesize into speech",
+        "default": null
+      },
+      {
+        "name": "params",
+        "type": "struct",
+        "required": false,
+        "description": "Provider API parameters sent directly to the AI provider (e.g. `model`, `voice`, `speed`)",
+        "default": null
+      },
+      {
+        "name": "options",
+        "type": "struct",
+        "required": false,
+        "description": "Module-level behavior options (provider, output format, file output, logging)",
+        "default": null
+      }
+    ],
+    "url_path": "https://ai.ortusbooks.com/advanced/reference/built-in-functions/aispeak",
+    "category": "BoxLang AI"
+  },
+  "aiTokens": {
+    "description": "Estimate token count for AI processing. Useful for staying within model limits, estimating costs, and optimizing prompt size before sending to AI providers.",
+    "params": [
+      {
+        "name": "text",
+        "type": "any",
+        "required": true,
+        "description": "String or array of strings to count tokens for",
+        "default": "-"
+      },
+      {
+        "name": "options",
+        "type": "struct",
+        "required": false,
+        "description": "Configuration struct for token estimation",
+        "default": "{}"
+      }
+    ],
+    "url_path": "https://ai.ortusbooks.com/advanced/reference/built-in-functions/aitokens",
+    "category": "BoxLang AI"
+  },
+  "aiTool": {
+    "description": "Create callable function tools that AI agents can use to gather information or take actions.",
+    "params": [
+      {
+        "name": "name",
+        "type": "string",
+        "required": true,
+        "description": "Unique function name (used by AI to identify the tool)",
+        "default": null
+      },
+      {
+        "name": "description",
+        "type": "string",
+        "required": false,
+        "description": "Describes what the tool does (helps AI decide when to use it)",
+        "default": null
+      },
+      {
+        "name": "callable",
+        "type": "function",
+        "required": false,
+        "description": "The function the AI will execute",
+        "default": null
+      }
+    ],
+    "url_path": "https://ai.ortusbooks.com/advanced/reference/built-in-functions/aitool",
+    "category": "BoxLang AI"
+  },
+  "aiToolRegistry": {
+    "description": "Returns the singleton `AIToolRegistry` instance for registering, discovering, and resolving AI tools globally.",
+    "params": [],
+    "url_path": "https://ai.ortusbooks.com/advanced/reference/built-in-functions/aitoolregistry",
+    "category": "BoxLang AI"
+  },
+  "aiTranscribe": {
+    "description": "Transcribe audio from a file path, URL, or binary data into text using an AI provider.",
+    "params": [
+      {
+        "name": "audio",
+        "type": "string or binary",
+        "required": false,
+        "description": "Audio source: local file path, public URL, or raw binary data",
+        "default": null
+      },
+      {
+        "name": "params",
+        "type": "struct",
+        "required": false,
+        "description": "Provider API parameters sent directly to the AI provider (e.g. `model`, `temperature`)",
+        "default": null
+      },
+      {
+        "name": "options",
+        "type": "struct",
+        "required": false,
+        "description": "Module-level behavior options (provider, return format, timestamps, etc.)",
+        "default": null
+      }
+    ],
+    "url_path": "https://ai.ortusbooks.com/advanced/reference/built-in-functions/aitranscribe",
+    "category": "BoxLang AI"
+  },
+  "aiTransform": {
+    "description": "Create an AI Transform Runnable that applies transformation functions to data in AI pipelines. Supports custom closures, built-in transformers, and chainable operations for data processing.",
+    "params": [
+      {
+        "name": "transformer",
+        "type": "any",
+        "required": true,
+        "description": "The transformation function (closure), internal transformer name, or full classpath to transformer",
+        "default": "-"
+      },
+      {
+        "name": "config",
+        "type": "struct",
+        "required": false,
+        "description": "Optional configuration struct for the transformer",
+        "default": "{}"
+      }
+    ],
+    "url_path": "https://ai.ortusbooks.com/advanced/reference/built-in-functions/aitransform",
+    "category": "BoxLang AI"
+  },
+  "aiTranslate": {
+    "description": "Translate audio from any language directly into English text using an AI provider. Unlike `aiTranscribe()`, the output language is always English regardless of the source audio language.",
+    "params": [
+      {
+        "name": "audio",
+        "type": "string or binary",
+        "required": false,
+        "description": "Audio source: local file path, public URL, or raw binary data",
+        "default": null
+      },
+      {
+        "name": "params",
+        "type": "struct",
+        "required": false,
+        "description": "Provider API parameters sent directly to the AI provider (e.g. `model`, `temperature`)",
+        "default": null
+      },
+      {
+        "name": "options",
+        "type": "struct",
+        "required": false,
+        "description": "Module-level behavior options (provider, return format, etc.)",
+        "default": null
+      }
+    ],
+    "url_path": "https://ai.ortusbooks.com/advanced/reference/built-in-functions/aitranslate",
+    "category": "BoxLang AI"
+  },
+  "aiWebSearch": {
+    "description": "Search the web using the configured or selected provider and return normalized results.",
+    "params": [
+      {
+        "name": "query",
+        "type": "string",
+        "required": true,
+        "description": "Search query text",
+        "default": null
+      },
+      {
+        "name": "options",
+        "type": "struct",
+        "required": false,
+        "description": "Search options including provider, limits, filters, and logging",
+        "default": null
+      }
+    ],
+    "url_path": "https://ai.ortusbooks.com/advanced/reference/built-in-functions/aiwebsearch",
+    "category": "BoxLang AI"
+  },
+  "aiWebSearchAsync": {
+    "description": "Asynchronous variant of `aiWebSearch()` that returns a `BoxFuture`.",
+    "params": [
+      {
+        "name": "query",
+        "type": "string",
+        "required": true,
+        "description": "Search query text",
+        "default": null
+      },
+      {
+        "name": "options",
+        "type": "struct",
+        "required": false,
+        "description": "Same options as `aiWebSearch()`",
+        "default": null
+      }
+    ],
+    "url_path": "https://ai.ortusbooks.com/advanced/reference/built-in-functions/aiwebsearchasync",
+    "category": "BoxLang AI"
+  },
   "arrayIsEmpty": {
     "description": "Determines whether an array contains data.",
     "params": [
@@ -19496,79 +20256,400 @@
   },
   "couchbaseGetBucket": {
     "description": "Get a Couchbase bucket instance for bucket-level operations.",
-    "params": [],
+    "params": [
+      {
+        "name": "cacheName",
+        "type": "String",
+        "required": true,
+        "description": "Name of the cache configuration",
+        "default": null
+      }
+    ],
     "url_path": "boxlang-framework/boxlang-plus/modules/bx-couchbase/reference/built-in-functions/couchbasegetbucket",
     "category": "bx-couchbase"
   },
   "couchbaseGetCluster": {
     "description": "Get the Couchbase cluster connection for cluster-level operations.",
-    "params": [],
+    "params": [
+      {
+        "name": "cacheName",
+        "type": "String",
+        "required": true,
+        "description": "Name of the cache configuration",
+        "default": null
+      }
+    ],
     "url_path": "boxlang-framework/boxlang-plus/modules/bx-couchbase/reference/built-in-functions/couchbasegetcluster",
     "category": "bx-couchbase"
   },
   "couchbaseGetCollection": {
     "description": "Get a Couchbase collection instance for document operations.",
-    "params": [],
+    "params": [
+      {
+        "name": "cacheName",
+        "type": "String",
+        "required": true,
+        "description": "Name of the cache configuration",
+        "default": "-"
+      },
+      {
+        "name": "scopeName",
+        "type": "String",
+        "required": false,
+        "description": "Name of the scope within the bucket",
+        "default": "_default"
+      },
+      {
+        "name": "collectionName",
+        "type": "String",
+        "required": false,
+        "description": "Name of the collection within the scope",
+        "default": "_default"
+      }
+    ],
     "url_path": "boxlang-framework/boxlang-plus/modules/bx-couchbase/reference/built-in-functions/couchbasegetcollection",
     "category": "bx-couchbase"
   },
   "couchbaseGetProvider": {
     "description": "Get the Couchbase cache provider instance for direct access to provider methods.",
-    "params": [],
+    "params": [
+      {
+        "name": "cacheName",
+        "type": "String",
+        "required": true,
+        "description": "Name of the cache configuration",
+        "default": null
+      }
+    ],
     "url_path": "boxlang-framework/boxlang-plus/modules/bx-couchbase/reference/built-in-functions/couchbasegetprovider",
     "category": "bx-couchbase"
   },
   "couchbaseGetScope": {
     "description": "Get a Couchbase scope instance within a bucket.",
-    "params": [],
+    "params": [
+      {
+        "name": "cacheName",
+        "type": "String",
+        "required": true,
+        "description": "Name of the cache configuration",
+        "default": "-"
+      },
+      {
+        "name": "scopeName",
+        "type": "String",
+        "required": false,
+        "description": "Name of the scope within the bucket",
+        "default": "_default"
+      }
+    ],
     "url_path": "boxlang-framework/boxlang-plus/modules/bx-couchbase/reference/built-in-functions/couchbasegetscope",
     "category": "bx-couchbase"
   },
   "couchbaseLock": {
     "description": "Acquire a distributed lock using Couchbase, with optional callback for automatic lock management.",
-    "params": [],
+    "params": [
+      {
+        "name": "cacheName",
+        "type": "String",
+        "required": true,
+        "description": "Name of the Couchbase cache for locking",
+        "default": "-"
+      },
+      {
+        "name": "name",
+        "type": "String",
+        "required": true,
+        "description": "Unique name of the lock",
+        "default": "-"
+      },
+      {
+        "name": "timeout",
+        "type": "Integer",
+        "required": false,
+        "description": "Maximum seconds to wait for lock acquisition",
+        "default": "5"
+      },
+      {
+        "name": "expires",
+        "type": "Integer",
+        "required": false,
+        "description": "Lock expiration in seconds (max 30)",
+        "default": "30"
+      },
+      {
+        "name": "callback",
+        "type": "Function",
+        "required": false,
+        "description": "Function to execute while holding lock",
+        "default": "-"
+      },
+      {
+        "name": "throwOnTimeout",
+        "type": "Boolean",
+        "required": false,
+        "description": "Throw exception if lock not acquired",
+        "default": "true"
+      }
+    ],
     "url_path": "boxlang-framework/boxlang-plus/modules/bx-couchbase/reference/built-in-functions/couchbaselock",
     "category": "bx-couchbase"
   },
   "couchbaseQuery": {
     "description": "Execute raw N1QL/SQL++ queries with optional parameters.",
-    "params": [],
+    "params": [
+      {
+        "name": "cacheName",
+        "type": "String",
+        "required": true,
+        "description": "Name of the cache configuration",
+        "default": null
+      },
+      {
+        "name": "query",
+        "type": "String",
+        "required": true,
+        "description": "N1QL/SQL++ query to execute",
+        "default": null
+      },
+      {
+        "name": "parameters",
+        "type": "Struct",
+        "required": false,
+        "description": "Named parameters for the query",
+        "default": null
+      }
+    ],
     "url_path": "boxlang-framework/boxlang-plus/modules/bx-couchbase/reference/built-in-functions/couchbasequery",
     "category": "bx-couchbase"
   },
   "couchbaseUnlock": {
     "description": "Release a distributed lock acquired with `couchbaseLock()` in manual mode.",
-    "params": [],
+    "params": [
+      {
+        "name": "cacheName",
+        "type": "String",
+        "required": true,
+        "description": "Name of the Couchbase cache used for locking",
+        "default": null
+      },
+      {
+        "name": "name",
+        "type": "String",
+        "required": true,
+        "description": "Unique name of the lock to release",
+        "default": null
+      },
+      {
+        "name": "cas",
+        "type": "Long",
+        "required": true,
+        "description": "CAS value returned from `couchbaseLock()`",
+        "default": null
+      }
+    ],
     "url_path": "boxlang-framework/boxlang-plus/modules/bx-couchbase/reference/built-in-functions/couchbaseunlock",
     "category": "bx-couchbase"
   },
   "couchbaseVectorAdd": {
     "description": "Store a vector document with text content, embedding, and metadata.",
-    "params": [],
+    "params": [
+      {
+        "name": "cacheName",
+        "type": "String",
+        "required": true,
+        "description": "Name of the cache configuration",
+        "default": "-"
+      },
+      {
+        "name": "text",
+        "type": "String",
+        "required": true,
+        "description": "Text content to store",
+        "default": "-"
+      },
+      {
+        "name": "embedding",
+        "type": "Array",
+        "required": true,
+        "description": "Vector embedding array (e.g., 1536 dimensions)",
+        "default": "-"
+      },
+      {
+        "name": "metadata",
+        "type": "Struct",
+        "required": false,
+        "description": "Custom metadata to store with document",
+        "default": "{}"
+      },
+      {
+        "name": "userId",
+        "type": "String",
+        "required": false,
+        "description": "User ID to associate with document",
+        "default": "-"
+      },
+      {
+        "name": "conversationId",
+        "type": "String",
+        "required": false,
+        "description": "Conversation ID to associate with document",
+        "default": "-"
+      },
+      {
+        "name": "id",
+        "type": "String",
+        "required": false,
+        "description": "Custom document ID (otherwise generates `vec_UUID`)",
+        "default": "Auto-generated"
+      }
+    ],
     "url_path": "boxlang-framework/boxlang-plus/modules/bx-couchbase/reference/built-in-functions/couchbasevectoradd",
     "category": "bx-couchbase"
   },
   "couchbaseVectorDelete": {
     "description": "Delete a vector document by its ID.",
-    "params": [],
+    "params": [
+      {
+        "name": "cacheName",
+        "type": "String",
+        "required": true,
+        "description": "Name of the cache configuration",
+        "default": null
+      },
+      {
+        "name": "id",
+        "type": "String",
+        "required": true,
+        "description": "Document ID to delete",
+        "default": null
+      }
+    ],
     "url_path": "boxlang-framework/boxlang-plus/modules/bx-couchbase/reference/built-in-functions/couchbasevectordelete",
     "category": "bx-couchbase"
   },
   "couchbaseVectorGet": {
     "description": "Retrieve a vector document by its ID.",
-    "params": [],
+    "params": [
+      {
+        "name": "cacheName",
+        "type": "String",
+        "required": true,
+        "description": "Name of the cache configuration",
+        "default": null
+      },
+      {
+        "name": "id",
+        "type": "String",
+        "required": true,
+        "description": "Document ID to retrieve",
+        "default": null
+      }
+    ],
     "url_path": "boxlang-framework/boxlang-plus/modules/bx-couchbase/reference/built-in-functions/couchbasevectorget",
     "category": "bx-couchbase"
   },
   "couchbaseVectorList": {
     "description": "List vector documents with optional filters for user, conversation, and metadata.",
-    "params": [],
+    "params": [
+      {
+        "name": "cacheName",
+        "type": "String",
+        "required": true,
+        "description": "Name of the cache configuration",
+        "default": "-"
+      },
+      {
+        "name": "userId",
+        "type": "String",
+        "required": false,
+        "description": "Filter by user ID",
+        "default": "-"
+      },
+      {
+        "name": "conversationId",
+        "type": "String",
+        "required": false,
+        "description": "Filter by conversation ID",
+        "default": "-"
+      },
+      {
+        "name": "metadata",
+        "type": "Struct",
+        "required": false,
+        "description": "Filter by metadata fields",
+        "default": "-"
+      },
+      {
+        "name": "limit",
+        "type": "Number",
+        "required": false,
+        "description": "Maximum number of results",
+        "default": "100"
+      },
+      {
+        "name": "offset",
+        "type": "Number",
+        "required": false,
+        "description": "Number of results to skip (pagination)",
+        "default": "0"
+      }
+    ],
     "url_path": "boxlang-framework/boxlang-plus/modules/bx-couchbase/reference/built-in-functions/couchbasevectorlist",
     "category": "bx-couchbase"
   },
   "couchbaseVectorSearch": {
     "description": "Search documents by vector similarity using semantic search with KNN (K-Nearest Neighbors).",
-    "params": [],
+    "params": [
+      {
+        "name": "cacheName",
+        "type": "String",
+        "required": true,
+        "description": "Name of the cache configuration",
+        "default": "-"
+      },
+      {
+        "name": "collection",
+        "type": "String",
+        "required": true,
+        "description": "Full collection path: `bucket.scope.collection`",
+        "default": "-"
+      },
+      {
+        "name": "embedding",
+        "type": "Array",
+        "required": true,
+        "description": "Vector embedding to search for (e.g., 1536 dimensions)",
+        "default": "-"
+      },
+      {
+        "name": "limit",
+        "type": "Number",
+        "required": false,
+        "description": "Maximum number of results to return",
+        "default": "10"
+      },
+      {
+        "name": "userId",
+        "type": "String",
+        "required": false,
+        "description": "Filter results by user ID",
+        "default": "-"
+      },
+      {
+        "name": "conversationId",
+        "type": "String",
+        "required": false,
+        "description": "Filter results by conversation ID",
+        "default": "-"
+      },
+      {
+        "name": "metadata",
+        "type": "Struct",
+        "required": false,
+        "description": "Additional metadata filters",
+        "default": "-"
+      }
+    ],
     "url_path": "boxlang-framework/boxlang-plus/modules/bx-couchbase/reference/built-in-functions/couchbasevectorsearch",
     "category": "bx-couchbase"
   },
