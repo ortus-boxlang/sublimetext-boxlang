@@ -28,9 +28,9 @@ Fallback mapping intent:
 
 ### Intelligent Completions
 
-- **560 Built-in Functions** with parameter hints and snippet insertion
-- **41 BoxLang Tags** (`bx:` components) with attribute completions
-- **72 Member Functions** for native types (string, array, struct, query, numeric)
+- **825+ Built-in Functions** (563 core + 262 module) with parameter hints and snippet insertion
+- **81+ BoxLang Tags** (`bx:` components) (49 core + 32 module) with attribute completions
+- **229 Member Functions** for native types (string, array, struct, query, numeric, datetime, list, xml)
 - **Dot-Path Completions** for `import`, `new`, and `createObject()` statements
 - **Type-Aware Completions** based on inferred variable types
 - **Component Indexing** with inheritance resolution for project-wide completions
@@ -379,6 +379,79 @@ Medium-depth type resolution from:
 - Variable assignment tracing
 - Dot chain resolution
 - Component metadata lookup
+
+---
+
+## Updating Completion Data
+
+Completion data (BIFs, tags, member functions, and inline doc parameters) is generated from the
+[boxlang-docs](https://github.com/ortus-boxlang/boxlang-docs) repository using
+[scripts/generate_completions.py](scripts/generate_completions.py).
+
+### What gets generated
+
+| File | Contents |
+| ---- | -------- |
+| `boxlang_functions.json` | 825+ BIF names → description + snippet pairs |
+| `boxlang_tags.json` | 81+ tag names → required/optional attribute lists |
+| `boxlang_member_functions.json` | Member methods per type (string, array, struct, …) |
+| `boxlang_function_params.json` | Full parameter data used by F1/hover doc popups |
+
+Coverage includes **core** BoxLang plus all **modules**:
+compat-cfml, CSRF, ESAPI, image-manipulation, password-encryption, RSS, WDDX, web-support,
+ui-compatibility, bx-couchbase, bx-csv, bx-jwt, bx-ldap, bx-meilisearch, bx-plus, bx-plus-pdf,
+bx-redis, bx-spreadsheet.
+
+### SOP — Running the generator
+
+#### First time (clone the docs repo)
+
+```bash
+python3 scripts/generate_completions.py --clone
+```
+
+This clones `boxlang-docs` to `../boxlang-docs` (sibling of this repo) and generates all JSON files.
+
+#### After a BoxLang release or docs update
+
+```bash
+# Pull latest docs and regenerate
+python3 scripts/generate_completions.py --update
+
+# Or if the docs repo is in a custom location
+python3 scripts/generate_completions.py --update --docs-path /path/to/boxlang-docs
+```
+
+#### Reviewing the output
+
+The script prints a summary of what was found:
+
+```
+Parsing BIF files...
+  compat-cfml: +40 BIFs
+  image-manipulation: +55 BIFs
+  ...
+Found 825 BIFs total (563 core + 262 module)
+```
+
+Check `[warn]` lines in stderr — they indicate markdown files the parser could not extract a
+function name from (usually placeholder `README.md` files; a count of zero warnings is ideal).
+
+#### Committing the updated JSON
+
+The generated JSON files are checked into the repository under
+`src/plugins_/basecompletions/json/`. After running the script, commit all four files together:
+
+```bash
+git add src/plugins_/basecompletions/json/
+git commit -m "chore: update completion data from boxlang-docs"
+```
+
+#### Prerequisites
+
+- Python 3.11+
+- `boxlang-docs` repo cloned (or use `--clone` / `--docs-path`)
+- No other dependencies — uses stdlib only
 
 ---
 

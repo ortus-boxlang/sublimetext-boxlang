@@ -13,16 +13,17 @@
 7. [Parsing Pipeline](#parsing-pipeline)
 8. [Type Inference Engine](#type-inference-engine)
 9. [Completion Pipeline](#completion-pipeline)
-10. [Documentation System](#documentation-system)
-11. [Indexing System](#indexing-system)
-12. [Error Handling](#error-handling)
-13. [Configuration](#configuration)
-14. [Build & Run](#build--run)
-15. [Extending the Package](#extending-the-package)
-16. [Testing](#testing)
-17. [Performance Considerations](#performance-considerations)
-18. [Known Limitations](#known-limitations)
-19. [Future Roadmap](#future-roadmap)
+10. [Completion Data Generation](#completion-data-generation)
+11. [Documentation System](#documentation-system)
+12. [Indexing System](#indexing-system)
+13. [Error Handling](#error-handling)
+14. [Configuration](#configuration)
+15. [Build & Run](#build--run)
+16. [Extending the Package](#extending-the-package)
+17. [Testing](#testing)
+18. [Performance Considerations](#performance-considerations)
+19. [Known Limitations](#known-limitations)
+20. [Future Roadmap](#future-roadmap)
 
 ---
 
@@ -448,6 +449,83 @@ TypeResolver.resolve_dot_chain_type(dot_context)
 **Component Completions** (configurable):
 - Same styles as BIFs
 - Names: `basic` (`find`) or `full` (`find():query`)
+
+---
+
+## Completion Data Generation
+
+Completion JSON files are generated from the [boxlang-docs](https://github.com/ortus-boxlang/boxlang-docs) repository by `scripts/generate_completions.py`. This script is the single source of truth for all BIF, tag, member function, and inline-doc parameter data shipped with the package.
+
+### Generated Files
+
+| File | Format | Used By |
+| ---- | ------ | ------- |
+| `boxlang_functions.json` | `{Name: [description, [req_snippet, full_snippet]]}` | `basecompletions` — script completions |
+| `boxlang_tags.json` | `{name: {attributes: [[req], [opt]], attribute_values: {}}}` | `basecompletions` — tag + attribute completions |
+| `boxlang_member_functions.json` | `{type: {name: [description, [req_snippet, full_snippet]]}}` | `basecompletions` — dot completions |
+| `boxlang_function_params.json` | `{Name: {description, params: [{name,type,required,description,default}]}}` | `boxdocs` — F1/hover doc popups |
+
+### Coverage
+
+The script covers both core and all official modules:
+
+```
+boxlang-language/reference/
+    built-in-functions/          → 563 core BIFs
+    components/                  → 49 core tags
+    types/                       → member functions
+
+boxlang-framework/modularity/
+    compat-cfml, csrf, esapi, image-manipulation,
+    password-encryption, rss, ui-compatibility,
+    wddx, web-support             → +140 BIFs, +22 tags
+
+boxlang-framework/boxlang-plus/modules/
+    bx-couchbase, bx-csv, bx-jwt, bx-ldap,
+    bx-meilisearch, bx-plus, bx-plus-pdf,
+    bx-redis, bx-spreadsheet      → +122 BIFs, +10 tags
+```
+
+### Markdown Format Support
+
+The docs repo uses several markdown formats across core and modules. The parser handles all of them:
+
+| Format | Heading | Args heading | Used by |
+| ------ | ------- | ------------ | ------- |
+| Core | `# Function: \`Name\`` | `### Arguments` | Core BIFs, most modules |
+| Module (plain) | `# FunctionName` | `## Arguments` | image-manipulation, bx-couchbase, etc. |
+| Component (standard) | `# Component: \`Name\`` | `### Attributes` | Core tags, mail, ui-compat, etc. |
+| Component (bx: prefix) | `# bx:tagname` | `## Attributes` (+ subsections) | charts |
+| Component (plain) | `# ComponentName` | `## Attributes` | image, PDF, LDAP, etc. |
+
+### Script Architecture
+
+```
+generate_completions.py
+    │
+    ├── generate_bif_data(docs_path)
+    │   ├── Walk core:    BIF_ROOT/*/*.md
+    │   └── Walk modules: find_module_reference_dirs() → */reference/built-in-functions/**/*.md
+    │       └── parse_bif_file(path)  — handles both heading formats
+    │
+    ├── generate_component_data(docs_path)
+    │   ├── Walk core:    COMPONENT_ROOT/*/*.md
+    │   └── Walk modules: find_module_reference_dirs() → */reference/components/**/*.md
+    │       └── parse_component_file(path)  — handles all three heading formats
+    │
+    ├── generate_member_data(docs_path)
+    │   └── parse_member_type_file()  — parses <details> blocks in types/*.md
+    │
+    └── Write JSON files → src/plugins_/basecompletions/json/
+```
+
+### Member Function Merge Strategy
+
+Type files in the docs repo (e.g. `types/string.md`) document only a subset of member functions via `<details>` blocks. To avoid losing methods not yet documented, `build_member_functions_json` reads the existing JSON first and merges: existing methods are kept as the base, and any method found in the docs overlays with fresh data.
+
+### Running the Script
+
+See the [Updating Completion Data](README.md#updating-completion-data) section in README.md for the full SOP.
 
 ---
 
