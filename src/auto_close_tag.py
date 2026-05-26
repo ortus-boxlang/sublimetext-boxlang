@@ -24,7 +24,7 @@ def should_auto_close(view):
     search_start = max(0, pos - 500)
     text_before = view.substr(sublime.Region(search_start, pos))
 
-    match = re.search(r"<bx:(\w+)(?:\s[^>]*)?$", text_before, re.DOTALL)
+    match = re.search(r"<bx:(\w+)(?:\s[^<>]*)?>?$", text_before, re.DOTALL)
     if not match:
         return False
 
@@ -33,7 +33,11 @@ def should_auto_close(view):
     if tag_name in non_closing_tags:
         return False
 
-    if text_before.rstrip().endswith("/"):
+    tag_text = text_before.rstrip()
+    if tag_text.endswith(">"):
+        tag_text = tag_text[:-1].rstrip()
+
+    if tag_text.endswith("/"):
         return False
 
     return tag_name
