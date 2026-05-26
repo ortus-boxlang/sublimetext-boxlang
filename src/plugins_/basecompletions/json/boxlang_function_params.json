@@ -10,7 +10,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/math/abs",
+    "url_path": "boxlang-language/reference/built-in-functions/math/Abs",
     "category": "math"
   },
   "Acos": {
@@ -24,7 +24,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/math/acos",
+    "url_path": "boxlang-language/reference/built-in-functions/math/Acos",
     "category": "math"
   },
   "AjaxLink": {
@@ -58,19 +58,19 @@
   "ApplicationRestart": {
     "description": "Restarts the currently running application",
     "params": [],
-    "url_path": "boxlang-language/reference/built-in-functions/system/applicationrestart",
+    "url_path": "boxlang-language/reference/built-in-functions/system/ApplicationRestart",
     "category": "system"
   },
   "ApplicationStartTime": {
     "description": "Get the start date/time of the running application",
     "params": [],
-    "url_path": "boxlang-language/reference/built-in-functions/system/applicationstarttime",
+    "url_path": "boxlang-language/reference/built-in-functions/system/ApplicationStartTime",
     "category": "system"
   },
   "ApplicationStop": {
     "description": "Stops the currently running application",
     "params": [],
-    "url_path": "boxlang-language/reference/built-in-functions/system/applicationstop",
+    "url_path": "boxlang-language/reference/built-in-functions/system/ApplicationStop",
     "category": "system"
   },
   "Argon2CheckHash": {
@@ -196,7 +196,7 @@
         "default": "false"
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/array/arrayappend",
+    "url_path": "boxlang-language/reference/built-in-functions/array/ArrayAppend",
     "category": "array"
   },
   "ArrayAvg": {
@@ -210,7 +210,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/array/arrayavg",
+    "url_path": "boxlang-language/reference/built-in-functions/array/ArrayAvg",
     "category": "array"
   },
   "ArrayChunk": {
@@ -231,7 +231,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/array/arraychunk",
+    "url_path": "boxlang-language/reference/built-in-functions/array/ArrayChunk",
     "category": "array"
   },
   "ArrayClear": {
@@ -245,7 +245,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/array/arrayclear",
+    "url_path": "boxlang-language/reference/built-in-functions/array/ArrayClear",
     "category": "array"
   },
   "ArrayContains": {
@@ -273,7 +273,7 @@
         "default": "false"
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/array/arraycontains",
+    "url_path": "boxlang-language/reference/built-in-functions/array/ArrayContains",
     "category": "array"
   },
   "ArrayContainsNoCase": {
@@ -301,7 +301,7 @@
         "default": "false"
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/array/arraycontainsnocase",
+    "url_path": "boxlang-language/reference/built-in-functions/array/ArrayContainsNoCase",
     "category": "array"
   },
   "ArrayDelete": {
@@ -329,7 +329,7 @@
         "default": "one"
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/array/arraydelete",
+    "url_path": "boxlang-language/reference/built-in-functions/array/ArrayDelete",
     "category": "array"
   },
   "ArrayDeleteAt": {
@@ -350,7 +350,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/array/arraydeleteat",
+    "url_path": "boxlang-language/reference/built-in-functions/array/ArrayDeleteAt",
     "category": "array"
   },
   "ArrayDeleteNoCase": {
@@ -378,7 +378,7 @@
         "default": "one"
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/array/arraydeletenocase",
+    "url_path": "boxlang-language/reference/built-in-functions/array/ArrayDeleteNoCase",
     "category": "array"
   },
   "ArrayEach": {
@@ -427,7 +427,7 @@
         "default": "false"
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/array/arrayeach",
+    "url_path": "boxlang-language/reference/built-in-functions/array/ArrayEach",
     "category": "array"
   },
   "ArrayEvery": {
@@ -469,7 +469,7 @@
         "default": "false"
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/array/arrayevery",
+    "url_path": "boxlang-language/reference/built-in-functions/array/ArrayEvery",
     "category": "array"
   },
   "ArrayFilter": {
@@ -511,7 +511,7 @@
         "default": "false"
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/array/arrayfilter",
+    "url_path": "boxlang-language/reference/built-in-functions/array/ArrayFilter",
     "category": "array"
   },
   "ArrayFind": {
@@ -539,7 +539,7 @@
         "default": "false"
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/array/arrayfind",
+    "url_path": "boxlang-language/reference/built-in-functions/array/ArrayFind",
     "category": "array"
   },
   "ArrayFindAll": {
@@ -560,7 +560,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/array/arrayfindall",
+    "url_path": "boxlang-language/reference/built-in-functions/array/ArrayFindAll",
     "category": "array"
   },
   "ArrayFindAllNoCase": {
@@ -581,7 +581,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/array/arrayfindallnocase",
+    "url_path": "boxlang-language/reference/built-in-functions/array/ArrayFindAllNoCase",
     "category": "array"
   },
   "ArrayFindFirst": {
@@ -630,7 +630,7 @@
         "default": "false"
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/array/arrayfindfirst",
+    "url_path": "boxlang-language/reference/built-in-functions/array/ArrayFindFirst",
     "category": "array"
   },
   "ArrayFindNoCase": {
@@ -658,7 +658,7 @@
         "default": "false"
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/array/arrayfindnocase",
+    "url_path": "boxlang-language/reference/built-in-functions/array/ArrayFindNoCase",
     "category": "array"
   },
   "ArrayFirst": {
@@ -679,7 +679,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/array/arrayfirst",
+    "url_path": "boxlang-language/reference/built-in-functions/array/ArrayFirst",
     "category": "array"
   },
   "ArrayFlatMap": {
@@ -721,7 +721,7 @@
         "default": "false"
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/array/arrayflatmap",
+    "url_path": "boxlang-language/reference/built-in-functions/array/ArrayFlatMap",
     "category": "array"
   },
   "ArrayFlatten": {
@@ -742,7 +742,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/array/arrayflatten",
+    "url_path": "boxlang-language/reference/built-in-functions/array/ArrayFlatten",
     "category": "array"
   },
   "ArrayGetMetadata": {
@@ -756,7 +756,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/array/arraygetmetadata",
+    "url_path": "boxlang-language/reference/built-in-functions/array/ArrayGetMetadata",
     "category": "array"
   },
   "ArrayGroupBy": {
@@ -777,7 +777,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/array/arraygroupby",
+    "url_path": "boxlang-language/reference/built-in-functions/array/ArrayGroupBy",
     "category": "array"
   },
   "ArrayIndexExists": {
@@ -798,7 +798,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/array/arrayindexexists",
+    "url_path": "boxlang-language/reference/built-in-functions/array/ArrayIndexExists",
     "category": "array"
   },
   "ArrayInsertAt": {
@@ -826,7 +826,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/array/arrayinsertat",
+    "url_path": "boxlang-language/reference/built-in-functions/array/ArrayInsertAt",
     "category": "array"
   },
   "ArrayIsDefined": {
@@ -847,13 +847,13 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/array/arrayisdefined",
+    "url_path": "boxlang-language/reference/built-in-functions/array/ArrayIsDefined",
     "category": "array"
   },
   "ArrayIsEmpty": {
     "description": "",
     "params": [],
-    "url_path": "boxlang-language/reference/built-in-functions/decision/arrayisempty-1",
+    "url_path": "boxlang-language/reference/built-in-functions/decision/ArrayIsEmpty",
     "category": "decision"
   },
   "ArrayLast": {
@@ -867,7 +867,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/array/arraylast",
+    "url_path": "boxlang-language/reference/built-in-functions/array/ArrayLast",
     "category": "array"
   },
   "ArrayLen": {
@@ -881,7 +881,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/type/arraylen",
+    "url_path": "boxlang-language/reference/built-in-functions/type/ArrayLen",
     "category": "type"
   },
   "ArrayMap": {
@@ -923,7 +923,7 @@
         "default": "false"
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/array/arraymap",
+    "url_path": "boxlang-language/reference/built-in-functions/array/ArrayMap",
     "category": "array"
   },
   "ArrayMax": {
@@ -937,7 +937,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/array/arraymax",
+    "url_path": "boxlang-language/reference/built-in-functions/array/ArrayMax",
     "category": "array"
   },
   "ArrayMedian": {
@@ -951,7 +951,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/array/arraymedian",
+    "url_path": "boxlang-language/reference/built-in-functions/array/ArrayMedian",
     "category": "array"
   },
   "ArrayMerge": {
@@ -979,7 +979,7 @@
         "default": "false"
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/array/arraymerge",
+    "url_path": "boxlang-language/reference/built-in-functions/array/ArrayMerge",
     "category": "array"
   },
   "ArrayMid": {
@@ -1007,7 +1007,7 @@
         "default": "0"
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/array/arraymid",
+    "url_path": "boxlang-language/reference/built-in-functions/array/ArrayMid",
     "category": "array"
   },
   "ArrayMin": {
@@ -1021,13 +1021,13 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/array/arraymin",
+    "url_path": "boxlang-language/reference/built-in-functions/array/ArrayMin",
     "category": "array"
   },
   "ArrayNew": {
     "description": "Return new array",
     "params": [],
-    "url_path": "boxlang-language/reference/built-in-functions/array/arraynew",
+    "url_path": "boxlang-language/reference/built-in-functions/array/ArrayNew",
     "category": "array"
   },
   "ArrayNone": {
@@ -1069,7 +1069,7 @@
         "default": "false"
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/array/arraynone",
+    "url_path": "boxlang-language/reference/built-in-functions/array/ArrayNone",
     "category": "array"
   },
   "ArrayPop": {
@@ -1090,7 +1090,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/array/arraypop",
+    "url_path": "boxlang-language/reference/built-in-functions/array/ArrayPop",
     "category": "array"
   },
   "ArrayPrepend": {
@@ -1111,7 +1111,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/array/arrayprepend",
+    "url_path": "boxlang-language/reference/built-in-functions/array/ArrayPrepend",
     "category": "array"
   },
   "ArrayPush": {
@@ -1132,7 +1132,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/array/arraypush",
+    "url_path": "boxlang-language/reference/built-in-functions/array/ArrayPush",
     "category": "array"
   },
   "ArrayRange": {
@@ -1153,7 +1153,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/array/arrayrange",
+    "url_path": "boxlang-language/reference/built-in-functions/array/ArrayRange",
     "category": "array"
   },
   "ArrayReduce": {
@@ -1181,7 +1181,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/array/arrayreduce",
+    "url_path": "boxlang-language/reference/built-in-functions/array/ArrayReduce",
     "category": "array"
   },
   "ArrayReduceRight": {
@@ -1209,7 +1209,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/array/arrayreduceright",
+    "url_path": "boxlang-language/reference/built-in-functions/array/ArrayReduceRight",
     "category": "array"
   },
   "ArrayReject": {
@@ -1251,7 +1251,7 @@
         "default": "false"
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/array/arrayreject",
+    "url_path": "boxlang-language/reference/built-in-functions/array/ArrayReject",
     "category": "array"
   },
   "ArrayResize": {
@@ -1272,7 +1272,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/array/arrayresize",
+    "url_path": "boxlang-language/reference/built-in-functions/array/ArrayResize",
     "category": "array"
   },
   "ArrayReverse": {
@@ -1286,7 +1286,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/array/arrayreverse",
+    "url_path": "boxlang-language/reference/built-in-functions/array/ArrayReverse",
     "category": "array"
   },
   "ArraySet": {
@@ -1321,7 +1321,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/array/arrayset",
+    "url_path": "boxlang-language/reference/built-in-functions/array/ArraySet",
     "category": "array"
   },
   "ArrayShift": {
@@ -1342,7 +1342,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/array/arrayshift",
+    "url_path": "boxlang-language/reference/built-in-functions/array/ArrayShift",
     "category": "array"
   },
   "ArraySlice": {
@@ -1370,7 +1370,7 @@
         "default": "0"
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/array/arrayslice",
+    "url_path": "boxlang-language/reference/built-in-functions/array/ArraySlice",
     "category": "array"
   },
   "ArraySome": {
@@ -1412,7 +1412,7 @@
         "default": "false"
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/array/arraysome",
+    "url_path": "boxlang-language/reference/built-in-functions/array/ArraySome",
     "category": "array"
   },
   "ArraySort": {
@@ -1454,7 +1454,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/array/arraysort",
+    "url_path": "boxlang-language/reference/built-in-functions/array/ArraySort",
     "category": "array"
   },
   "ArraySplice": {
@@ -1489,7 +1489,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/array/arraysplice",
+    "url_path": "boxlang-language/reference/built-in-functions/array/ArraySplice",
     "category": "array"
   },
   "ArraySum": {
@@ -1503,7 +1503,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/array/arraysum",
+    "url_path": "boxlang-language/reference/built-in-functions/array/ArraySum",
     "category": "array"
   },
   "ArraySwap": {
@@ -1531,7 +1531,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/array/arrayswap",
+    "url_path": "boxlang-language/reference/built-in-functions/array/ArraySwap",
     "category": "array"
   },
   "ArrayToList": {
@@ -1559,7 +1559,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/array/arraytolist",
+    "url_path": "boxlang-language/reference/built-in-functions/array/ArrayToList",
     "category": "array"
   },
   "ArrayToStruct": {
@@ -1573,13 +1573,13 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/array/arraytostruct",
+    "url_path": "boxlang-language/reference/built-in-functions/array/ArrayToStruct",
     "category": "array"
   },
   "ArrayTranspose": {
     "description": "Returns a transposed array based on all passed in arrays.",
     "params": [],
-    "url_path": "boxlang-language/reference/built-in-functions/array/arraytranspose",
+    "url_path": "boxlang-language/reference/built-in-functions/array/ArrayTranspose",
     "category": "array"
   },
   "ArrayUnique": {
@@ -1593,7 +1593,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/array/arrayunique",
+    "url_path": "boxlang-language/reference/built-in-functions/array/ArrayUnique",
     "category": "array"
   },
   "ArrayUnshift": {
@@ -1614,7 +1614,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/array/arrayunshift",
+    "url_path": "boxlang-language/reference/built-in-functions/array/ArrayUnshift",
     "category": "array"
   },
   "ArrayZip": {
@@ -1663,7 +1663,7 @@
         "default": "false"
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/array/arrayzip",
+    "url_path": "boxlang-language/reference/built-in-functions/array/ArrayZip",
     "category": "array"
   },
   "Ascii": {
@@ -1677,7 +1677,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/string/ascii",
+    "url_path": "boxlang-language/reference/built-in-functions/string/Ascii",
     "category": "string"
   },
   "Asin": {
@@ -1691,7 +1691,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/math/asin",
+    "url_path": "boxlang-language/reference/built-in-functions/math/Asin",
     "category": "math"
   },
   "AsyncAll": {
@@ -1712,7 +1712,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/async/asyncall",
+    "url_path": "boxlang-language/reference/built-in-functions/async/AsyncAll",
     "category": "async"
   },
   "AsyncAllApply": {
@@ -1761,7 +1761,7 @@
         "default": "SECONDS"
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/async/asyncallapply",
+    "url_path": "boxlang-language/reference/built-in-functions/async/AsyncAllApply",
     "category": "async"
   },
   "AsyncAny": {
@@ -1782,7 +1782,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/async/asyncany",
+    "url_path": "boxlang-language/reference/built-in-functions/async/AsyncAny",
     "category": "async"
   },
   "AsyncRun": {
@@ -1803,7 +1803,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/async/asyncrun",
+    "url_path": "boxlang-language/reference/built-in-functions/async/AsyncRun",
     "category": "async"
   },
   "Atn": {
@@ -1817,7 +1817,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/math/atn",
+    "url_path": "boxlang-language/reference/built-in-functions/math/Atn",
     "category": "math"
   },
   "Attempt": {
@@ -1831,7 +1831,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/decision/attempt",
+    "url_path": "boxlang-language/reference/built-in-functions/decision/Attempt",
     "category": "decision"
   },
   "BCryptHash": {
@@ -1894,7 +1894,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/binary/binarydecode",
+    "url_path": "boxlang-language/reference/built-in-functions/binary/BinaryDecode",
     "category": "binary"
   },
   "BinaryEncode": {
@@ -1915,7 +1915,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/binary/binaryencode",
+    "url_path": "boxlang-language/reference/built-in-functions/binary/BinaryEncode",
     "category": "binary"
   },
   "BitAnd": {
@@ -1936,7 +1936,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/binary/bitand",
+    "url_path": "boxlang-language/reference/built-in-functions/binary/BitAnd",
     "category": "binary"
   },
   "BitMaskClear": {
@@ -1964,7 +1964,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/binary/bitmaskclear",
+    "url_path": "boxlang-language/reference/built-in-functions/binary/BitMaskClear",
     "category": "binary"
   },
   "BitMaskRead": {
@@ -1992,7 +1992,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/binary/bitmaskread",
+    "url_path": "boxlang-language/reference/built-in-functions/binary/BitMaskRead",
     "category": "binary"
   },
   "BitMaskSet": {
@@ -2027,7 +2027,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/binary/bitmaskset",
+    "url_path": "boxlang-language/reference/built-in-functions/binary/BitMaskSet",
     "category": "binary"
   },
   "BitNot": {
@@ -2041,7 +2041,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/binary/bitnot",
+    "url_path": "boxlang-language/reference/built-in-functions/binary/BitNot",
     "category": "binary"
   },
   "BitOr": {
@@ -2062,7 +2062,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/binary/bitor",
+    "url_path": "boxlang-language/reference/built-in-functions/binary/BitOr",
     "category": "binary"
   },
   "BitSh": {
@@ -2083,7 +2083,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/binary/bitsh",
+    "url_path": "boxlang-language/reference/built-in-functions/binary/BitSh",
     "category": "binary"
   },
   "BitXor": {
@@ -2104,7 +2104,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/binary/bitxor",
+    "url_path": "boxlang-language/reference/built-in-functions/binary/BitXor",
     "category": "binary"
   },
   "BooleanFormat": {
@@ -2118,7 +2118,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/format/booleanformat",
+    "url_path": "boxlang-language/reference/built-in-functions/format/BooleanFormat",
     "category": "format"
   },
   "BoxAST": {
@@ -2153,7 +2153,7 @@
         "default": "script"
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/system/boxast",
+    "url_path": "boxlang-language/reference/built-in-functions/system/BoxAST",
     "category": "system"
   },
   "BoxAnnounce": {
@@ -2181,7 +2181,7 @@
         "default": "global"
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/system/boxannounce",
+    "url_path": "boxlang-language/reference/built-in-functions/system/BoxAnnounce",
     "category": "system"
   },
   "BoxAnnounceAsync": {
@@ -2209,13 +2209,13 @@
         "default": "global"
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/system/boxannounceasync",
+    "url_path": "boxlang-language/reference/built-in-functions/system/BoxAnnounceAsync",
     "category": "system"
   },
   "BoxLangBIFProxy": {
     "description": "No description available.",
     "params": [],
-    "url_path": "boxlang-language/reference/built-in-functions/runtime/boxlangbifproxy",
+    "url_path": "boxlang-language/reference/built-in-functions/bifs/BoxLangBIFProxy",
     "category": "runtime"
   },
   "BoxModuleReload": {
@@ -2229,7 +2229,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/system/boxmodulereload",
+    "url_path": "boxlang-language/reference/built-in-functions/system/BoxModuleReload",
     "category": "system"
   },
   "BoxRegisterInterceptionPoints": {
@@ -2250,7 +2250,7 @@
         "default": "global"
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/system/boxregisterinterceptionpoints",
+    "url_path": "boxlang-language/reference/built-in-functions/system/BoxRegisterInterceptionPoints",
     "category": "system"
   },
   "BoxRegisterInterceptor": {
@@ -2271,7 +2271,7 @@
         "default": "[]"
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/system/boxregisterinterceptor",
+    "url_path": "boxlang-language/reference/built-in-functions/system/BoxRegisterInterceptor",
     "category": "system"
   },
   "BoxRegisterRequestInterceptor": {
@@ -2292,7 +2292,7 @@
         "default": "[]"
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/system/boxregisterrequestinterceptor",
+    "url_path": "boxlang-language/reference/built-in-functions/system/BoxRegisterRequestInterceptor",
     "category": "system"
   },
   "BoxUnregisterInterceptor": {
@@ -2313,7 +2313,7 @@
         "default": "[]"
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/system/boxunregisterinterceptor",
+    "url_path": "boxlang-language/reference/built-in-functions/system/BoxUnregisterInterceptor",
     "category": "system"
   },
   "BoxUnregisterRequestInterceptor": {
@@ -2334,7 +2334,7 @@
         "default": "[]"
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/system/boxunregisterrequestinterceptor",
+    "url_path": "boxlang-language/reference/built-in-functions/system/BoxUnregisterRequestInterceptor",
     "category": "system"
   },
   "BoxlangLicenseActivate": {
@@ -2380,7 +2380,7 @@
   "CLIClear": {
     "description": "Clears the CLI screen.",
     "params": [],
-    "url_path": "boxlang-language/reference/built-in-functions/cli/cliclear",
+    "url_path": "boxlang-language/reference/built-in-functions/cli/CLIClear",
     "category": "cli"
   },
   "CLIExit": {
@@ -2394,13 +2394,13 @@
         "default": "0"
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/cli/cliexit",
+    "url_path": "boxlang-language/reference/built-in-functions/cli/CLIExit",
     "category": "cli"
   },
   "CLIGetArgs": {
     "description": "This method will parse the cli arguments and return a struct of the following:",
     "params": [],
-    "url_path": "boxlang-language/reference/built-in-functions/cli/cligetargs",
+    "url_path": "boxlang-language/reference/built-in-functions/cli/CLIGetArgs",
     "category": "cli"
   },
   "CLIRead": {
@@ -2414,7 +2414,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/cli/cliread",
+    "url_path": "boxlang-language/reference/built-in-functions/cli/CLIRead",
     "category": "cli"
   },
   "CSRFGenerateToken": {
@@ -2546,7 +2546,7 @@
         "default": "default"
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/cache/cache",
+    "url_path": "boxlang-language/reference/built-in-functions/cache/Cache",
     "category": "cache"
   },
   "CacheClear": {
@@ -2602,7 +2602,7 @@
         "default": "false"
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/cache/cachefilter",
+    "url_path": "boxlang-language/reference/built-in-functions/cache/CacheFilter",
     "category": "cache"
   },
   "CacheGet": {
@@ -2831,13 +2831,13 @@
   "CacheNames": {
     "description": "Get an array of all the registered caches in BoxLang",
     "params": [],
-    "url_path": "boxlang-language/reference/built-in-functions/cache/cachenames",
+    "url_path": "boxlang-language/reference/built-in-functions/cache/CacheNames",
     "category": "cache"
   },
   "CacheProviders": {
     "description": "Get an array of all the registered cache providers in BoxLang",
     "params": [],
-    "url_path": "boxlang-language/reference/built-in-functions/cache/cacheproviders",
+    "url_path": "boxlang-language/reference/built-in-functions/cache/CacheProviders",
     "category": "cache"
   },
   "CachePut": {
@@ -2983,7 +2983,7 @@
   "CacheService": {
     "description": "Get access to the Box Cache services",
     "params": [],
-    "url_path": "boxlang-language/reference/built-in-functions/cache/cacheservice",
+    "url_path": "boxlang-language/reference/built-in-functions/cache/CacheService",
     "category": "cache"
   },
   "CacheSetProperties": {
@@ -3003,7 +3003,7 @@
         "default": "-1"
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/system/callstackget",
+    "url_path": "boxlang-language/reference/built-in-functions/system/CallStackGet",
     "category": "system"
   },
   "CamelCase": {
@@ -3017,7 +3017,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/string/camelcase",
+    "url_path": "boxlang-language/reference/built-in-functions/string/CamelCase",
     "category": "string"
   },
   "Canonicalize": {
@@ -3066,7 +3066,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/math/ceiling",
+    "url_path": "boxlang-language/reference/built-in-functions/math/Ceiling",
     "category": "math"
   },
   "Char": {
@@ -3080,7 +3080,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/string/char",
+    "url_path": "boxlang-language/reference/built-in-functions/string/Char",
     "category": "string"
   },
   "CharsetDecode": {
@@ -3101,7 +3101,7 @@
         "default": "utf-8"
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/string/charsetdecode",
+    "url_path": "boxlang-language/reference/built-in-functions/string/CharsetDecode",
     "category": "string"
   },
   "CharsetEncode": {
@@ -3122,19 +3122,19 @@
         "default": "utf-8"
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/string/charsetencode",
+    "url_path": "boxlang-language/reference/built-in-functions/string/CharsetEncode",
     "category": "string"
   },
   "ClearLocale": {
     "description": "Clears the current request-level locale.",
     "params": [],
-    "url_path": "boxlang-language/reference/built-in-functions/i18n/clearlocale",
+    "url_path": "boxlang-language/reference/built-in-functions/i18n/ClearLocale",
     "category": "i18n"
   },
   "ClearTimezone": {
     "description": "Clears the current timezone in the request",
     "params": [],
-    "url_path": "boxlang-language/reference/built-in-functions/temporal/cleartimezone",
+    "url_path": "boxlang-language/reference/built-in-functions/temporal/ClearTimezone",
     "category": "temporal"
   },
   "Compare": {
@@ -3155,7 +3155,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/string/compare",
+    "url_path": "boxlang-language/reference/built-in-functions/string/Compare",
     "category": "string"
   },
   "CompareNoCase": {
@@ -3176,7 +3176,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/string/comparenocase",
+    "url_path": "boxlang-language/reference/built-in-functions/string/CompareNoCase",
     "category": "string"
   },
   "Compress": {
@@ -3246,7 +3246,7 @@
         "default": "6"
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/zip/compress",
+    "url_path": "boxlang-language/reference/built-in-functions/zip/Compress",
     "category": "zip"
   },
   "ContractPath": {
@@ -3260,7 +3260,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/io/contractpath",
+    "url_path": "boxlang-language/reference/built-in-functions/io/ContractPath",
     "category": "io"
   },
   "Cos": {
@@ -3274,7 +3274,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/math/cos",
+    "url_path": "boxlang-language/reference/built-in-functions/math/Cos",
     "category": "math"
   },
   "CreateDate": {
@@ -3337,7 +3337,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/temporal/createdate",
+    "url_path": "boxlang-language/reference/built-in-functions/temporal/CreateDate",
     "category": "temporal"
   },
   "CreateDateTime": {
@@ -3400,7 +3400,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/temporal/createdatetime",
+    "url_path": "boxlang-language/reference/built-in-functions/temporal/CreateDateTime",
     "category": "temporal"
   },
   "CreateDynamicProxy": {
@@ -3428,13 +3428,13 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/java/createdynamicproxy",
+    "url_path": "boxlang-language/reference/built-in-functions/java/CreateDynamicProxy",
     "category": "java"
   },
   "CreateGUID": {
     "description": "Create a Globally Unique Identifier (UUID).",
     "params": [],
-    "url_path": "boxlang-language/reference/built-in-functions/system/createguid",
+    "url_path": "boxlang-language/reference/built-in-functions/system/CreateGUID",
     "category": "system"
   },
   "CreateODBCDate": {
@@ -3455,7 +3455,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/temporal/createodbcdate",
+    "url_path": "boxlang-language/reference/built-in-functions/temporal/CreateODBCDate",
     "category": "temporal"
   },
   "CreateODBCDateTime": {
@@ -3476,7 +3476,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/temporal/createodbcdatetime",
+    "url_path": "boxlang-language/reference/built-in-functions/temporal/CreateODBCDateTime",
     "category": "temporal"
   },
   "CreateODBCTime": {
@@ -3497,7 +3497,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/temporal/createodbctime",
+    "url_path": "boxlang-language/reference/built-in-functions/temporal/CreateODBCTime",
     "category": "temporal"
   },
   "CreateObject": {
@@ -3539,7 +3539,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/system/createobject",
+    "url_path": "boxlang-language/reference/built-in-functions/system/CreateObject",
     "category": "system"
   },
   "CreateTempDirectory": {
@@ -3560,7 +3560,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/io/createtempdirectory",
+    "url_path": "boxlang-language/reference/built-in-functions/io/CreateTempDirectory",
     "category": "io"
   },
   "CreateTempFile": {
@@ -3588,7 +3588,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/io/createtempfile",
+    "url_path": "boxlang-language/reference/built-in-functions/io/CreateTempFile",
     "category": "io"
   },
   "CreateTime": {
@@ -3630,7 +3630,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/temporal/createtime",
+    "url_path": "boxlang-language/reference/built-in-functions/temporal/CreateTime",
     "category": "temporal"
   },
   "CreateTimeSpan": {
@@ -3672,13 +3672,13 @@
         "default": "0"
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/temporal/createtimespan",
+    "url_path": "boxlang-language/reference/built-in-functions/temporal/CreateTimeSpan",
     "category": "temporal"
   },
   "CreateUUID": {
     "description": "Create a Universally Unique Identifier (UUID) in the standard format.",
     "params": [],
-    "url_path": "boxlang-language/reference/built-in-functions/system/createuuid",
+    "url_path": "boxlang-language/reference/built-in-functions/system/CreateUUID",
     "category": "system"
   },
   "CurrencyFormat": {
@@ -3706,7 +3706,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/i18n/currencyformat",
+    "url_path": "boxlang-language/reference/built-in-functions/i18n/CurrencyFormat",
     "category": "i18n"
   },
   "DE": {
@@ -3720,7 +3720,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/system/de",
+    "url_path": "boxlang-language/reference/built-in-functions/system/DE",
     "category": "system"
   },
   "DataNavigate": {
@@ -3734,7 +3734,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/conversion/datanavigate",
+    "url_path": "boxlang-language/reference/built-in-functions/conversion/DataNavigate",
     "category": "conversion"
   },
   "DateAdd": {
@@ -3762,7 +3762,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/temporal/dateadd",
+    "url_path": "boxlang-language/reference/built-in-functions/temporal/DateAdd",
     "category": "temporal"
   },
   "DateCompare": {
@@ -3790,7 +3790,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-framework/modularity/compat-cfml/reference/built-in-functions/temporal/datecompare",
+    "url_path": "boxlang-language/reference/built-in-functions/temporal/DateCompare",
     "category": "compat-cfml"
   },
   "DateConvert": {
@@ -3811,7 +3811,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/temporal/dateconvert",
+    "url_path": "boxlang-language/reference/built-in-functions/temporal/DateConvert",
     "category": "temporal"
   },
   "DateDiff": {
@@ -3839,7 +3839,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/temporal/datediff",
+    "url_path": "boxlang-language/reference/built-in-functions/temporal/DateDiff",
     "category": "temporal"
   },
   "DateFormat": {
@@ -3874,7 +3874,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-framework/modularity/compat-cfml/reference/built-in-functions/temporal/dateformat",
+    "url_path": "boxlang-language/reference/built-in-functions/temporal/DateFormat",
     "category": "compat-cfml"
   },
   "DatePart": {
@@ -3902,7 +3902,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/temporal/datepart",
+    "url_path": "boxlang-language/reference/built-in-functions/temporal/DatePart",
     "category": "temporal"
   },
   "DateTimeFormat": {
@@ -3937,7 +3937,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-framework/modularity/compat-cfml/reference/built-in-functions/temporal/datetimeformat",
+    "url_path": "boxlang-language/reference/built-in-functions/temporal/DateTimeFormat",
     "category": "compat-cfml"
   },
   "Day": {
@@ -3965,7 +3965,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/temporal/day",
+    "url_path": "boxlang-language/reference/built-in-functions/temporal/Day",
     "category": "temporal"
   },
   "DayOfWeek": {
@@ -3993,7 +3993,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/temporal/dayofweek",
+    "url_path": "boxlang-language/reference/built-in-functions/temporal/DayOfWeek",
     "category": "temporal"
   },
   "DayOfWeekAsString": {
@@ -4021,7 +4021,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-framework/modularity/compat-cfml/reference/built-in-functions/temporal/dayofweekasstring",
+    "url_path": "boxlang-language/reference/built-in-functions/temporal/DayOfWeekAsString",
     "category": "compat-cfml"
   },
   "DayOfWeekShortAsString": {
@@ -4049,7 +4049,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-framework/modularity/compat-cfml/reference/built-in-functions/temporal/dayofweekshortasstring",
+    "url_path": "boxlang-language/reference/built-in-functions/temporal/DayOfWeekShortAsString",
     "category": "compat-cfml"
   },
   "DayOfYear": {
@@ -4077,7 +4077,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/temporal/dayofyear",
+    "url_path": "boxlang-language/reference/built-in-functions/temporal/DayOfYear",
     "category": "temporal"
   },
   "DaysInMonth": {
@@ -4105,7 +4105,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/temporal/daysinmonth",
+    "url_path": "boxlang-language/reference/built-in-functions/temporal/DaysInMonth",
     "category": "temporal"
   },
   "DaysInYear": {
@@ -4133,13 +4133,13 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/temporal/daysinyear",
+    "url_path": "boxlang-language/reference/built-in-functions/temporal/DaysInYear",
     "category": "temporal"
   },
   "DebugBoxContexts": {
     "description": "A debug BIF that returns an array of information showing the current context hierarchy",
     "params": [],
-    "url_path": "boxlang-language/reference/built-in-functions/system/debugboxcontexts",
+    "url_path": "boxlang-language/reference/built-in-functions/system/DebugBoxContexts",
     "category": "system"
   },
   "DecimalFormat": {
@@ -4160,7 +4160,7 @@
         "default": "2"
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/format/decimalformat",
+    "url_path": "boxlang-language/reference/built-in-functions/format/DecimalFormat",
     "category": "format"
   },
   "DecodeFor": {
@@ -4251,7 +4251,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/math/decrementvalue",
+    "url_path": "boxlang-language/reference/built-in-functions/math/DecrementValue",
     "category": "math"
   },
   "Decrypt": {
@@ -4307,7 +4307,7 @@
         "default": "false"
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/encryption/decrypt",
+    "url_path": "boxlang-language/reference/built-in-functions/encryption/Decrypt",
     "category": "encryption"
   },
   "DecryptBinary": {
@@ -4363,7 +4363,7 @@
         "default": "false"
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/encryption/decryptbinary",
+    "url_path": "boxlang-language/reference/built-in-functions/encryption/DecryptBinary",
     "category": "encryption"
   },
   "DeleteClientVariable": {
@@ -4426,7 +4426,7 @@
         "default": "false"
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/io/directorycopy",
+    "url_path": "boxlang-language/reference/built-in-functions/io/DirectoryCopy",
     "category": "io"
   },
   "DirectoryCreate": {
@@ -4461,7 +4461,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/io/directorycreate",
+    "url_path": "boxlang-language/reference/built-in-functions/io/DirectoryCreate",
     "category": "io"
   },
   "DirectoryDelete": {
@@ -4482,7 +4482,7 @@
         "default": "false"
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/io/directorydelete",
+    "url_path": "boxlang-language/reference/built-in-functions/io/DirectoryDelete",
     "category": "io"
   },
   "DirectoryExists": {
@@ -4503,7 +4503,7 @@
         "default": "true"
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/io/directoryexists",
+    "url_path": "boxlang-language/reference/built-in-functions/io/DirectoryExists",
     "category": "io"
   },
   "DirectoryList": {
@@ -4552,7 +4552,7 @@
         "default": "all"
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/io/directorylist",
+    "url_path": "boxlang-language/reference/built-in-functions/io/DirectoryList",
     "category": "io"
   },
   "DirectoryMove": {
@@ -4580,7 +4580,7 @@
         "default": "true"
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/io/directorymove",
+    "url_path": "boxlang-language/reference/built-in-functions/io/DirectoryMove",
     "category": "io"
   },
   "DirectoryRename": {
@@ -4608,7 +4608,7 @@
         "default": "true"
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/io/directoryrename",
+    "url_path": "boxlang-language/reference/built-in-functions/io/DirectoryRename",
     "category": "io"
   },
   "DollarFormat": {
@@ -4622,7 +4622,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-framework/modularity/compat-cfml/reference/built-in-functions/format/dollarformat",
+    "url_path": "boxlang-language/reference/built-in-functions/format/DollarFormat",
     "category": "compat-cfml"
   },
   "Dump": {
@@ -4685,7 +4685,7 @@
         "default": "true"
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/system/dump",
+    "url_path": "boxlang-language/reference/built-in-functions/system/Dump",
     "category": "system"
   },
   "Duplicate": {
@@ -4706,7 +4706,7 @@
         "default": "true"
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/system/duplicate",
+    "url_path": "boxlang-language/reference/built-in-functions/system/Duplicate",
     "category": "system"
   },
   "EncodeFor": {
@@ -4748,7 +4748,7 @@
         "default": "false"
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/system/encodeforhtml",
+    "url_path": "boxlang-language/reference/built-in-functions/system/EncodeForHTML",
     "category": "system"
   },
   "EncodeForSQL": {
@@ -4832,7 +4832,7 @@
         "default": "true"
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/encryption/encrypt",
+    "url_path": "boxlang-language/reference/built-in-functions/encryption/Encrypt",
     "category": "encryption"
   },
   "EncryptBinary": {
@@ -4888,7 +4888,7 @@
         "default": "true"
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/encryption/encryptbinary",
+    "url_path": "boxlang-language/reference/built-in-functions/encryption/EncryptBinary",
     "category": "encryption"
   },
   "ExecutorDelete": {
@@ -4902,7 +4902,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/async/executordelete",
+    "url_path": "boxlang-language/reference/built-in-functions/async/ExecutorDelete",
     "category": "async"
   },
   "ExecutorGet": {
@@ -4916,7 +4916,7 @@
         "default": "io-tasks"
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/async/executorget",
+    "url_path": "boxlang-language/reference/built-in-functions/async/ExecutorGet",
     "category": "async"
   },
   "ExecutorHas": {
@@ -4930,13 +4930,13 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/async/executorhas",
+    "url_path": "boxlang-language/reference/built-in-functions/async/ExecutorHas",
     "category": "async"
   },
   "ExecutorList": {
     "description": "Get's an array of all the executors registered in the system",
     "params": [],
-    "url_path": "boxlang-language/reference/built-in-functions/async/executorlist",
+    "url_path": "boxlang-language/reference/built-in-functions/async/ExecutorList",
     "category": "async"
   },
   "ExecutorNew": {
@@ -4964,7 +4964,7 @@
         "default": "10"
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/async/executornew",
+    "url_path": "boxlang-language/reference/built-in-functions/async/ExecutorNew",
     "category": "async"
   },
   "ExecutorShutdown": {
@@ -4992,7 +4992,7 @@
         "default": "0"
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/async/executorshutdown",
+    "url_path": "boxlang-language/reference/built-in-functions/async/ExecutorShutdown",
     "category": "async"
   },
   "ExecutorStatus": {
@@ -5006,7 +5006,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/async/executorstatus",
+    "url_path": "boxlang-language/reference/built-in-functions/async/ExecutorStatus",
     "category": "async"
   },
   "Exp": {
@@ -5020,7 +5020,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/math/exp",
+    "url_path": "boxlang-language/reference/built-in-functions/math/Exp",
     "category": "math"
   },
   "ExpandPath": {
@@ -5034,7 +5034,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/io/expandpath",
+    "url_path": "boxlang-language/reference/built-in-functions/io/ExpandPath",
     "category": "io"
   },
   "Extract": {
@@ -5090,7 +5090,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/zip/extract",
+    "url_path": "boxlang-language/reference/built-in-functions/zip/Extract",
     "category": "zip"
   },
   "FileAppend": {
@@ -5125,7 +5125,7 @@
         "default": "false"
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/io/fileappend",
+    "url_path": "boxlang-language/reference/built-in-functions/io/FileAppend",
     "category": "io"
   },
   "FileClose": {
@@ -5139,7 +5139,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/io/fileclose",
+    "url_path": "boxlang-language/reference/built-in-functions/io/FileClose",
     "category": "io"
   },
   "FileCopy": {
@@ -5181,7 +5181,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/io/filecopy",
+    "url_path": "boxlang-language/reference/built-in-functions/io/FileCopy",
     "category": "io"
   },
   "FileDelete": {
@@ -5195,7 +5195,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/io/filedelete",
+    "url_path": "boxlang-language/reference/built-in-functions/io/FileDelete",
     "category": "io"
   },
   "FileExists": {
@@ -5216,7 +5216,7 @@
         "default": "true"
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/io/fileexists",
+    "url_path": "boxlang-language/reference/built-in-functions/io/FileExists",
     "category": "io"
   },
   "FileGetMimeType": {
@@ -5237,7 +5237,7 @@
         "default": "true"
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/io/filegetmimetype",
+    "url_path": "boxlang-language/reference/built-in-functions/io/FileGetMimeType",
     "category": "io"
   },
   "FileInfo": {
@@ -5251,7 +5251,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/io/fileinfo",
+    "url_path": "boxlang-language/reference/built-in-functions/io/FileInfo",
     "category": "io"
   },
   "FileIsEOF": {
@@ -5265,7 +5265,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/io/fileiseof",
+    "url_path": "boxlang-language/reference/built-in-functions/io/FileIsEOF",
     "category": "io"
   },
   "FileMove": {
@@ -5300,7 +5300,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-framework/modularity/compat-cfml/reference/built-in-functions/io/filemove",
+    "url_path": "boxlang-language/reference/built-in-functions/io/FileMove",
     "category": "compat-cfml"
   },
   "FileOpen": {
@@ -5335,7 +5335,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/io/fileopen",
+    "url_path": "boxlang-language/reference/built-in-functions/io/FileOpen",
     "category": "io"
   },
   "FileRead": {
@@ -5370,7 +5370,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/io/fileread",
+    "url_path": "boxlang-language/reference/built-in-functions/io/FileRead",
     "category": "io"
   },
   "FileReadBinary": {
@@ -5405,7 +5405,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/io/filereadbinary",
+    "url_path": "boxlang-language/reference/built-in-functions/io/FileReadBinary",
     "category": "io"
   },
   "FileReadLine": {
@@ -5419,7 +5419,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/io/filereadline",
+    "url_path": "boxlang-language/reference/built-in-functions/io/FileReadLine",
     "category": "io"
   },
   "FileSeek": {
@@ -5440,7 +5440,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/io/fileseek",
+    "url_path": "boxlang-language/reference/built-in-functions/io/FileSeek",
     "category": "io"
   },
   "FileSetAccessMode": {
@@ -5461,7 +5461,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/io/filesetaccessmode",
+    "url_path": "boxlang-language/reference/built-in-functions/io/FileSetAccessMode",
     "category": "io"
   },
   "FileSetAttribute": {
@@ -5482,7 +5482,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/io/filesetattribute",
+    "url_path": "boxlang-language/reference/built-in-functions/io/FileSetAttribute",
     "category": "io"
   },
   "FileSetLastModified": {
@@ -5503,7 +5503,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/io/filesetlastmodified",
+    "url_path": "boxlang-language/reference/built-in-functions/io/FileSetLastModified",
     "category": "io"
   },
   "FileSkipBytes": {
@@ -5524,7 +5524,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/io/fileskipbytes",
+    "url_path": "boxlang-language/reference/built-in-functions/io/FileSkipBytes",
     "category": "io"
   },
   "FileUpload": {
@@ -5573,7 +5573,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-framework/modularity/web-support/reference/built-in-functions/web/fileupload",
+    "url_path": "boxlang-language/reference/built-in-functions/web/FileUpload",
     "category": "web-support"
   },
   "FileUploadAll": {
@@ -5622,7 +5622,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-framework/modularity/web-support/reference/built-in-functions/web/fileuploadall",
+    "url_path": "boxlang-language/reference/built-in-functions/web/FileUploadAll",
     "category": "web-support"
   },
   "FileWrite": {
@@ -5657,7 +5657,7 @@
         "default": "false"
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/io/filewrite",
+    "url_path": "boxlang-language/reference/built-in-functions/io/FileWrite",
     "category": "io"
   },
   "FileWriteLine": {
@@ -5678,7 +5678,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/io/filewriteline",
+    "url_path": "boxlang-language/reference/built-in-functions/io/FileWriteLine",
     "category": "io"
   },
   "Find": {
@@ -5706,7 +5706,7 @@
         "default": "1"
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/string/find",
+    "url_path": "boxlang-language/reference/built-in-functions/string/Find",
     "category": "string"
   },
   "FindNoCase": {
@@ -5734,7 +5734,7 @@
         "default": "1"
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/string/findnocase",
+    "url_path": "boxlang-language/reference/built-in-functions/string/FindNoCase",
     "category": "string"
   },
   "FindOneOf": {
@@ -5762,7 +5762,7 @@
         "default": "1"
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/string/findoneof",
+    "url_path": "boxlang-language/reference/built-in-functions/string/FindOneOf",
     "category": "string"
   },
   "FirstDayOfMonth": {
@@ -5790,7 +5790,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/temporal/firstdayofmonth",
+    "url_path": "boxlang-language/reference/built-in-functions/temporal/FirstDayOfMonth",
     "category": "temporal"
   },
   "Fix": {
@@ -5804,7 +5804,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-framework/modularity/compat-cfml/reference/built-in-functions/math/fix",
+    "url_path": "boxlang-language/reference/built-in-functions/math/Fix",
     "category": "compat-cfml"
   },
   "Floor": {
@@ -5818,7 +5818,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/math/floor",
+    "url_path": "boxlang-language/reference/built-in-functions/math/Floor",
     "category": "math"
   },
   "FormatBaseN": {
@@ -5839,7 +5839,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/math/formatbasen",
+    "url_path": "boxlang-language/reference/built-in-functions/math/FormatBaseN",
     "category": "math"
   },
   "Forward": {
@@ -5853,7 +5853,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-framework/modularity/web-support/reference/built-in-functions/web/forward",
+    "url_path": "boxlang-language/reference/built-in-functions/web/Forward",
     "category": "web-support"
   },
   "FutureNew": {
@@ -5874,7 +5874,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/async/futurenew",
+    "url_path": "boxlang-language/reference/built-in-functions/async/FutureNew",
     "category": "async"
   },
   "GenerateArgon2Hash": {
@@ -5979,7 +5979,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/encryption/generatepbkdfkey",
+    "url_path": "boxlang-language/reference/built-in-functions/encryption/GeneratePBKDFKey",
     "category": "encryption"
   },
   "GeneratePDBKDFKey": {
@@ -6000,7 +6000,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/encryption/generatepdbkdfkey",
+    "url_path": "boxlang-language/reference/built-in-functions/encryption/GeneratePDBKDFKey",
     "category": "encryption"
   },
   "GenerateSCryptHash": {
@@ -6070,13 +6070,13 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/encryption/generatesecretkey",
+    "url_path": "boxlang-language/reference/built-in-functions/encryption/GenerateSecretKey",
     "category": "encryption"
   },
   "GetApplicationMetadata": {
     "description": "Print a message with line break to the console",
     "params": [],
-    "url_path": "boxlang-language/reference/built-in-functions/system/getapplicationmetadata",
+    "url_path": "boxlang-language/reference/built-in-functions/system/GetApplicationMetadata",
     "category": "system"
   },
   "GetBaseTagData": {
@@ -6097,19 +6097,19 @@
         "default": "1"
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/system/getbasetagdata",
+    "url_path": "boxlang-language/reference/built-in-functions/system/GetBaseTagData",
     "category": "system"
   },
   "GetBaseTagList": {
     "description": "A comma-delimited list of ancestor tag names as a string.",
     "params": [],
-    "url_path": "boxlang-language/reference/built-in-functions/system/getbasetaglist",
+    "url_path": "boxlang-language/reference/built-in-functions/system/GetBaseTagList",
     "category": "system"
   },
   "GetBaseTemplatePath": {
     "description": "Gets the absolute server file system path of the requested file.",
     "params": [],
-    "url_path": "boxlang-language/reference/built-in-functions/system/getbasetemplatepath",
+    "url_path": "boxlang-language/reference/built-in-functions/system/GetBaseTemplatePath",
     "category": "system"
   },
   "GetBoxCache": {
@@ -6123,7 +6123,7 @@
         "default": "default"
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/cache/getboxcache",
+    "url_path": "boxlang-language/reference/built-in-functions/cache/GetBoxCache",
     "category": "cache"
   },
   "GetBoxCacheFilter": {
@@ -6144,43 +6144,43 @@
         "default": "false"
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/cache/getboxcachefilter",
+    "url_path": "boxlang-language/reference/built-in-functions/cache/GetBoxCacheFilter",
     "category": "cache"
   },
   "GetBoxCacheNames": {
     "description": "Get an array of all the registered caches in BoxLang",
     "params": [],
-    "url_path": "boxlang-language/reference/built-in-functions/cache/getboxcachenames",
+    "url_path": "boxlang-language/reference/built-in-functions/cache/GetBoxCacheNames",
     "category": "cache"
   },
   "GetBoxCacheProviders": {
     "description": "Get an array of all the registered cache providers in BoxLang",
     "params": [],
-    "url_path": "boxlang-language/reference/built-in-functions/cache/getboxcacheproviders",
+    "url_path": "boxlang-language/reference/built-in-functions/cache/GetBoxCacheProviders",
     "category": "cache"
   },
   "GetBoxCacheService": {
     "description": "Get access to the Box Cache services.",
     "params": [],
-    "url_path": "boxlang-language/reference/built-in-functions/cache/getboxcacheservice",
+    "url_path": "boxlang-language/reference/built-in-functions/cache/GetBoxCacheService",
     "category": "cache"
   },
   "GetBoxContext": {
     "description": "Get the current Box Context",
     "params": [],
-    "url_path": "boxlang-language/reference/built-in-functions/system/getboxcontext",
+    "url_path": "boxlang-language/reference/built-in-functions/system/GetBoxContext",
     "category": "system"
   },
   "GetBoxRuntime": {
     "description": "Get the current Box Runtime",
     "params": [],
-    "url_path": "boxlang-language/reference/built-in-functions/system/getboxruntime",
+    "url_path": "boxlang-language/reference/built-in-functions/system/GetBoxRuntime",
     "category": "system"
   },
   "GetBoxVersionInfo": {
     "description": "Get's the version information of the current Box Runtime",
     "params": [],
-    "url_path": "boxlang-language/reference/built-in-functions/system/getboxversioninfo",
+    "url_path": "boxlang-language/reference/built-in-functions/system/GetBoxVersionInfo",
     "category": "system"
   },
   "GetCanonicalPath": {
@@ -6194,7 +6194,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/io/getcanonicalpath",
+    "url_path": "boxlang-language/reference/built-in-functions/io/GetCanonicalPath",
     "category": "io"
   },
   "GetClassMetadata": {
@@ -6208,7 +6208,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/system/getclassmetadata",
+    "url_path": "boxlang-language/reference/built-in-functions/system/GetClassMetadata",
     "category": "system"
   },
   "GetClientVariablesList": {
@@ -6220,7 +6220,7 @@
   "GetComponentList": {
     "description": "Get a collection of all the registered global components in the runtime.",
     "params": [],
-    "url_path": "boxlang-language/reference/built-in-functions/system/getcomponentlist",
+    "url_path": "boxlang-language/reference/built-in-functions/system/GetComponentList",
     "category": "system"
   },
   "GetComponentMetadata": {
@@ -6234,19 +6234,19 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-framework/modularity/compat-cfml/reference/built-in-functions/system/getcomponentmetadata",
+    "url_path": "boxlang-language/reference/built-in-functions/system/GetComponentMetadata",
     "category": "compat-cfml"
   },
   "GetContextRoot": {
     "description": "Gets the context root.",
     "params": [],
-    "url_path": "boxlang-framework/modularity/compat-cfml/reference/built-in-functions/system/getcontextroot",
+    "url_path": "boxlang-language/reference/built-in-functions/system/GetContextRoot",
     "category": "compat-cfml"
   },
   "GetCurrentTemplatePath": {
     "description": "Gets the absolute server file system path of the file that calls this function.",
     "params": [],
-    "url_path": "boxlang-language/reference/built-in-functions/system/getcurrenttemplatepath",
+    "url_path": "boxlang-language/reference/built-in-functions/system/GetCurrentTemplatePath",
     "category": "system"
   },
   "GetDirectoryFromPath": {
@@ -6260,7 +6260,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/io/getdirectoryfrompath",
+    "url_path": "boxlang-language/reference/built-in-functions/io/GetDirectoryFromPath",
     "category": "io"
   },
   "GetFileFromPath": {
@@ -6274,7 +6274,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/system/getfilefrompath",
+    "url_path": "boxlang-language/reference/built-in-functions/system/GetFileFromPath",
     "category": "system"
   },
   "GetFileInfo": {
@@ -6288,13 +6288,13 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/io/getfileinfo",
+    "url_path": "boxlang-language/reference/built-in-functions/io/GetFileInfo",
     "category": "io"
   },
   "GetFunctionCalledName": {
     "description": "Get the name of the function that is being called.",
     "params": [],
-    "url_path": "boxlang-language/reference/built-in-functions/system/getfunctioncalledname",
+    "url_path": "boxlang-language/reference/built-in-functions/system/GetFunctionCalledName",
     "category": "system"
   },
   "GetFunctionData": {
@@ -6314,7 +6314,7 @@
   "GetFunctionList": {
     "description": "Get a collection of all the registered global functions in the runtime.",
     "params": [],
-    "url_path": "boxlang-language/reference/built-in-functions/system/getfunctionlist",
+    "url_path": "boxlang-language/reference/built-in-functions/system/GetFunctionList",
     "category": "system"
   },
   "GetHTTPRequestData": {
@@ -6328,7 +6328,7 @@
         "default": "true"
       }
     ],
-    "url_path": "boxlang-framework/modularity/web-support/reference/built-in-functions/web/gethttprequestdata",
+    "url_path": "boxlang-language/reference/built-in-functions/web/GetHTTPRequestData",
     "category": "web-support"
   },
   "GetHTTPTimeString": {
@@ -6342,7 +6342,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/web/gethttptimestring",
+    "url_path": "boxlang-language/reference/built-in-functions/web/GetHTTPTimeString",
     "category": "web"
   },
   "GetHTTPTimestring": {
@@ -6356,13 +6356,13 @@
         "default": "now()"
       }
     ],
-    "url_path": "boxlang-framework/modularity/web-support/reference/built-in-functions/web/gethttptimestring",
+    "url_path": "boxlang-language/reference/built-in-functions/web/GetHTTPTimeString",
     "category": "web-support"
   },
   "GetLocale": {
     "description": "Retrieves the the string representation of the current locale",
     "params": [],
-    "url_path": "boxlang-language/reference/built-in-functions/i18n/getlocale",
+    "url_path": "boxlang-language/reference/built-in-functions/i18n/GetLocale",
     "category": "i18n"
   },
   "GetLocaleDisplayName": {
@@ -6383,7 +6383,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/i18n/getlocaledisplayname",
+    "url_path": "boxlang-language/reference/built-in-functions/i18n/GetLocaleDisplayName",
     "category": "i18n"
   },
   "GetLocaleInfo": {
@@ -6404,7 +6404,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/i18n/getlocaleinfo",
+    "url_path": "boxlang-language/reference/built-in-functions/i18n/GetLocaleInfo",
     "category": "i18n"
   },
   "GetMetaData": {
@@ -6418,7 +6418,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-framework/modularity/compat-cfml/reference/built-in-functions/type/getmetadata",
+    "url_path": "boxlang-language/reference/built-in-functions/type/GetMetaData",
     "category": "compat-cfml"
   },
   "GetModuleInfo": {
@@ -6432,13 +6432,13 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/system/getmoduleinfo",
+    "url_path": "boxlang-language/reference/built-in-functions/system/GetModuleInfo",
     "category": "system"
   },
   "GetModuleList": {
     "description": "Get a collection of all the registered global functions in the runtime.",
     "params": [],
-    "url_path": "boxlang-language/reference/built-in-functions/system/getmodulelist",
+    "url_path": "boxlang-language/reference/built-in-functions/system/GetModuleList",
     "category": "system"
   },
   "GetNumericDate": {
@@ -6466,13 +6466,13 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/temporal/getnumericdate",
+    "url_path": "boxlang-language/reference/built-in-functions/temporal/GetNumericDate",
     "category": "temporal"
   },
   "GetPageContext": {
     "description": "Gets the current java PageContext object that provides access to page attributes and configuration, request and response objects.",
     "params": [],
-    "url_path": "boxlang-framework/modularity/web-support/reference/built-in-functions/web/getpagecontext",
+    "url_path": "boxlang-language/reference/built-in-functions/web/GetPageContext",
     "category": "web-support"
   },
   "GetReadableImageFormats": {
@@ -6484,7 +6484,7 @@
   "GetRequestClassLoader": {
     "description": "This will retrieve the current request's class loader according to BoxLang loading hierarchy:",
     "params": [],
-    "url_path": "boxlang-language/reference/built-in-functions/system/getrequestclassloader",
+    "url_path": "boxlang-language/reference/built-in-functions/system/GetRequestClassLoader",
     "category": "system"
   },
   "GetSafeHTML": {
@@ -6533,7 +6533,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/system/getsemver",
+    "url_path": "boxlang-language/reference/built-in-functions/system/GetSemver",
     "category": "system"
   },
   "GetSystemSetting": {
@@ -6554,7 +6554,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/system/getsystemsetting",
+    "url_path": "boxlang-language/reference/built-in-functions/system/GetSystemSetting",
     "category": "system"
   },
   "GetTagData": {
@@ -6581,7 +6581,7 @@
   "GetTempDirectory": {
     "description": "Get the system's temporary directory.",
     "params": [],
-    "url_path": "boxlang-language/reference/built-in-functions/system/gettempdirectory",
+    "url_path": "boxlang-language/reference/built-in-functions/system/GetTempDirectory",
     "category": "system"
   },
   "GetTickCount": {
@@ -6595,7 +6595,7 @@
         "default": "milli"
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/system/gettickcount",
+    "url_path": "boxlang-language/reference/built-in-functions/system/GetTickCount",
     "category": "system"
   },
   "GetTime": {
@@ -6623,7 +6623,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/temporal/gettime",
+    "url_path": "boxlang-language/reference/built-in-functions/temporal/GetTime",
     "category": "temporal"
   },
   "GetTimezone": {
@@ -6651,7 +6651,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/temporal/gettimezone",
+    "url_path": "boxlang-language/reference/built-in-functions/temporal/GetTimezone",
     "category": "temporal"
   },
   "GetTimezoneInfo": {
@@ -6672,7 +6672,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/temporal/gettimezoneinfo",
+    "url_path": "boxlang-language/reference/built-in-functions/temporal/GetTimezoneInfo",
     "category": "temporal"
   },
   "GetToken": {
@@ -6700,7 +6700,7 @@
         "default": ","
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/list/gettoken",
+    "url_path": "boxlang-language/reference/built-in-functions/list/GetToken",
     "category": "list"
   },
   "GetVariable": {
@@ -6818,7 +6818,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/net/http",
+    "url_path": "boxlang-language/reference/built-in-functions/net/HTTP",
     "category": "net"
   },
   "Hash": {
@@ -6853,7 +6853,7 @@
         "default": "1"
       }
     ],
-    "url_path": "boxlang-framework/modularity/compat-cfml/reference/built-in-functions/encryption/hash",
+    "url_path": "boxlang-language/reference/built-in-functions/encryption/Hash",
     "category": "compat-cfml"
   },
   "Hash40": {
@@ -6888,7 +6888,7 @@
         "default": "1"
       }
     ],
-    "url_path": "boxlang-framework/modularity/compat-cfml/reference/built-in-functions/encryption/hash40",
+    "url_path": "boxlang-language/reference/built-in-functions/encryption/Hash40",
     "category": "compat-cfml"
   },
   "Hmac": {
@@ -6930,7 +6930,7 @@
         "default": "1"
       }
     ],
-    "url_path": "boxlang-framework/modularity/compat-cfml/reference/built-in-functions/encryption/hmac",
+    "url_path": "boxlang-language/reference/built-in-functions/encryption/Hmac",
     "category": "compat-cfml"
   },
   "Hour": {
@@ -6958,7 +6958,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/temporal/hour",
+    "url_path": "boxlang-language/reference/built-in-functions/temporal/Hour",
     "category": "temporal"
   },
   "HtmlFooter": {
@@ -6972,7 +6972,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-framework/modularity/web-support/reference/built-in-functions/web/htmlfooter",
+    "url_path": "boxlang-language/reference/built-in-functions/web/HtmlFooter",
     "category": "web-support"
   },
   "HtmlHead": {
@@ -6986,7 +6986,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-framework/modularity/web-support/reference/built-in-functions/web/htmlhead",
+    "url_path": "boxlang-language/reference/built-in-functions/web/HtmlHead",
     "category": "web-support"
   },
   "IIF": {
@@ -7014,7 +7014,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/system/iif",
+    "url_path": "boxlang-language/reference/built-in-functions/system/IIF",
     "category": "system"
   },
   "ImageAddBorder": {
@@ -7333,7 +7333,7 @@
     "category": "image-manipulation"
   },
   "ImageDrawCubicCurve": {
-    "description": "Draws a cubic Bézier curve on an image. This BIF allows you to specify the start point, two control points, and the end point for the curve in BoxLang.",
+    "description": "Draws a cubic B\u00e9zier curve on an image. This BIF allows you to specify the start point, two control points, and the end point for the curve in BoxLang.",
     "params": [
       {
         "name": "name",
@@ -7564,7 +7564,7 @@
     "category": "image-manipulation"
   },
   "ImageDrawQuadraticCurve": {
-    "description": "Draws a quadratic Bézier curve on an image. This BIF allows you to specify the control point, start point, and end point for the curve in BoxLang.",
+    "description": "Draws a quadratic B\u00e9zier curve on an image. This BIF allows you to specify the control point, start point, and end point for the curve in BoxLang.",
     "params": [
       {
         "name": "name",
@@ -8624,7 +8624,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/math/incrementvalue",
+    "url_path": "boxlang-language/reference/built-in-functions/math/IncrementValue",
     "category": "math"
   },
   "InputBaseN": {
@@ -8645,7 +8645,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/math/inputbasen",
+    "url_path": "boxlang-language/reference/built-in-functions/math/InputBaseN",
     "category": "math"
   },
   "Insert": {
@@ -8673,7 +8673,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/string/insert",
+    "url_path": "boxlang-language/reference/built-in-functions/string/Insert",
     "category": "string"
   },
   "Int": {
@@ -8687,7 +8687,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/math/int",
+    "url_path": "boxlang-language/reference/built-in-functions/math/Int",
     "category": "math"
   },
   "Invoke": {
@@ -8715,7 +8715,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/system/invoke",
+    "url_path": "boxlang-language/reference/built-in-functions/system/Invoke",
     "category": "system"
   },
   "IsArray": {
@@ -8736,7 +8736,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/decision/isarray",
+    "url_path": "boxlang-language/reference/built-in-functions/decision/IsArray",
     "category": "decision"
   },
   "IsBinary": {
@@ -8750,7 +8750,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/decision/isbinary",
+    "url_path": "boxlang-language/reference/built-in-functions/decision/IsBinary",
     "category": "decision"
   },
   "IsBoolean": {
@@ -8764,7 +8764,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/decision/isboolean",
+    "url_path": "boxlang-language/reference/built-in-functions/decision/IsBoolean",
     "category": "decision"
   },
   "IsClosure": {
@@ -8778,7 +8778,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/decision/isclosure",
+    "url_path": "boxlang-language/reference/built-in-functions/decision/IsClosure",
     "category": "decision"
   },
   "IsCurrency": {
@@ -8799,7 +8799,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/i18n/iscurrency",
+    "url_path": "boxlang-language/reference/built-in-functions/i18n/IsCurrency",
     "category": "i18n"
   },
   "IsCustomFunction": {
@@ -8820,7 +8820,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/decision/iscustomfunction",
+    "url_path": "boxlang-language/reference/built-in-functions/decision/IsCustomFunction",
     "category": "decision"
   },
   "IsDate": {
@@ -8848,7 +8848,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/decision/isdate",
+    "url_path": "boxlang-language/reference/built-in-functions/decision/IsDate",
     "category": "decision"
   },
   "IsDateObject": {
@@ -8862,13 +8862,13 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/decision/isdateobject",
+    "url_path": "boxlang-language/reference/built-in-functions/decision/IsDateObject",
     "category": "decision"
   },
   "IsDebugMode": {
     "description": "Determine whether the current BoxLang instance is running in debug mode.",
     "params": [],
-    "url_path": "boxlang-language/reference/built-in-functions/decision/isdebugmode",
+    "url_path": "boxlang-language/reference/built-in-functions/decision/IsDebugMode",
     "category": "decision"
   },
   "IsDefined": {
@@ -8882,7 +8882,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/decision/isdefined",
+    "url_path": "boxlang-language/reference/built-in-functions/decision/IsDefined",
     "category": "decision"
   },
   "IsEmpty": {
@@ -8896,7 +8896,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/decision/isempty",
+    "url_path": "boxlang-language/reference/built-in-functions/decision/IsEmpty",
     "category": "decision"
   },
   "IsFileObject": {
@@ -8910,7 +8910,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/decision/isfileobject",
+    "url_path": "boxlang-language/reference/built-in-functions/decision/IsFileObject",
     "category": "decision"
   },
   "IsIPv6": {
@@ -8924,7 +8924,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/decision/isipv6",
+    "url_path": "boxlang-language/reference/built-in-functions/decision/IsIPv6",
     "category": "decision"
   },
   "IsImage": {
@@ -8958,13 +8958,13 @@
   "IsInThread": {
     "description": "Verifies if the calling execution code is running in a thread or not.",
     "params": [],
-    "url_path": "boxlang-language/reference/built-in-functions/async/isinthread",
+    "url_path": "boxlang-language/reference/built-in-functions/async/IsInThread",
     "category": "async"
   },
   "IsInTransaction": {
     "description": "Detect whether the current context is executing within a transaction.",
     "params": [],
-    "url_path": "boxlang-language/reference/built-in-functions/jdbc/isintransaction",
+    "url_path": "boxlang-language/reference/built-in-functions/jdbc/IsInTransaction",
     "category": "jdbc"
   },
   "IsInstanceOf": {
@@ -8985,7 +8985,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/system/isinstanceof",
+    "url_path": "boxlang-language/reference/built-in-functions/system/IsInstanceOf",
     "category": "system"
   },
   "IsJSON": {
@@ -8999,7 +8999,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/decision/isjson",
+    "url_path": "boxlang-language/reference/built-in-functions/decision/IsJSON",
     "category": "decision"
   },
   "IsLeapYear": {
@@ -9013,7 +9013,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/decision/isleapyear",
+    "url_path": "boxlang-language/reference/built-in-functions/decision/IsLeapYear",
     "category": "decision"
   },
   "IsLocalHost": {
@@ -9027,7 +9027,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/decision/islocalhost",
+    "url_path": "boxlang-language/reference/built-in-functions/decision/IsLocalHost",
     "category": "decision"
   },
   "IsNull": {
@@ -9041,7 +9041,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/decision/isnull",
+    "url_path": "boxlang-language/reference/built-in-functions/decision/IsNull",
     "category": "decision"
   },
   "IsNumeric": {
@@ -9062,7 +9062,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/decision/isnumeric",
+    "url_path": "boxlang-language/reference/built-in-functions/decision/IsNumeric",
     "category": "decision"
   },
   "IsNumericDate": {
@@ -9090,7 +9090,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/decision/isnumericdate",
+    "url_path": "boxlang-language/reference/built-in-functions/decision/IsNumericDate",
     "category": "decision"
   },
   "IsObject": {
@@ -9104,7 +9104,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/decision/isobject",
+    "url_path": "boxlang-language/reference/built-in-functions/decision/IsObject",
     "category": "decision"
   },
   "IsQuery": {
@@ -9118,7 +9118,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/decision/isquery",
+    "url_path": "boxlang-language/reference/built-in-functions/decision/IsQuery",
     "category": "decision"
   },
   "IsSafeHTML": {
@@ -9160,7 +9160,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/decision/issimplevalue",
+    "url_path": "boxlang-language/reference/built-in-functions/decision/IsSimpleValue",
     "category": "decision"
   },
   "IsSpreadsheetFile": {
@@ -9202,7 +9202,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/decision/isstruct",
+    "url_path": "boxlang-language/reference/built-in-functions/decision/IsStruct",
     "category": "decision"
   },
   "IsThreadInterrupted": {
@@ -9216,7 +9216,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/async/isthreadinterrupted",
+    "url_path": "boxlang-language/reference/built-in-functions/async/IsThreadInterrupted",
     "category": "async"
   },
   "IsValid": {
@@ -9258,7 +9258,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/decision/isvalid",
+    "url_path": "boxlang-language/reference/built-in-functions/decision/IsValid",
     "category": "decision"
   },
   "IsWDDX": {
@@ -9278,7 +9278,7 @@
   "IsWithinTransaction": {
     "description": "Detect whether the current context is executing within a transaction.",
     "params": [],
-    "url_path": "boxlang-language/reference/built-in-functions/jdbc/iswithintransaction",
+    "url_path": "boxlang-language/reference/built-in-functions/jdbc/IsWithinTransaction",
     "category": "jdbc"
   },
   "IsXML": {
@@ -9292,7 +9292,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/decision/isxml",
+    "url_path": "boxlang-language/reference/built-in-functions/decision/IsXML",
     "category": "decision"
   },
   "IsXMLDoc": {
@@ -9306,7 +9306,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/decision/isxmldoc",
+    "url_path": "boxlang-language/reference/built-in-functions/decision/IsXMLDoc",
     "category": "decision"
   },
   "IsXMLElem": {
@@ -9320,7 +9320,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/decision/isxmlelem",
+    "url_path": "boxlang-language/reference/built-in-functions/decision/IsXMLElem",
     "category": "decision"
   },
   "IsXMLNode": {
@@ -9334,7 +9334,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/decision/isxmlnode",
+    "url_path": "boxlang-language/reference/built-in-functions/decision/IsXMLNode",
     "category": "decision"
   },
   "IsXMLRoot": {
@@ -9348,7 +9348,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/decision/isxmlroot",
+    "url_path": "boxlang-language/reference/built-in-functions/decision/IsXMLRoot",
     "category": "decision"
   },
   "IsXmlAttribute": {
@@ -9362,7 +9362,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/decision/isxmlattribute",
+    "url_path": "boxlang-language/reference/built-in-functions/decision/IsXmlAttribute",
     "category": "decision"
   },
   "IsZipFile": {
@@ -9376,7 +9376,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/zip/iszipfile",
+    "url_path": "boxlang-language/reference/built-in-functions/zip/IsZipFile",
     "category": "zip"
   },
   "JSONDeserialize": {
@@ -9404,7 +9404,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-framework/modularity/compat-cfml/reference/built-in-functions/conversion/jsondeserialize",
+    "url_path": "boxlang-language/reference/built-in-functions/conversion/JSONDeserialize",
     "category": "compat-cfml"
   },
   "JSONPrettify": {
@@ -9418,7 +9418,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/conversion/jsonprettify",
+    "url_path": "boxlang-language/reference/built-in-functions/conversion/JSONPrettify",
     "category": "conversion"
   },
   "JSONSerialize": {
@@ -9460,7 +9460,7 @@
         "default": "false"
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/conversion/jsonserialize",
+    "url_path": "boxlang-language/reference/built-in-functions/conversion/JSONSerialize",
     "category": "conversion"
   },
   "JSStringFormat": {
@@ -9474,7 +9474,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/string/jsstringformat",
+    "url_path": "boxlang-language/reference/built-in-functions/string/JSStringFormat",
     "category": "string"
   },
   "JWTCreate": {
@@ -9491,7 +9491,7 @@
         "name": "key",
         "type": "any",
         "required": false,
-        "description": "Signing key — named key from the registry, HMAC secret, or PEM/JWK string. Optional when `defaultSigningKey` is set.",
+        "description": "Signing key \u2014 named key from the registry, HMAC secret, or PEM/JWK string. Optional when `defaultSigningKey` is set.",
         "default": "null"
       },
       {
@@ -9540,7 +9540,7 @@
         "name": "key",
         "type": "any",
         "required": false,
-        "description": "Decryption key — named key, RSA private-key PEM, or symmetric secret.",
+        "description": "Decryption key \u2014 named key, RSA private-key PEM, or symmetric secret.",
         "default": "null"
       },
       {
@@ -9568,7 +9568,7 @@
         "name": "key",
         "type": "any",
         "required": false,
-        "description": "Encryption key — named key, RSA public-key PEM, or symmetric secret.",
+        "description": "Encryption key \u2014 named key, RSA public-key PEM, or symmetric secret.",
         "default": "null"
       },
       {
@@ -9597,13 +9597,13 @@
     "category": "bx-jwt"
   },
   "JWTGenerateSecret": {
-    "description": "Generates a cryptographically random HMAC secret and returns it Base64-encoded. Use this to create RFC 7518–compliant keys for HS256/384/512.",
+    "description": "Generates a cryptographically random HMAC secret and returns it Base64-encoded. Use this to create RFC 7518\u2013compliant keys for HS256/384/512.",
     "params": [
       {
         "name": "bits",
         "type": "numeric",
         "required": false,
-        "description": "Key length in bits. Must be ≥ 128 and a multiple of 8.",
+        "description": "Key length in bits. Must be \u2265 128 and a multiple of 8.",
         "default": "256"
       }
     ],
@@ -9611,7 +9611,7 @@
     "category": "bx-jwt"
   },
   "JWTNew": {
-    "description": "Returns a new `JwtBuilder` instance — a fluent, chainable builder for constructing signed or encrypted JWTs. Terminate the chain with `.sign()` to produce a JWS, or `.encrypt()` to produce a JWE.",
+    "description": "Returns a new `JwtBuilder` instance \u2014 a fluent, chainable builder for constructing signed or encrypted JWTs. Terminate the chain with `.sign()` to produce a JWS, or `.encrypt()` to produce a JWE.",
     "params": [],
     "url_path": "boxlang-framework/boxlang-plus/modules/bx-jwt/reference/built-in-functions/jwtnew",
     "category": "bx-jwt"
@@ -9739,7 +9739,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/system/javacast",
+    "url_path": "boxlang-language/reference/built-in-functions/system/JavaCast",
     "category": "system"
   },
   "Justify": {
@@ -9760,7 +9760,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/string/justify",
+    "url_path": "boxlang-language/reference/built-in-functions/string/Justify",
     "category": "string"
   },
   "KebabCase": {
@@ -9774,7 +9774,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/string/kebabcase",
+    "url_path": "boxlang-language/reference/built-in-functions/string/KebabCase",
     "category": "string"
   },
   "Key": {
@@ -9788,7 +9788,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/system/key",
+    "url_path": "boxlang-language/reference/built-in-functions/system/Key",
     "category": "system"
   },
   "LCase": {
@@ -9802,7 +9802,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/string/lcase",
+    "url_path": "boxlang-language/reference/built-in-functions/string/LCase",
     "category": "string"
   },
   "LJustify": {
@@ -9823,7 +9823,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/string/ljustify",
+    "url_path": "boxlang-language/reference/built-in-functions/string/LJustify",
     "category": "string"
   },
   "LSCurrencyFormat": {
@@ -9851,7 +9851,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/i18n/lscurrencyformat",
+    "url_path": "boxlang-language/reference/built-in-functions/i18n/LSCurrencyFormat",
     "category": "i18n"
   },
   "LSDateFormat": {
@@ -9970,7 +9970,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/i18n/lsiscurrency",
+    "url_path": "boxlang-language/reference/built-in-functions/i18n/LSIsCurrency",
     "category": "i18n"
   },
   "LSIsDate": {
@@ -10019,7 +10019,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/i18n/lsisnumeric",
+    "url_path": "boxlang-language/reference/built-in-functions/i18n/LSIsNumeric",
     "category": "i18n"
   },
   "LSNumberFormat": {
@@ -10047,7 +10047,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/i18n/lsnumberformat",
+    "url_path": "boxlang-language/reference/built-in-functions/i18n/LSNumberFormat",
     "category": "i18n"
   },
   "LSParseCurrency": {
@@ -10068,7 +10068,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/i18n/lsparsecurrency",
+    "url_path": "boxlang-language/reference/built-in-functions/i18n/LSParseCurrency",
     "category": "i18n"
   },
   "LSParseDateTime": {
@@ -10124,7 +10124,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/i18n/lsparsenumber",
+    "url_path": "boxlang-language/reference/built-in-functions/i18n/LSParseNumber",
     "category": "i18n"
   },
   "LSTimeFormat": {
@@ -10201,7 +10201,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/string/ltrim",
+    "url_path": "boxlang-language/reference/built-in-functions/string/LTrim",
     "category": "string"
   },
   "Left": {
@@ -10222,7 +10222,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/string/left",
+    "url_path": "boxlang-language/reference/built-in-functions/string/Left",
     "category": "string"
   },
   "Len": {
@@ -10236,7 +10236,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/type/len",
+    "url_path": "boxlang-language/reference/built-in-functions/type/Len",
     "category": "type"
   },
   "ListAppend": {
@@ -10278,7 +10278,7 @@
         "default": "false"
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/list/listappend",
+    "url_path": "boxlang-language/reference/built-in-functions/list/ListAppend",
     "category": "list"
   },
   "ListAvg": {
@@ -10306,7 +10306,7 @@
         "default": "false"
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/list/listavg",
+    "url_path": "boxlang-language/reference/built-in-functions/list/ListAvg",
     "category": "list"
   },
   "ListChangeDelims": {
@@ -10348,7 +10348,7 @@
         "default": "false"
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/list/listchangedelims",
+    "url_path": "boxlang-language/reference/built-in-functions/list/ListChangeDelims",
     "category": "list"
   },
   "ListCompact": {
@@ -10376,7 +10376,7 @@
         "default": "false"
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/list/listcompact",
+    "url_path": "boxlang-language/reference/built-in-functions/list/ListCompact",
     "category": "list"
   },
   "ListContains": {
@@ -10418,7 +10418,7 @@
         "default": "false"
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/list/listcontains",
+    "url_path": "boxlang-language/reference/built-in-functions/list/ListContains",
     "category": "list"
   },
   "ListContainsNoCase": {
@@ -10460,7 +10460,7 @@
         "default": "false"
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/list/listcontainsnocase",
+    "url_path": "boxlang-language/reference/built-in-functions/list/ListContainsNoCase",
     "category": "list"
   },
   "ListDeleteAt": {
@@ -10502,7 +10502,7 @@
         "default": "false"
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/list/listdeleteat",
+    "url_path": "boxlang-language/reference/built-in-functions/list/ListDeleteAt",
     "category": "list"
   },
   "ListEach": {
@@ -10572,7 +10572,7 @@
         "default": "false"
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/list/listeach",
+    "url_path": "boxlang-language/reference/built-in-functions/list/ListEach",
     "category": "list"
   },
   "ListEvery": {
@@ -10635,7 +10635,7 @@
         "default": "false"
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/list/listevery",
+    "url_path": "boxlang-language/reference/built-in-functions/list/ListEvery",
     "category": "list"
   },
   "ListFilter": {
@@ -10698,7 +10698,7 @@
         "default": "false"
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/list/listfilter",
+    "url_path": "boxlang-language/reference/built-in-functions/list/ListFilter",
     "category": "list"
   },
   "ListFind": {
@@ -10740,7 +10740,7 @@
         "default": "false"
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/list/listfind",
+    "url_path": "boxlang-language/reference/built-in-functions/list/ListFind",
     "category": "list"
   },
   "ListFindNoCase": {
@@ -10782,7 +10782,7 @@
         "default": "false"
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/list/listfindnocase",
+    "url_path": "boxlang-language/reference/built-in-functions/list/ListFindNoCase",
     "category": "list"
   },
   "ListFirst": {
@@ -10817,7 +10817,7 @@
         "default": "false"
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/list/listfirst",
+    "url_path": "boxlang-language/reference/built-in-functions/list/ListFirst",
     "category": "list"
   },
   "ListGetAt": {
@@ -10859,7 +10859,7 @@
         "default": "false"
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/list/listgetat",
+    "url_path": "boxlang-language/reference/built-in-functions/list/ListGetAt",
     "category": "list"
   },
   "ListGetEndings": {
@@ -10894,7 +10894,7 @@
         "default": "false"
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/list/listgetendings",
+    "url_path": "boxlang-language/reference/built-in-functions/list/ListGetEndings",
     "category": "list"
   },
   "ListIndexExists": {
@@ -10936,7 +10936,7 @@
         "default": "false"
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/list/listindexexists",
+    "url_path": "boxlang-language/reference/built-in-functions/list/ListIndexExists",
     "category": "list"
   },
   "ListInsertAt": {
@@ -10985,7 +10985,7 @@
         "default": "false"
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/list/listinsertat",
+    "url_path": "boxlang-language/reference/built-in-functions/list/ListInsertAt",
     "category": "list"
   },
   "ListItemTrim": {
@@ -11020,7 +11020,7 @@
         "default": "false"
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/list/listitemtrim",
+    "url_path": "boxlang-language/reference/built-in-functions/list/ListItemTrim",
     "category": "list"
   },
   "ListLast": {
@@ -11055,7 +11055,7 @@
         "default": "false"
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/list/listlast",
+    "url_path": "boxlang-language/reference/built-in-functions/list/ListLast",
     "category": "list"
   },
   "ListLen": {
@@ -11090,7 +11090,7 @@
         "default": "false"
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/list/listlen",
+    "url_path": "boxlang-language/reference/built-in-functions/list/ListLen",
     "category": "list"
   },
   "ListMap": {
@@ -11153,7 +11153,7 @@
         "default": "false"
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/list/listmap",
+    "url_path": "boxlang-language/reference/built-in-functions/list/ListMap",
     "category": "list"
   },
   "ListNone": {
@@ -11216,7 +11216,7 @@
         "default": "false"
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/list/listnone",
+    "url_path": "boxlang-language/reference/built-in-functions/list/ListNone",
     "category": "list"
   },
   "ListPrepend": {
@@ -11258,7 +11258,7 @@
         "default": "false"
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/list/listprepend",
+    "url_path": "boxlang-language/reference/built-in-functions/list/ListPrepend",
     "category": "list"
   },
   "ListQualify": {
@@ -11307,7 +11307,7 @@
         "default": "false"
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/list/listqualify",
+    "url_path": "boxlang-language/reference/built-in-functions/list/ListQualify",
     "category": "list"
   },
   "ListReduce": {
@@ -11356,7 +11356,7 @@
         "default": "true"
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/string/listreduce",
+    "url_path": "boxlang-language/reference/built-in-functions/string/ListReduce",
     "category": "string"
   },
   "ListReduceRight": {
@@ -11405,7 +11405,7 @@
         "default": "false"
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/list/listreduceright",
+    "url_path": "boxlang-language/reference/built-in-functions/list/ListReduceRight",
     "category": "list"
   },
   "ListRemoveDuplicates": {
@@ -11447,7 +11447,7 @@
         "default": "false"
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/list/listremoveduplicates",
+    "url_path": "boxlang-language/reference/built-in-functions/list/ListRemoveDuplicates",
     "category": "list"
   },
   "ListRest": {
@@ -11489,7 +11489,7 @@
         "default": "1"
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/list/listrest",
+    "url_path": "boxlang-language/reference/built-in-functions/list/ListRest",
     "category": "list"
   },
   "ListSetAt": {
@@ -11538,7 +11538,7 @@
         "default": "false"
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/list/listsetat",
+    "url_path": "boxlang-language/reference/built-in-functions/list/ListSetAt",
     "category": "list"
   },
   "ListSome": {
@@ -11601,7 +11601,7 @@
         "default": "false"
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/list/listsome",
+    "url_path": "boxlang-language/reference/built-in-functions/list/ListSome",
     "category": "list"
   },
   "ListSort": {
@@ -11664,7 +11664,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/list/listsort",
+    "url_path": "boxlang-language/reference/built-in-functions/list/ListSort",
     "category": "list"
   },
   "ListToArray": {
@@ -11699,7 +11699,7 @@
         "default": "false"
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/list/listtoarray",
+    "url_path": "boxlang-language/reference/built-in-functions/list/ListToArray",
     "category": "list"
   },
   "ListTrim": {
@@ -11727,7 +11727,7 @@
         "default": "false"
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/list/listtrim",
+    "url_path": "boxlang-language/reference/built-in-functions/list/ListTrim",
     "category": "list"
   },
   "ListValueCount": {
@@ -11769,7 +11769,7 @@
         "default": "false"
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/list/listvaluecount",
+    "url_path": "boxlang-language/reference/built-in-functions/list/ListValueCount",
     "category": "list"
   },
   "ListValueCountNoCase": {
@@ -11811,7 +11811,7 @@
         "default": "false"
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/list/listvaluecountnocase",
+    "url_path": "boxlang-language/reference/built-in-functions/list/ListValueCountNoCase",
     "category": "list"
   },
   "Location": {
@@ -11839,7 +11839,7 @@
         "default": "302"
       }
     ],
-    "url_path": "boxlang-framework/modularity/web-support/reference/built-in-functions/web/location",
+    "url_path": "boxlang-language/reference/built-in-functions/web/Location",
     "category": "web-support"
   },
   "Log": {
@@ -11853,7 +11853,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/math/log",
+    "url_path": "boxlang-language/reference/built-in-functions/math/Log",
     "category": "math"
   },
   "Log10": {
@@ -11867,7 +11867,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/math/log10",
+    "url_path": "boxlang-language/reference/built-in-functions/math/Log10",
     "category": "math"
   },
   "MCP": {
@@ -11951,7 +11951,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/math/max",
+    "url_path": "boxlang-language/reference/built-in-functions/math/Max",
     "category": "math"
   },
   "Meilisearch": {
@@ -11985,7 +11985,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/string/mid",
+    "url_path": "boxlang-language/reference/built-in-functions/string/Mid",
     "category": "string"
   },
   "Millisecond": {
@@ -12013,7 +12013,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/temporal/millisecond",
+    "url_path": "boxlang-language/reference/built-in-functions/temporal/Millisecond",
     "category": "temporal"
   },
   "Min": {
@@ -12034,7 +12034,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/math/min",
+    "url_path": "boxlang-language/reference/built-in-functions/math/Min",
     "category": "math"
   },
   "Minute": {
@@ -12062,7 +12062,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/temporal/minute",
+    "url_path": "boxlang-language/reference/built-in-functions/temporal/Minute",
     "category": "temporal"
   },
   "MockRequestNew": {
@@ -12229,7 +12229,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/temporal/month",
+    "url_path": "boxlang-language/reference/built-in-functions/temporal/Month",
     "category": "temporal"
   },
   "MonthAsString": {
@@ -12257,7 +12257,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-framework/modularity/compat-cfml/reference/built-in-functions/temporal/monthasstring",
+    "url_path": "boxlang-language/reference/built-in-functions/temporal/MonthAsString",
     "category": "compat-cfml"
   },
   "MonthShortAsString": {
@@ -12285,7 +12285,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-framework/modularity/compat-cfml/reference/built-in-functions/temporal/monthshortasstring",
+    "url_path": "boxlang-language/reference/built-in-functions/temporal/MonthShortAsString",
     "category": "compat-cfml"
   },
   "Nanosecond": {
@@ -12313,7 +12313,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/temporal/nanosecond",
+    "url_path": "boxlang-language/reference/built-in-functions/temporal/Nanosecond",
     "category": "temporal"
   },
   "Now": {
@@ -12327,13 +12327,13 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/temporal/now",
+    "url_path": "boxlang-language/reference/built-in-functions/temporal/Now",
     "category": "temporal"
   },
   "NullValue": {
     "description": "Returns a null value.",
     "params": [],
-    "url_path": "boxlang-language/reference/built-in-functions/type/nullvalue",
+    "url_path": "boxlang-language/reference/built-in-functions/type/NullValue",
     "category": "type"
   },
   "NumberFormat": {
@@ -12361,7 +12361,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/format/numberformat",
+    "url_path": "boxlang-language/reference/built-in-functions/format/NumberFormat",
     "category": "format"
   },
   "ObjectDeserialize": {
@@ -12375,7 +12375,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/system/objectdeserialize",
+    "url_path": "boxlang-language/reference/built-in-functions/system/ObjectDeserialize",
     "category": "system"
   },
   "ObjectLoad": {
@@ -12431,7 +12431,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/system/objectserialize",
+    "url_path": "boxlang-language/reference/built-in-functions/system/ObjectSerialize",
     "category": "system"
   },
   "Offset": {
@@ -12459,13 +12459,13 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/temporal/offset",
+    "url_path": "boxlang-language/reference/built-in-functions/temporal/Offset",
     "category": "temporal"
   },
   "PagePoolClear": {
     "description": "Clears all the compiled classes from the Boxpiler's page pool.",
     "params": [],
-    "url_path": "boxlang-language/reference/built-in-functions/system/pagepoolclear",
+    "url_path": "boxlang-language/reference/built-in-functions/system/PagePoolClear",
     "category": "system"
   },
   "ParagraphFormat": {
@@ -12479,7 +12479,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/string/paragraphformat",
+    "url_path": "boxlang-language/reference/built-in-functions/string/ParagraphFormat",
     "category": "string"
   },
   "ParseCurrency": {
@@ -12500,7 +12500,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/i18n/parsecurrency",
+    "url_path": "boxlang-language/reference/built-in-functions/i18n/ParseCurrency",
     "category": "i18n"
   },
   "ParseDateTime": {
@@ -12535,7 +12535,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-framework/modularity/compat-cfml/reference/built-in-functions/temporal/parsedatetime",
+    "url_path": "boxlang-language/reference/built-in-functions/temporal/ParseDateTime",
     "category": "compat-cfml"
   },
   "ParseNumber": {
@@ -12563,7 +12563,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/conversion/parsenumber",
+    "url_path": "boxlang-language/reference/built-in-functions/conversion/ParseNumber",
     "category": "conversion"
   },
   "PascalCase": {
@@ -12577,13 +12577,13 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/string/pascalcase",
+    "url_path": "boxlang-language/reference/built-in-functions/string/PascalCase",
     "category": "string"
   },
   "Pi": {
     "description": "Returns the mathmatical constant Pi accurate to 15 digits",
     "params": [],
-    "url_path": "boxlang-language/reference/built-in-functions/math/pi",
+    "url_path": "boxlang-language/reference/built-in-functions/math/Pi",
     "category": "math"
   },
   "PrecisionEvaluate": {
@@ -12597,7 +12597,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/math/precisionevaluate",
+    "url_path": "boxlang-language/reference/built-in-functions/math/PrecisionEvaluate",
     "category": "math"
   },
   "PreserveSingleQuotes": {
@@ -12611,7 +12611,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/jdbc/preservesinglequotes",
+    "url_path": "boxlang-language/reference/built-in-functions/jdbc/PreserveSingleQuotes",
     "category": "jdbc"
   },
   "Print": {
@@ -12625,7 +12625,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/system/print",
+    "url_path": "boxlang-language/reference/built-in-functions/system/Print",
     "category": "system"
   },
   "Println": {
@@ -12639,7 +12639,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/system/println",
+    "url_path": "boxlang-language/reference/built-in-functions/system/Println",
     "category": "system"
   },
   "PropertyFile": {
@@ -12653,7 +12653,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/io/propertyfile",
+    "url_path": "boxlang-language/reference/built-in-functions/io/PropertyFile",
     "category": "io"
   },
   "Quarter": {
@@ -12681,7 +12681,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/temporal/quarter",
+    "url_path": "boxlang-language/reference/built-in-functions/temporal/Quarter",
     "category": "temporal"
   },
   "QueryAddColumn": {
@@ -12716,7 +12716,7 @@
         "default": "[]"
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/query/queryaddcolumn",
+    "url_path": "boxlang-language/reference/built-in-functions/query/QueryAddColumn",
     "category": "query"
   },
   "QueryAddRow": {
@@ -12737,7 +12737,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/query/queryaddrow",
+    "url_path": "boxlang-language/reference/built-in-functions/query/QueryAddRow",
     "category": "query"
   },
   "QueryAppend": {
@@ -12758,7 +12758,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/query/queryappend",
+    "url_path": "boxlang-language/reference/built-in-functions/query/QueryAppend",
     "category": "query"
   },
   "QueryClear": {
@@ -12772,7 +12772,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/query/queryclear",
+    "url_path": "boxlang-language/reference/built-in-functions/query/QueryClear",
     "category": "query"
   },
   "QueryColumnArray": {
@@ -12786,7 +12786,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/query/querycolumnarray",
+    "url_path": "boxlang-language/reference/built-in-functions/query/QueryColumnArray",
     "category": "query"
   },
   "QueryColumnCount": {
@@ -12800,7 +12800,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/query/querycolumncount",
+    "url_path": "boxlang-language/reference/built-in-functions/query/QueryColumnCount",
     "category": "query"
   },
   "QueryColumnData": {
@@ -12821,7 +12821,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/query/querycolumndata",
+    "url_path": "boxlang-language/reference/built-in-functions/query/QueryColumnData",
     "category": "query"
   },
   "QueryColumnExists": {
@@ -12842,7 +12842,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/query/querycolumnexists",
+    "url_path": "boxlang-language/reference/built-in-functions/query/QueryColumnExists",
     "category": "query"
   },
   "QueryColumnList": {
@@ -12856,7 +12856,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/query/querycolumnlist",
+    "url_path": "boxlang-language/reference/built-in-functions/query/QueryColumnList",
     "category": "query"
   },
   "QueryConvertForGrid": {
@@ -12898,7 +12898,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/query/querycurrentrow",
+    "url_path": "boxlang-language/reference/built-in-functions/query/QueryCurrentRow",
     "category": "query"
   },
   "QueryDeleteColumn": {
@@ -12919,7 +12919,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/query/querydeletecolumn",
+    "url_path": "boxlang-language/reference/built-in-functions/query/QueryDeleteColumn",
     "category": "query"
   },
   "QueryDeleteRow": {
@@ -12940,7 +12940,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/query/querydeleterow",
+    "url_path": "boxlang-language/reference/built-in-functions/query/QueryDeleteRow",
     "category": "query"
   },
   "QueryEach": {
@@ -12989,7 +12989,7 @@
         "default": "false"
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/query/queryeach",
+    "url_path": "boxlang-language/reference/built-in-functions/query/QueryEach",
     "category": "query"
   },
   "QueryEvery": {
@@ -13031,7 +13031,7 @@
         "default": "false"
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/query/queryevery",
+    "url_path": "boxlang-language/reference/built-in-functions/query/QueryEvery",
     "category": "query"
   },
   "QueryExecute": {
@@ -13059,7 +13059,7 @@
         "default": "{}"
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/jdbc/queryexecute",
+    "url_path": "boxlang-language/reference/built-in-functions/jdbc/QueryExecute",
     "category": "jdbc"
   },
   "QueryFilter": {
@@ -13101,7 +13101,7 @@
         "default": "false"
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/query/queryfilter",
+    "url_path": "boxlang-language/reference/built-in-functions/query/QueryFilter",
     "category": "query"
   },
   "QueryGetCell": {
@@ -13129,7 +13129,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/query/querygetcell",
+    "url_path": "boxlang-language/reference/built-in-functions/query/QueryGetCell",
     "category": "query"
   },
   "QueryGetResult": {
@@ -13143,7 +13143,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/query/querygetresult",
+    "url_path": "boxlang-language/reference/built-in-functions/query/QueryGetResult",
     "category": "query"
   },
   "QueryInsertAt": {
@@ -13171,7 +13171,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/query/queryinsertat",
+    "url_path": "boxlang-language/reference/built-in-functions/query/QueryInsertAt",
     "category": "query"
   },
   "QueryKeyExists": {
@@ -13192,7 +13192,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/query/querykeyexists",
+    "url_path": "boxlang-language/reference/built-in-functions/query/QueryKeyExists",
     "category": "query"
   },
   "QueryMap": {
@@ -13234,7 +13234,7 @@
         "default": "false"
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/query/querymap",
+    "url_path": "boxlang-language/reference/built-in-functions/query/QueryMap",
     "category": "query"
   },
   "QueryNew": {
@@ -13262,7 +13262,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/query/querynew",
+    "url_path": "boxlang-language/reference/built-in-functions/query/QueryNew",
     "category": "query"
   },
   "QueryNone": {
@@ -13304,7 +13304,7 @@
         "default": "false"
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/query/querynone",
+    "url_path": "boxlang-language/reference/built-in-functions/query/QueryNone",
     "category": "query"
   },
   "QueryPrepend": {
@@ -13325,7 +13325,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/query/queryprepend",
+    "url_path": "boxlang-language/reference/built-in-functions/query/QueryPrepend",
     "category": "query"
   },
   "QueryRecordCount": {
@@ -13339,7 +13339,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/query/queryrecordcount",
+    "url_path": "boxlang-language/reference/built-in-functions/query/QueryRecordCount",
     "category": "query"
   },
   "QueryReduce": {
@@ -13367,7 +13367,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/query/queryreduce",
+    "url_path": "boxlang-language/reference/built-in-functions/query/QueryReduce",
     "category": "query"
   },
   "QueryRegisterFunction": {
@@ -13402,7 +13402,7 @@
         "default": "scalar"
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/query/queryregisterfunction",
+    "url_path": "boxlang-language/reference/built-in-functions/query/QueryRegisterFunction",
     "category": "query"
   },
   "QueryReverse": {
@@ -13416,7 +13416,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/query/queryreverse",
+    "url_path": "boxlang-language/reference/built-in-functions/query/QueryReverse",
     "category": "query"
   },
   "QueryRowData": {
@@ -13437,7 +13437,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/query/queryrowdata",
+    "url_path": "boxlang-language/reference/built-in-functions/query/QueryRowData",
     "category": "query"
   },
   "QueryRowSwap": {
@@ -13465,7 +13465,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/query/queryrowswap",
+    "url_path": "boxlang-language/reference/built-in-functions/query/QueryRowSwap",
     "category": "query"
   },
   "QuerySetCell": {
@@ -13500,7 +13500,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/query/querysetcell",
+    "url_path": "boxlang-language/reference/built-in-functions/query/QuerySetCell",
     "category": "query"
   },
   "QuerySetRow": {
@@ -13528,7 +13528,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/query/querysetrow",
+    "url_path": "boxlang-language/reference/built-in-functions/query/QuerySetRow",
     "category": "query"
   },
   "QuerySlice": {
@@ -13556,7 +13556,7 @@
         "default": "0"
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/query/queryslice",
+    "url_path": "boxlang-language/reference/built-in-functions/query/QuerySlice",
     "category": "query"
   },
   "QuerySome": {
@@ -13598,7 +13598,7 @@
         "default": "false"
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/query/querysome",
+    "url_path": "boxlang-language/reference/built-in-functions/query/QuerySome",
     "category": "query"
   },
   "QuerySort": {
@@ -13619,7 +13619,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/query/querysort",
+    "url_path": "boxlang-language/reference/built-in-functions/query/QuerySort",
     "category": "query"
   },
   "QueryStringToStruct": {
@@ -13640,7 +13640,7 @@
         "default": "&"
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/string/querystringtostruct",
+    "url_path": "boxlang-language/reference/built-in-functions/string/QueryStringToStruct",
     "category": "string"
   },
   "RJustify": {
@@ -13661,7 +13661,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/string/rjustify",
+    "url_path": "boxlang-language/reference/built-in-functions/string/RJustify",
     "category": "string"
   },
   "RSS": {
@@ -13731,7 +13731,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/string/rtrim",
+    "url_path": "boxlang-language/reference/built-in-functions/string/RTrim",
     "category": "string"
   },
   "Rand": {
@@ -13745,7 +13745,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/math/rand",
+    "url_path": "boxlang-language/reference/built-in-functions/math/Rand",
     "category": "math"
   },
   "RandRange": {
@@ -13773,7 +13773,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/math/randrange",
+    "url_path": "boxlang-language/reference/built-in-functions/math/RandRange",
     "category": "math"
   },
   "Randomize": {
@@ -13794,7 +13794,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/math/randomize",
+    "url_path": "boxlang-language/reference/built-in-functions/math/Randomize",
     "category": "math"
   },
   "ReEscape": {
@@ -13808,7 +13808,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/string/reescape",
+    "url_path": "boxlang-language/reference/built-in-functions/string/ReEscape",
     "category": "string"
   },
   "ReFind": {
@@ -13850,7 +13850,7 @@
         "default": "one"
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/string/refind",
+    "url_path": "boxlang-language/reference/built-in-functions/string/ReFind",
     "category": "string"
   },
   "ReMatch": {
@@ -13871,7 +13871,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/string/rematch",
+    "url_path": "boxlang-language/reference/built-in-functions/string/ReMatch",
     "category": "string"
   },
   "ReReplace": {
@@ -13906,7 +13906,7 @@
         "default": "one"
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/string/rereplace",
+    "url_path": "boxlang-language/reference/built-in-functions/string/ReReplace",
     "category": "string"
   },
   "RedisGetCluster": {
@@ -14046,7 +14046,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/string/removechars",
+    "url_path": "boxlang-language/reference/built-in-functions/string/RemoveChars",
     "category": "string"
   },
   "RepeatString": {
@@ -14067,7 +14067,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/string/repeatstring",
+    "url_path": "boxlang-language/reference/built-in-functions/string/RepeatString",
     "category": "string"
   },
   "Replace": {
@@ -14102,7 +14102,7 @@
         "default": "one"
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/string/replace",
+    "url_path": "boxlang-language/reference/built-in-functions/string/Replace",
     "category": "string"
   },
   "ReplaceList": {
@@ -14151,7 +14151,7 @@
         "default": "false"
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/string/replacelist",
+    "url_path": "boxlang-language/reference/built-in-functions/string/ReplaceList",
     "category": "string"
   },
   "ReplaceListNoCase": {
@@ -14200,7 +14200,7 @@
         "default": "false"
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/string/replacelistnocase",
+    "url_path": "boxlang-language/reference/built-in-functions/string/ReplaceListNoCase",
     "category": "string"
   },
   "ReplaceNoCase": {
@@ -14242,7 +14242,7 @@
         "default": "1"
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/string/replacenocase",
+    "url_path": "boxlang-language/reference/built-in-functions/string/ReplaceNoCase",
     "category": "string"
   },
   "Reverse": {
@@ -14256,7 +14256,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/string/reverse",
+    "url_path": "boxlang-language/reference/built-in-functions/string/Reverse",
     "category": "string"
   },
   "Right": {
@@ -14277,7 +14277,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/string/right",
+    "url_path": "boxlang-language/reference/built-in-functions/string/Right",
     "category": "string"
   },
   "Round": {
@@ -14298,7 +14298,7 @@
         "default": "0"
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/math/round",
+    "url_path": "boxlang-language/reference/built-in-functions/math/Round",
     "category": "math"
   },
   "RunAsync": {
@@ -14319,7 +14319,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/async/runasync",
+    "url_path": "boxlang-language/reference/built-in-functions/async/RunAsync",
     "category": "async"
   },
   "RunThreadInContext": {
@@ -14354,7 +14354,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/system/runthreadincontext",
+    "url_path": "boxlang-language/reference/built-in-functions/system/RunThreadInContext",
     "category": "system"
   },
   "SCryptHash": {
@@ -14438,7 +14438,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/net/soap",
+    "url_path": "boxlang-language/reference/built-in-functions/net/SOAP",
     "category": "net"
   },
   "SQLPrettify": {
@@ -14452,7 +14452,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/string/sqlprettify",
+    "url_path": "boxlang-language/reference/built-in-functions/string/SQLPrettify",
     "category": "string"
   },
   "SanitizeHTML": {
@@ -14487,19 +14487,19 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/scheduler/schedulerget",
+    "url_path": "boxlang-language/reference/built-in-functions/scheduler/SchedulerGet",
     "category": "scheduler"
   },
   "SchedulerGetAll": {
     "description": "Get a specific scheduler by name.",
     "params": [],
-    "url_path": "boxlang-language/reference/built-in-functions/scheduler/schedulergetall",
+    "url_path": "boxlang-language/reference/built-in-functions/scheduler/SchedulerGetAll",
     "category": "scheduler"
   },
   "SchedulerList": {
     "description": "List all the schedulers registered in the system.",
     "params": [],
-    "url_path": "boxlang-language/reference/built-in-functions/scheduler/schedulerlist",
+    "url_path": "boxlang-language/reference/built-in-functions/scheduler/SchedulerList",
     "category": "scheduler"
   },
   "SchedulerRestart": {
@@ -14527,7 +14527,7 @@
         "default": "30"
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/scheduler/schedulerrestart",
+    "url_path": "boxlang-language/reference/built-in-functions/scheduler/SchedulerRestart",
     "category": "scheduler"
   },
   "SchedulerShutdown": {
@@ -14555,7 +14555,7 @@
         "default": "30"
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/scheduler/schedulershutdown",
+    "url_path": "boxlang-language/reference/built-in-functions/scheduler/SchedulerShutdown",
     "category": "scheduler"
   },
   "SchedulerStart": {
@@ -14583,13 +14583,13 @@
         "default": "true"
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/scheduler/schedulerstart",
+    "url_path": "boxlang-language/reference/built-in-functions/scheduler/SchedulerStart",
     "category": "scheduler"
   },
   "SchedulerStats": {
     "description": "Get the stats of all schedulers or a specific scheduler by name.",
     "params": [],
-    "url_path": "boxlang-language/reference/built-in-functions/scheduler/schedulerstats",
+    "url_path": "boxlang-language/reference/built-in-functions/scheduler/SchedulerStats",
     "category": "scheduler"
   },
   "Second": {
@@ -14617,25 +14617,25 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/temporal/second",
+    "url_path": "boxlang-language/reference/built-in-functions/temporal/Second",
     "category": "temporal"
   },
   "SessionInvalidate": {
     "description": "Clears session scope and makes the current session identifiers no longer valid.",
     "params": [],
-    "url_path": "boxlang-language/reference/built-in-functions/system/sessioninvalidate",
+    "url_path": "boxlang-language/reference/built-in-functions/system/SessionInvalidate",
     "category": "system"
   },
   "SessionRotate": {
     "description": "Creates a new session (using new session ids) and copies session scope into this new session, then invalidates the old session.",
     "params": [],
-    "url_path": "boxlang-language/reference/built-in-functions/system/sessionrotate",
+    "url_path": "boxlang-language/reference/built-in-functions/system/SessionRotate",
     "category": "system"
   },
   "SessionStartTime": {
     "description": "Provides information about the time when the current users session scope was created",
     "params": [],
-    "url_path": "boxlang-language/reference/built-in-functions/system/sessionstarttime",
+    "url_path": "boxlang-language/reference/built-in-functions/system/SessionStartTime",
     "category": "system"
   },
   "SetEncoding": {
@@ -14656,7 +14656,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-framework/modularity/web-support/reference/built-in-functions/web/setencoding",
+    "url_path": "boxlang-language/reference/built-in-functions/web/SetEncoding",
     "category": "web-support"
   },
   "SetLocale": {
@@ -14670,7 +14670,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/i18n/setlocale",
+    "url_path": "boxlang-language/reference/built-in-functions/i18n/SetLocale",
     "category": "i18n"
   },
   "SetTimezone": {
@@ -14684,7 +14684,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/temporal/settimezone",
+    "url_path": "boxlang-language/reference/built-in-functions/temporal/SetTimezone",
     "category": "temporal"
   },
   "SetVariable": {
@@ -14719,7 +14719,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/math/sgn",
+    "url_path": "boxlang-language/reference/built-in-functions/math/Sgn",
     "category": "math"
   },
   "Sin": {
@@ -14733,7 +14733,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/math/sin",
+    "url_path": "boxlang-language/reference/built-in-functions/math/Sin",
     "category": "math"
   },
   "Sleep": {
@@ -14747,7 +14747,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/system/sleep",
+    "url_path": "boxlang-language/reference/built-in-functions/system/Sleep",
     "category": "system"
   },
   "Slugify": {
@@ -14775,7 +14775,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/string/slugify",
+    "url_path": "boxlang-language/reference/built-in-functions/string/Slugify",
     "category": "string"
   },
   "SnakeCase": {
@@ -14789,7 +14789,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/string/snakecase",
+    "url_path": "boxlang-language/reference/built-in-functions/string/SnakeCase",
     "category": "string"
   },
   "SpanExcluding": {
@@ -14810,7 +14810,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/string/spanexcluding",
+    "url_path": "boxlang-language/reference/built-in-functions/string/SpanExcluding",
     "category": "string"
   },
   "SpanIncluding": {
@@ -14831,7 +14831,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/string/spanincluding",
+    "url_path": "boxlang-language/reference/built-in-functions/string/SpanIncluding",
     "category": "string"
   },
   "Spreadsheet": {
@@ -16993,7 +16993,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/math/sqr",
+    "url_path": "boxlang-language/reference/built-in-functions/math/Sqr",
     "category": "math"
   },
   "StringBind": {
@@ -17014,7 +17014,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/string/stringbind",
+    "url_path": "boxlang-language/reference/built-in-functions/string/StringBind",
     "category": "string"
   },
   "StringEach": {
@@ -17084,7 +17084,7 @@
         "default": "false"
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/string/stringeach",
+    "url_path": "boxlang-language/reference/built-in-functions/string/StringEach",
     "category": "string"
   },
   "StringEvery": {
@@ -17147,7 +17147,7 @@
         "default": "false"
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/string/stringevery",
+    "url_path": "boxlang-language/reference/built-in-functions/string/StringEvery",
     "category": "string"
   },
   "StringFilter": {
@@ -17210,7 +17210,7 @@
         "default": "false"
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/string/stringfilter",
+    "url_path": "boxlang-language/reference/built-in-functions/string/StringFilter",
     "category": "string"
   },
   "StringLen": {
@@ -17224,7 +17224,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/type/stringlen",
+    "url_path": "boxlang-language/reference/built-in-functions/type/StringLen",
     "category": "type"
   },
   "StringMap": {
@@ -17287,7 +17287,7 @@
         "default": "false"
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/string/stringmap",
+    "url_path": "boxlang-language/reference/built-in-functions/string/StringMap",
     "category": "string"
   },
   "StringReduce": {
@@ -17336,7 +17336,7 @@
         "default": "true"
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/string/stringreduce",
+    "url_path": "boxlang-language/reference/built-in-functions/string/StringReduce",
     "category": "string"
   },
   "StringReduceRight": {
@@ -17385,7 +17385,7 @@
         "default": "false"
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/string/stringreduceright",
+    "url_path": "boxlang-language/reference/built-in-functions/string/StringReduceRight",
     "category": "string"
   },
   "StringSome": {
@@ -17448,7 +17448,7 @@
         "default": "false"
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/string/stringsome",
+    "url_path": "boxlang-language/reference/built-in-functions/string/StringSome",
     "category": "string"
   },
   "StringSort": {
@@ -17511,7 +17511,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/string/stringsort",
+    "url_path": "boxlang-language/reference/built-in-functions/string/StringSort",
     "category": "string"
   },
   "StripCR": {
@@ -17525,7 +17525,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/string/stripcr",
+    "url_path": "boxlang-language/reference/built-in-functions/string/StripCR",
     "category": "string"
   },
   "StructAppend": {
@@ -17553,7 +17553,7 @@
         "default": "true"
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/struct/structappend",
+    "url_path": "boxlang-language/reference/built-in-functions/struct/StructAppend",
     "category": "struct"
   },
   "StructClear": {
@@ -17567,7 +17567,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/struct/structclear",
+    "url_path": "boxlang-language/reference/built-in-functions/struct/StructClear",
     "category": "struct"
   },
   "StructCopy": {
@@ -17581,7 +17581,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/struct/structcopy",
+    "url_path": "boxlang-language/reference/built-in-functions/struct/StructCopy",
     "category": "struct"
   },
   "StructCount": {
@@ -17595,7 +17595,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/type/structcount",
+    "url_path": "boxlang-language/reference/built-in-functions/type/StructCount",
     "category": "type"
   },
   "StructDelete": {
@@ -17616,7 +17616,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/struct/structdelete",
+    "url_path": "boxlang-language/reference/built-in-functions/struct/StructDelete",
     "category": "struct"
   },
   "StructEach": {
@@ -17665,7 +17665,7 @@
         "default": "false"
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/struct/structeach",
+    "url_path": "boxlang-language/reference/built-in-functions/struct/StructEach",
     "category": "struct"
   },
   "StructEquals": {
@@ -17686,7 +17686,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/struct/structequals",
+    "url_path": "boxlang-language/reference/built-in-functions/struct/StructEquals",
     "category": "struct"
   },
   "StructEvery": {
@@ -17728,7 +17728,7 @@
         "default": "false"
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/struct/structevery",
+    "url_path": "boxlang-language/reference/built-in-functions/struct/StructEvery",
     "category": "struct"
   },
   "StructFilter": {
@@ -17770,7 +17770,7 @@
         "default": "false"
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/struct/structfilter",
+    "url_path": "boxlang-language/reference/built-in-functions/struct/StructFilter",
     "category": "struct"
   },
   "StructFind": {
@@ -17798,7 +17798,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/struct/structfind",
+    "url_path": "boxlang-language/reference/built-in-functions/struct/StructFind",
     "category": "struct"
   },
   "StructFindKey": {
@@ -17826,7 +17826,7 @@
         "default": "one"
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/struct/structfindkey",
+    "url_path": "boxlang-language/reference/built-in-functions/struct/StructFindKey",
     "category": "struct"
   },
   "StructFindValue": {
@@ -17854,7 +17854,7 @@
         "default": "one"
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/struct/structfindvalue",
+    "url_path": "boxlang-language/reference/built-in-functions/struct/StructFindValue",
     "category": "struct"
   },
   "StructGet": {
@@ -17868,7 +17868,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/struct/structget",
+    "url_path": "boxlang-language/reference/built-in-functions/struct/StructGet",
     "category": "struct"
   },
   "StructGetMetadata": {
@@ -17882,7 +17882,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/struct/structgetmetadata",
+    "url_path": "boxlang-language/reference/built-in-functions/struct/StructGetMetadata",
     "category": "struct"
   },
   "StructInsert": {
@@ -17917,7 +17917,7 @@
         "default": "false"
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/struct/structinsert",
+    "url_path": "boxlang-language/reference/built-in-functions/struct/StructInsert",
     "category": "struct"
   },
   "StructIsCaseSensitive": {
@@ -17931,7 +17931,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/struct/structiscasesensitive",
+    "url_path": "boxlang-language/reference/built-in-functions/struct/StructIsCaseSensitive",
     "category": "struct"
   },
   "StructIsOrdered": {
@@ -17945,7 +17945,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/struct/structisordered",
+    "url_path": "boxlang-language/reference/built-in-functions/struct/StructIsOrdered",
     "category": "struct"
   },
   "StructKeyArray": {
@@ -17959,7 +17959,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/struct/structkeyarray",
+    "url_path": "boxlang-language/reference/built-in-functions/struct/StructKeyArray",
     "category": "struct"
   },
   "StructKeyExists": {
@@ -17980,7 +17980,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/struct/structkeyexists",
+    "url_path": "boxlang-language/reference/built-in-functions/struct/StructKeyExists",
     "category": "struct"
   },
   "StructKeyList": {
@@ -18001,7 +18001,7 @@
         "default": ","
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/struct/structkeylist",
+    "url_path": "boxlang-language/reference/built-in-functions/struct/StructKeyList",
     "category": "struct"
   },
   "StructKeyTranslate": {
@@ -18029,7 +18029,7 @@
         "default": "false"
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/struct/structkeytranslate",
+    "url_path": "boxlang-language/reference/built-in-functions/struct/StructKeyTranslate",
     "category": "struct"
   },
   "StructMap": {
@@ -18071,7 +18071,7 @@
         "default": "false"
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/struct/structmap",
+    "url_path": "boxlang-language/reference/built-in-functions/struct/StructMap",
     "category": "struct"
   },
   "StructNew": {
@@ -18113,7 +18113,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/struct/structnew",
+    "url_path": "boxlang-language/reference/built-in-functions/struct/StructNew",
     "category": "struct"
   },
   "StructNone": {
@@ -18155,7 +18155,7 @@
         "default": "false"
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/struct/structnone",
+    "url_path": "boxlang-language/reference/built-in-functions/struct/StructNone",
     "category": "struct"
   },
   "StructReduce": {
@@ -18183,7 +18183,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/struct/structreduce",
+    "url_path": "boxlang-language/reference/built-in-functions/struct/StructReduce",
     "category": "struct"
   },
   "StructSome": {
@@ -18225,7 +18225,7 @@
         "default": "false"
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/struct/structsome",
+    "url_path": "boxlang-language/reference/built-in-functions/struct/StructSome",
     "category": "struct"
   },
   "StructSort": {
@@ -18267,7 +18267,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/struct/structsort",
+    "url_path": "boxlang-language/reference/built-in-functions/struct/StructSort",
     "category": "struct"
   },
   "StructToQueryString": {
@@ -18288,7 +18288,7 @@
         "default": "&"
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/struct/structtoquerystring",
+    "url_path": "boxlang-language/reference/built-in-functions/struct/StructToQueryString",
     "category": "struct"
   },
   "StructToSorted": {
@@ -18330,7 +18330,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/struct/structtosorted",
+    "url_path": "boxlang-language/reference/built-in-functions/struct/StructToSorted",
     "category": "struct"
   },
   "StructUpdate": {
@@ -18358,7 +18358,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/struct/structupdate",
+    "url_path": "boxlang-language/reference/built-in-functions/struct/StructUpdate",
     "category": "struct"
   },
   "StructValueArray": {
@@ -18372,7 +18372,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/struct/structvaluearray",
+    "url_path": "boxlang-language/reference/built-in-functions/struct/StructValueArray",
     "category": "struct"
   },
   "SystemCacheClear": {
@@ -18386,7 +18386,7 @@
         "default": "all"
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/system/systemcacheclear",
+    "url_path": "boxlang-language/reference/built-in-functions/system/SystemCacheClear",
     "category": "system"
   },
   "SystemExecute": {
@@ -18442,7 +18442,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/system/systemexecute",
+    "url_path": "boxlang-language/reference/built-in-functions/system/SystemExecute",
     "category": "system"
   },
   "SystemOutput": {
@@ -18470,7 +18470,7 @@
         "default": "false"
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/system/systemoutput",
+    "url_path": "boxlang-language/reference/built-in-functions/system/SystemOutput",
     "category": "system"
   },
   "Tan": {
@@ -18484,7 +18484,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/math/tan",
+    "url_path": "boxlang-language/reference/built-in-functions/math/Tan",
     "category": "math"
   },
   "ThreadInterrupt": {
@@ -18498,7 +18498,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/async/threadinterrupt",
+    "url_path": "boxlang-language/reference/built-in-functions/async/ThreadInterrupt",
     "category": "async"
   },
   "ThreadJoin": {
@@ -18519,7 +18519,7 @@
         "default": "0"
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/async/threadjoin",
+    "url_path": "boxlang-language/reference/built-in-functions/async/ThreadJoin",
     "category": "async"
   },
   "ThreadNew": {
@@ -18561,7 +18561,7 @@
         "default": "false"
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/async/threadnew",
+    "url_path": "boxlang-language/reference/built-in-functions/async/ThreadNew",
     "category": "async"
   },
   "ThreadTerminate": {
@@ -18575,7 +18575,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/async/threadterminate",
+    "url_path": "boxlang-language/reference/built-in-functions/async/ThreadTerminate",
     "category": "async"
   },
   "Throw": {
@@ -18624,7 +18624,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-framework/modularity/compat-cfml/reference/built-in-functions/system/throw",
+    "url_path": "boxlang-language/reference/built-in-functions/system/Throw",
     "category": "compat-cfml"
   },
   "TimeFormat": {
@@ -18659,7 +18659,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-framework/modularity/compat-cfml/reference/built-in-functions/temporal/timeformat",
+    "url_path": "boxlang-language/reference/built-in-functions/temporal/TimeFormat",
     "category": "compat-cfml"
   },
   "TimeUnits": {
@@ -18687,7 +18687,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/temporal/timeunits",
+    "url_path": "boxlang-language/reference/built-in-functions/temporal/TimeUnits",
     "category": "temporal"
   },
   "ToBase64": {
@@ -18708,7 +18708,7 @@
         "default": "UTF-8"
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/conversion/tobase64",
+    "url_path": "boxlang-language/reference/built-in-functions/conversion/ToBase64",
     "category": "conversion"
   },
   "ToBinary": {
@@ -18722,7 +18722,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/conversion/tobinary",
+    "url_path": "boxlang-language/reference/built-in-functions/conversion/ToBinary",
     "category": "conversion"
   },
   "ToLegacyDate": {
@@ -18750,7 +18750,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/conversion/tomodifiable",
+    "url_path": "boxlang-language/reference/built-in-functions/conversion/ToModifiable",
     "category": "conversion"
   },
   "ToNumeric": {
@@ -18771,7 +18771,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/conversion/tonumeric",
+    "url_path": "boxlang-language/reference/built-in-functions/conversion/ToNumeric",
     "category": "conversion"
   },
   "ToScript": {
@@ -18792,7 +18792,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/conversion/toscript",
+    "url_path": "boxlang-language/reference/built-in-functions/conversion/ToScript",
     "category": "conversion"
   },
   "ToString": {
@@ -18813,7 +18813,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/conversion/tostring",
+    "url_path": "boxlang-language/reference/built-in-functions/conversion/ToString",
     "category": "conversion"
   },
   "ToUnmodifiable": {
@@ -18827,7 +18827,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/conversion/tounmodifiable",
+    "url_path": "boxlang-language/reference/built-in-functions/conversion/ToUnmodifiable",
     "category": "conversion"
   },
   "Trace": {
@@ -18869,13 +18869,13 @@
         "default": "false"
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/system/trace",
+    "url_path": "boxlang-language/reference/built-in-functions/system/Trace",
     "category": "system"
   },
   "TransactionCommit": {
     "description": "Commit the current transaction and persist all stored queries.",
     "params": [],
-    "url_path": "boxlang-language/reference/built-in-functions/jdbc/transactioncommit",
+    "url_path": "boxlang-language/reference/built-in-functions/jdbc/TransactionCommit",
     "category": "jdbc"
   },
   "TransactionRollback": {
@@ -18889,7 +18889,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/jdbc/transactionrollback",
+    "url_path": "boxlang-language/reference/built-in-functions/jdbc/TransactionRollback",
     "category": "jdbc"
   },
   "TransactionSetSavepoint": {
@@ -18903,7 +18903,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/jdbc/transactionsetsavepoint",
+    "url_path": "boxlang-language/reference/built-in-functions/jdbc/TransactionSetSavepoint",
     "category": "jdbc"
   },
   "TranspileCollectionKeySwap": {
@@ -18924,7 +18924,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/type/transpilecollectionkeyswap",
+    "url_path": "boxlang-language/reference/built-in-functions/type/TranspileCollectionKeySwap",
     "category": "type"
   },
   "Trim": {
@@ -18938,7 +18938,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/string/trim",
+    "url_path": "boxlang-language/reference/built-in-functions/string/Trim",
     "category": "string"
   },
   "TrueFalseFormat": {
@@ -18952,7 +18952,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/string/truefalseformat",
+    "url_path": "boxlang-language/reference/built-in-functions/string/TrueFalseFormat",
     "category": "string"
   },
   "UCFirst": {
@@ -18980,7 +18980,7 @@
         "default": "false"
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/string/ucfirst",
+    "url_path": "boxlang-language/reference/built-in-functions/string/UCFirst",
     "category": "string"
   },
   "UCase": {
@@ -18994,7 +18994,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/string/ucase",
+    "url_path": "boxlang-language/reference/built-in-functions/string/UCase",
     "category": "string"
   },
   "URLDecode": {
@@ -19015,7 +19015,7 @@
         "default": "UTF-8"
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/system/urldecode",
+    "url_path": "boxlang-language/reference/built-in-functions/system/URLDecode",
     "category": "system"
   },
   "URLEncodedFormat": {
@@ -19029,7 +19029,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/system/urlencodedformat",
+    "url_path": "boxlang-language/reference/built-in-functions/system/URLEncodedFormat",
     "category": "system"
   },
   "Val": {
@@ -19043,7 +19043,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/string/val",
+    "url_path": "boxlang-language/reference/built-in-functions/string/Val",
     "category": "string"
   },
   "VerifyBCryptHash": {
@@ -19113,7 +19113,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/temporal/week",
+    "url_path": "boxlang-language/reference/built-in-functions/temporal/Week",
     "category": "temporal"
   },
   "WeekOfYear": {
@@ -19134,7 +19134,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/temporal/weekofyear",
+    "url_path": "boxlang-language/reference/built-in-functions/temporal/WeekOfYear",
     "category": "temporal"
   },
   "Wrap": {
@@ -19162,7 +19162,7 @@
         "default": "false"
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/string/wrap",
+    "url_path": "boxlang-language/reference/built-in-functions/string/Wrap",
     "category": "string"
   },
   "WriteLog": {
@@ -19197,7 +19197,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/system/writelog",
+    "url_path": "boxlang-language/reference/built-in-functions/system/WriteLog",
     "category": "system"
   },
   "WriteOutput": {
@@ -19211,7 +19211,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/system/writeoutput",
+    "url_path": "boxlang-language/reference/built-in-functions/system/WriteOutput",
     "category": "system"
   },
   "XMLChildPos": {
@@ -19239,7 +19239,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/xml/xmlchildpos",
+    "url_path": "boxlang-language/reference/built-in-functions/xml/XMLChildPos",
     "category": "xml"
   },
   "XMLElemNew": {
@@ -19267,7 +19267,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/xml/xmlelemnew",
+    "url_path": "boxlang-language/reference/built-in-functions/xml/XMLElemNew",
     "category": "xml"
   },
   "XMLFormat": {
@@ -19288,7 +19288,7 @@
         "default": "false"
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/xml/xmlformat",
+    "url_path": "boxlang-language/reference/built-in-functions/xml/XMLFormat",
     "category": "xml"
   },
   "XMLGetNodeType": {
@@ -19302,7 +19302,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/xml/xmlgetnodetype",
+    "url_path": "boxlang-language/reference/built-in-functions/xml/XMLGetNodeType",
     "category": "xml"
   },
   "XMLNew": {
@@ -19316,7 +19316,7 @@
         "default": "false"
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/xml/xmlnew",
+    "url_path": "boxlang-language/reference/built-in-functions/xml/XMLNew",
     "category": "xml"
   },
   "XMLParse": {
@@ -19330,7 +19330,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/xml/xmlparse",
+    "url_path": "boxlang-language/reference/built-in-functions/xml/XMLParse",
     "category": "xml"
   },
   "XMLSearch": {
@@ -19358,7 +19358,7 @@
         "default": "{}"
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/xml/xmlsearch",
+    "url_path": "boxlang-language/reference/built-in-functions/xml/XMLSearch",
     "category": "xml"
   },
   "XMLTransform": {
@@ -19386,7 +19386,7 @@
         "default": "{}"
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/xml/xmltransform",
+    "url_path": "boxlang-language/reference/built-in-functions/xml/XMLTransform",
     "category": "xml"
   },
   "XMLValidate": {
@@ -19407,7 +19407,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/xml/xmlvalidate",
+    "url_path": "boxlang-language/reference/built-in-functions/xml/XMLValidate",
     "category": "xml"
   },
   "Year": {
@@ -19435,7 +19435,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/temporal/year",
+    "url_path": "boxlang-language/reference/built-in-functions/temporal/Year",
     "category": "temporal"
   },
   "YesNoFormat": {
@@ -19449,7 +19449,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/string/yesnoformat",
+    "url_path": "boxlang-language/reference/built-in-functions/string/YesNoFormat",
     "category": "string"
   },
   "aiAgent": {
@@ -20160,7 +20160,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/decision/arrayisempty",
+    "url_path": "boxlang-language/reference/built-in-functions/decision/ArrayIsEmpty",
     "category": "decision"
   },
   "bitShln": {
@@ -20181,7 +20181,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/binary/bitshln",
+    "url_path": "boxlang-language/reference/built-in-functions/binary/bitShln",
     "category": "binary"
   },
   "bitShrn": {
@@ -20202,7 +20202,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/binary/bitshrn",
+    "url_path": "boxlang-language/reference/built-in-functions/binary/bitShrn",
     "category": "binary"
   },
   "cacheDelete": {
@@ -20713,7 +20713,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-framework/modularity/compat-cfml/reference/built-in-functions/temporal/createdate",
+    "url_path": "boxlang-language/reference/built-in-functions/temporal/CreateDate",
     "category": "compat-cfml"
   },
   "echo": {
@@ -20790,7 +20790,7 @@
         "default": "false"
       }
     ],
-    "url_path": "boxlang-framework/modularity/esapi/reference/built-in-functions/esapi/encodeforhtml",
+    "url_path": "boxlang-language/reference/built-in-functions/system/EncodeForHTML",
     "category": "esapi"
   },
   "encodeForHTMLAttribute": {
@@ -21007,7 +21007,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/io/gettempfile",
+    "url_path": "boxlang-language/reference/built-in-functions/io/getTempFile",
     "category": "io"
   },
   "htmlEditFormat": {
@@ -21028,7 +21028,7 @@
         "default": "false"
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/system/htmleditformat",
+    "url_path": "boxlang-language/reference/built-in-functions/system/htmlEditFormat",
     "category": "system"
   },
   "isThreadAlive": {
@@ -21042,7 +21042,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/async/isthreadalive",
+    "url_path": "boxlang-language/reference/built-in-functions/async/isThreadAlive",
     "category": "async"
   },
   "reFindNoCase": {
@@ -21084,7 +21084,7 @@
         "default": "one"
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/string/refindnocase",
+    "url_path": "boxlang-language/reference/built-in-functions/string/reFindNoCase",
     "category": "string"
   },
   "reMatchNoCase": {
@@ -21105,7 +21105,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/string/rematchnocase",
+    "url_path": "boxlang-language/reference/built-in-functions/string/reMatchNoCase",
     "category": "string"
   },
   "reReplaceNoCase": {
@@ -21140,7 +21140,7 @@
         "default": "one"
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/string/rereplacenocase",
+    "url_path": "boxlang-language/reference/built-in-functions/string/reReplaceNoCase",
     "category": "string"
   },
   "structIsEmpty": {
@@ -21154,7 +21154,7 @@
         "default": null
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/decision/structisempty",
+    "url_path": "boxlang-language/reference/built-in-functions/decision/structIsEmpty",
     "category": "decision"
   },
   "writeDump": {
@@ -21217,7 +21217,7 @@
         "default": "true"
       }
     ],
-    "url_path": "boxlang-language/reference/built-in-functions/system/writedump",
+    "url_path": "boxlang-language/reference/built-in-functions/system/writeDump",
     "category": "system"
   }
 }

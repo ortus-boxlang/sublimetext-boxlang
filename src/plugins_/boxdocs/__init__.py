@@ -20,13 +20,20 @@ def build_url_maps():
             if not isinstance(entry, dict):
                 continue
             url_path = entry.get('url_path', '')
-            if not url_path:
-                continue
-            # url_path may be a full URL (external repos) or a relative path
-            BIF_URL_MAP[func_name.lower()] = url_path
+            if url_path:
+                BIF_URL_MAP[func_name.lower()] = url_path
         tags_data = completions.get('boxlang_tags_data', {})
-        for tag_name in tags_data:
-            COMPONENT_URL_MAP[tag_name] = 'boxlang-language/reference/components/{}'.format(tag_name)
+        for tag_name, tag_info in tags_data.items():
+            if not isinstance(tag_info, dict):
+                continue
+            url_path = tag_info.get('url_path', '')
+            if url_path:
+                lookup = tag_name.lower()
+                if lookup.startswith('<bx:') and lookup.endswith('>'):
+                    lookup = lookup[4:-1]
+                elif lookup.startswith('bx:'):
+                    lookup = lookup[3:]
+                COMPONENT_URL_MAP[lookup] = url_path
     except Exception:
         pass
 
@@ -173,37 +180,36 @@ def _extract_params(func_data):
     params = re.findall('\\$\\{(\\d+):(\\w+)\\}', snippet)
     return [{'name': p[1], 'required': True, 'type': 'any'} for p in params]
 
+BASE_URL = 'https://boxlang.ortusbooks.com'
+
 def _get_bif_url(name):
     """Get documentation URL for a built-in function."""
-    if name.lower() in BIF_URL_MAP:
-        stored = BIF_URL_MAP[name.lower()]
-        if stored.startswith('http'):
-            return stored
-        return 'https://boxlang.ortusbooks.com/{}'.format(stored)
-    return 'https://boxlang.ortusbooks.com/boxlang-language/reference/built-in-functions/bifs/{}'.format(name)
+    stored = BIF_URL_MAP.get(name.lower(), '')
+    if not stored:
+        return None
+    if stored.startswith('http'):
+        return stored
+    return '{}/{}'.format(BASE_URL, stored)
 
 def _get_component_url(name):
     """Get documentation URL for a component."""
-    if name.lower() in COMPONENT_URL_MAP:
-        return 'https://boxlang.ortusbooks.com/{}'.format(COMPONENT_URL_MAP[name.lower()])
-    return 'https://boxlang.ortusbooks.com/boxlang-language/reference/components/{}'.format(name)
+    lookup = name.lower()
+    stored = COMPONENT_URL_MAP.get(lookup, '')
+    if not stored:
+        return None
+    return '{}/{}'.format(BASE_URL, stored)
 
 def build_boxdoc(name, attr_or_arg, data):
     """Build documentation HTML."""
     doc = {'side_color': SIDE_COLOR, 'html': {}}
     if data['type'] == 'function':
-        url_path = data.get('url_path', '')
-        if url_path.startswith('http'):
-            url = url_path
-        elif url_path:
-            url = 'https://boxlang.ortusbooks.com/{}'.format(url_path)
-        else:
-            url = _get_bif_url(name)
-        from urllib.parse import urlparse
-        host = urlparse(url).netloc or 'boxlang.ortusbooks.com'
-        doc['html']['links'] = [{'href': url, 'text': '{}/.../{}'.format(host, name.lower())}]
+        url = _get_bif_url(name)
+        if url:
+            doc['html']['links'] = [{'href': url, 'text': 'boxlang.ortusbooks.com/.../{}'.format(name.lower())}]
     else:
-        doc['html']['links'] = [{'href': _get_component_url(name), 'text': 'boxlang.ortusbooks.com/.../{}'.format(name.lower())}]
+        url = _get_component_url(name)
+        if url:
+            doc['html']['links'] = [{'href': url, 'text': 'boxlang.ortusbooks.com/.../{}'.format(name.lower())}]
     doc['html']['header'] = _build_header(data, attr_or_arg)
     doc['html']['body'] = ''
     category = data.get('category', '')
