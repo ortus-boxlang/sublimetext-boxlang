@@ -59,14 +59,19 @@ class BoxlangAutoCloseTagCommand(sublime_plugin.TextCommand):
 
         # Insert '>' at all cursor positions (reverse order preserves offsets)
         for region in reversed(list(sel)):
-            self.view.replace(edit, region, ">")
+            if region.empty():
+                self.view.insert(edit, region.begin(), ">")
+            else:
+                self.view.replace(edit, region, ">")
 
         if tag_name:
-            insert_pos = self.view.sel()[0].begin()
+            # After inserting '>', get the updated cursor position
+            cursor_pos = self.view.sel()[0].begin()
             closing = "</bx:{}>".format(tag_name)
-            self.view.insert(edit, insert_pos, closing)
+            self.view.insert(edit, cursor_pos, closing)
+            # Place cursor between opening '>' and closing tag
             self.view.sel().clear()
-            self.view.sel().add(sublime.Region(insert_pos, insert_pos))
+            self.view.sel().add(sublime.Region(cursor_pos, cursor_pos))
 
         # Dismiss any completion popup that was open before > was typed,
         # otherwise its commit action can replace the freshly inserted >.
