@@ -291,43 +291,17 @@ contexts:
         - match: \{
           scope: punctuation.section.block.begin.boxlang
           set: class-body
+        - match: '(\w[\w\-]*)\s*(=)'
+          captures:
+            1: entity.other.attribute-name.class.boxlang
+            2: punctuation.separator.key-value.class.boxlang
+          push: expression-no-comma
         - match: \b(extends)\b
           scope: keyword.declaration.extends.boxlang
         - match: \b(implements)\b
           scope: keyword.declaration.implements.boxlang
         - match: '{{identifier}}'
           scope: entity.name.class.boxlang
-        - match: (\w[\w\-]*)\s*(=)\s*(\")
-          captures:
-            1: entity.other.attribute-name.class.boxlang
-            2: punctuation.separator.key-value.class.boxlang
-            3: punctuation.definition.string.begin.boxlang
-          push:
-            - meta_include_prototype: false
-            - meta_scope: string.quoted.double.boxlang
-            - match: \"
-              scope: punctuation.definition.string.end.boxlang
-              pop: true
-            - match: '\\.'
-              scope: constant.character.escape.boxlang
-        - match: (\w[\w\-]*)\s*(=)\s*(')
-          captures:
-            1: entity.other.attribute-name.class.boxlang
-            2: punctuation.separator.key-value.class.boxlang
-            3: punctuation.definition.string.begin.boxlang
-          push:
-            - meta_include_prototype: false
-            - meta_scope: string.quoted.single.boxlang
-            - match: \'
-              scope: punctuation.definition.string.end.boxlang
-              pop: true
-            - match: '\\.'
-              scope: constant.character.escape.boxlang
-        - match: '(\w[\w\-]*)\s*(=)'
-          captures:
-            1: entity.other.attribute-name.class.boxlang
-            2: punctuation.separator.key-value.class.boxlang
-          push: class-attribute-value
         - match: '(\w[\w\-]*)'
           scope: entity.other.attribute-name.class.boxlang
 
@@ -339,19 +313,6 @@ contexts:
     - include: function-declaration
     - include: property-declaration
     - include: statements
-
-  class-attribute-value:
-    - match: (?i)\b(true|false)\b
-      scope: constant.language.boolean.boxlang
-      pop: true
-    - match: '{{storage_types}}'
-      scope: storage.type.boxlang
-      pop: true
-    - match: '{{identifier}}'
-      scope: variable.other.class-attribute.boxlang
-      pop: true
-    - include: literal-number
-    - include: else-pop
 
   static-block:
     - match: \bstatic\b(?=\s*[\n\{])
