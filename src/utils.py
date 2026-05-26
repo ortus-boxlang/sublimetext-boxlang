@@ -5,6 +5,8 @@ import os
 import sublime
 from collections import namedtuple
 Symbol = namedtuple('Symbol', 'name is_function function_region args_region name_region')
+SETTINGS_FILE = 'BoxLang.sublime-settings'
+LEGACY_SETTINGS_FILE = 'boxlang.sublime-settings'
 
 def get_plugin_name():
     """Return the package name."""
@@ -160,7 +162,10 @@ def get_struct_context(view, position):
 
 def get_setting(setting_key):
     """Get a setting from the BoxLang package settings."""
-    boxlang_settings = sublime.load_settings('boxlang.sublime-settings')
+    legacy_value = sublime.load_settings(LEGACY_SETTINGS_FILE).get(setting_key)
+    if legacy_value is not None:
+        return legacy_value
+    boxlang_settings = sublime.load_settings(SETTINGS_FILE)
     return boxlang_settings.get(setting_key)
 
 def get_project_setting(view, setting_key, default=None):

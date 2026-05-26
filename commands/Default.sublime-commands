@@ -1,14 +1,14 @@
 [
     {
-        "caption": "BoxLang: Settings",
+        "caption": "Preferences: BoxLang Settings",
         "command": "edit_settings",
         "args": {
-            "base_file": "${packages}/BoxLang/settings/boxlang.sublime-settings",
+            "base_file": "${packages}/BoxLang/settings/BoxLang.sublime-settings",
             "default": "{\n\t$0\n}\n"
         }
     },
     {
-        "caption": "BoxLang: Key Bindings",
+        "caption": "Preferences: BoxLang Key Bindings",
         "command": "edit_settings",
         "args": {
             "base_file": "${packages}/BoxLang/inputmaps/Default ($platform).sublime-keymap",

@@ -10,13 +10,13 @@ WIZARD_FLAG_KEY = 'boxlang_wizard_completed'
 
 def wizard_completed():
     """Check if the wizard has been completed."""
-    return sublime.load_settings('boxlang.sublime-settings').get(WIZARD_FLAG_KEY, False)
+    return utils.get_setting(WIZARD_FLAG_KEY) or False
 
 def mark_wizard_completed():
     """Mark the wizard as completed."""
-    settings = sublime.load_settings('boxlang.sublime-settings')
+    settings = sublime.load_settings(utils.SETTINGS_FILE)
     settings.set(WIZARD_FLAG_KEY, True)
-    sublime.save_settings('boxlang.sublime-settings')
+    sublime.save_settings(utils.SETTINGS_FILE)
 
 def show_wizard():
     """Show the first-run wizard panel."""
@@ -64,7 +64,7 @@ def _show_step_done(window):
     message = "You're all set!\n\nQuick tips:\n  F1           - Show inline documentation\n  Shift+Alt+F  - Format code\n  Ctrl+B       - Build & run\n  Ctrl+Alt+D   - Insert writeDump()\n\nOpen Settings to customize your experience."
     result = sublime.yes_no_cancel_dialog(message, 'Open Settings', 'Close')
     if result == sublime.DIALOG_YES:
-        window.run_command('edit_settings', {'base_file': '${packages}/BoxLang/settings/boxlang.sublime-settings', 'default': '{\n\t$0\n}\n'})
+        window.run_command('edit_settings', {'base_file': '${packages}/BoxLang/settings/BoxLang.sublime-settings', 'default': '{\n\t$0\n}\n'})
     mark_wizard_completed()
 
 def _is_cfml_package_installed():
@@ -77,9 +77,9 @@ def _is_cfml_package_installed():
 
 def _set_cfml_fallback(enabled):
     """Enable or disable CFML file fallback in settings."""
-    settings = sublime.load_settings('boxlang.sublime-settings')
+    settings = sublime.load_settings(utils.SETTINGS_FILE)
     settings.set('boxlang_enable_cfml_fallback', enabled)
-    sublime.save_settings('boxlang.sublime-settings')
+    sublime.save_settings(utils.SETTINGS_FILE)
 
 class BoxlangRunWizardCommand(sublime_plugin.ApplicationCommand):
     """Re-run the first-time setup wizard."""

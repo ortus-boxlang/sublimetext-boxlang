@@ -9,8 +9,7 @@ from . import utils
 
 
 def should_auto_close(view):
-    settings = sublime.load_settings("boxlang.sublime-settings")
-    if not settings.get("boxlang_auto_insert_closing_tag", False):
+    if not utils.get_setting("boxlang_auto_insert_closing_tag"):
         return False
 
     sel = view.sel()
@@ -29,7 +28,7 @@ def should_auto_close(view):
         return False
 
     tag_name = match.group(1).lower()
-    non_closing_tags = [t.lower() for t in settings.get("boxlang_non_closing_tags", [])]
+    non_closing_tags = [t.lower() for t in utils.get_setting("boxlang_non_closing_tags") or []]
     if tag_name in non_closing_tags:
         return False
 

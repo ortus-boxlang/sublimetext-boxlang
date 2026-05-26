@@ -2,14 +2,8 @@
 Pytest configuration and shared fixtures for BoxLang tests.
 """
 
-import sys
-import os
 import pytest
 from unittest.mock import MagicMock, patch
-
-# Add project root to path so we can import src
-PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-sys.path.insert(0, PROJECT_ROOT)
 
 
 @pytest.fixture(autouse=True)

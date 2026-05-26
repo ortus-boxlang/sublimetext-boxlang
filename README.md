@@ -17,8 +17,7 @@ Comprehensive BoxLang language support for Sublime Text 4. Provides syntax highl
 
 ### File Icons
 
-- **Native fallback (default):** BoxLang ships scope-based icon preferences so users see meaningful icons without installing extra packages.
-- **Optional enhanced icons:** If `A File Icon` is installed, per-extension custom icons from `File Icons.sublime-settings` are used for `.bx`, `.bxs`, and `.bxm`.
+BoxLang ships scope-based icon preferences so users see meaningful icons without installing extra packages.
 
 Fallback mapping intent:
 
@@ -46,7 +45,7 @@ Fallback mapping intent:
 
 - **Code Formatting** via `boxlang format` CLI
 - **Build System** — Run, compile, debug, and audit BoxLang files
-- **Go to Definition** — Ctrl/Cmd+Click to navigate to classes and functions
+- **Go to Definition** — Command Palette navigation to classes and functions
 - **Error Panel** — Parse error display with F4/Shift+F4 navigation
 - **Status Bar** — Version, indexing progress, and error counts
 - **Code Snippets** — 10 built-in snippets for common patterns
@@ -136,9 +135,9 @@ Re-run the wizard anytime: `BoxLang: Run Setup Wizard` (Command Palette)
 
 ## Settings
 
-Open settings: `BoxLang: Settings` (Command Palette)
+Open settings: `Preferences: BoxLang Settings` (Command Palette)
 
-> **Note:** The table below shows frequently used settings. For the complete list (28 settings), see `BoxLang: Settings` in Sublime Text or [settings/boxlang.sublime-settings](settings/boxlang.sublime-settings).
+> **Note:** The table below shows frequently used settings. For the complete list (28 settings), see `Preferences: BoxLang Settings` in Sublime Text or [settings/BoxLang.sublime-settings](settings/BoxLang.sublime-settings).
 
 ### Key Settings
 
@@ -509,7 +508,7 @@ git commit -m "chore: update completion data from boxlang-docs"
 - [x] Build system (run, compile, debug, audit)
 - [x] Error panel with F4/Shift+F4 navigation
 - [x] Type inference engine (medium depth)
-- [x] Go-to-definition via Ctrl/Cmd+Click
+- [x] Go-to-definition via Command Palette
 - [x] Status bar integration (version, indexing, errors)
 - [x] 10 code snippets for common patterns
 - [x] `applicationbx` plugin — Application.bx lifecycle completions

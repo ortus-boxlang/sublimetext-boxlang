@@ -7,16 +7,16 @@ import threading
 import sublime
 import sublime_plugin
 from .src import utils
+from .src import build_helpers
+from .src import process
 
 class BoxlangFormatCommand(sublime_plugin.TextCommand):
     """Format BoxLang code using boxlang format CLI."""
 
     def run(self, edit):
-        from .boxlang_build import _get_boxlang_path
-        bx_path = _get_boxlang_path()
+        bx_path = build_helpers.get_boxlang_path()
         if not bx_path:
-            from .boxlang_build import _show_path_error
-            _show_path_error(self.view.window())
+            build_helpers.show_path_error(self.view.window())
             return
         file_path = self.view.file_name()
         if not file_path:
@@ -39,7 +39,13 @@ class BoxlangFormatCommand(sublime_plugin.TextCommand):
                 if config_path:
                     cmd.extend(['--config', config_path])
                 cmd.append(file_path)
-                proc = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+                proc = subprocess.Popen(
+                    cmd,
+                    stdout=subprocess.PIPE,
+                    stderr=subprocess.PIPE,
+                    startupinfo=process.get_startupinfo(),
+                    creationflags=process.get_creationflags()
+                )
                 stdout, stderr = proc.communicate()
                 if proc.returncode == 0:
                     sublime.set_timeout(lambda: on_format(True, None))

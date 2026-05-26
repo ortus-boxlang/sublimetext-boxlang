@@ -20,16 +20,15 @@ If not installed, visit [boxlang.ortusbooks.com](https://boxlang.ortusbooks.com)
 - **Type-Aware Member Method Completions**
 - **Code Formatting** via `boxlang format`
 - **Build System** — run, compile, debug, and audit
-- **Go to Definition** — Ctrl/Cmd+Click navigation
+- **Go to Definition** — Command Palette navigation
 - **Inline Documentation** — F1 for full docs, hover for quick info
 - **Project Component Indexing** with inheritance resolution
 
 ## File Icons
 
 - Native fallback icons are included and work without any additional package.
-- Optional enhanced per-extension icons (`.bx`, `.bxs`, `.bxm`) are available when `A File Icon` is installed.
 
-If custom icons do not appear, fallback icons should still be shown. Restart Sublime Text after changing icon-related packages.
+Restart Sublime Text if icons do not appear immediately after installation.
 
 ## First Run
 
@@ -42,7 +41,7 @@ Re-run anytime via Command Palette: `BoxLang: Run Setup Wizard`
 | Action | Shortcut |
 | ------ | -------- |
 | Show inline documentation | `F1` |
-| Go to definition | `Ctrl/Cmd+Click` |
+| Go to definition | `BoxLang: Go to Definition` |
 | Format code | `Shift+Alt+F` |
 | Next/previous parse error | `F4` / `Shift+F4` |
 

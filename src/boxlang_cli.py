@@ -5,7 +5,8 @@ import os
 import subprocess
 import json
 import threading
-import sublime
+from . import process
+from . import utils
 _boxlang_installed = False
 _boxlang_version = ''
 _boxlang_executable = 'boxlang'
@@ -14,8 +15,7 @@ _detection_callbacks = []
 
 def _find_boxlang_executable():
     """Find BoxLang executable in common locations."""
-    settings = sublime.load_settings('boxlang.sublime-settings')
-    custom_path = settings.get('boxlang_executable_path')
+    custom_path = utils.get_setting('boxlang_executable_path')
     if custom_path:
         return custom_path
     candidates = [os.path.expanduser('~/.bvm/current/bin/boxlang'), '/usr/local/bin/boxlang', os.path.expanduser('~/.local/bin/boxlang'), '/usr/local/boxlang/bin/boxlang', os.path.expanduser('~/.local/boxlang/bin/boxlang'), 'c:\\boxlang\\bin\\boxlang.bat', os.path.expandvars('${USERPROFILE}\\.local\\bin\\boxlang.bat')]
@@ -32,7 +32,13 @@ def initialize():
 
 def _run_command(args, timeout=30):
     """Run a subprocess command compatible with Python 3.3."""
-    proc = subprocess.Popen(args, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+    proc = subprocess.Popen(
+        args,
+        stdout=subprocess.PIPE,
+        stderr=subprocess.PIPE,
+        startupinfo=process.get_startupinfo(),
+        creationflags=process.get_creationflags()
+    )
     try:
         stdout, stderr = proc.communicate(timeout=timeout)
         return proc.returncode, stdout.decode('utf-8'), stderr.decode('utf-8')
