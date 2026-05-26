@@ -424,6 +424,8 @@ Re-run via Command Palette: `BoxLang: Run Setup Wizard`
 2. **AST class parsing** — BoxLang v1.13.0 parses `class` as `BoxIdentifier` expressions, not `BoxClassDeclaration` — requires sequential statement pattern matching
 3. **Java class introspection** — Deferred to later phase; `createObject("java", "...")` types resolve as `"any"`
 4. **MCP server** — `https://boxlang.ortusbooks.com/~gitbook/mcp` available but deferred to Phase 5
+5. **In-memory index** — No disk persistence; rebuilt each session
+6. **Single-threaded indexing** — Files indexed sequentially; parallel indexing deferred to Phase 4
 
 ## Related Projects
 

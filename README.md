@@ -1,7 +1,7 @@
 # BoxLang Language Support for Sublime Text
 
 [![Tests](https://github.com/ortus-boxlang/sublimetext-boxlang/actions/workflows/tests.yml/badge.svg)](https://github.com/ortus-boxlang/sublimetext-boxlang/actions/workflows/tests.yml)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
 Comprehensive BoxLang language support for Sublime Text 4. Provides syntax highlighting, intelligent completions, inline documentation, code formatting, type inference, and build tools for the BoxLang programming language.
 
@@ -138,6 +138,8 @@ Re-run the wizard anytime: `BoxLang: Run Setup Wizard` (Command Palette)
 
 Open settings: `BoxLang: Settings` (Command Palette)
 
+> **Note:** The table below shows frequently used settings. For the complete list (28 settings), see `BoxLang: Settings` in Sublime Text or [settings/boxlang.sublime-settings](settings/boxlang.sublime-settings).
+
 ### Key Settings
 
 | Setting | Default | Description |
@@ -147,11 +149,18 @@ Open settings: `BoxLang: Settings` (Command Palette)
 | `boxlang_bif_completions` | `"required"` | BIF style: `basic`, `required`, `full` |
 | `boxlang_class_completions` | `"required"` | Component style: `basic`, `required`, `full` |
 | `boxlang_class_completion_names` | `"basic"` | Include return type: `basic`, `full` |
-| `boxlang_auto_compile_on_save` | `false` | Auto-compile to `./bin` on save |
+| `boxlang_instantiated_component_completions` | `true` | Variable-to-component mapping completions |
+| `boxlang_auto_insert_closing_tag` | `false` | Auto-insert closing `bx:` tag on `>` |
 | `boxlang_format_on_save` | `false` | Auto-format on save |
+| `boxlang_auto_compile_on_save` | `false` | Auto-compile to `./bin` on save |
+| `boxlang_compile_target` | `"./bin"` | Compilation target directory |
 | `boxlang_hover_docs` | `true` | Enable hover documentation |
 | `boxlang_completion_docs` | `true` | Enable completion docs popup |
+| `boxlang_status_bar_enabled` | `true` | Show status bar info |
 | `boxlang_class_folders` | `[ { "path": ".", ... } ]` | Class folders for indexing and variable mapping (defaults to project root) |
+| `boxlang_controller_folders` | `["controllers","handlers"]` | Controller folder names for toggle |
+| `boxlang_view_folders` | `["views"]` | View folder names for toggle |
+| `boxlang_testbox_enabled` | `true` | Enable TestBox integration |
 
 ### Project Configuration
 
@@ -195,7 +204,7 @@ Add to your `.sublime-project` file:
 
 ## Running Tests
 
-The package includes a comprehensive test suite with **236 tests** using pytest and TestBox-style expectations.
+The package includes a comprehensive test suite using pytest and TestBox-style expectations (236 tests across 15 files).
 
 ### Quick Start
 
@@ -262,7 +271,7 @@ tests/
 ├── run_tests.py             # Custom test runner CLI
 ├── pytest.ini               # Pytest configuration
 ├── requirements.txt         # Test dependencies
-├── unit/                    # Unit tests (14 files, 218 tests)
+├── unit/                    # Unit tests (12 files, 191 tests)
 │   ├── test_ast_parser.py
 │   ├── test_tag_parser.py
 │   ├── test_type_resolver.py
@@ -275,7 +284,7 @@ tests/
 │   ├── test_parser_router.py
 │   ├── test_wizard.py
 │   └── test_bug_fixes.py    # Regression tests for all reviewed bugs
-├── integration/             # Integration tests (3 files, 18 tests)
+├── integration/             # Integration tests (3 files, 45 tests)
 │   ├── test_completions.py
 │   ├── test_indexing.py
 │   └── test_plugins.py
@@ -483,15 +492,33 @@ git commit -m "chore: update completion data from boxlang-docs"
 3. **Java introspection** — `createObject("java", "...")` types resolve as `"any"` (deferred)
 4. **MCP server** — Available but deferred to Phase 5
 5. **In-memory index** — No disk persistence; rebuilt each session
+6. **Single-threaded indexing** — Files indexed sequentially; will be parallelized in Phase 4
 
 ---
 
 ## Roadmap
 
+### Phase 2 (Complete)
+
+- [x] Syntax highlighting (`.bx`, `.bxs`, `.bxm`)
+- [x] 825+ BIF, 81+ tag, and 229 member function completions
+- [x] Dot-path and type-aware completions
+- [x] Component indexing with inheritance resolution
+- [x] Inline documentation (F1 popup, hover, completion docs)
+- [x] Code formatting via `boxlang format`
+- [x] Build system (run, compile, debug, audit)
+- [x] Error panel with F4/Shift+F4 navigation
+- [x] Type inference engine (medium depth)
+- [x] Go-to-definition via Ctrl/Cmd+Click
+- [x] Status bar integration (version, indexing, errors)
+- [x] 10 code snippets for common patterns
+- [x] `applicationbx` plugin — Application.bx lifecycle completions
+- [x] `in_file_completions` plugin — in-file symbol completions
+- [x] Root-level event listener registration
+- [x] Sub-package command re-export for ST4 compatibility
+
 ### Phase 3
 
-- [ ] `applicationbx` plugin (Application.bx-like completions)
-- [ ] `in_file_completions` plugin (in-file symbol completions)
 - [ ] Auto-close tags on `>`
 - [ ] Auto-format on save
 - [ ] Auto-compile on save
@@ -520,7 +547,7 @@ Full BoxLang documentation: [boxlang.ortusbooks.com](https://boxlang.ortusbooks.
 
 ## License
 
-MIT License — see [license.txt](license.txt) for details.
+Apache License 2.0 — see [license.txt](license.txt) for details.
 
 ---
 

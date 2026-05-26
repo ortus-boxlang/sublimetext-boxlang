@@ -753,7 +753,7 @@ tests/
 ├── run_tests.py              # Test runner CLI
 ├── pytest.ini                # Pytest configuration
 ├── requirements.txt          # Test dependencies (pytest, pytest-mock, pytest-cov)
-├── unit/                     # Unit tests (14 files, 236 tests)
+├── unit/                     # Unit tests (12 files, 191 tests)
 │   ├── test_ast_parser.py
 │   ├── test_tag_parser.py
 │   ├── test_type_resolver.py
@@ -834,7 +834,7 @@ All potentially blocking operations run in background threads:
 
 ## Known Limitations
 
-1. **AST for `.bxm`** — `boxlang --bx-printast` does not support markup files; uses regex-based tag parser
+1. **AST for `.bxm`** — `boxlang --bx-printast` does not support markup files; uses flexible tokenizer-based tag parser
 2. **AST class parsing** — BoxLang v1.13.0 parses `class` as `BoxIdentifier` expressions, requiring sequential pattern matching
 3. **Java introspection** — `createObject("java", "...")` types resolve as `"any"`; deferred to later phase
 4. **MCP server** — Available at `boxlang.ortusbooks.com/~gitbook/mcp` but deferred to Phase 5

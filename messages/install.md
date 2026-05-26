@@ -15,8 +15,8 @@ If not installed, visit [boxlang.ortusbooks.com](https://boxlang.ortusbooks.com)
 ## Features
 
 - **Syntax Highlighting** for `.bx`, `.bxs`, `.bxm` files
-- **560+ Built-in Function Completions** with parameter hints
-- **41 BoxLang Tag Completions** with attribute support
+- **825+ Built-in Function Completions** with parameter hints
+- **81+ BoxLang Tag Completions** with attribute support
 - **Type-Aware Member Method Completions**
 - **Code Formatting** via `boxlang format`
 - **Build System** — run, compile, debug, and audit
