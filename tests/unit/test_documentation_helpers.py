@@ -13,13 +13,13 @@ class TestSpanWrap:
         """Test basic span wrapping."""
         from src.documentation_helpers import span_wrap
         result = span_wrap("functionName", "entity.name.function")
-        expect(result).to_be('<span class="entity.name.function">functionName</span>')
+        expect(result).to_be('<span class="entity-name-function">functionName</span>')
 
     def test_span_wrap_with_spaces(self):
         """Test span wrapping with spaces in class."""
         from src.documentation_helpers import span_wrap
         result = span_wrap("param", "variable.parameter.function")
-        expect(result).to_be('<span class="variable.parameter.function">param</span>')
+        expect(result).to_be('<span class="variable-parameter-function">param</span>')
 
 
 class TestParamHeader:
