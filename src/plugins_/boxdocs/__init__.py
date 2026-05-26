@@ -104,13 +104,28 @@ def _get_boxdoc(name):
     """Get documentation for a function or tag."""
     try:
         from ..basecompletions import completions
+        # Try rich params data first (generated from boxlang-docs)
+        params_data = completions.get('boxlang_function_params', {})
+        lower_params_map = {k.lower(): k for k in params_data}
+        canonical_name = lower_params_map.get(name.lower())
+        if canonical_name:
+            entry = params_data[canonical_name]
+            return {
+                'type': 'function',
+                'name': canonical_name,
+                'description': entry.get('description', ''),
+                'params': entry.get('params', []),
+                'returns': entry.get('returns', ''),
+            }
+        # Fall back to snippet-based extraction for functions not in params data
         functions_data = completions.get('boxlang_functions', {})
         lower_func_map = {k.lower(): k for k in functions_data}
-        canonical_name = lower_func_map.get(name.lower())
-        if canonical_name:
-            func_data = functions_data[canonical_name]
+        canonical_func = lower_func_map.get(name.lower())
+        if canonical_func:
+            func_data = functions_data[canonical_func]
             if func_data:
-                return {'type': 'function', 'name': canonical_name, 'description': func_data[0] if len(func_data) > 0 else '', 'params': _extract_params(func_data), 'returns': ''}
+                return {'type': 'function', 'name': canonical_func, 'description': func_data[0] if len(func_data) > 0 else '', 'params': _extract_params(func_data), 'returns': ''}
+        # Tags/components
         tags_data = completions.get('boxlang_tags', {})
         lower_tag_map = {k.lower(): k for k in tags_data}
         canonical_tag = lower_tag_map.get(name.lower())

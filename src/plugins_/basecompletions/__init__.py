@@ -5,6 +5,8 @@ import sublime
 import json
 from ... import utils
 COMPLETION_FILES = ['boxlang_tags', 'boxlang_functions', 'boxlang_member_functions', 'boxlang_function_params']
+# boxlang_function_params is passed through as-is (dict of name → {description, params})
+PASSTHROUGH_FILES = {'boxlang_function_params'}
 SIDE_COLOR = 'color(#4C9BB0 blend(var(--background) 60%))'
 completions = {}
 function_names = []
@@ -81,6 +83,10 @@ def load_completions():
             completions_data[filename] = load_json_data(filename)
         except Exception:
             completions_data[filename] = {}
+    # Pass through raw dict files unchanged (used by boxdocs for rich parameter data)
+    for filename in PASSTHROUGH_FILES:
+        if filename in completions_data:
+            completions[filename] = completions_data[filename]
     completions['boxlang_tags'] = []
     completions['boxlang_tags_in_script'] = []
     completions['boxlang_tag_attributes'] = {}

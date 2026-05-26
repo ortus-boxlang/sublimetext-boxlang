@@ -1,14 +1,1419 @@
 {
-  "string": {
-    "left": [
-      "Extract the leftmost count characters from a string",
+  "array": {
+    "append": [
+      "Append a value to an array",
       [
-        "(${1:count}$0)",
-        "(${1:count}$0)"
+        "(${1:value}$0)",
+        "(${1:value}, ${2:merge}$0)"
       ]
     ],
-    "right": [
-      "Extract the rightmost count characters from a string",
+    "avg": [
+      "Return length of array",
+      [
+        "($0)",
+        "($0)"
+      ]
+    ],
+    "bxDump": [
+      "Outputs the contents of a variable (simple or complex) of any type for debugging purposes to a specific output location.",
+      [
+        "($0)",
+        "(${1:label}, ${2:top}, ${3:expand}, ${4:abort}, ${5:output}, ${6:format}, ${7:showUDFs}$0)"
+      ]
+    ],
+    "chunk": [
+      "Chunks the array into an array of arrays of the specified size.",
+      [
+        "(${1:length}$0)",
+        "(${1:length}$0)"
+      ]
+    ],
+    "clear": [
+      "Clear all items from array",
+      [
+        "($0)",
+        "($0)"
+      ]
+    ],
+    "contains": [
+      "Array finders and contains functions with and without case sensitivity.",
+      [
+        "(${1:value}$0)",
+        "(${1:value}, ${2:substringMatch}$0)"
+      ]
+    ],
+    "containsNoCase": [
+      "Array finders and contains functions with and without case sensitivity.",
+      [
+        "(${1:value}$0)",
+        "(${1:value}, ${2:substringMatch}$0)"
+      ]
+    ],
+    "delete": [
+      "Delete first occurance of item in array case sensitive",
+      [
+        "(${1:value}$0)",
+        "(${1:value}, ${2:scope}$0)"
+      ]
+    ],
+    "deleteAt": [
+      "Delete item at specified index in array",
+      [
+        "(${1:index}$0)",
+        "(${1:index}$0)"
+      ]
+    ],
+    "deleteNoCase": [
+      "Delete first occurance of item in array case sensitive",
+      [
+        "(${1:value}$0)",
+        "(${1:value}, ${2:scope}$0)"
+      ]
+    ],
+    "duplicate": [
+      "Duplicates an object - either shallow or deep",
+      [
+        "($0)",
+        "(${1:deep}$0)"
+      ]
+    ],
+    "each": [
+      "Used to iterate over an array and run the function closure for each item in the array.",
+      [
+        "(${1:callback}$0)",
+        "(${1:callback}, ${2:parallel}, ${3:maxThreads}, ${4:ordered}, ${5:virtual}$0)"
+      ]
+    ],
+    "equals": [
+      "Verifies equality with the following rules:",
+      [
+        "(${1:obj}$0)",
+        "(${1:obj}$0)"
+      ]
+    ],
+    "every": [
+      "Used to iterate over an array and test whether **every** item meets the test callback.",
+      [
+        "(${1:callback}$0)",
+        "(${1:callback}, ${2:parallel}, ${3:maxThreads}, ${4:virtual}$0)"
+      ]
+    ],
+    "filter": [
+      "Filters an array and returns a new array containing the result This BIF will invoke the callback function for each item in the array, passing the item, its index, and the array itself.",
+      [
+        "(${1:callback}$0)",
+        "(${1:callback}, ${2:parallel}, ${3:maxThreads}, ${4:virtual}$0)"
+      ]
+    ],
+    "find": [
+      "This function searches the array for the specified value. Returns the index in the array of the first match, or 0 if there is no match.",
+      [
+        "(${1:value}$0)",
+        "(${1:value}, ${2:substringMatch}$0)"
+      ]
+    ],
+    "findAll": [
+      "Return an array containing the indexes of matched values",
+      [
+        "(${1:value}$0)",
+        "(${1:value}$0)"
+      ]
+    ],
+    "findAllNoCase": [
+      "Return an array containing the indexes of matched values",
+      [
+        "(${1:value}$0)",
+        "(${1:value}$0)"
+      ]
+    ],
+    "findFirst": [
+      "Return first item in array that matches the predicate function.",
+      [
+        "(${1:callback}$0)",
+        "(${1:callback}, ${2:defaultValue}, ${3:parallel}, ${4:maxThreads}, ${5:virtual}$0)"
+      ]
+    ],
+    "findNoCase": [
+      "Array finders and contains functions with and without case sensitivity.",
+      [
+        "(${1:value}$0)",
+        "(${1:value}, ${2:substringMatch}$0)"
+      ]
+    ],
+    "first": [
+      "Return first item in array",
+      [
+        "($0)",
+        "(${1:defaultValue}$0)"
+      ]
+    ],
+    "flatMap": [
+      "Maps each element and flattens the result one level.",
+      [
+        "(${1:callback}$0)",
+        "(${1:callback}, ${2:parallel}, ${3:maxThreads}, ${4:virtual}$0)"
+      ]
+    ],
+    "flatten": [
+      "Flattens nested arrays to the specified depth.",
+      [
+        "($0)",
+        "(${1:depth}$0)"
+      ]
+    ],
+    "getMetadata": [
+      "Gets metadata for items of an array and indicates the array type.",
+      [
+        "($0)",
+        "($0)"
+      ]
+    ],
+    "groupBy": [
+      "Returns a struct of keys returned from the predicate function and values of arrays of matching rows.",
+      [
+        "(${1:callback}$0)",
+        "(${1:callback}$0)"
+      ]
+    ],
+    "hash": [
+      "Creates an algorithmic hash of an object",
+      [
+        "($0)",
+        "(${1:algorithm}, ${2:encoding}, ${3:numIterations}$0)"
+      ]
+    ],
+    "indexExists": [
+      "Returns whether there exists an item in the array at the selected index.",
+      [
+        "(${1:index}$0)",
+        "(${1:index}$0)"
+      ]
+    ],
+    "insertAt": [
+      "Append a value to an array",
+      [
+        "(${1:position}, ${2:value}$0)",
+        "(${1:position}, ${2:value}$0)"
+      ]
+    ],
+    "isDefined": [
+      "Returns whether there exists an item in the array at the selected index.",
+      [
+        "(${1:index}$0)",
+        "(${1:index}$0)"
+      ]
+    ],
+    "isEmpty": [
+      "Determine whether a given value is empty.",
+      [
+        "($0)",
+        "($0)"
+      ]
+    ],
+    "join": [
+      "Used to iterate over an array and run the function closure for each item in the array.",
+      [
+        "($0)",
+        "(${1:delimiter}, ${2:initialValue}$0)"
+      ]
+    ],
+    "last": [
+      "Return first item in array",
+      [
+        "($0)",
+        "($0)"
+      ]
+    ],
+    "len": [
+      "Returns the absolute value of a number",
+      [
+        "($0)",
+        "($0)"
+      ]
+    ],
+    "map": [
+      "Iterates over every entry of the array and calls the closure function to work on the element of the array.",
+      [
+        "(${1:callback}$0)",
+        "(${1:callback}, ${2:parallel}, ${3:maxThreads}, ${4:virtual}$0)"
+      ]
+    ],
+    "max": [
+      "Get the max value from an array",
+      [
+        "($0)",
+        "($0)"
+      ]
+    ],
+    "median": [
+      "Return the median value of an array.",
+      [
+        "($0)",
+        "($0)"
+      ]
+    ],
+    "merge": [
+      "This function creates a new array with data from the two passed arrays.",
+      [
+        "(${1:array2}, ${2:leaveIndex}$0)",
+        "(${1:array2}, ${2:leaveIndex}$0)"
+      ]
+    ],
+    "mid": [
+      "Extracts a sub array from an existing array.",
+      [
+        "(${1:start}$0)",
+        "(${1:start}, ${2:length}$0)"
+      ]
+    ],
+    "min": [
+      "Return length of array",
+      [
+        "($0)",
+        "($0)"
+      ]
+    ],
+    "none": [
+      "Used to iterate over an array and test whether **NONE** item meets the test callback.",
+      [
+        "(${1:callback}$0)",
+        "(${1:callback}, ${2:parallel}, ${3:maxThreads}, ${4:virtual}$0)"
+      ]
+    ],
+    "parallelStream": [
+      "Returns a parallel stream of the array",
+      [
+        "($0)",
+        "($0)"
+      ]
+    ],
+    "pop": [
+      "Remove last item in array and return it",
+      [
+        "($0)",
+        "(${1:defaultValue}$0)"
+      ]
+    ],
+    "prepend": [
+      "Append a value to the start an array",
+      [
+        "(${1:value}$0)",
+        "(${1:value}$0)"
+      ]
+    ],
+    "push": [
+      "Adds an element or an object to the end of an array, then returns the size of the modified array.",
+      [
+        "(${1:value}$0)",
+        "(${1:value}$0)"
+      ]
+    ],
+    "range": [
+      "Build an array out of a range of numbers or using our range syntax: {start}..{end} or using the from and to arguments",
+      [
+        "($0)",
+        "(${1:to}$0)"
+      ]
+    ],
+    "reduce": [
+      "Run the provided udf over the array to reduce the values to a single output",
+      [
+        "(${1:callback}$0)",
+        "(${1:callback}, ${2:initialValue}$0)"
+      ]
+    ],
+    "reduceRight": [
+      "This function iterates over every element of the array and calls the closure to work on that element.",
+      [
+        "(${1:callback}$0)",
+        "(${1:callback}, ${2:initialValue}$0)"
+      ]
+    ],
+    "reject": [
+      "Filters an array and returns a new array containing the result.",
+      [
+        "(${1:callback}$0)",
+        "(${1:callback}, ${2:parallel}, ${3:maxThreads}, ${4:virtual}$0)"
+      ]
+    ],
+    "resize": [
+      "Resets an array to a specified minimum number of elements.",
+      [
+        "(${1:size}$0)",
+        "(${1:size}$0)"
+      ]
+    ],
+    "reverse": [
+      "Returns an array with all of the elements reversed.",
+      [
+        "($0)",
+        "($0)"
+      ]
+    ],
+    "set": [
+      "In a one-dimensional array, sets the elements in a specified index range to a value.",
+      [
+        "(${1:start}, ${2:end}, ${3:value}$0)",
+        "(${1:start}, ${2:end}, ${3:value}$0)"
+      ]
+    ],
+    "shift": [
+      "Removes the first element from an array and returns the removed element.",
+      [
+        "($0)",
+        "(${1:defaultValue}$0)"
+      ]
+    ],
+    "slice": [
+      "Extracts a sub array from an existing array.",
+      [
+        "(${1:start}$0)",
+        "(${1:start}, ${2:length}$0)"
+      ]
+    ],
+    "some": [
+      "Used to iterate over an array and test whether **ANY** items meet the test callback.",
+      [
+        "(${1:callback}$0)",
+        "(${1:callback}, ${2:parallel}, ${3:maxThreads}, ${4:virtual}$0)"
+      ]
+    ],
+    "sort": [
+      "Sorts array elements.",
+      [
+        "($0)",
+        "(${1:sortType}, ${2:sortOrder}, ${3:localeSensitive}, ${4:callback}$0)"
+      ]
+    ],
+    "splice": [
+      "Modifies an array by removing elements and adding new elements.",
+      [
+        "(${1:index}$0)",
+        "(${1:index}, ${2:elementCountForRemoval}, ${3:replacements}$0)"
+      ]
+    ],
+    "stream": [
+      "Returns a stream of the array",
+      [
+        "($0)",
+        "($0)"
+      ]
+    ],
+    "sum": [
+      "Returns the sum of all values in an array",
+      [
+        "($0)",
+        "($0)"
+      ]
+    ],
+    "swap": [
+      "Swaps array values of an array at specified positions.",
+      [
+        "(${1:position1}, ${2:position2}$0)",
+        "(${1:position1}, ${2:position2}$0)"
+      ]
+    ],
+    "toJSON": [
+      "Converts a BoxLang variable into a JSON (JavaScript Object Notation) string according to the specified options.",
+      [
+        "($0)",
+        "(${1:queryFormat}, ${2:useSecureJSONPrefix}, ${3:useCustomSerializer}, ${4:pretty}$0)"
+      ]
+    ],
+    "toList": [
+      "Used to iterate over an array and run the function closure for each item in the array.",
+      [
+        "($0)",
+        "(${1:delimiter}, ${2:initialValue}$0)"
+      ]
+    ],
+    "toModifiable": [
+      "Convert an array, struct or query to its Modifiable counterpart.",
+      [
+        "($0)",
+        "($0)"
+      ]
+    ],
+    "toStruct": [
+      "Transform the array to a struct, the index of the array is the key of the struct",
+      [
+        "($0)",
+        "($0)"
+      ]
+    ],
+    "toUnmodifiable": [
+      "Convert an array, struct or query to its Unmodifiable counterpart.",
+      [
+        "($0)",
+        "($0)"
+      ]
+    ],
+    "transpose": [
+      "Returns a transposed array based on all passed in arrays.",
+      [
+        "($0)",
+        "($0)"
+      ]
+    ],
+    "unique": [
+      "Returns a new array with duplicate items removed.",
+      [
+        "($0)",
+        "($0)"
+      ]
+    ],
+    "unshift": [
+      "This function adds one or more elements to the beginning of the original array and returns the length of the modified array.",
+      [
+        "(${1:object}$0)",
+        "(${1:object}$0)"
+      ]
+    ],
+    "zip": [
+      "Returns a zipped array.",
+      [
+        "(${1:array2}$0)",
+        "(${1:array2}, ${2:callback}, ${3:parallel}, ${4:maxThreads}, ${5:virtual}$0)"
+      ]
+    ]
+  },
+  "date": {
+    "add": [
+      "Add time to a date",
+      [
+        "(${1:part}, ${2:amount}$0)",
+        "(${1:part}, ${2:amount}$0)"
+      ]
+    ],
+    "day": [
+      "Get the day",
+      [
+        "($0)",
+        "($0)"
+      ]
+    ],
+    "diff": [
+      "Calculate difference between dates",
+      [
+        "(${1:date2}$0)",
+        "(${1:date2}, ${2:part}$0)"
+      ]
+    ],
+    "format": [
+      "Format the date",
+      [
+        "($0)",
+        "(${1:mask}$0)"
+      ]
+    ],
+    "hour": [
+      "Get the hour",
+      [
+        "($0)",
+        "($0)"
+      ]
+    ],
+    "len": [
+      "Returns the absolute value of a number",
+      [
+        "($0)",
+        "($0)"
+      ]
+    ],
+    "minute": [
+      "Get the minute",
+      [
+        "($0)",
+        "($0)"
+      ]
+    ],
+    "month": [
+      "Get the month",
+      [
+        "($0)",
+        "($0)"
+      ]
+    ],
+    "second": [
+      "Get the second",
+      [
+        "($0)",
+        "($0)"
+      ]
+    ],
+    "year": [
+      "Get the year",
+      [
+        "($0)",
+        "($0)"
+      ]
+    ]
+  },
+  "datetime": {
+    "add": [
+      "Modifies a date object by date part and integer time unit",
+      [
+        "(${1:datepart}, ${2:number}$0)",
+        "(${1:datepart}, ${2:number}$0)"
+      ]
+    ],
+    "bxDump": [
+      "Outputs the contents of a variable (simple or complex) of any type for debugging purposes to a specific output location.",
+      [
+        "($0)",
+        "(${1:label}, ${2:top}, ${3:expand}, ${4:abort}, ${5:output}, ${6:format}, ${7:showUDFs}$0)"
+      ]
+    ],
+    "clone": [
+      "",
+      [
+        "($0)",
+        "($0)"
+      ]
+    ],
+    "compare": [
+      "Compares the difference between two dates - returning 0 if equal, -1 if date2 is less than date1 and 1 if the inverse",
+      [
+        "(${1:date2}$0)",
+        "(${1:date2}, ${2:datepart}$0)"
+      ]
+    ],
+    "dateFormat": [
+      "Formats a datetime, date or time",
+      [
+        "($0)",
+        "(${1:mask}, ${2:timezone}, ${3:locale}$0)"
+      ]
+    ],
+    "dateTimeFormat": [
+      "Formats a datetime, date or time",
+      [
+        "($0)",
+        "(${1:mask}, ${2:timezone}, ${3:locale}$0)"
+      ]
+    ],
+    "day": [
+      "Provides the BIF and member functions for all time unit request with no arguments",
+      [
+        "($0)",
+        "(${1:timezone}, ${2:locale}$0)"
+      ]
+    ],
+    "dayOfWeek": [
+      "Provides the BIF and member functions for all time unit request with no arguments",
+      [
+        "($0)",
+        "(${1:timezone}, ${2:locale}$0)"
+      ]
+    ],
+    "dayOfWeekAsString": [
+      "Provides the BIF and member functions for all time unit request with no arguments",
+      [
+        "($0)",
+        "(${1:timezone}, ${2:locale}$0)"
+      ]
+    ],
+    "dayOfWeekShortAsString": [
+      "Provides the BIF and member functions for all time unit request with no arguments",
+      [
+        "($0)",
+        "(${1:timezone}, ${2:locale}$0)"
+      ]
+    ],
+    "dayOfYear": [
+      "Provides the BIF and member functions for all time unit request with no arguments",
+      [
+        "($0)",
+        "(${1:timezone}, ${2:locale}$0)"
+      ]
+    ],
+    "daysInMonth": [
+      "Provides the BIF and member functions for all time unit request with no arguments",
+      [
+        "($0)",
+        "(${1:timezone}, ${2:locale}$0)"
+      ]
+    ],
+    "daysInYear": [
+      "Provides the BIF and member functions for all time unit request with no arguments",
+      [
+        "($0)",
+        "(${1:timezone}, ${2:locale}$0)"
+      ]
+    ],
+    "diff": [
+      "Returns the numeric difference in the requested date part between two dates",
+      [
+        "(${1:datepart}, ${2:date2}$0)",
+        "(${1:datepart}, ${2:date2}$0)"
+      ]
+    ],
+    "duplicate": [
+      "Duplicates an object - either shallow or deep",
+      [
+        "($0)",
+        "(${1:deep}$0)"
+      ]
+    ],
+    "equals": [
+      "Indicates whether some other object is \"equal to\" this one.",
+      [
+        "(${1:obj}$0)",
+        "(${1:obj}$0)"
+      ]
+    ],
+    "firstDayOfMonth": [
+      "Provides the BIF and member functions for all time unit request with no arguments",
+      [
+        "($0)",
+        "(${1:timezone}, ${2:locale}$0)"
+      ]
+    ],
+    "format": [
+      "Formats a datetime, date or time",
+      [
+        "($0)",
+        "(${1:mask}, ${2:timezone}, ${3:locale}$0)"
+      ]
+    ],
+    "getTime": [
+      "Returns the number of milliseconds since January 1, 1970, 00:00:00 GMT represented by this Date object.",
+      [
+        "($0)",
+        "($0)"
+      ]
+    ],
+    "getnumericdate": [
+      "Provides the BIF and member functions for all time unit request with no arguments",
+      [
+        "($0)",
+        "(${1:timezone}, ${2:locale}$0)"
+      ]
+    ],
+    "hash": [
+      "Creates an algorithmic hash of an object",
+      [
+        "($0)",
+        "(${1:algorithm}, ${2:encoding}, ${3:numIterations}$0)"
+      ]
+    ],
+    "hour": [
+      "Provides the BIF and member functions for all time unit request with no arguments",
+      [
+        "($0)",
+        "(${1:timezone}, ${2:locale}$0)"
+      ]
+    ],
+    "len": [
+      "Returns the absolute value of a number",
+      [
+        "($0)",
+        "($0)"
+      ]
+    ],
+    "millisecond": [
+      "Provides the BIF and member functions for all time unit request with no arguments",
+      [
+        "($0)",
+        "(${1:timezone}, ${2:locale}$0)"
+      ]
+    ],
+    "minute": [
+      "Provides the BIF and member functions for all time unit request with no arguments",
+      [
+        "($0)",
+        "(${1:timezone}, ${2:locale}$0)"
+      ]
+    ],
+    "month": [
+      "Provides the BIF and member functions for all time unit request with no arguments",
+      [
+        "($0)",
+        "(${1:timezone}, ${2:locale}$0)"
+      ]
+    ],
+    "monthAsString": [
+      "Provides the BIF and member functions for all time unit request with no arguments",
+      [
+        "($0)",
+        "(${1:timezone}, ${2:locale}$0)"
+      ]
+    ],
+    "monthShortAsString": [
+      "Provides the BIF and member functions for all time unit request with no arguments",
+      [
+        "($0)",
+        "(${1:timezone}, ${2:locale}$0)"
+      ]
+    ],
+    "nanosecond": [
+      "Provides the BIF and member functions for all time unit request with no arguments",
+      [
+        "($0)",
+        "(${1:timezone}, ${2:locale}$0)"
+      ]
+    ],
+    "offset": [
+      "Provides the BIF and member functions for all time unit request with no arguments",
+      [
+        "($0)",
+        "(${1:timezone}, ${2:locale}$0)"
+      ]
+    ],
+    "quarter": [
+      "Provides the BIF and member functions for all time unit request with no arguments",
+      [
+        "($0)",
+        "(${1:timezone}, ${2:locale}$0)"
+      ]
+    ],
+    "second": [
+      "Provides the BIF and member functions for all time unit request with no arguments",
+      [
+        "($0)",
+        "(${1:timezone}, ${2:locale}$0)"
+      ]
+    ],
+    "timeFormat": [
+      "Formats a datetime, date or time",
+      [
+        "($0)",
+        "(${1:mask}, ${2:timezone}, ${3:locale}$0)"
+      ]
+    ],
+    "timezone": [
+      "Provides the BIF and member functions for all time unit request with no arguments",
+      [
+        "($0)",
+        "(${1:timezone}, ${2:locale}$0)"
+      ]
+    ],
+    "toEpoch": [
+      "Returns this date time in epoch time ( seconds )",
+      [
+        "($0)",
+        "($0)"
+      ]
+    ],
+    "toEpochMillis": [
+      "Returns this date time in epoch milliseconds",
+      [
+        "($0)",
+        "($0)"
+      ]
+    ],
+    "toEpochSecond": [
+      "",
+      [
+        "($0)",
+        "($0)"
+      ]
+    ],
+    "toISOString": [
+      "Returns the date time representation as a string in the specified format mask",
+      [
+        "($0)",
+        "($0)"
+      ]
+    ],
+    "toODBCDate": [
+      "Creates a DateTime object with the format set to ODBC Implicit format",
+      [
+        "($0)",
+        "(${1:timezone}$0)"
+      ]
+    ],
+    "toODBCDateTime": [
+      "Creates a DateTime object with the format set to ODBC Implicit format",
+      [
+        "($0)",
+        "(${1:timezone}$0)"
+      ]
+    ],
+    "toODBCTime": [
+      "Creates a DateTime object with the format set to ODBC Implicit format",
+      [
+        "($0)",
+        "(${1:timezone}$0)"
+      ]
+    ],
+    "week": [
+      "Provides the BIF and member functions for all time unit request with no arguments",
+      [
+        "($0)",
+        "(${1:timezone}, ${2:locale}$0)"
+      ]
+    ],
+    "year": [
+      "Provides the BIF and member functions for all time unit request with no arguments",
+      [
+        "($0)",
+        "(${1:timezone}, ${2:locale}$0)"
+      ]
+    ]
+  },
+  "list": {
+    "toJSON": [
+      "Converts a BoxLang variable into a JSON (JavaScript Object Notation) string.",
+      [
+        "($0)",
+        "(${1:queryFormat}, ${2:useSecureJSONPrefix}, ${3:useCustomSerializer}$0)"
+      ]
+    ]
+  },
+  "numeric": {
+    "abs": [
+      "Returns the absolute value of a number",
+      [
+        "($0)",
+        "($0)"
+      ]
+    ],
+    "acos": [
+      "Returns the arccosine (inverse cosine) of a number",
+      [
+        "($0)",
+        "($0)"
+      ]
+    ],
+    "asin": [
+      "Returns the arcsine (inverse sine) of a number",
+      [
+        "($0)",
+        "($0)"
+      ]
+    ],
+    "atn": [
+      "Returns the arc tangent (inverse tangent) of a number",
+      [
+        "($0)",
+        "($0)"
+      ]
+    ],
+    "booleanFormat": [
+      "Returns the value formatted as a boolean string",
+      [
+        "($0)",
+        "($0)"
+      ]
+    ],
+    "bxDump": [
+      "Outputs the contents of a variable (simple or complex) of any type for debugging purposes to a specific output location.",
+      [
+        "($0)",
+        "(${1:label}, ${2:top}, ${3:expand}, ${4:abort}, ${5:output}, ${6:format}, ${7:showUDFs}$0)"
+      ]
+    ],
+    "ceiling": [
+      "Determines the closest integer that is greater than a specified floating point number.",
+      [
+        "($0)",
+        "($0)"
+      ]
+    ],
+    "cos": [
+      "Returns the cosine of an angle entered in radians",
+      [
+        "($0)",
+        "($0)"
+      ]
+    ],
+    "currencyFormat": [
+      "nullArguments:",
+      [
+        "($0)",
+        "(${1:type}, ${2:locale}$0)"
+      ]
+    ],
+    "decimalFormat": [
+      "Converts a number to a decimal-formatted string.",
+      [
+        "($0)",
+        "(${1:length}$0)"
+      ]
+    ],
+    "decrementValue": [
+      "Decrement the integer part of a number",
+      [
+        "($0)",
+        "($0)"
+      ]
+    ],
+    "exp": [
+      "Calculates the exponent whose base is e that represents a number.",
+      [
+        "($0)",
+        "($0)"
+      ]
+    ],
+    "fix": [
+      "Converts a real number to an integer",
+      [
+        "($0)",
+        "($0)"
+      ]
+    ],
+    "floor": [
+      "Returns the absolute value of a number",
+      [
+        "($0)",
+        "($0)"
+      ]
+    ],
+    "formatBaseN": [
+      "Converts a number to a string representation in the specified base.",
+      [
+        "(${1:radix}$0)",
+        "(${1:radix}$0)"
+      ]
+    ],
+    "incrementValue": [
+      "Increment the integer part of a number",
+      [
+        "($0)",
+        "($0)"
+      ]
+    ],
+    "int": [
+      "Returns the closest integer that is smaller than the number",
+      [
+        "($0)",
+        "($0)"
+      ]
+    ],
+    "log": [
+      "Returns the natural logarithm of a number.",
+      [
+        "($0)",
+        "($0)"
+      ]
+    ],
+    "log10": [
+      "No description available",
+      [
+        "($0)",
+        "($0)"
+      ]
+    ],
+    "max": [
+      "Return larger of two numbers",
+      [
+        "(${1:number2}$0)",
+        "(${1:number2}$0)"
+      ]
+    ],
+    "min": [
+      "Return larger of two numbers",
+      [
+        "(${1:number2}$0)",
+        "(${1:number2}$0)"
+      ]
+    ],
+    "numberFormat": [
+      "Formats a number with an optional format mask",
+      [
+        "($0)",
+        "(${1:mask}, ${2:locale}$0)"
+      ]
+    ],
+    "round": [
+      "Rounds a number to the closest integer.",
+      [
+        "($0)",
+        "(${1:precision}$0)"
+      ]
+    ],
+    "sgn": [
+      "Determine the sign of a number",
+      [
+        "($0)",
+        "($0)"
+      ]
+    ],
+    "sin": [
+      "Returns the sine of a number",
+      [
+        "($0)",
+        "($0)"
+      ]
+    ],
+    "sqr": [
+      "Returns the square root of a number",
+      [
+        "($0)",
+        "($0)"
+      ]
+    ],
+    "tan": [
+      "Returns the tangent of an angle that is entered in radians.",
+      [
+        "($0)",
+        "($0)"
+      ]
+    ]
+  },
+  "query": {
+    "addColumn": [
+      "Adds a column to a query and populates its rows with the contents of a one-dimensional array.",
+      [
+        "(${1:columnName}$0)",
+        "(${1:columnName}, ${2:datatype}, ${3:array}$0)"
+      ]
+    ],
+    "addRow": [
+      "Return new query",
+      [
+        "($0)",
+        "(${1:rowData}$0)"
+      ]
+    ],
+    "append": [
+      "This function clears the query",
+      [
+        "(${1:query2}$0)",
+        "(${1:query2}$0)"
+      ]
+    ],
+    "bxDump": [
+      "Outputs the contents of a variable (simple or complex) of any type for debugging purposes to a specific output location.",
+      [
+        "($0)",
+        "(${1:label}, ${2:top}, ${3:expand}, ${4:abort}, ${5:output}, ${6:format}, ${7:showUDFs}$0)"
+      ]
+    ],
+    "clear": [
+      "This function clears the query",
+      [
+        "($0)",
+        "($0)"
+      ]
+    ],
+    "columnArray": [
+      "This function returns the column array of a query.",
+      [
+        "($0)",
+        "($0)"
+      ]
+    ],
+    "columnCount": [
+      "This function returns the number of columns in a query",
+      [
+        "($0)",
+        "($0)"
+      ]
+    ],
+    "columnData": [
+      "Returns the data in a query column.",
+      [
+        "(${1:columnName}$0)",
+        "(${1:columnName}$0)"
+      ]
+    ],
+    "columnExists": [
+      "This function returns true if the column exists in the query",
+      [
+        "(${1:column}$0)",
+        "(${1:column}$0)"
+      ]
+    ],
+    "columnList": [
+      "This function returns the delimited column list of a query.",
+      [
+        "($0)",
+        "($0)"
+      ]
+    ],
+    "currentRow": [
+      "Returns the current row number",
+      [
+        "($0)",
+        "($0)"
+      ]
+    ],
+    "deleteColumn": [
+      "Deletes a column within a query object.",
+      [
+        "(${1:column}$0)",
+        "(${1:column}$0)"
+      ]
+    ],
+    "deleteRow": [
+      "This function deletes a row from the query",
+      [
+        "(${1:row}$0)",
+        "(${1:row}$0)"
+      ]
+    ],
+    "duplicate": [
+      "Duplicates an object - either shallow or deep",
+      [
+        "($0)",
+        "(${1:deep}$0)"
+      ]
+    ],
+    "each": [
+      "Iterates over query rows and passes each row per iteration to a callback function.",
+      [
+        "(${1:callback}$0)",
+        "(${1:callback}, ${2:parallel}, ${3:maxThreads}, ${4:ordered}, ${5:virtual}$0)"
+      ]
+    ],
+    "every": [
+      "Used to iterate over a Query and test whether **every** item meets the test callback.",
+      [
+        "(${1:closure}$0)",
+        "(${1:closure}, ${2:parallel}, ${3:maxThreads}, ${4:virtual}$0)"
+      ]
+    ],
+    "filter": [
+      "Filters query rows specified in filter criteria This BIF will invoke the callback function for each row in the query, passing the row as a struct.",
+      [
+        "(${1:callback}$0)",
+        "(${1:callback}, ${2:parallel}, ${3:maxThreads}, ${4:virtual}$0)"
+      ]
+    ],
+    "getCell": [
+      "This function maps the query to a new query.",
+      [
+        "(${1:column_name}$0)",
+        "(${1:column_name}, ${2:row_number}$0)"
+      ]
+    ],
+    "getColumn": [
+      "Get a column as an array",
+      [
+        "(${1:name}$0)",
+        "(${1:name}$0)"
+      ]
+    ],
+    "getResult": [
+      "Returns the metadata of a query.",
+      [
+        "($0)",
+        "($0)"
+      ]
+    ],
+    "getRow": [
+      "Returns the cells of a query row as a structure",
+      [
+        "(${1:rowNumber}$0)",
+        "(${1:rowNumber}$0)"
+      ]
+    ],
+    "insertAt": [
+      "Inserts a query data into another query at a specific position",
+      [
+        "(${1:value}, ${2:position}$0)",
+        "(${1:value}, ${2:position}$0)"
+      ]
+    ],
+    "isEmpty": [
+      "Determine whether a given value is empty.",
+      [
+        "($0)",
+        "($0)"
+      ]
+    ],
+    "keyExists": [
+      "This function returns true if the key exists in the query",
+      [
+        "(${1:key}$0)",
+        "(${1:key}$0)"
+      ]
+    ],
+    "len": [
+      "Returns the absolute value of a number",
+      [
+        "($0)",
+        "($0)"
+      ]
+    ],
+    "map": [
+      "This BIF will iterate over each row in the query and invoke the callback function for each item so you can do any operation on the row and return a new value that will be set at the same index in a new query.",
+      [
+        "(${1:callback}$0)",
+        "(${1:callback}, ${2:parallel}, ${3:maxThreads}, ${4:virtual}$0)"
+      ]
+    ],
+    "none": [
+      "Used to iterate over a Query and test whether **NONE** item meets the test callback.",
+      [
+        "(${1:callback}$0)",
+        "(${1:callback}, ${2:parallel}, ${3:maxThreads}, ${4:virtual}$0)"
+      ]
+    ],
+    "prepend": [
+      "Adds a query to the beginning of another query",
+      [
+        "(${1:query2}$0)",
+        "(${1:query2}$0)"
+      ]
+    ],
+    "recordCount": [
+      "This function returns the number of records in a query",
+      [
+        "($0)",
+        "($0)"
+      ]
+    ],
+    "reduce": [
+      "This function reduces the query to a single value.",
+      [
+        "(${1:callback}, ${2:initialValue}$0)",
+        "(${1:callback}, ${2:initialValue}$0)"
+      ]
+    ],
+    "reverse": [
+      "This function reverses the query data",
+      [
+        "($0)",
+        "($0)"
+      ]
+    ],
+    "rowData": [
+      "Returns the cells of a query row as a structure",
+      [
+        "(${1:rowNumber}$0)",
+        "(${1:rowNumber}$0)"
+      ]
+    ],
+    "rowSwap": [
+      "In a query object, swap the record in the sourceRow with the record from the destinationRow.",
+      [
+        "(${1:source}, ${2:destination}$0)",
+        "(${1:source}, ${2:destination}$0)"
+      ]
+    ],
+    "setCell": [
+      "Sets a cell to a value.",
+      [
+        "(${1:column}, ${2:value}$0)",
+        "(${1:column}, ${2:value}, ${3:row}$0)"
+      ]
+    ],
+    "setRow": [
+      "Adds or updates a row in a query based on the provided row data and position.",
+      [
+        "(${1:rowData}$0)",
+        "(${1:rowNumber}, ${2:rowData}$0)"
+      ]
+    ],
+    "slice": [
+      "Returns a subset of rows from an existing query",
+      [
+        "(${1:offset}$0)",
+        "(${1:offset}, ${2:length}$0)"
+      ]
+    ],
+    "some": [
+      "Used to iterate over a query and test whether **ANY** items meet the test callback.",
+      [
+        "(${1:callback}$0)",
+        "(${1:callback}, ${2:parallel}, ${3:maxThreads}, ${4:virtual}$0)"
+      ]
+    ],
+    "sort": [
+      "Sorts array elements.",
+      [
+        "(${1:sortFunc}$0)",
+        "(${1:sortFunc}$0)"
+      ]
+    ],
+    "toArrayOfStructs": [
+      "Convert this query to an array of structs.",
+      [
+        "($0)",
+        "($0)"
+      ]
+    ],
+    "toJSON": [
+      "Converts a BoxLang variable into a JSON (JavaScript Object Notation) string according to the specified options.",
+      [
+        "($0)",
+        "(${1:queryFormat}, ${2:useSecureJSONPrefix}, ${3:useCustomSerializer}, ${4:pretty}$0)"
+      ]
+    ],
+    "toModifiable": [
+      "Convert an array, struct or query to its Modifiable counterpart.",
+      [
+        "($0)",
+        "($0)"
+      ]
+    ],
+    "toUnmodifiable": [
+      "Convert an array, struct or query to its Unmodifiable counterpart.",
+      [
+        "($0)",
+        "($0)"
+      ]
+    ]
+  },
+  "string": {
+    "camelCase": [
+      "Convert to camelCase",
+      [
+        "($0)",
+        "($0)"
+      ]
+    ],
+    "contains": [
+      "Check if string contains substring",
+      [
+        "(${1:substring}$0)",
+        "(${1:substring}$0)"
+      ]
+    ],
+    "endsWith": [
+      "Check if string ends with suffix",
+      [
+        "(${1:suffix}$0)",
+        "(${1:suffix}$0)"
+      ]
+    ],
+    "find": [
+      "Find a substring in the string",
+      [
+        "(${1:substring}$0)",
+        "(${1:substring}, ${2:start}$0)"
+      ]
+    ],
+    "fromJSON": [
+      "Converts a JSON (JavaScript Object Notation) string data representation into data, such as a structure or array.",
+      [
+        "($0)",
+        "(${1:strictMapping}, ${2:useCustomSerializer}$0)"
+      ]
+    ],
+    "insert": [
+      "Insert a substring at position",
+      [
+        "(${1:substring}, ${2:position}$0)",
+        "(${1:substring}, ${2:position}$0)"
+      ]
+    ],
+    "jSONDeserialize": [
+      "Converts a JSON (JavaScript Object Notation) string data representation into data, such as a structure or array.",
+      [
+        "($0)",
+        "(${1:strictMapping}, ${2:useCustomSerializer}$0)"
+      ]
+    ],
+    "kebabCase": [
+      "Convert to kebab-case",
+      [
+        "($0)",
+        "($0)"
+      ]
+    ],
+    "lcase": [
+      "Convert to lowercase",
+      [
+        "($0)",
+        "($0)"
+      ]
+    ],
+    "left": [
+      "Extract the leftmost count characters from a string",
       [
         "(${1:count}$0)",
         "(${1:count}$0)"
@@ -21,39 +1426,11 @@
         "($0)"
       ]
     ],
-    "trim": [
-      "Remove whitespace from both ends",
-      [
-        "($0)",
-        "($0)"
-      ]
-    ],
     "ltrim": [
       "Remove whitespace from the left",
       [
         "($0)",
         "($0)"
-      ]
-    ],
-    "rtrim": [
-      "Remove whitespace from the right",
-      [
-        "($0)",
-        "($0)"
-      ]
-    ],
-    "replace": [
-      "Replace occurrences in the string",
-      [
-        "(${1:target}, ${2:replacement}$0)",
-        "(${1:target}, ${2:replacement}, ${3:scope}$0)"
-      ]
-    ],
-    "find": [
-      "Find a substring in the string",
-      [
-        "(${1:substring}$0)",
-        "(${1:substring}, ${2:start}$0)"
       ]
     ],
     "mid": [
@@ -63,29 +1440,64 @@
         "(${1:start}, ${2:count}$0)"
       ]
     ],
-    "lcase": [
-      "Convert to lowercase",
+    "pascalCase": [
+      "Convert to PascalCase",
       [
         "($0)",
         "($0)"
       ]
     ],
-    "ucase": [
-      "Convert to uppercase",
+    "removeChars": [
+      "Remove characters from the string",
       [
-        "($0)",
-        "($0)"
+        "(${1:start}, ${2:count}$0)",
+        "(${1:start}, ${2:count}$0)"
       ]
     ],
-    "ucfirst": [
-      "Capitalize the first character",
+    "repeat": [
+      "Repeat the string n times",
       [
-        "($0)",
-        "($0)"
+        "(${1:count}$0)",
+        "(${1:count}$0)"
+      ]
+    ],
+    "replace": [
+      "Replace occurrences in the string",
+      [
+        "(${1:target}, ${2:replacement}$0)",
+        "(${1:target}, ${2:replacement}, ${3:scope}$0)"
       ]
     ],
     "reverse": [
       "Reverse the string",
+      [
+        "($0)",
+        "($0)"
+      ]
+    ],
+    "right": [
+      "Extract the rightmost count characters from a string",
+      [
+        "(${1:count}$0)",
+        "(${1:count}$0)"
+      ]
+    ],
+    "rtrim": [
+      "Remove whitespace from the right",
+      [
+        "($0)",
+        "($0)"
+      ]
+    ],
+    "slugify": [
+      "Convert to URL-friendly slug",
+      [
+        "($0)",
+        "($0)"
+      ]
+    ],
+    "snakeCase": [
+      "Convert to snake_case",
       [
         "($0)",
         "($0)"
@@ -105,411 +1517,351 @@
         "(${1:prefix}$0)"
       ]
     ],
-    "endsWith": [
-      "Check if string ends with suffix",
+    "toAST": [
+      "Generates the Abstract Syntax Tree (AST) for BoxLang source code or a file.",
       [
-        "(${1:suffix}$0)",
-        "(${1:suffix}$0)"
+        "($0)",
+        "(${1:filepath}, ${2:returnType}, ${3:sourceType}$0)"
       ]
     ],
-    "contains": [
-      "Check if string contains substring",
-      [
-        "(${1:substring}$0)",
-        "(${1:substring}$0)"
-      ]
-    ],
-    "repeat": [
-      "Repeat the string n times",
-      [
-        "(${1:count}$0)",
-        "(${1:count}$0)"
-      ]
-    ],
-    "insert": [
-      "Insert a substring at position",
-      [
-        "(${1:substring}, ${2:position}$0)",
-        "(${1:substring}, ${2:position}$0)"
-      ]
-    ],
-    "removeChars": [
-      "Remove characters from the string",
-      [
-        "(${1:start}, ${2:count}$0)",
-        "(${1:start}, ${2:count}$0)"
-      ]
-    ],
-    "slugify": [
-      "Convert to URL-friendly slug",
+    "trim": [
+      "Remove whitespace from both ends",
       [
         "($0)",
         "($0)"
       ]
     ],
-    "camelCase": [
-      "Convert to camelCase",
+    "ucase": [
+      "Convert to uppercase",
       [
         "($0)",
         "($0)"
       ]
     ],
-    "kebabCase": [
-      "Convert to kebab-case",
+    "ucfirst": [
+      "Capitalize the first character",
       [
         "($0)",
         "($0)"
-      ]
-    ],
-    "snakeCase": [
-      "Convert to snake_case",
-      [
-        "($0)",
-        "($0)"
-      ]
-    ],
-    "pascalCase": [
-      "Convert to PascalCase",
-      [
-        "($0)",
-        "($0)"
-      ]
-    ]
-  },
-  "array": {
-    "len": [
-      "Get the array length",
-      [
-        "($0)",
-        "($0)"
-      ]
-    ],
-    "append": [
-      "Append an element to the array",
-      [
-        "(${1:element}$0)",
-        "(${1:element}$0)"
-      ]
-    ],
-    "clear": [
-      "Clear all elements from the array",
-      [
-        "($0)",
-        "($0)"
-      ]
-    ],
-    "delete": [
-      "Delete an element from the array",
-      [
-        "(${1:element}$0)",
-        "(${1:element}, ${2:count}$0)"
-      ]
-    ],
-    "deleteAt": [
-      "Delete element at index",
-      [
-        "(${1:index}$0)",
-        "(${1:index}$0)"
-      ]
-    ],
-    "first": [
-      "Get the first element",
-      [
-        "($0)",
-        "($0)"
-      ]
-    ],
-    "last": [
-      "Get the last element",
-      [
-        "($0)",
-        "($0)"
-      ]
-    ],
-    "find": [
-      "Find an element in the array",
-      [
-        "(${1:element}$0)",
-        "(${1:element}, ${2:start}$0)"
-      ]
-    ],
-    "insertAt": [
-      "Insert element at index",
-      [
-        "(${1:index}, ${2:element}$0)",
-        "(${1:index}, ${2:element}$0)"
-      ]
-    ],
-    "reverse": [
-      "Reverse the array",
-      [
-        "($0)",
-        "($0)"
-      ]
-    ],
-    "sort": [
-      "Sort the array",
-      [
-        "($0)",
-        "(${1:sortType}$0)"
-      ]
-    ],
-    "slice": [
-      "Get a slice of the array",
-      [
-        "(${1:start}$0)",
-        "(${1:start}, ${2:count}$0)"
-      ]
-    ],
-    "map": [
-      "Map over array elements",
-      [
-        "(${1:closure}$0)",
-        "(${1:closure}$0)"
-      ]
-    ],
-    "filter": [
-      "Filter array elements",
-      [
-        "(${1:closure}$0)",
-        "(${1:closure}$0)"
-      ]
-    ],
-    "reduce": [
-      "Reduce array to single value",
-      [
-        "(${1:closure}, ${2:initial}$0)",
-        "(${1:closure}, ${2:initial}$0)"
-      ]
-    ],
-    "each": [
-      "Iterate over array elements",
-      [
-        "(${1:closure}$0)",
-        "(${1:closure}$0)"
-      ]
-    ],
-    "some": [
-      "Check if some elements match",
-      [
-        "(${1:closure}$0)",
-        "(${1:closure}$0)"
-      ]
-    ],
-    "every": [
-      "Check if all elements match",
-      [
-        "(${1:closure}$0)",
-        "(${1:closure}$0)"
       ]
     ]
   },
   "struct": {
-    "len": [
-      "Get the struct size",
+    "append": [
+      "Appends the contents of a second struct to the first struct either with or without overwrite",
+      [
+        "(${1:struct2}$0)",
+        "(${1:struct2}, ${2:overwrite}$0)"
+      ]
+    ],
+    "bxDump": [
+      "Outputs the contents of a variable (simple or complex) of any type for debugging purposes to a specific output location.",
+      [
+        "($0)",
+        "(${1:label}, ${2:top}, ${3:expand}, ${4:abort}, ${5:output}, ${6:format}, ${7:showUDFs}$0)"
+      ]
+    ],
+    "clear": [
+      "Clear all items from struct",
       [
         "($0)",
         "($0)"
       ]
     ],
-    "keyExists": [
-      "Check if a key exists",
+    "copy": [
+      "Creates a shallow copy of a struct.",
       [
-        "(${1:key}$0)",
-        "(${1:key}$0)"
+        "($0)",
+        "($0)"
+      ]
+    ],
+    "count": [
+      "Returns the absolute value of a number",
+      [
+        "($0)",
+        "($0)"
       ]
     ],
     "delete": [
-      "Delete a key from the struct",
+      "Deletes a key from a struct",
       [
         "(${1:key}$0)",
         "(${1:key}$0)"
       ]
     ],
-    "clear": [
-      "Clear all keys from the struct",
+    "duplicate": [
+      "Duplicates an object - either shallow or deep",
+      [
+        "($0)",
+        "(${1:deep}$0)"
+      ]
+    ],
+    "each": [
+      "Used to iterate over a struct and run the function closure for each key/value pair.",
+      [
+        "(${1:callback}$0)",
+        "(${1:callback}, ${2:parallel}, ${3:maxThreads}, ${4:ordered}, ${5:virtual}$0)"
+      ]
+    ],
+    "equals": [
+      "Tests equality between two structs",
+      [
+        "(${1:struct2}$0)",
+        "(${1:struct2}$0)"
+      ]
+    ],
+    "every": [
+      "Used to iterate over a struct and test whether **every** item meets the test callback.",
+      [
+        "(${1:callback}$0)",
+        "(${1:callback}, ${2:parallel}, ${3:maxThreads}, ${4:virtual}$0)"
+      ]
+    ],
+    "filter": [
+      "Filters a struct and returns a new struct with the values that pass the filter criteria.",
+      [
+        "(${1:callback}$0)",
+        "(${1:callback}, ${2:parallel}, ${3:maxThreads}, ${4:virtual}$0)"
+      ]
+    ],
+    "find": [
+      "Finds and retrieves a top-level key from a string in a struct",
+      [
+        "(${1:key}$0)",
+        "(${1:key}, ${2:defaultValue}$0)"
+      ]
+    ],
+    "findKey": [
+      "Searches a struct for a given key and returns an array of values",
+      [
+        "(${1:key}$0)",
+        "(${1:key}, ${2:scope}$0)"
+      ]
+    ],
+    "findValue": [
+      "Searches a struct for a given value and returns an array of results",
+      [
+        "(${1:value}$0)",
+        "(${1:value}, ${2:scope}$0)"
+      ]
+    ],
+    "getFromPath": [
+      "Retrieves the value from a struct using a path based expression",
+      [
+        "(${1:path}$0)",
+        "(${1:path}$0)"
+      ]
+    ],
+    "getMetadata": [
+      "Gets Struct-specific metadata of the requested struct.",
+      [
+        "($0)",
+        "($0)"
+      ]
+    ],
+    "hash": [
+      "Creates an algorithmic hash of an object",
+      [
+        "($0)",
+        "(${1:algorithm}, ${2:encoding}, ${3:numIterations}$0)"
+      ]
+    ],
+    "insert": [
+      "Inserts a key/value pair in to a struct - with an optional overwrite argument",
+      [
+        "(${1:key}, ${2:value}$0)",
+        "(${1:key}, ${2:value}, ${3:overwrite}$0)"
+      ]
+    ],
+    "isCaseSensitive": [
+      "Returns whether the give struct is case sensitive",
+      [
+        "($0)",
+        "($0)"
+      ]
+    ],
+    "isEmpty": [
+      "Determine whether a given value is empty.",
+      [
+        "($0)",
+        "($0)"
+      ]
+    ],
+    "isOrdered": [
+      "Tests whether a struct is ordered ( e.g.",
       [
         "($0)",
         "($0)"
       ]
     ],
     "keyArray": [
-      "Get an array of keys",
+      "Get keys of a struct as an array",
       [
         "($0)",
         "($0)"
       ]
     ],
-    "valueArray": [
-      "Get an array of values",
+    "keyExists": [
+      "Tests whether a key exists in a struct and returns a boolean value",
+      [
+        "(${1:key}$0)",
+        "(${1:key}$0)"
+      ]
+    ],
+    "keyList": [
+      "Get keys of a struct as a string list",
+      [
+        "($0)",
+        "(${1:delimiter}$0)"
+      ]
+    ],
+    "keyTranslate": [
+      "Converts a struct with dot-notated keys in to an unflattened version",
+      [
+        "($0)",
+        "(${1:deep}, ${2:retainKeys}$0)"
+      ]
+    ],
+    "len": [
+      "Returns the absolute value of a number",
       [
         "($0)",
         "($0)"
-      ]
-    ],
-    "findKey": [
-      "Find a key by value",
-      [
-        "(${1:value}$0)",
-        "(${1:value}$0)"
       ]
     ],
     "map": [
-      "Map over struct values",
+      "This BIF will iterate over each key-value pair in the struct and invoke the callback function for each item so you can do any operation on the key-value pair and return a new value that will be set in a new struct.",
       [
-        "(${1:closure}$0)",
-        "(${1:closure}$0)"
+        "(${1:callback}$0)",
+        "(${1:callback}, ${2:parallel}, ${3:maxThreads}, ${4:virtual}$0)"
       ]
     ],
-    "filter": [
-      "Filter struct entries",
+    "none": [
+      "Used to iterate over a struct and test whether **NONE** item meets the test callback.",
       [
-        "(${1:closure}$0)",
-        "(${1:closure}$0)"
+        "(${1:callback}$0)",
+        "(${1:callback}, ${2:parallel}, ${3:maxThreads}, ${4:virtual}$0)"
       ]
     ],
     "reduce": [
-      "Reduce struct to single value",
+      "Run the provided udf against struct to reduce the values to a single output",
       [
-        "(${1:closure}, ${2:initial}$0)",
-        "(${1:closure}, ${2:initial}$0)"
-      ]
-    ],
-    "each": [
-      "Iterate over struct entries",
-      [
-        "(${1:closure}$0)",
-        "(${1:closure}$0)"
+        "(${1:callback}$0)",
+        "(${1:callback}, ${2:initialValue}$0)"
       ]
     ],
     "some": [
-      "Check if some entries match",
+      "Used to iterate over a struct and test whether **ANY** items meet the test callback.",
       [
-        "(${1:closure}$0)",
-        "(${1:closure}$0)"
+        "(${1:callback}$0)",
+        "(${1:callback}, ${2:parallel}, ${3:maxThreads}, ${4:virtual}$0)"
       ]
     ],
-    "every": [
-      "Check if all entries match",
+    "sort": [
+      "Sorts a struct according to the specified arguments and returns an array of struct keys",
       [
-        "(${1:closure}$0)",
-        "(${1:closure}$0)"
+        "($0)",
+        "(${1:sortType}, ${2:sortOrder}, ${3:path}, ${4:callback}$0)"
+      ]
+    ],
+    "toJSON": [
+      "Converts a BoxLang variable into a JSON (JavaScript Object Notation) string according to the specified options.",
+      [
+        "($0)",
+        "(${1:queryFormat}, ${2:useSecureJSONPrefix}, ${3:useCustomSerializer}, ${4:pretty}$0)"
+      ]
+    ],
+    "toModifiable": [
+      "Convert an array, struct or query to its Modifiable counterpart.",
+      [
+        "($0)",
+        "($0)"
+      ]
+    ],
+    "toQueryString": [
+      "Converts a struct to a query string using the specified delimiter.",
+      [
+        "($0)",
+        "(${1:delimiter}$0)"
+      ]
+    ],
+    "toSorted": [
+      "Converts a struct to a sorted struct - using either a callback comparator or textual directives as the sort option",
+      [
+        "($0)",
+        "(${1:sortType}, ${2:sortOrder}, ${3:localeSensitive}, ${4:callback}$0)"
+      ]
+    ],
+    "toUnmodifiable": [
+      "Convert an array, struct or query to its Unmodifiable counterpart.",
+      [
+        "($0)",
+        "($0)"
+      ]
+    ],
+    "update": [
+      "Updates or sets a key/value pair in to a struct",
+      [
+        "(${1:key}, ${2:value}$0)",
+        "(${1:key}, ${2:value}$0)"
+      ]
+    ],
+    "valueArray": [
+      "Returns an array of all values of top level keys in a struct",
+      [
+        "($0)",
+        "($0)"
       ]
     ]
   },
-  "query": {
-    "len": [
-      "Get the query record count",
+  "xml": {
+    "bxDump": [
+      "Outputs the contents of a variable (simple or complex) of any type for debugging purposes to a specific output location.",
+      [
+        "($0)",
+        "(${1:label}, ${2:top}, ${3:expand}, ${4:abort}, ${5:output}, ${6:format}, ${7:showUDFs}$0)"
+      ]
+    ],
+    "childPos": [
+      "Gets the position of a child element within an XML document object.",
+      [
+        "(${1:childname}, ${2:n}$0)",
+        "(${1:childname}, ${2:n}$0)"
+      ]
+    ],
+    "clone": [
+      "Clone this XML object",
       [
         "($0)",
         "($0)"
       ]
     ],
-    "addColumn": [
-      "Add a column to the query",
-      [
-        "(${1:name}$0)",
-        "(${1:name}, ${2:values}$0)"
-      ]
-    ],
-    "addRow": [
-      "Add a row to the query",
-      [
-        "($0)",
-        "(${1:data}$0)"
-      ]
-    ],
-    "deleteRow": [
-      "Delete a row from the query",
-      [
-        "(${1:row}$0)",
-        "(${1:row}$0)"
-      ]
-    ],
-    "getColumn": [
-      "Get a column as an array",
-      [
-        "(${1:name}$0)",
-        "(${1:name}$0)"
-      ]
-    ],
-    "getRow": [
-      "Get a row as a struct",
-      [
-        "(${1:row}$0)",
-        "(${1:row}$0)"
-      ]
-    ],
-    "slice": [
-      "Get a slice of the query",
-      [
-        "(${1:start}$0)",
-        "(${1:start}, ${2:count}$0)"
-      ]
-    ]
-  },
-  "date": {
-    "add": [
-      "Add time to a date",
-      [
-        "(${1:part}, ${2:amount}$0)",
-        "(${1:part}, ${2:amount}$0)"
-      ]
-    ],
-    "diff": [
-      "Calculate difference between dates",
-      [
-        "(${1:date2}$0)",
-        "(${1:date2}, ${2:part}$0)"
-      ]
-    ],
-    "format": [
-      "Format the date",
-      [
-        "($0)",
-        "(${1:mask}$0)"
-      ]
-    ],
-    "year": [
-      "Get the year",
+    "getNodeType": [
+      "Get XML values according to given xPath query",
       [
         "($0)",
         "($0)"
       ]
     ],
-    "month": [
-      "Get the month",
+    "keyExists": [
+      "Tests whether a key exists in a struct and returns a boolean value",
       [
-        "($0)",
-        "($0)"
+        "(${1:key}$0)",
+        "(${1:key}$0)"
       ]
     ],
-    "day": [
-      "Get the day",
+    "search": [
+      "Get XML values according to given xPath query",
       [
-        "($0)",
-        "($0)"
+        "(${1:xpath}$0)",
+        "(${1:xpath}, ${2:params}$0)"
       ]
     ],
-    "hour": [
-      "Get the hour",
+    "transform": [
+      "Get XML values according to given xPath query",
       [
-        "($0)",
-        "($0)"
-      ]
-    ],
-    "minute": [
-      "Get the minute",
-      [
-        "($0)",
-        "($0)"
-      ]
-    ],
-    "second": [
-      "Get the second",
-      [
-        "($0)",
-        "($0)"
+        "(${1:XSL}$0)",
+        "(${1:XSL}, ${2:parameters}$0)"
       ]
     ]
   }
