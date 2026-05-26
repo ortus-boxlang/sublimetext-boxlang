@@ -213,14 +213,14 @@ contexts:
 
   annotations:
     - match: '@'
-      scope: punctuation.definition.annotation.boxlang
+      scope: punctuation.definition.decorator.boxlang keyword.operator.decorator.boxlang
       push:
         - annotation-body
         - annotation-name
 
   annotation-name:
     - match: '{{identifier}}'
-      scope: entity.name.annotation.boxlang
+      scope: entity.name.function.decorator.boxlang storage.type.annotation.boxlang
       pop: true
     - include: else-pop
 
@@ -269,7 +269,8 @@ contexts:
           scope: punctuation.separator.annotation.boxlang
         - include: literal-number
         - include: special-name
-    - include: else-pop
+    - match: ''
+      pop: true
 
   annotation-attribute-value:
     - match: (?i)\b(true|false)\b
@@ -295,7 +296,7 @@ contexts:
           scope: keyword.control.import.alias.boxlang
           push: import-alias
         - match: '\b(bx|java|whatever|coldfusion|cfml):'
-          scope: keyword.control.import.prefix.boxlang
+          scope: entity.name.namespace.boxlang
           push:
             - import-class-name
             - import-path-segments
