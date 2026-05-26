@@ -136,28 +136,46 @@ contexts:
         - include: tag-attributes
 
   tag-attributes:
-    - match: (\w[\w\-]*)\s*(=)
+    - match: (\w[\w\-]*)\s*(=)\s*(")
       captures:
         1: entity.other.attribute-name.boxlang
         2: punctuation.separator.key-value.boxlang
+        3: punctuation.definition.string.begin.boxlang
       push:
         - meta_scope: string.quoted.double.boxlang
         - match: '"'
           scope: punctuation.definition.string.end.boxlang
           pop: true
-        - match: '"'
-          scope: punctuation.definition.string.begin.boxlang
-    - match: '(\w[\w\-]*)\s*(=)\s*'
+        - match: '\\.'
+          scope: constant.character.escape.boxlang
+    - match: (\w[\w\-]*)\s*(=)\s*(')
       captures:
         1: entity.other.attribute-name.boxlang
         2: punctuation.separator.key-value.boxlang
+        3: punctuation.definition.string.begin.boxlang
       push:
         - meta_scope: string.quoted.single.boxlang
         - match: "'"
           scope: punctuation.definition.string.end.boxlang
           pop: true
-        - match: "'"
-          scope: punctuation.definition.string.begin.boxlang
+        - match: '\\.'
+          scope: constant.character.escape.boxlang
+    - match: (\w[\w\-]*)\s*(=)
+      captures:
+        1: entity.other.attribute-name.boxlang
+        2: punctuation.separator.key-value.boxlang
+      push: tag-attribute-value
+    - match: (\w[\w\-]*)
+      scope: entity.other.attribute-name.boxlang
+
+  tag-attribute-value:
+    - match: (?i)\b(true|false)\b
+      scope: constant.language.boolean.boxlang
+      pop: true
+    - match: '{{identifier}}'
+      scope: variable.other.tag-attribute.boxlang
+      pop: true
+    - include: else-pop
 
   bx-function:
     - match: (<)(bx:function\b)
