@@ -15,7 +15,7 @@ def build_url_maps():
     global BIF_URL_MAP, COMPONENT_URL_MAP
     try:
         from ..basecompletions import completions
-        tags_data = completions.get('boxlang_tags', {})
+        tags_data = completions.get('boxlang_tags_data', {})
         for tag_name in tags_data:
             COMPONENT_URL_MAP[tag_name] = 'boxlang-language/reference/components/{}'.format(tag_name)
     except Exception:
@@ -28,7 +28,7 @@ def build_url_maps():
         pass
 
 def get_inline_documentation(boxlang_view, doc_type):
-    """Get inline documentation for BIFs and tags."""
+    """Get inline documentation for BIFs, tags, and script constructs."""
     doc_name = None
     doc_attr_or_arg = None
     doc_regions = None
@@ -47,6 +47,14 @@ def get_inline_documentation(boxlang_view, doc_type):
         if result:
             doc_name, function_name_region, _ = result
             doc_regions = [boxlang_view.view.full_line(function_name_region.begin())]
+    elif boxlang_view.view.match_selector(boxlang_view.position, 'keyword.boxlang, variable.language.boxlang'):
+        # Script constructs: try/catch/finally, thread, lock, transaction, loop, query, etc.
+        # thread/lock/transaction are scoped as variable.language since they double as scope names
+        word_region = boxlang_view.view.word(boxlang_view.position)
+        word = boxlang_view.view.substr(word_region).lower()
+        if word:
+            doc_name = word
+            doc_regions = [boxlang_view.view.full_line(word_region.begin())]
     if doc_name:
         lookup_name = doc_name
         if lookup_name.startswith('bx:'):
@@ -101,10 +109,10 @@ def get_goto_boxlang_file(boxlang_view):
     return None
 
 def _get_boxdoc(name):
-    """Get documentation for a function or tag."""
+    """Get documentation for a function, tag, or script construct."""
     try:
         from ..basecompletions import completions
-        # Try rich params data first (generated from boxlang-docs)
+        # 1. Rich params data (generated from boxlang-docs) — covers all BIFs + module functions
         params_data = completions.get('boxlang_function_params', {})
         lower_params_map = {k.lower(): k for k in params_data}
         canonical_name = lower_params_map.get(name.lower())
@@ -117,30 +125,37 @@ def _get_boxdoc(name):
                 'params': entry.get('params', []),
                 'returns': entry.get('returns', ''),
             }
-        # Fall back to snippet-based extraction for functions not in params data
-        functions_data = completions.get('boxlang_functions', {})
+        # 2. Raw functions data (snippet-based, fallback for any BIFs not in params)
+        functions_data = completions.get('boxlang_functions_data', {})
         lower_func_map = {k.lower(): k for k in functions_data}
         canonical_func = lower_func_map.get(name.lower())
         if canonical_func:
             func_data = functions_data[canonical_func]
             if func_data:
-                return {'type': 'function', 'name': canonical_func, 'description': func_data[0] if len(func_data) > 0 else '', 'params': _extract_params(func_data), 'returns': ''}
-        # Tags/components
-        tags_data = completions.get('boxlang_tags', {})
+                return {
+                    'type': 'function',
+                    'name': canonical_func,
+                    'description': func_data[0] if len(func_data) > 0 else '',
+                    'params': _extract_params(func_data),
+                    'returns': '',
+                }
+        # 3. Tags/components (bx: tags, script constructs like thread/lock/loop/query)
+        tags_data = completions.get('boxlang_tags_data', {})
         lower_tag_map = {k.lower(): k for k in tags_data}
         canonical_tag = lower_tag_map.get(name.lower())
         if canonical_tag:
-            tag_data = tags_data[canonical_tag]
-            if tag_data:
-                attrs = tag_data.get('attributes', [[], []]) if isinstance(tag_data, dict) else tag_data
-                if isinstance(attrs, list) and len(attrs) > 0 and isinstance(attrs[0], list):
-                    required = attrs[0]
-                    optional = attrs[1] if len(attrs) > 1 else []
-                    params = [{'name': a, 'required': True, 'type': 'any'} for a in required]
-                    params.extend([{'name': a, 'required': False, 'type': 'any'} for a in optional])
-                else:
-                    params = []
-                return {'type': 'tag', 'name': canonical_tag, 'description': 'BoxLang component: {}'.format(canonical_tag), 'params': params}
+            tag_info = tags_data[canonical_tag]
+            attrs = tag_info.get('attributes', [[], []]) if isinstance(tag_info, dict) else [[], []]
+            required = attrs[0] if len(attrs) > 0 else []
+            optional = attrs[1] if len(attrs) > 1 else []
+            params = [{'name': a, 'required': True, 'type': 'any'} for a in required]
+            params.extend([{'name': a, 'required': False, 'type': 'any'} for a in optional])
+            return {
+                'type': 'tag',
+                'name': canonical_tag,
+                'description': 'BoxLang component: {}'.format(canonical_tag),
+                'params': params,
+            }
     except Exception:
         pass
     return None

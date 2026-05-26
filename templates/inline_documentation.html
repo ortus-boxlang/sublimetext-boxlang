@@ -1,91 +1,126 @@
+<body>
 <style>
-    html {
-        --side-color: {{side_color}};
-        --header-bg: #1e1e1e;
-        --body-bg: #2d2d2d;
-        --text-color: #d4d4d4;
-        --link-color: #4c9bb0;
-        --code-bg: #1e1e1e;
-    }
-    body {
-        padding: 0;
-        margin: 0;
-        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-        font-size: 0.9rem;
-        color: var(--text-color);
-        background-color: var(--body-bg);
-    }
-    .header {
-        background-color: var(--header-bg);
-        border-left: 3px solid var(--side-color);
-        padding: 0.75rem 1rem;
-        font-family: "SF Mono", Monaco, "Cascadia Code", monospace;
-        font-size: 0.85rem;
-        color: #fff;
-    }
-    .body {
-        padding: 0.75rem 1rem;
-    }
-    .body h2 {
-        font-size: 0.8rem;
-        text-transform: uppercase;
-        letter-spacing: 0.05em;
-        color: #888;
-        margin-top: 0.5rem;
-        margin-bottom: 0.25rem;
-    }
-    .card {
-        background-color: var(--code-bg);
-        border-radius: 4px;
-        padding: 0.5rem 0.75rem;
-        margin-bottom: 0.5rem;
-    }
-    .card-header {
-        font-family: "SF Mono", Monaco, "Cascadia Code", monospace;
-        font-size: 0.8rem;
-        color: #dcdcaa;
-        margin-bottom: 0.25rem;
-    }
-    .card-body {
-        font-size: 0.85rem;
-        line-height: 1.4;
-    }
-    code {
-        background-color: var(--code-bg);
-        padding: 0.1rem 0.3rem;
-        border-radius: 3px;
-        font-family: "SF Mono", Monaco, "Cascadia Code", monospace;
-        font-size: 0.8rem;
-    }
-    a {
-        color: var(--link-color);
-        text-decoration: none;
-    }
-    a:hover {
-        text-decoration: underline;
-    }
-    .links {
-        padding: 0.5rem 1rem;
-        border-top: 1px solid #333;
-        font-size: 0.8rem;
-    }
-    .pagination {
-        padding: 0.5rem 1rem;
-        text-align: center;
-        border-top: 1px solid #333;
-        font-size: 0.8rem;
-    }
-    .pagination a {
-        margin: 0 0.5rem;
-    }
-    .entity_name_function { color: #dcdcaa; }
-    .entity_name_tag_boxlang { color: #569cd6; }
-    .entity_other_attribute_name { color: #9cdcfe; }
-    .storage_type { color: #4ec9b0; }
-    .variable_parameter_function { color: #9cdcfe; }
-    .keyword_other { color: #c586c0; }
+body {
+    margin: 0;
+    padding: 0;
+    background-color: ${side_color};
+}
+.container {
+    margin-left: 3px;
+    padding: 4px;
+    padding-right: 10px;
+    background-color: color(var(--background) blend(var(--foreground) 98%));
+}
+h1 {
+    font-size: 1rem;
+    margin: 4px 0;
+    padding: 4px;
+    background-color: color(var(--background) blend(var(--foreground) 95%));
+    font-family: "SF Mono", Monaco, Menlo, "Cascadia Code", monospace;
+}
+h2 {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    margin: 6px 0 2px;
+    padding: 2px 4px;
+    color: color(var(--foreground) blend(var(--background) 50%));
+}
+.card {
+    margin: 4px 0;
+    padding: 0;
+    background-color: color(var(--background) blend(var(--foreground) 90%));
+    border-radius: 3px;
+}
+.card-header {
+    margin: 0;
+    padding: 4px;
+    background-color: color(var(--background) blend(var(--foreground) 85%));
+    border-radius: 3px 3px 0 0;
+    font-family: "SF Mono", Monaco, Menlo, "Cascadia Code", monospace;
+    font-size: 0.85rem;
+}
+.card-header-empty {
+    border-radius: 3px;
+}
+.card-body {
+    margin: 0;
+    padding: 4px;
+    font-size: 0.85rem;
+    line-height: 1.4;
+}
+.code {
+    background-color: var(--background);
+    color: var(--foreground);
+    padding: 0 2px;
+    border-radius: 2px;
+    font-family: "SF Mono", Monaco, Menlo, "Cascadia Code", monospace;
+    font-size: 0.8rem;
+}
+a {
+    color: var(--bluish);
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: underline;
+}
+.links {
+    padding: 3px 4px;
+    border-top: 1px solid color(var(--foreground) blend(var(--background) 20%));
+    font-size: 0.8rem;
+}
+.pagination {
+    padding: 2px 4px;
+    text-align: center;
+    border-top: 1px solid color(var(--foreground) blend(var(--background) 20%));
+    font-size: 0.8rem;
+    background-color: color(var(--background) blend(var(--foreground) 85%));
+}
+.pagination a {
+    margin: 0 4px;
+    color: var(--bluish);
+}
+.entity-name-class {
+    ${entity_name_class}
+}
+.entity-name-function {
+    ${entity_name_function}
+}
+.entity-name-tag-boxlang {
+    ${entity_name_tag_boxlang}
+}
+.entity-other-attribute-name {
+    ${entity_other_attribute-name}
+}
+.entity-other-inherited-class {
+    ${entity_other_inherited-class}
+}
+.storage-modifier {
+    ${storage_modifier}
+}
+.storage-type {
+    ${storage_type}
+}
+.string-quoted {
+    ${string_quoted}
+}
+.support-function {
+    ${support_function}
+}
+.variable-language {
+    ${variable_language}
+}
+.variable-parameter-function {
+    ${variable_parameter_function}
+}
+.constant-language {
+    ${constant_language}
+}
 </style>
-<div class="header">{{header}}</div>
-<div class="body">{{body}}</div>
-<div class="links">{{links}}</div>
-<div class="pagination">{{pagination}}</div>
+<div class="container">
+    <h1>${header}</h1>
+    <div>${body}</div>
+    <div>${links}</div>
+</div>
+${pagination}
+</body>

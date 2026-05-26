@@ -4,8 +4,8 @@ Documentation HTML generation helpers.
 import re
 
 def span_wrap(text, scope_class):
-    """Wrap text in a span with the given scope class."""
-    return '<span class="{}">{}</span>'.format(scope_class, text)
+    """Wrap text in a span with the given scope class (dots converted to hyphens for CSS)."""
+    return '<span class="{}">{}</span>'.format(scope_class.replace('.', '-'), text)
 
 def param_header(param):
     """Generate a parameter header HTML string."""

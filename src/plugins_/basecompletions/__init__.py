@@ -91,6 +91,9 @@ def load_completions():
     completions['boxlang_tags_in_script'] = []
     completions['boxlang_tag_attributes'] = {}
     completions['boxlang_tag_attribute_values'] = {}
+    # Store raw dicts for use by boxdocs (the processed keys hold CompletionItem lists)
+    completions['boxlang_tags_data'] = completions_data.get('boxlang_tags', {})
+    completions['boxlang_functions_data'] = completions_data.get('boxlang_functions', {})
     tags_data = completions_data.get('boxlang_tags', {})
     for tag_name in sorted(tags_data.keys()):
         tag_info = tags_data[tag_name]
