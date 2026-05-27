@@ -2,6 +2,14 @@
     "target": "boxlang_run",
     "selector": "source.boxlang",
     "variants": [
+         {
+            "name": "BoxLang: Run",
+            "target": "boxlang_run"
+        },
+        {
+            "name": "BoxLang: Run with Debug",
+            "target": "boxlang_debug"
+        },
         {
             "name": "BoxLang: Run with Arguments",
             "target": "boxlang_run_with_args"
@@ -15,10 +23,6 @@
             "name": "BoxLang: Compile Project",
             "target": "boxlang_compile",
             "args": { "scope": "project" }
-        },
-        {
-            "name": "BoxLang: Run with Debug",
-            "target": "boxlang_debug"
         },
         {
             "name": "BoxLang: Feature Audit",

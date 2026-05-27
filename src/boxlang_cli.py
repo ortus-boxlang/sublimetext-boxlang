@@ -5,6 +5,7 @@ import os
 import subprocess
 import json
 import threading
+import locale
 from . import process
 from . import utils
 _boxlang_installed = False
@@ -12,6 +13,24 @@ _boxlang_version = ''
 _boxlang_executable = 'boxlang'
 _detection_complete = False
 _detection_callbacks = []
+JSON_DECODE_ERROR = getattr(json, 'JSONDecodeError', ValueError)
+
+
+def _decode_output(output):
+    """Decode subprocess output across UTF-8 and platform-local encodings."""
+    encodings = ['utf-8']
+    preferred_encoding = locale.getpreferredencoding(False)
+    if preferred_encoding and preferred_encoding.lower() not in encodings:
+        encodings.append(preferred_encoding)
+    for encoding in ('cp1252', 'latin-1'):
+        if encoding not in encodings:
+            encodings.append(encoding)
+    for encoding in encodings:
+        try:
+            return output.decode(encoding)
+        except UnicodeDecodeError:
+            continue
+    return output.decode('utf-8', 'replace')
 
 def _find_boxlang_executable():
     """Find BoxLang executable in common locations."""
@@ -41,7 +60,7 @@ def _run_command(args, timeout=30):
     )
     try:
         stdout, stderr = proc.communicate(timeout=timeout)
-        return proc.returncode, stdout.decode('utf-8'), stderr.decode('utf-8')
+        return proc.returncode, _decode_output(stdout), _decode_output(stderr)
     except subprocess.TimeoutExpired:
         proc.kill()
         stdout, stderr = proc.communicate()
@@ -126,7 +145,7 @@ def run_ast(file_path, callback=None):
                 callback(None, error)
             else:
                 return (None, error)
-        except json.JSONDecodeError as e:
+        except JSON_DECODE_ERROR as e:
             error = 'Invalid JSON from BoxLang AST: {}'.format(e)
             if callback:
                 callback(None, error)
@@ -173,7 +192,7 @@ def run_ast_code(code, callback=None):
                 callback(None, error)
             else:
                 return (None, error)
-        except json.JSONDecodeError as e:
+        except JSON_DECODE_ERROR as e:
             error = 'Invalid JSON from BoxLang AST: {}'.format(e)
             if callback:
                 callback(None, error)

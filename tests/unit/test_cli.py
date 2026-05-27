@@ -71,6 +71,16 @@ class TestBoxlangCLIParseVersion:
         expect(result).to_be_none()
 
 
+class TestBoxlangCLIDecodeOutput:
+    """Tests for subprocess output decoding."""
+
+    def test_decode_output_falls_back_to_windows_encoding(self):
+        """Test decoding output containing CP-1252 bytes."""
+        from src.boxlang_cli import _decode_output
+        result = _decode_output(b"Ortus\x99 BoxLang v1.13.0+54")
+        expect(result).to_be("Ortus\u2122 BoxLang v1.13.0+54")
+
+
 class TestBoxlangCLIRunAST:
     """Tests for run_ast function."""
 

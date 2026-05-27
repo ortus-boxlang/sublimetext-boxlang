@@ -1,6 +1,5 @@
 """
 BoxLang Language Support for Sublime Text — root plugin entry point.
-Mirrors the cfml_plugin.py pattern: EventListeners and plugin_loaded MUST live
 in a top-level package file so Sublime Text registers them correctly.
 """
 import sublime
