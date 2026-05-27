@@ -207,7 +207,7 @@ contexts:
       scope: punctuation.definition.comment.boxlang
       push:
         - meta_include_prototype: false
-        - meta_scope: comment.line.double-slash.boxlang
+        - meta_scope: comment.line.double-slash.boxlang comment.block.documentation.boxlang
         - match: \n
           pop: true
 
