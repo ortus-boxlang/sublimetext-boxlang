@@ -183,7 +183,7 @@ contexts:
     - include: block
     - include: label
     - include: flow-control
-    - include: bx-script-tag
+    - include: bx-component-statement
     - include: expression-statement
 
   comments:
@@ -469,24 +469,29 @@ contexts:
         - include: else-pop
     - include: immediately-pop
 
-  bx-script-tag:
+  bx-component-statement:
     - match: \b(bx:)([[:alpha:]][[:alnum:]_]*)
       captures:
-        1: keyword.control.bx-tag.boxlang
-        2: entity.name.tag.bx-tag.boxlang
+        1: support.function.boxlang keyword.control.boxlang
+        2: entity.name.function.boxlang support.function.boxlang entity.name.tag.boxlang
       set:
-        - bx-script-tag-body
-        - bx-script-tag-attributes
+        - bx-component-statement-meta
+        - bx-component-statement-body
+        - bx-component-statement-attributes
 
-  bx-script-tag-attributes:
+  bx-component-statement-meta:
+    - meta_scope: meta.tag.boxlang meta.tag.script.bx.boxlang
+    - include: immediately-pop
+
+  bx-component-statement-attributes:
     - match: (?=\{)
       pop: true
     - match: (?=\;)
       pop: true
     - match: (\w[\w\-]*)\s*(=)\s*(\")
       captures:
-        1: entity.other.attribute-name.bx-tag.boxlang
-        2: punctuation.separator.key-value.bx-tag.boxlang
+        1: entity.other.attribute-name.boxlang
+        2: punctuation.separator.key-value.boxlang
         3: punctuation.definition.string.begin.boxlang
       set:
         - meta_include_prototype: false
@@ -498,8 +503,8 @@ contexts:
           scope: constant.character.escape.boxlang
     - match: (\w[\w\-]*)\s*(=)\s*(')
       captures:
-        1: entity.other.attribute-name.bx-tag.boxlang
-        2: punctuation.separator.key-value.bx-tag.boxlang
+        1: entity.other.attribute-name.boxlang
+        2: punctuation.separator.key-value.boxlang
         3: punctuation.definition.string.begin.boxlang
       set:
         - meta_include_prototype: false
@@ -510,19 +515,19 @@ contexts:
         - match: '\\.'
           scope: constant.character.escape.boxlang
     - match: (\w[\w\-]*)
-      scope: entity.other.attribute-name.bx-tag.boxlang
+      scope: entity.other.attribute-name.boxlang
 
-  bx-script-tag-body:
+  bx-component-statement-body:
     - match: \{
-      scope: punctuation.section.block.begin.boxlang
+      scope: support.function.boxlang punctuation.definition.tag.begin.boxlang
       set:
-        - meta_scope: meta.bx-tag.body.boxlang
+        - meta_scope: meta.tag.boxlang meta.bx-tag.body.boxlang
         - match: \}
-          scope: punctuation.section.block.end.boxlang
+          scope: support.function.boxlang punctuation.definition.tag.end.boxlang
           pop: true
         - include: statements
     - match: \;
-      scope: punctuation.terminator.statement.boxlang
+      scope: support.function.boxlang punctuation.definition.tag.end.boxlang
       pop: true
     - include: else-pop
 
