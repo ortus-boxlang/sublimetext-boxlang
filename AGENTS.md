@@ -269,7 +269,7 @@ Caches parsed metadata per buffer ID. Subscribes to `on_load_async`, `on_modifie
 
 ## Settings Reference
 
-All settings in `settings/boxlang.sublime-settings`:
+All settings in `BoxLang.sublime-settings`:
 
 | Setting | Default | Description |
 |---------|---------|-------------|

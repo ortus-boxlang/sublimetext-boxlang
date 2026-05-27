@@ -137,7 +137,7 @@ Re-run the wizard anytime: `BoxLang: Run Setup Wizard` (Command Palette)
 
 Open settings: `Preferences: BoxLang Settings` (Command Palette)
 
-> **Note:** The table below shows frequently used settings. For the complete list (28 settings), see `Preferences: BoxLang Settings` in Sublime Text or [settings/BoxLang.sublime-settings](settings/BoxLang.sublime-settings).
+> **Note:** The table below shows frequently used settings. For the complete list (28 settings), see `Preferences: BoxLang Settings` in Sublime Text or [BoxLang.sublime-settings](BoxLang.sublime-settings).
 
 ### Key Settings
 

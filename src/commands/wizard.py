@@ -64,7 +64,7 @@ def _show_step_done(window):
     message = "You're all set!\n\nQuick tips:\n  F1           - Show inline documentation\n  Shift+Alt+F  - Format code\n  Ctrl+B       - Build & run\n  Ctrl+Alt+D   - Insert writeDump()\n\nOpen Settings to customize your experience."
     result = sublime.yes_no_cancel_dialog(message, 'Open Settings', 'Close')
     if result == sublime.DIALOG_YES:
-        window.run_command('edit_settings', {'base_file': '${packages}/BoxLang/settings/BoxLang.sublime-settings', 'default': '{\n\t$0\n}\n'})
+        window.run_command('edit_settings', {'base_file': '${packages}/BoxLang/BoxLang.sublime-settings', 'default': '{\n\t$0\n}\n'})
     mark_wizard_completed()
 
 def _is_cfml_package_installed():

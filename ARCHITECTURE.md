@@ -660,7 +660,7 @@ When BoxLang CLI is unavailable:
 
 ### Settings File
 
-`settings/boxlang.sublime-settings` contains all package settings with defaults.
+`BoxLang.sublime-settings` contains all package settings with defaults.
 
 ### Project Configuration
 
@@ -686,7 +686,7 @@ In `.sublime-project`:
 
 1. Project settings (`.sublime-project`)
 2. User settings (`boxlang.sublime-settings` in User package)
-3. Default settings (`settings/boxlang.sublime-settings`)
+3. Default settings (`BoxLang.sublime-settings`)
 
 ---
 

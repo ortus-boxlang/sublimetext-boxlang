@@ -105,7 +105,7 @@ Typical local iteration loop:
 - Keep command names and setting names consistent with the `boxlang_` prefix.
 - Do not commit local machine artifacts (`.sublime-workspace`, `.DS_Store`, caches).
 
-For plugin-facing settings and behavior, keep [README.md](README.md) and [settings/boxlang.sublime-settings](settings/boxlang.sublime-settings) aligned.
+For plugin-facing settings and behavior, keep [README.md](README.md) and [BoxLang.sublime-settings](BoxLang.sublime-settings) aligned.
 
 ## Manual Validation Checklist
 

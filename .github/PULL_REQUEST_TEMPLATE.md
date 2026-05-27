@@ -29,7 +29,7 @@ Repository: https://github.com/ortus-boxlang/sublimetext-boxlang
 - [ ] Commands/key bindings (`commands/`, `inputmaps/`, `src/commands/`)
 - [ ] Inline/hover docs (`src/inline_documentation.py`, `templates/`)
 - [ ] Build/CLI integration (`BoxLang.sublime-build`, `src/boxlang_cli.py`)
-- [ ] Settings (`settings/boxlang.sublime-settings`)
+- [ ] Settings (`BoxLang.sublime-settings`)
 - [ ] Other
 
 ## Manual Validation
