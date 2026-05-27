@@ -78,9 +78,13 @@ class BoxlangView:
         self.GotoBoxlangFile = GotoBoxlangFile
         self.prefix_start = self.position - len(self.prefix)
         self.determine_type()
+        self.view_metadata = {}
         if self.type:
             self.set_base_info()
-            self.view_metadata = buffer_metadata.get_cached_view_metadata(view)
+            try:
+                self.view_metadata = buffer_metadata.get_cached_view_metadata(view)
+            except Exception as exc:
+                print('BoxLang: failed to load view metadata ({})'.format(exc))
 
     def set_base_info(self):
         """Set basic file information."""

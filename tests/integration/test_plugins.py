@@ -116,6 +116,31 @@ class TestBoxlangViewContext:
         expect(doc.doc_html_variables).to_have_key("side_color")
         expect(doc.priority).to_be(0)
 
+    def test_boxlang_view_tolerates_metadata_failure(self, mock_sublime, monkeypatch):
+        """Inline-doc contexts should still initialize when metadata lookup fails."""
+        from src.boxlang_view import BoxlangView
+        from src import buffer_metadata
+
+        class MockView:
+            def match_selector(self, point, selector):
+                return selector == 'source.boxlang'
+
+            def file_name(self):
+                return '/path/to/project/model/User.bx'
+
+            def window(self):
+                return None
+
+            def substr(self, point):
+                return ''
+
+        monkeypatch.setattr(buffer_metadata, 'get_cached_view_metadata', lambda view: (_ for _ in ()).throw(RuntimeError('boom')))
+
+        boxlang_view = BoxlangView(MockView(), 1)
+
+        expect(boxlang_view.type).to_be('script')
+        expect(boxlang_view.view_metadata).to_be_a(dict)
+
 
 class TestGotoBoxlangFile:
     """Tests for go-to-definition functionality."""
