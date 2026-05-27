@@ -2,6 +2,7 @@
 BoxLang Language Support for Sublime Text
 """
 import sublime
+import threading
 from . import auto_close_tag
 from . import boxlang_cli
 from . import boxlang_plugins
@@ -18,6 +19,14 @@ from . import commands
 from .commands import wizard
 command_list = []
 
+
+def _run_startup_hook(module):
+    """Run a module startup hook without letting exceptions escape."""
+    try:
+        module._plugin_loaded()
+    except Exception:
+        pass
+
 def plugin_loaded():
     """Called when the plugin is loaded."""
     boxlang_cli.initialize()
@@ -31,7 +40,10 @@ def plugin_loaded():
     for k, v in globals().items():
         try:
             if '_plugin_loaded' in v.__dict__:
-                v._plugin_loaded()
+                if k == 'boxlang_plugins':
+                    threading.Thread(target=_run_startup_hook, args=(v,), daemon=True).start()
+                else:
+                    _run_startup_hook(v)
         except Exception:
             pass
 

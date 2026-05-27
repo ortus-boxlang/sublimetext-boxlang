@@ -211,6 +211,5 @@ def get_completions(boxlang_view):
     return None
 
 def _plugin_loaded():
-    """Build variable mappings when plugin loads."""
-    for project_name, _ in utils.get_project_list():
-        build_variable_mappings(project_name)
+    """Variable mappings are built after indexing completes."""
+    return

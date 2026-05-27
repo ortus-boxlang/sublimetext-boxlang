@@ -95,19 +95,18 @@ def index_project(project_name, callback=None):
         indexing_in_progress[project_name] = False
         return
     class_folders = _get_class_folders(project_data)
-    files_to_index = []
-    for folder_config in class_folders:
-        folder_path = utils.normalize_path(folder_config['path'], project_name)
-        if os.path.isdir(folder_path):
-            for root, dirs, files in os.walk(folder_path):
-                for f in files:
-                    if f.endswith(('.bx', '.bxs')):
-                        files_to_index.append(os.path.join(root, f))
-    total = len(files_to_index)
-    indexed = 0
 
     def _index_files():
-        nonlocal indexed
+        files_to_index = []
+        for folder_config in class_folders:
+            folder_path = utils.normalize_path(folder_config['path'], project_name)
+            if os.path.isdir(folder_path):
+                for root, dirs, files in os.walk(folder_path):
+                    for f in files:
+                        if f.endswith(('.bx', '.bxs')):
+                            files_to_index.append(os.path.join(root, f))
+        total = len(files_to_index)
+        indexed = 0
         for file_path in files_to_index:
             if not indexing_in_progress.get(project_name, False):
                 break
