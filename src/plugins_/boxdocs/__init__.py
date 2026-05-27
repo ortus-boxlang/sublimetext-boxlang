@@ -10,6 +10,14 @@ SIDE_COLOR = '#158CBA'
 BIF_URL_MAP = {}
 COMPONENT_URL_MAP = {}
 
+
+def _ensure_docs_data_loaded():
+    """Lazy-load completion payloads and URL maps for hover/docs lookups."""
+    from ..basecompletions import ensure_loaded
+    ensure_loaded()
+    if not BIF_URL_MAP and not COMPONENT_URL_MAP:
+        build_url_maps()
+
 def build_url_maps():
     """Build URL mapping from completion data."""
     global BIF_URL_MAP, COMPONENT_URL_MAP
@@ -121,6 +129,7 @@ def get_goto_boxlang_file(boxlang_view):
 def _get_boxdoc(name):
     """Get documentation for a function, tag, or script construct."""
     try:
+        _ensure_docs_data_loaded()
         from ..basecompletions import completions
         # 1. Rich params data (generated from boxlang-docs) — covers all BIFs + module functions
         params_data = completions.get('boxlang_function_params', {})
@@ -184,6 +193,7 @@ BASE_URL = 'https://boxlang.ortusbooks.com'
 
 def _get_bif_url(name):
     """Get documentation URL for a built-in function."""
+    _ensure_docs_data_loaded()
     stored = BIF_URL_MAP.get(name.lower(), '')
     if not stored:
         return None
@@ -193,6 +203,7 @@ def _get_bif_url(name):
 
 def _get_component_url(name):
     """Get documentation URL for a component."""
+    _ensure_docs_data_loaded()
     lookup = name.lower()
     stored = COMPONENT_URL_MAP.get(lookup, '')
     if not stored:

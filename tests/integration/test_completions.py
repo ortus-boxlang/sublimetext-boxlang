@@ -110,6 +110,32 @@ class TestBoxDocsPlugin:
         result = get_inline_documentation(mock_boxlang_view, "inline_doc")
         expect(result).to_be_none()
 
+    def test_boxdocs_get_boxdoc_lazy_loads_writedump(self):
+        """Test boxdocs can resolve writeDump docs without startup preloading."""
+        from src.plugins_ import boxdocs
+        from src.plugins_ import basecompletions
+        boxdocs.BIF_URL_MAP = {}
+        boxdocs.COMPONENT_URL_MAP = {}
+        basecompletions.completions = {
+            "boxlang_function_params": {
+                "writeDump": {
+                    "description": "Dump a variable",
+                    "params": [{"name": "var", "required": False, "type": "any"}],
+                    "returns": "",
+                    "category": "system",
+                    "url_path": "boxlang-language/reference/built-in-functions/system/writeDump",
+                }
+            },
+            "boxlang_functions": {"required": []},
+            "boxlang_tags": [],
+            "boxlang_functions_data": {},
+            "boxlang_tags_data": {},
+        }
+        doc = boxdocs._get_boxdoc("writeDump")
+        expect(doc).not_to_be_none()
+        expect(doc["type"]).to_be("function")
+        expect(doc["name"]).to_be("writeDump")
+
 
 class TestPluginBaseClass:
     """Tests for the BoxlangPlugin base class."""
