@@ -162,7 +162,16 @@ def _get_boxdoc(name):
                 }
         # 3. Tags/components (bx: tags, script constructs like thread/lock/loop/query)
         tags_data = completions.get('boxlang_tags_data', {})
-        lower_tag_map = {k.lower(): k for k in tags_data}
+        lower_tag_map = {}
+        for key in tags_data:
+            normalized_key = key.lower()
+            lower_tag_map[normalized_key] = key
+            lower_tag_map['bx:' + normalized_key] = key
+            if normalized_key.startswith('<bx:') and normalized_key.endswith('>'):
+                lower_tag_map[normalized_key[4:-1]] = key
+                lower_tag_map['bx:' + normalized_key[4:-1]] = key
+            elif normalized_key.startswith('bx:'):
+                lower_tag_map[normalized_key[3:]] = key
         canonical_tag = lower_tag_map.get(name.lower())
         if canonical_tag:
             tag_info = tags_data[canonical_tag]

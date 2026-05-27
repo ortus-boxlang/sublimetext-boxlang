@@ -136,6 +136,32 @@ class TestBoxDocsPlugin:
         expect(doc["type"]).to_be("function")
         expect(doc["name"]).to_be("writeDump")
 
+    def test_boxdocs_get_boxdoc_normalizes_component_keys(self):
+        """Tag docs should resolve whether the raw JSON key is plain, bx:-prefixed, or bracketed."""
+        from src.plugins_ import boxdocs
+        from src.plugins_ import basecompletions
+        boxdocs.BIF_URL_MAP = {}
+        boxdocs.COMPONENT_URL_MAP = {}
+        basecompletions.completions = {
+            "boxlang_function_params": {},
+            "boxlang_functions": {"required": []},
+            "boxlang_tags": [],
+            "boxlang_functions_data": {},
+            "boxlang_tags_data": {
+                "Abort": {"attributes": [[], ["showerror"]], "url_path": "boxlang-language/reference/components/system/Abort"},
+                "<bx:RedisLock>": {"attributes": [["name"], []], "url_path": ""},
+            },
+        }
+
+        abort_doc = boxdocs._get_boxdoc("bx:abort")
+        redis_doc = boxdocs._get_boxdoc("redislock")
+
+        expect(abort_doc).not_to_be_none()
+        expect(abort_doc["type"]).to_be("tag")
+        expect(abort_doc["name"]).to_be("Abort")
+        expect(redis_doc).not_to_be_none()
+        expect(redis_doc["name"]).to_be("<bx:RedisLock>")
+
 
 class TestPluginBaseClass:
     """Tests for the BoxlangPlugin base class."""

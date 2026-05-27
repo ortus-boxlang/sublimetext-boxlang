@@ -17,6 +17,14 @@ PAGINATION_TEMPLATE = ''
 SELECTORS = ['constant.language', 'entity.name.class', 'entity.name.function', 'entity.name.tag.boxlang', 'entity.other.attribute-name', 'entity.other.inherited-class', 'storage.modifier', 'storage.type', 'string.quoted', 'support.function', 'variable.language', 'variable.parameter.function']
 doc_window = None
 
+
+def get_documentation_position(view, position):
+    """Resolve hover points to the nearest token character used by doc providers."""
+    selectors = 'support.function.boxlang, meta.function-call.support.boxlang, entity.name.tag.boxlang, entity.other.attribute-name.boxlang, variable.other.property.boxlang, entity.name.function.boxlang, keyword.control.boxlang, keyword.declaration.property.boxlang, variable.language.boxlang, storage.modifier.boxlang, storage.type.boxlang'
+    if position > 0 and (not view.match_selector(position, selectors)) and view.match_selector(position - 1, selectors):
+        return position - 1
+    return position
+
 def get_inline_documentation(boxlang_view, doc_type):
     """Get inline documentation from all plugins."""
     docs = []
@@ -137,7 +145,9 @@ class BoxlangInlineDocumentationCommand(sublime_plugin.TextCommand):
             if not utils.get_setting('boxlang_hover_docs'):
                 return
         tick = time.time()
-        position = pt if pt else self.view.sel()[0].begin()
+        position = pt if pt is not None else self.view.sel()[0].begin()
+        if doc_type == 'hover_doc':
+            position = get_documentation_position(self.view, position)
         boxlang_view = BoxlangView(self.view, position)
         docs = get_inline_documentation(boxlang_view, doc_type)
         if len(docs) > 0:

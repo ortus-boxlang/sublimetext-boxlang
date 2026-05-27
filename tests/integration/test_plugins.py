@@ -65,6 +65,23 @@ class TestPluginModuleImports:
         from src.plugins_ import typecompletions
         expect(typecompletions).not_to_be_none()
 
+    def test_in_file_completions_parses_property_declaration(self, mock_sublime):
+        """Test that BoxLang property declarations are recognized as properties."""
+        from src.plugins_.in_file_completions import parse_file_symbols
+
+        class MockView:
+            def substr(self, region):
+                return 'property string title;\n'
+
+            def size(self):
+                return len('property string title;\n')
+
+        symbols = parse_file_symbols(MockView())
+
+        expect(symbols['properties']).to_have_length(1)
+        expect(symbols['properties'][0]['name']).to_be('title')
+        expect(symbols['properties'][0]['type']).to_be('string')
+
 
 class TestPluginContextTypes:
     """Tests for plugin behavior across different context types."""
@@ -140,6 +157,21 @@ class TestBoxlangViewContext:
 
         expect(boxlang_view.type).to_be('script')
         expect(boxlang_view.view_metadata).to_be_a(dict)
+
+
+class TestInlineDocumentationHelpers:
+    """Tests for hover-doc helper behavior."""
+
+    def test_hover_docs_use_previous_character_when_hover_is_on_token_boundary(self):
+        """Hover points just after a token should still resolve docs against the token."""
+        from src.inline_documentation import get_documentation_position
+
+        class MockView:
+            def match_selector(self, point, selector):
+                return point == 4
+
+        expect(get_documentation_position(MockView(), 5)).to_be(4)
+        expect(get_documentation_position(MockView(), 4)).to_be(4)
 
 
 class TestGotoBoxlangFile:

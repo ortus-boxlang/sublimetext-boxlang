@@ -36,6 +36,11 @@ def parse_file_symbols(view):
             prop_type = re.match('^(?:public|private|package)\\s+(\\w+)', stripped).group(1)
             symbols['properties'].append({'name': prop_name, 'type': prop_type, 'line': line_num})
             continue
+        prop_decl_match = re.match('^property\\s+(?:(public|private|package)\\s+)?(?:(any|void|string|numeric|boolean|array|struct|query|component|[\\w.]+)\\s+)?(\\w+)\\b', stripped)
+        if prop_decl_match:
+            prop_type = prop_decl_match.group(2) or 'any'
+            symbols['properties'].append({'name': prop_decl_match.group(3), 'type': prop_type, 'line': line_num})
+            continue
         var_match = re.match('^var\\s+(\\w+)\\s*=', stripped)
         if not var_match:
             var_match = re.match('^(\\w+)\\s*=\\s*', stripped)
