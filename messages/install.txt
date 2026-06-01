@@ -25,30 +25,6 @@ Features
 - Inline Documentation -- F1 for full docs, hover for quick info
 - Project Component Indexing with inheritance resolution
 
-File Icons
-----------
-
-Native fallback icons are included and work without any additional package.
-
-Restart Sublime Text if icons do not appear immediately after installation.
-
-First Run
----------
-
-On first launch, the setup wizard will guide you through detecting BoxLang and configuring optional CFML fallback support.
-
-Re-run anytime via Command Palette: BoxLang: Run Setup Wizard
-
-Key Bindings
-------------
-
-    Action                           Shortcut
-    -------------------------------- -----------------
-    Show inline documentation        F1
-    Go to definition                 BoxLang: Go to Definition
-    Format code                      Shift+Alt+F
-    Next/previous parse error        F4 / Shift+F4
-
 Getting Started
 ---------------
 
