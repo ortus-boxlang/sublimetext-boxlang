@@ -9,6 +9,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Chores
+
+- Remove legacy settings file support
+- Update README to remove legacy settings file support
+- Remove unused colors
+- Remove unused icons
+
 ## [1.0.3] - 2026-05-27
 
 - More fixes
