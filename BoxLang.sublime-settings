@@ -49,10 +49,6 @@
     "boxlang_hover_docs": true,
     "boxlang_completion_docs": true,
 
-    // Color scheme styles for BoxLang tags
-    "boxlang_tag_style": { "foreground": "#4C9BB0", "font_style": "" },
-    "boxlang_tag_attribute_style": { "foreground": "#D9995E", "font_style": "" },
-
     // Default controller and view folder names
     "boxlang_controller_folders": ["controllers", "handlers"],
     "boxlang_view_folders": ["views"],

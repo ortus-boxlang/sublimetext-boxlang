@@ -285,8 +285,6 @@ All settings in `BoxLang.sublime-settings`:
 | `boxlang_inline_doc_regions_highlight` | `true` | Highlight doc regions |
 | `boxlang_hover_docs` | `true` | Enable hover documentation |
 | `boxlang_completion_docs` | `true` | Enable completion docs popup |
-| `boxlang_tag_style` | `{...}` | Tag foreground color/style |
-| `boxlang_tag_attribute_style` | `{...}` | Attribute foreground color/style |
 | `boxlang_controller_folders` | `["controllers","handlers"]` | Controller folder names |
 | `boxlang_view_folders` | `["views"]` | View folder names |
 | `boxlang_testbox_enabled` | `true` | Enable TestBox integration |
