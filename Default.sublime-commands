@@ -11,7 +11,7 @@
         "caption": "Preferences: BoxLang Key Bindings",
         "command": "edit_settings",
         "args": {
-            "base_file": "${packages}/BoxLang/inputmaps/Default ($platform).sublime-keymap",
+            "base_file": "${packages}/BoxLang/inputmaps/Default.sublime-keymap",
             "default": "[\n\t$0\n]\n"
         }
     }
