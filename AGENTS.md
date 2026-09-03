@@ -375,6 +375,9 @@ Re-run via Command Palette: `BoxLang: Run Setup Wizard`
 - `keyword.operator.ternary.boxlang` — `?` and `:` ternary operators
 - `keyword.operator.spread.boxlang` — `...` spread operator
 - `keyword.operator.rest.boxlang` — `...` rest parameter
+- `keyword.operator.range.boxlang` — range operators `..`, `..<`, `>..`, `>..<`
+- `keyword.control.assert.boxlang` — `assert` keyword
+- `keyword.other.literal.boxlang` — `set`/`sb`/`stringbuilder` literal soft keywords
 - `keyword.operator.logical.binary.boxlang` — `&&`, `||`, `and`, `or`, `xor`
 - `keyword.operator.comparison.binary.boxlang` — `===`, `!==`, `==`, `!=`, `<>`
 - `keyword.operator.relational.binary.boxlang` — `<=`, `>=`, `<`, `>`

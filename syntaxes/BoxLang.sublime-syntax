@@ -17,7 +17,7 @@ variables:
       break|case|catch|continue|default|do|else|finally|for|function|if|import|in|new|return|
       super|switch|this|try|var|void|while|null|true|false|class|interface|extends|implements|
       attempt|retry|transaction|lock|abort|throw|rethrow|include|property|component|abstract|
-      final|static|public|private|package|remote|annotation
+      final|static|public|private|package|remote|annotation|assert
     )\b
 
   boxlang_scope: \b(this|variables|thread|session|client|server|cgi|form|url|cookie|application|request|arguments|super)\b
@@ -183,6 +183,7 @@ contexts:
     - include: block
     - include: label
     - include: flow-control
+    - include: assert-statement
     - include: bx-component-statement
     - include: expression-statement
 
@@ -456,6 +457,20 @@ contexts:
       scope: keyword.control.flow.boxlang
       set: expect-semicolon
 
+  assert-statement:
+    - match: \b(assert)\b
+      scope: keyword.control.assert.boxlang
+      set:
+        - expect-semicolon
+        - assert-message-clause
+        - expression-no-comma
+
+  assert-message-clause:
+    - match: ':'
+      scope: punctuation.separator.key-value.boxlang
+      set: expression-no-comma
+    - include: else-pop
+
   expect-label:
     - meta_include_prototype: false
     - match: '(?={{nothing}}{{identifier}})'
@@ -672,9 +687,12 @@ contexts:
   for-in-declaration:
     - match: \bvar\b
       scope: keyword.declaration.var.boxlang storage.type.boxlang
-      set: for-in-binding
+      set:
+        - for-in-binding-list
+        - for-in-binding
     - match: (?=\S)
       set:
+        - for-in-value-list
         - left-expression-end
         - expression-begin
 
@@ -684,6 +702,20 @@ contexts:
     - include: variable-binding-struct-destructuring
     - match: (?=\S)
       fail: for-in
+
+  for-in-binding-list:
+    - match: ','
+      scope: punctuation.separator.comma.boxlang
+      push: for-in-binding
+    - include: else-pop
+
+  for-in-value-list:
+    - match: ','
+      scope: punctuation.separator.comma.boxlang
+      set:
+        - left-expression-end
+        - expression-begin
+    - include: else-pop
 
   for-in-word:
     - match: (?i)\bin\b
@@ -828,6 +860,7 @@ contexts:
     - include: function-expression
     - include: struct-literal
     - include: array-literal
+    - include: set-or-stringbuilder-literal
     - match: (?={{reserved_word}})
       pop: true
     - match: (?=(?:\(|{{identifier}}))
@@ -964,6 +997,8 @@ contexts:
       scope: keyword.operator.arithmetic.boxlang
     - match: \.\.\.
       scope: keyword.operator.spread.boxlang
+    - match: \.\.<|\.\.
+      scope: keyword.operator.range.boxlang
     - match: \+|\-
       scope: keyword.operator.arithmetic.boxlang
 
@@ -992,6 +1027,9 @@ contexts:
       push: expression-begin
     - match: '&'
       scope: keyword.operator.concat.binary.boxlang
+      push: expression-begin
+    - match: '>\.\.<|>\.\.|\.\.<|\.\.'
+      scope: keyword.operator.range.boxlang
       push: expression-begin
     - match: |-
         (?x)
@@ -1064,7 +1102,7 @@ contexts:
           \b0x[0-9a-f]*|              # hex
           (
             \B\.[0-9]+|               # e.g. .999
-            \b[0-9]+(\.[0-9]*)?       # e.g. 999.999, 999. or 999
+            \b[0-9]+(\.(?!\.)[0-9]*)? # e.g. 999.999, 999. or 999 (but not 1..5 range)
           )
         )
       scope: constant.numeric.boxlang
@@ -1439,6 +1477,11 @@ contexts:
     - match: '{{identifier}}'
       scope: meta.property.boxlang
       pop: true
+
+  set-or-stringbuilder-literal:
+    - match: \b(?i:set|sb|stringbuilder)\b(?=\s*\{)
+      scope: keyword.other.literal.boxlang
+      push: struct-literal
 
   struct-literal:
     - match: '\{'
