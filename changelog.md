@@ -9,6 +9,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- Syntax highlighting for range operators (`..`, `..<`, `>..`, `>..<`)
+- Syntax highlighting for the `assert` statement, including the optional `: message` clause
+- Syntax highlighting for `set{...}` and `sb{...}`/`stringbuilder{...}` literals
+- Syntax highlighting for two-variable `for (item, index in arr)` / `for (key, value in struct)` loops
+
 ### Chores
 
 - Remove legacy settings file support

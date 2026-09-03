@@ -1,0 +1,54 @@
+class {
+
+	/**
+	 * Exercises syntax added to the grammar since the last highlighting sync:
+	 * range operators, spread/rest, destructuring, set/stringbuilder literals,
+	 * two-variable for-in, assert, and a local (in-body) class.
+	 */
+	function demo() {
+
+		// Range operators
+		var full = 1..10;
+		var rightExclusive = 1..<10;
+		var leftExclusive = 1>..10;
+		var bothExclusive = 1>..<10;
+		var openEnded = 1..;
+
+		// Spread in array/struct literals and function calls
+		var base = [ 1, 2, 3 ];
+		var combined = [ 0, ...base, 4 ];
+		var options = { active : true };
+		var merged = { ...options, name : "demo" };
+		writeOutput( combined, ...base );
+
+		// Array and struct destructuring, including rest
+		var [ first, second, ...rest ] = combined;
+		var { active, name : displayName, ...others } = merged;
+
+		// Set and StringBuilder literals
+		var uniqueIds = set{ 1, 2, 3 };
+		var greeting = sb{ "Hello, " };
+		var alsoGreeting = stringbuilder{ "Hello, " };
+
+		// Two-variable for-in
+		for ( item, index in combined ) {
+			writeOutput( index & ": " & item );
+		}
+		for ( key, value in merged ) {
+			writeOutput( key & " = " & value );
+		}
+
+		// Assert with and without a message
+		assert combined.len() > 0;
+		assert structKeyExists( merged, "name" ) : "merged must contain a name";
+
+		// Local (in-body) class
+		class LocalHelper {
+			function ping() {
+				return "pong";
+			}
+		}
+
+		return new LocalHelper().ping();
+	}
+}
