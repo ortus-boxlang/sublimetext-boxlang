@@ -17,6 +17,7 @@ from .src.error_panel import BoxlangNextErrorCommand, BoxlangPrevErrorCommand
 from .src.completions import BoxlangUpdateCompletionDocCommand
 from .src.syntax_check import BoxlangCheckSyntaxCommand
 from .src.testbox_runner import BoxlangTestboxRunCommand
+from .src.symbols import BoxlangGotoSymbolCommand
 
 
 def plugin_loaded():

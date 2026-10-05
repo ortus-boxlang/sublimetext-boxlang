@@ -61,6 +61,7 @@ sublimetext-boxlang/
 │   ├── error_panel.py                # Parse error display with F4 navigation
 │   ├── syntax_check.py               # `boxlang check` on save / while typing
 │   ├── testbox_runner.py             # TestBox runs (BoxLang CLI runner or web runner) + results
+│   ├── symbols.py                    # Go to Spec/Suite and Go to Property quick panels
 │   ├── type_resolver.py              # Medium-depth type inference engine
 │   ├── status_bar.py                 # Status bar (version, indexing, errors)
 │   ├── goto_boxlang_file.py          # Go-to-definition (files + URLs)
@@ -261,6 +262,13 @@ Medium-depth type inference (not full static analysis).
 - BoxLang runner: `boxlang <testbox>/system/runners/BoxLangRunner.bx --bundles=<dot.path> --filter-specs=<name> --reporter=text --write-json-report=true --reportpath=<tmp>`; the JSON report is read from the temp dir (the runner wipes its report path, so never point it at `tests/results`)
 - Web runner (only when `http_runner_url` is set in project settings): GET `url?reporter=json&bundles=...|directory=...&testSpecs=...`
 - `parse_results()` normalizes the TestResult memento (`bundleStats` > `suiteStats` > `specStats`); `find_target_at()` locates the spec or suite at the cursor
+
+### `symbols.py` — Symbol Navigation
+- **`boxlang_goto_symbol`** text command, `kind`: `spec` or `property`
+- `find_specs(text)` and `find_properties(text)` are pure functions over buffer text. They exist because the grammar scopes cannot distinguish a property name from attribute names (`inject`, `type`) or a spec name from any other string, so Goto Symbol (`metadata/*.tmPreferences`) only covers classes and functions
+
+### `scripts/local_smoke_test.py`
+Runs the CLI integration (`boxlang check`, TestBox runner, optional web runner) against real installs with `sublime` stubbed out. Run it after changing `boxlang_cli.py`, `syntax_check.py` or `testbox_runner.py`.
 
 ### `status_bar.py` — Status Bar
 Displays in Sublime Text status bar:

@@ -25,10 +25,10 @@ from . import utils
 _PANEL_NAME = 'boxlang_testbox'
 _REGION_KEY = 'boxlang_testbox_failures'
 _RUNNER_RELATIVE = os.path.join('testbox', 'system', 'runners', 'BoxLangRunner.bx')
-_SPEC_FUNCTIONS = ('it', 'fit', 'xit', 'test', 'ftest', 'xtest', 'then', 'fthen', 'xthen')
-_SUITE_FUNCTIONS = ('describe', 'fdescribe', 'xdescribe', 'feature', 'ffeature', 'xfeature', 'story', 'fstory', 'xstory', 'given', 'fgiven', 'xgiven', 'when', 'fwhen', 'xwhen', 'scenario', 'fscenario', 'xscenario')
-_CALL_PATTERN = re.compile(r'\b(' + '|'.join(_SPEC_FUNCTIONS + _SUITE_FUNCTIONS) + r')\s*\(\s*(["\'])((?:(?!\2).)*)\2')
-_XUNIT_PATTERN = re.compile(r'\bfunction\s+(test\w*)\s*\(', re.IGNORECASE)
+SPEC_FUNCTIONS = ('it', 'fit', 'xit', 'test', 'ftest', 'xtest', 'then', 'fthen', 'xthen')
+SUITE_FUNCTIONS = ('describe', 'fdescribe', 'xdescribe', 'feature', 'ffeature', 'xfeature', 'story', 'fstory', 'xstory', 'given', 'fgiven', 'xgiven', 'when', 'fwhen', 'xwhen', 'scenario', 'fscenario', 'xscenario')
+CALL_PATTERN = re.compile(r'\b(' + '|'.join(SPEC_FUNCTIONS + SUITE_FUNCTIONS) + r')\s*\(\s*(["\'])((?:(?!\2).)*)\2')
+XUNIT_PATTERN = re.compile(r'\bfunction\s+(test\w*)\s*\(', re.IGNORECASE)
 DEFAULTS = {
     'runner_path': '',
     'http_runner_url': '',
@@ -98,13 +98,13 @@ def find_target_at(text, offset):
     before = text[:offset]
     spec = None
     suite = None
-    for match in _CALL_PATTERN.finditer(before):
-        kind = 'spec' if match.group(1) in _SPEC_FUNCTIONS else 'suite'
+    for match in CALL_PATTERN.finditer(before):
+        kind = 'spec' if match.group(1) in SPEC_FUNCTIONS else 'suite'
         if kind == 'spec':
             spec = (match.start(), match.group(3))
         else:
             suite = (match.start(), match.group(3))
-    for match in _XUNIT_PATTERN.finditer(before):
+    for match in XUNIT_PATTERN.finditer(before):
         if spec is None or match.start() > spec[0]:
             spec = (match.start(), match.group(1))
     if spec:

@@ -53,6 +53,16 @@
         "args": { "scope": "last" }
     },
     {
+        "caption": "BoxLang: Go to TestBox Spec or Suite",
+        "command": "boxlang_goto_symbol",
+        "args": { "kind": "spec" }
+    },
+    {
+        "caption": "BoxLang: Go to Property",
+        "command": "boxlang_goto_symbol",
+        "args": { "kind": "property" }
+    },
+    {
         "caption": "BoxLang: Next Error",
         "command": "boxlang_next_error"
     },

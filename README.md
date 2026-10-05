@@ -36,6 +36,7 @@ Comprehensive BoxLang language support for Sublime Text 4. Provides syntax highl
 - **Code Formatting** via `boxlang format` CLI
 - **Build System** — Run, compile, debug, and audit BoxLang files
 - **Go to Definition** — Command Palette navigation to classes and functions
+- **Go to Spec / Property** — Quick panels for TestBox `describe()` / `it()` names and `property` declarations
 - **Syntax Check** — `boxlang check` on save (and optionally while typing) with squiggles, gutter icons, inline error annotations, an error panel, and F4/Shift+F4 navigation
 - **TestBox Runner** — Run the current bundle, the spec at the cursor, or all tests with the BoxLang runner (or a project web runner) and see failures inline
 - **Error Panel** — Parse error display with F4/Shift+F4 navigation
@@ -123,6 +124,19 @@ Re-run the wizard anytime: `BoxLang: Run Setup Wizard` (Command Palette)
 
 ---
 
+## Navigating Symbols
+
+| Where | What you get |
+|-------|--------------|
+| `Goto Symbol` (`Cmd/Ctrl+R`) | Classes (including inner and local classes) and functions, in script and `bx:function` tag form |
+| `Goto Anything` > `@` | Same list, filtered as you type |
+| `BoxLang: Go to Property` | Every `property` declaration in the file. Handles `property string name;`, `property name="x" inject="y";` and `<bx:property name="x">` |
+| `BoxLang: Go to TestBox Spec or Suite` | Every `describe()` / `it()` style call and xUnit test function in the file |
+
+Properties and spec names are listed through commands rather than Goto Symbol, because the grammar scopes cannot tell a property name from its attributes (`inject`, `type`) or a spec name from any other string.
+
+---
+
 ## Syntax Checking
 
 The package runs [`boxlang check`](https://boxlang.ortusbooks.com/getting-started/ide-tooling/boxlang-syntax-check) (BoxLang 1.17+) to find syntax errors without executing your code.
@@ -149,6 +163,10 @@ Run tests from the Command Palette (`BoxLang: TestBox ...`):
 | `TestBox Run Last` | Repeats the previous run |
 
 By default tests run through TestBox's **BoxLang runner** (`testbox/system/runners/BoxLangRunner.bx`, TestBox 7+). It is auto-detected from your project; set `runner_path` if yours lives elsewhere. Results appear in an output panel with clickable `file:line` failures, and failing lines in open files get a squiggle, gutter icon and inline message.
+
+### Jump to specs and suites
+
+`BoxLang: Go to TestBox Spec or Suite` lists every `describe()`, `feature()`, `story()`, `it()`, `test()`, `then()` and xUnit `function testXxx()` in the current file. The list previews as you move through it and jumps on Enter (Escape restores your cursor).
 
 ### Using a web runner (per project)
 
@@ -259,9 +277,38 @@ Add to your `.sublime-project` file:
 
 ---
 
+## Trying the Package Locally
+
+`scripts/local_smoke_test.py` checks the package against a **real** BoxLang (and optionally TestBox) install before you open Sublime Text:
+
+```bash
+# Everything it can find on PATH
+python3 scripts/local_smoke_test.py
+
+# Explicit paths, a web runner, and linking the package into Sublime Text
+python3 scripts/local_smoke_test.py \
+  --boxlang ~/.bvm/current/bin/boxlang \
+  --testbox /path/to/testbox \
+  --http-url http://localhost:8080/tests/runner.bxm \
+  --install
+```
+
+| Step | What it verifies |
+|------|------------------|
+| 1 | Python compiles, JSON, XML and settings files parse, the unit tests pass |
+| 2 | BoxLang is installed and 1.17+ |
+| 3 | `boxlang check --format json` output is parsed for a valid and an invalid file |
+| 4 | The build variant `file_regex` matches real `boxlang check` text output, for a file and a project |
+| 5 | The TestBox BoxLang runner writes a JSON report the package can read, failures carry a file and line, and `--filter-specs` runs a single spec (needs TestBox 7+) |
+| 6 | A web runner returns `reporter=json` output the package can read (only with `--http-url`) |
+
+Steps that need something you do not have (TestBox, a web runner) are skipped. The script exits 1 if anything fails, and finishes by printing a checklist of manual checks to run inside Sublime Text. `--install` symlinks the package into your Sublime Text `Packages` folder as `BoxLang`.
+
+---
+
 ## Running Tests
 
-The package includes a comprehensive test suite using pytest and TestBox-style expectations (313 tests across 17 files).
+The package includes a comprehensive test suite using pytest and TestBox-style expectations (321 tests across 19 files).
 
 ### Quick Start
 
