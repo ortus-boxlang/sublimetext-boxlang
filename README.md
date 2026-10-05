@@ -36,7 +36,8 @@ Comprehensive BoxLang language support for Sublime Text 4. Provides syntax highl
 - **Code Formatting** via `boxlang format` CLI
 - **Build System** — Run, compile, debug, and audit BoxLang files
 - **Go to Definition** — Command Palette navigation to classes and functions
-- **Syntax Check** — `boxlang check` on save (and optionally while typing) with squiggles, an error panel, and F4/Shift+F4 navigation
+- **Syntax Check** — `boxlang check` on save (and optionally while typing) with squiggles, gutter icons, inline error annotations, an error panel, and F4/Shift+F4 navigation
+- **TestBox Runner** — Run the current bundle, the spec at the cursor, or all tests with the BoxLang runner (or a project web runner) and see failures inline
 - **Error Panel** — Parse error display with F4/Shift+F4 navigation
 - **Status Bar** — Version, indexing progress, and error counts
 - **Code Snippets** — 19 built-in snippets for common patterns, including sets, ranges, inner classes, query transformers and scheduled tasks
@@ -117,6 +118,7 @@ Re-run the wizard anytime: `BoxLang: Run Setup Wizard` (Command Palette)
 | **Compile File** | `boxlang compile --source "$file" --target "./bin"` | Compile single file |
 | **Compile Project** | `boxlang compile --source "$file_path" --target "./bin"` | Compile entire project |
 | **Check Syntax** | `boxlang check "$file"` | Validate syntax without running the file (BoxLang 1.17+) |
+| **Check Project** | `boxlang check --source "$project"` | Validate every file in the project (BoxLang 1.17+) |
 | **Feature Audit** | `boxlang featureaudit --source "$file_path"` | Audit CFML→BoxLang compatibility |
 
 ---
@@ -127,10 +129,50 @@ The package runs [`boxlang check`](https://boxlang.ortusbooks.com/getting-starte
 
 - **On save** (default): errors are underlined, listed in the error panel, and counted in the status bar. Use `F4` / `Shift+F4` to jump between them.
 - **While typing** (opt-in): set `boxlang_check_on_type` to `true`. The unsaved buffer is checked after a pause of `boxlang_check_on_type_delay_ms` (default 1000 ms), without opening the panel.
-- **On demand**: run `BoxLang: Check Syntax` from the Command Palette, or pick the `BoxLang: Check Syntax` build variant for clickable errors in the build output.
+- **On demand**: run `BoxLang: Check Syntax` from the Command Palette, or pick the `BoxLang: Check Syntax` build variant for clickable errors in the build output. `BoxLang: Check Project` (command and build variant) checks every file in the project.
+- **Where errors show**: a squiggle, a gutter icon, the first line of the message inline at the end of the line, a hover popup on the gutter icon, and the full text in the error panel. Turn the icon or inline text off with `boxlang_error_gutter_icons` and `boxlang_error_inline_annotations`.
 - Works for `.bx`, `.bxs`, `.bxm`, and the CFML extensions (`.cfc`, `.cfm`, `.cfs`) when CFML fallback is enabled.
 
 If your BoxLang is older than 1.17 the check is skipped and the status bar tells you why.
+
+---
+
+## TestBox
+
+Run tests from the Command Palette (`BoxLang: TestBox ...`):
+
+| Command | Runs |
+|---------|------|
+| `TestBox Run Bundle (Current File)` | The bundle for the current file |
+| `TestBox Run Spec at Cursor` | The `it()` / `test()` / `function testXxx()` above the cursor (or the enclosing `describe()` suite) |
+| `TestBox Run All Tests` | Everything in `directory` (default `tests.specs`) |
+| `TestBox Run Last` | Repeats the previous run |
+
+By default tests run through TestBox's **BoxLang runner** (`testbox/system/runners/BoxLangRunner.bx`, TestBox 7+). It is auto-detected from your project; set `runner_path` if yours lives elsewhere. Results appear in an output panel with clickable `file:line` failures, and failing lines in open files get a squiggle, gutter icon and inline message.
+
+### Using a web runner (per project)
+
+A web runner is opt-in per project. Put the runner URL in your `.sublime-project`:
+
+```json
+{
+  "settings": {
+    "boxlang_testbox": {
+      "http_runner_url": "http://localhost:8080/tests/runner.bxm"
+    }
+  }
+}
+```
+
+Tests then run over HTTP with `reporter=json` (plus `bundles`, `directory`, `testSpecs` or `testSuites` as needed) and the results are shown the same way.
+
+| `boxlang_testbox` key | Default | Description |
+|-----------------------|---------|-------------|
+| `runner_path` | `""` | Path to `BoxLangRunner.bx`, relative to the project root. Empty = auto-detect |
+| `http_runner_url` | `""` | Web runner URL. Empty = use the BoxLang runner |
+| `directory` | `"tests.specs"` | Dot-path directory used by Run All Tests |
+| `extra_args` | `[]` | Extra BoxLang runner arguments, e.g. `["--labels=unit"]` |
+| `timeout` | `300` | Seconds to wait for a run |
 
 ---
 
@@ -155,6 +197,8 @@ Open settings: `Preferences: BoxLang Settings` (Command Palette)
 | `boxlang_check_show_panel` | `true` | Open the error panel when a check finds errors |
 | `boxlang_check_on_type` | `false` | Also check while typing (debounced, checks the unsaved buffer) |
 | `boxlang_check_on_type_delay_ms` | `1000` | Delay after the last keystroke before checking (min 100) |
+| `boxlang_error_gutter_icons` | `true` | Gutter icon on lines with syntax errors |
+| `boxlang_error_inline_annotations` | `true` | Show the first line of each error at the end of the line |
 | `boxlang_format_on_save` | `false` | Auto-format on save |
 | `boxlang_auto_compile_on_save` | `false` | Auto-compile to `./bin` on save |
 | `boxlang_compile_target` | `"./bin"` | Compilation target directory |
@@ -217,7 +261,7 @@ Add to your `.sublime-project` file:
 
 ## Running Tests
 
-The package includes a comprehensive test suite using pytest and TestBox-style expectations (278 tests across 16 files).
+The package includes a comprehensive test suite using pytest and TestBox-style expectations (313 tests across 17 files).
 
 ### Quick Start
 

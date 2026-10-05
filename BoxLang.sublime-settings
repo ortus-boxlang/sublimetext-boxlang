@@ -65,12 +65,22 @@
 
     // TestBox settings
     "boxlang_testbox_enabled": true,
-    "boxlang_testbox_folders": ["tests"],
+    // TestBox runner. Tests run through TestBox's BoxLang CLI runner
+    // (testbox/system/runners/BoxLangRunner.bx), auto-detected from your project.
+    // To use a web runner instead, set "http_runner_url" in your PROJECT settings
+    // (.sublime-project > "settings" > "boxlang_testbox"). Tests are then run over HTTP
+    // with reporter=json, for example "http://localhost:8080/tests/runner.bxm".
     "boxlang_testbox": {
-        "runner": "http://localhost:8888/testbox/system/Testbox.cfc?method=runremote",
-        "tests_root": "",
-        "reporter": "compacttext",
-        "results": {"server_root": "", "sublime_root": ""}
+        // Path to BoxLangRunner.bx (relative to the project root). Empty = auto-detect.
+        "runner_path": "",
+        // Web runner URL. Empty = use the BoxLang CLI runner.
+        "http_runner_url": "",
+        // Dot-path directory of specs, used by "Run All Tests"
+        "directory": "tests.specs",
+        // Extra arguments passed to the BoxLang runner, e.g. ["--labels=unit"]
+        "extra_args": [],
+        // Seconds to wait for a run to finish
+        "timeout": 300
     },
 
     // Dependency inject property command

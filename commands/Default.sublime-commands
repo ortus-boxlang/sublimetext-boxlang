@@ -33,6 +33,26 @@
         "command": "boxlang_check_project"
     },
     {
+        "caption": "BoxLang: TestBox Run Bundle (Current File)",
+        "command": "boxlang_testbox_run",
+        "args": { "scope": "file" }
+    },
+    {
+        "caption": "BoxLang: TestBox Run Spec at Cursor",
+        "command": "boxlang_testbox_run",
+        "args": { "scope": "spec" }
+    },
+    {
+        "caption": "BoxLang: TestBox Run All Tests",
+        "command": "boxlang_testbox_run",
+        "args": { "scope": "all" }
+    },
+    {
+        "caption": "BoxLang: TestBox Run Last",
+        "command": "boxlang_testbox_run",
+        "args": { "scope": "last" }
+    },
+    {
         "caption": "BoxLang: Next Error",
         "command": "boxlang_next_error"
     },

@@ -60,6 +60,7 @@ sublimetext-boxlang/
 │   ├── component_parser/tag_parser.py # Tag parser for .bxm
 │   ├── error_panel.py                # Parse error display with F4 navigation
 │   ├── syntax_check.py               # `boxlang check` on save / while typing
+│   ├── testbox_runner.py             # TestBox runs (BoxLang CLI runner or web runner) + results
 │   ├── type_resolver.py              # Medium-depth type inference engine
 │   ├── status_bar.py                 # Status bar (version, indexing, errors)
 │   ├── goto_boxlang_file.py          # Go-to-definition (files + URLs)
@@ -248,10 +249,18 @@ Medium-depth type inference (not full static analysis).
 - Unknown: `"any"`
 
 ### `error_panel.py` — Error Display
-- **`show_errors(view, file_path, errors)`** — Shows errors in output panel + highlights regions
+- **`show_errors(view, file_path, errors, show_panel=True, navigate=True)`** — Fresh output panel + squiggles, gutter icon and inline annotations
+- **`show_gutter_hover(view, point)`** — Popup with the messages for a line
+- **`errors_for_row(view, row)`** — Messages recorded for a zero-based row
 - **`clear_errors(view)`** — Clears error regions
 - **`navigate_next/prev(view)`** — F4/Shift+F4 navigation between errors
 - Error format: `{ "line": N, "column": N, "message": "..." }`
+
+### `testbox_runner.py` — TestBox Integration
+- **`boxlang_testbox_run`** window command, `scope`: `file`, `spec`, `all`, `last`
+- BoxLang runner: `boxlang <testbox>/system/runners/BoxLangRunner.bx --bundles=<dot.path> --filter-specs=<name> --reporter=text --write-json-report=true --reportpath=<tmp>`; the JSON report is read from the temp dir (the runner wipes its report path, so never point it at `tests/results`)
+- Web runner (only when `http_runner_url` is set in project settings): GET `url?reporter=json&bundles=...|directory=...&testSpecs=...`
+- `parse_results()` normalizes the TestResult memento (`bundleStats` > `suiteStats` > `specStats`); `find_target_at()` locates the spec or suite at the cursor
 
 ### `status_bar.py` — Status Bar
 Displays in Sublime Text status bar:
@@ -297,6 +306,9 @@ All settings in `BoxLang.sublime-settings`:
 | `boxlang_check_show_panel` | `true` | Open the error panel on errors |
 | `boxlang_check_on_type` | `false` | Debounced check while typing |
 | `boxlang_check_on_type_delay_ms` | `1000` | Debounce delay in ms (min 100) |
+| `boxlang_error_gutter_icons` | `true` | Gutter icon on error lines |
+| `boxlang_error_inline_annotations` | `true` | Inline message at the end of error lines |
+| `boxlang_testbox` | `{...}` | TestBox runner config (`runner_path`, `http_runner_url`, `directory`, `extra_args`, `timeout`); project settings override |
 | `boxlang_format_on_save` | `false` | Auto-format on save |
 | `boxlang_log_in_file_parse_time` | `false` | Log parse timing |
 | `boxlang_log_doc_time` | `false` | Log doc generation timing |
@@ -329,6 +341,7 @@ All settings in `BoxLang.sublime-settings`:
 | Compile Project | `boxlang compile --source "$file_path" --target "./bin"` |
 | Run with Debug | `boxlang --bx-debug "$file"` |
 | Check Syntax | `boxlang check "$file"` |
+| Check Project | `boxlang check --source "$project"` |
 | Feature Audit | `boxlang featureaudit --source "$file_path"` |
 
 ## Completion Data Generation

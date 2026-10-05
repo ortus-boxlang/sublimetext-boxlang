@@ -51,10 +51,11 @@ def initialize():
     _boxlang_executable = _find_boxlang_executable()
     threading.Thread(target=_detect_boxlang, daemon=True).start()
 
-def _run_command(args, timeout=30):
+def _run_command(args, timeout=30, cwd=None):
     """Run a subprocess command compatible with Python 3.3."""
     proc = subprocess.Popen(
         args,
+        cwd=cwd,
         stdout=subprocess.PIPE,
         stderr=subprocess.PIPE,
         startupinfo=process.get_startupinfo(),
