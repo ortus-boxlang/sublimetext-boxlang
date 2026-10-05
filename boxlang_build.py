@@ -118,6 +118,9 @@ class BoxlangAuditCommand(sublime_plugin.WindowCommand):
         self.window.run_command('exec', {'shell_cmd': '{} featureaudit --source "{}"'.format(bx_path, file_path)})
 
 
+_CHECK_FILE_REGEX = '^\\s*(.+?): Line: ([0-9]+) Col: ([0-9]+) - (.*)$'
+
+
 class BoxlangCheckCommand(sublime_plugin.WindowCommand):
     """Check the current file for syntax errors with `boxlang check` (BoxLang 1.17+)."""
 
@@ -133,4 +136,25 @@ class BoxlangCheckCommand(sublime_plugin.WindowCommand):
         if not bx_path:
             build_helpers.show_path_error(self.window)
             return
-        self.window.run_command('exec', {'shell_cmd': '{} check "{}"'.format(bx_path, file_path), 'file_regex': '^\\s*(.+?): Line: ([0-9]+) Col: ([0-9]+) - (.*)$'})
+        self.window.run_command('exec', {'shell_cmd': '{} check "{}"'.format(bx_path, file_path), 'file_regex': _CHECK_FILE_REGEX})
+
+
+class BoxlangCheckProjectCommand(sublime_plugin.WindowCommand):
+    """Check every BoxLang and CFML file in the project for syntax errors (BoxLang 1.17+)."""
+
+    def run(self, args=None, **kwargs):
+        view = self.window.active_view()
+        file_path = view.file_name() if view else None
+        folders = self.window.folders()
+        if file_path:
+            project_root = build_helpers.get_project_root(self.window, file_path)
+        elif folders:
+            project_root = folders[0]
+        else:
+            sublime.status_message('BoxLang: Open a project folder to check the project')
+            return
+        bx_path = build_helpers.get_boxlang_path()
+        if not bx_path:
+            build_helpers.show_path_error(self.window)
+            return
+        self.window.run_command('exec', {'shell_cmd': '{} check --source "{}"'.format(bx_path, project_root), 'working_dir': project_root, 'file_regex': _CHECK_FILE_REGEX})

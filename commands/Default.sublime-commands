@@ -29,6 +29,10 @@
         "command": "boxlang_check_syntax"
     },
     {
+        "caption": "BoxLang: Check Project",
+        "command": "boxlang_check_project"
+    },
+    {
         "caption": "BoxLang: Next Error",
         "command": "boxlang_next_error"
     },

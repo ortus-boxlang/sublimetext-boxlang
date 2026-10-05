@@ -97,6 +97,12 @@
     // Delay in milliseconds after the last keystroke before checking (minimum 100)
     "boxlang_check_on_type_delay_ms": 1000,
 
+    // Show a gutter icon on lines with syntax errors
+    "boxlang_error_gutter_icons": true,
+
+    // Show the first line of each error message inline at the end of the line
+    "boxlang_error_inline_annotations": true,
+
     // Auto-format on save
     "boxlang_format_on_save": false,
 

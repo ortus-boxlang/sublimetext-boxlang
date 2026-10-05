@@ -1,10 +1,13 @@
 """
 Error panel for displaying AST parse errors with F4 navigation.
 """
+import html
 import sublime
 import sublime_plugin
 from . import utils
 _error_regions = []
+_error_rows = {}
+_ANNOTATION_MAX_LENGTH = 120
 _current_error_index = -1
 _PANEL_NAME = 'boxlang_errors'
 
@@ -20,6 +23,8 @@ def show_errors(view, file_path, errors, show_panel=True, navigate=True):
     panel = window.create_output_panel(_PANEL_NAME)
     panel.set_syntax_file('Packages/Text/Plain text.tmLanguage')
     panel.settings().set('word_wrap', True)
+    annotations = []
+    rows = {}
     content = 'BoxLang Parse Errors - {}\n'.format(file_path)
     content += '=' * 60 + '\n\n'
     for i, error in enumerate(errors):
@@ -31,10 +36,17 @@ def show_errors(view, file_path, errors, show_panel=True, navigate=True):
         if line > 0:
             pt = view.text_point(line - 1, max(0, col - 1))
             _error_regions.append(sublime.Region(pt, view.line(pt).end()))
+            annotations.append(_annotation_html(message))
+            rows.setdefault(line - 1, []).append(message)
     panel.run_command('append', {'characters': content, 'force': True})
     panel.settings().set('read_only', True)
+    _error_rows[view.id()] = rows
     if _error_regions:
-        view.add_regions('boxlang_parse_errors', _error_regions, 'invalid', 'dot', sublime.DRAW_SQUIGGLY_UNDERLINE | sublime.DRAW_NO_FILL | sublime.DRAW_NO_OUTLINE)
+        icon = 'dot' if utils.get_setting('boxlang_error_gutter_icons') is not False else ''
+        region_kwargs = {}
+        if utils.get_setting('boxlang_error_inline_annotations') is not False:
+            region_kwargs = {'annotations': annotations, 'annotation_color': 'red'}
+        view.add_regions('boxlang_parse_errors', _error_regions, 'invalid', icon, sublime.DRAW_SQUIGGLY_UNDERLINE | sublime.DRAW_NO_FILL | sublime.DRAW_NO_OUTLINE, **region_kwargs)
     else:
         view.erase_regions('boxlang_parse_errors')
     if show_panel:
@@ -42,6 +54,26 @@ def show_errors(view, file_path, errors, show_panel=True, navigate=True):
     if navigate:
         _current_error_index = 0
         _navigate_to_error(view)
+
+def _annotation_html(message):
+    """Build the short single-line HTML shown inline at the end of an error line."""
+    text = ' '.join((message or '').split('\n')[0].split())
+    if len(text) > _ANNOTATION_MAX_LENGTH:
+        text = text[:_ANNOTATION_MAX_LENGTH - 1] + '\u2026'
+    return html.escape(text)
+
+def errors_for_row(view, row):
+    """Return the error messages recorded for a zero-based row of a view."""
+    return list(_error_rows.get(view.id(), {}).get(row, []))
+
+def show_gutter_hover(view, point):
+    """Show a popup with the error messages for the line under a gutter hover."""
+    messages = errors_for_row(view, view.rowcol(point)[0])
+    if not messages:
+        return False
+    body = '<div style="padding: 4px">{}</div>'.format('<br>'.join(html.escape(m).replace('\n', '<br>') for m in messages))
+    view.show_popup(body, flags=sublime.HIDE_ON_MOUSE_MOVE_AWAY, location=point, max_width=600)
+    return True
 
 def hide_panel(view):
     """Hide the error output panel if it is showing."""
@@ -53,6 +85,7 @@ def clear_errors(view):
     """Clear all error regions and hide the panel."""
     global _error_regions, _current_error_index
     view.erase_regions('boxlang_parse_errors')
+    _error_rows.pop(view.id(), None)
     _error_regions = []
     _current_error_index = -1
 

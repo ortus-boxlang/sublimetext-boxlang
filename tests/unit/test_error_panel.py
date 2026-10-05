@@ -194,3 +194,69 @@ class TestErrorPanelNavigation:
 
         error_panel.navigate_next(mock_view)
         expect(error_panel._current_error_index).to_be(-1)
+
+
+class TestErrorAnnotations:
+    """Tests for inline annotations, gutter icons and gutter hover."""
+
+    def _show(self, errors, settings=None):
+        from src import error_panel
+        view = MagicMock()
+        view.id.return_value = 11
+        window = MagicMock()
+        view.window = MagicMock(return_value=window)
+        window.create_output_panel = MagicMock(return_value=MagicMock())
+        view.text_point = MagicMock(return_value=100)
+        view.line = MagicMock(return_value=MockRegion(100, 150))
+        settings = settings or {}
+        with patch.object(error_panel, "sublime", create=True) as mock_sublime, \
+                patch.object(error_panel.utils, "get_setting", side_effect=lambda key: settings.get(key)):
+            mock_sublime.Region = MockRegion
+            error_panel.show_errors(view, "/p/a.bx", errors, show_panel=False, navigate=False)
+        return view, error_panel
+
+    def test_annotations_added_per_region(self):
+        errors = [{"line": 2, "column": 1, "message": "first"}, {"line": 4, "column": 1, "message": "second"}]
+        view, _ = self._show(errors)
+        kwargs = view.add_regions.call_args[1]
+        expect(kwargs["annotations"]).to_be(["first", "second"])
+        expect(kwargs["annotation_color"]).to_be("red")
+
+    def test_annotation_is_escaped_single_line_and_truncated(self):
+        from src import error_panel
+        text = error_panel._annotation_html("a <b> & c\nsecond line")
+        expect(text).to_be("a &lt;b&gt; &amp; c")
+        long_text = error_panel._annotation_html("x" * 500)
+        expect(len(long_text)).to_be(error_panel._ANNOTATION_MAX_LENGTH)
+        expect(long_text.endswith("…")).to_be_true()
+
+    def test_inline_annotations_can_be_disabled(self):
+        view, _ = self._show([{"line": 2, "column": 1, "message": "m"}], {"boxlang_error_inline_annotations": False})
+        expect("annotations" in view.add_regions.call_args[1]).to_be_false()
+
+    def test_gutter_icon_can_be_disabled(self):
+        view, _ = self._show([{"line": 2, "column": 1, "message": "m"}], {"boxlang_error_gutter_icons": False})
+        expect(view.add_regions.call_args[0][3]).to_be("")
+
+    def test_gutter_icon_default_is_dot(self):
+        view, _ = self._show([{"line": 2, "column": 1, "message": "m"}])
+        expect(view.add_regions.call_args[0][3]).to_be("dot")
+
+    def test_errors_for_row_uses_zero_based_rows(self):
+        view, error_panel = self._show([{"line": 3, "column": 1, "message": "m1"}, {"line": 3, "column": 5, "message": "m2"}])
+        expect(error_panel.errors_for_row(view, 2)).to_be(["m1", "m2"])
+        expect(error_panel.errors_for_row(view, 0)).to_be_empty()
+
+    def test_gutter_hover_shows_popup_only_on_error_lines(self):
+        view, error_panel = self._show([{"line": 3, "column": 1, "message": "bad <thing>"}])
+        view.rowcol = MagicMock(return_value=(2, 0))
+        with patch.object(error_panel, "sublime", create=True):
+            expect(error_panel.show_gutter_hover(view, 5)).to_be_true()
+            view.rowcol = MagicMock(return_value=(7, 0))
+            expect(error_panel.show_gutter_hover(view, 9)).to_be_false()
+        expect(view.show_popup.call_args[0][0]).to_contain("bad &lt;thing&gt;")
+
+    def test_clear_errors_forgets_rows(self):
+        view, error_panel = self._show([{"line": 3, "column": 1, "message": "m"}])
+        error_panel.clear_errors(view)
+        expect(error_panel.errors_for_row(view, 2)).to_be_empty()
