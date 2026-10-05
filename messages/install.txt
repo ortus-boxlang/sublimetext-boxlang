@@ -16,9 +16,10 @@ Features
 --------
 
 - Syntax Highlighting for .bx, .bxs, .bxm files
-- 825+ Built-in Function Completions with parameter hints
-- 81+ BoxLang Tag Completions with attribute support
+- 940+ Built-in Function Completions with parameter hints
+- 86 BoxLang Tag Completions with attribute support
 - Type-Aware Member Method Completions
+- Syntax Checking via boxlang check (BoxLang 1.17+)
 - Code Formatting via boxlang format
 - Build System -- run, compile, debug, and audit
 - Go to Definition -- Command Palette navigation

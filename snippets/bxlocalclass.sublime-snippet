@@ -1,0 +1,11 @@
+<snippet>
+    <content><![CDATA[class ${1:Name} {
+
+	function init() {
+		${0:// constructor code}
+	}
+}]]></content>
+    <tabTrigger>bxlocalclass</tabTrigger>
+    <scope>source.boxlang</scope>
+    <description>BoxLang Local or Inner Class (1.14+)</description>
+</snippet>

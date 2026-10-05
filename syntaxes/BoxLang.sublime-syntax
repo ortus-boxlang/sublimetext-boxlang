@@ -79,32 +79,37 @@ variables:
       Ascii | Asin | AsyncAll | AsyncAllApply | AsyncAny | AsyncRun | Atn | Attempt |
       BinaryDecode | BinaryEncode | BitAnd | BitMaskClear | BitMaskRead | BitMaskSet | BitNot | BitOr |
       BitSh | BitShln | BitShrn | BitXor | BooleanFormat | BoxAnnounce | BoxAnnounceAsync | BoxAST |
-      BoxLangBIFProxy | BoxModuleReload | BoxRegisterInterceptionPoints | BoxRegisterInterceptor | BoxRegisterRequestInterceptor | BoxUnregisterInterceptor | BoxUnregisterRequestInterceptor | Cache |
-      CacheFilter | CacheNames | CacheProviders | CacheService | CallStackGet | CamelCase | Ceiling | Char |
-      CharsetDecode | CharsetEncode | ClearLocale | ClearTimezone | CLIClear | CLIExit | CLIGetArgs | CLIRead |
-      Compare | CompareNoCase | Compress | ContractPath | Cos | CreateDate | CreateDateTime | CreateDynamicProxy |
-      CreateGUID | CreateObject | CreateODBCDate | CreateODBCDateTime | CreateODBCTime | CreateTempDirectory | CreateTempFile | CreateTime |
-      CreateTimeSpan | CreateUUID | CurrencyFormat | DataNavigate | DateAdd | DateCompare | DateConvert | DateDiff |
-      DateFormat | DatePart | DateTimeFormat | Day | DayOfWeek | DayOfWeekAsString | DayOfWeekShortAsString | DayOfYear |
-      DaysInMonth | DaysInYear | DE | DebugBoxContexts | DecimalFormat | DecrementValue | Decrypt | DecryptBinary |
-      DirectoryCopy | DirectoryCreate | DirectoryDelete | DirectoryExists | DirectoryList | DirectoryMove | DirectoryRename | DollarFormat |
-      Dump | Duplicate | Echo | EncodeForHTML | Encrypt | EncryptBinary | ExecutorDelete | ExecutorGet |
-      ExecutorHas | ExecutorList | ExecutorNew | ExecutorShutdown | ExecutorStatus | Exp | ExpandPath | Extract |
-      FileAppend | FileClose | FileCopy | FileDelete | FileExists | FileGetMimeType | FileInfo | FileIsEOF |
-      FileMove | FileOpen | FileRead | FileReadBinary | FileReadLine | FileSeek | FileSetAccessMode | FileSetAttribute |
-      FileSetLastModified | FileSkipBytes | FileUpload | FileUploadAll | FileWrite | FileWriteLine | Find | FindNoCase |
-      FindOneOf | FirstDayOfMonth | Fix | Floor | FormatBaseN | Forward | FutureNew | GeneratePBKDFKey |
-      GenerateSecretKey | GetApplicationMetadata | GetBaseTagData | GetBaseTagList | GetBaseTemplatePath | GetBoxCache | GetBoxCacheFilter | GetBoxCacheNames |
-      GetBoxCacheProviders | GetBoxCacheService | GetBoxContext | GetBoxRuntime | GetBoxVersionInfo | GetCanonicalPath | GetClassMetadata | GetComponentList |
-      GetComponentMetadata | GetContextRoot | GetCurrentTemplatePath | GetDirectoryFromPath | GetFileFromPath | GetFileInfo | GetFunctionCalledName | GetFunctionList |
-      GetHTTPRequestData | GetHTTPTimeString | GetLocale | GetLocaleDisplayName | GetLocaleInfo | GetMetaData | GetModuleInfo | GetModuleList |
-      GetNumericDate | GetPageContext | GetRequestClassLoader | GetSemver | GetSystemSetting | GetTempDirectory | GetTempFile | GetTickCount |
-      GetTime | GetTimezone | GetTimezoneInfo | GetToken | Hash | Hash40 | Hmac | Hour |
-      HtmlEditFormat | HtmlFooter | HtmlHead | HTTP | IIF | IncrementValue | InputBaseN | Insert |
-      Int | Invoke | IsArray | IsBinary | IsBoolean | IsClosure | IsCurrency | IsCustomFunction |
-      IsDate | IsDateObject | IsDebugMode | IsDefined | IsEmpty | IsFileObject | IsInstanceOf | IsInThread |
-      IsInTransaction | IsIPv6 | IsJSON | IsLeapYear | IsLocalHost | IsNull | IsNumeric | IsNumericDate |
-      IsObject | IsQuery | IsSimpleValue | IsStruct | IsThreadAlive | IsThreadInterrupted | IsValid | IsWithinTransaction |
+      BoxLangBIFProxy | BoxModuleReload | BoxRegisterInterceptionPoints | BoxRegisterInterceptor | BoxRegisterRequestInterceptor | BoxSetAdd | BoxSetAddAll | BoxSetClear |
+      BoxSetContains | BoxSetContainsAll | BoxSetDifference | BoxSetEach | BoxSetEquals | BoxSetEvery | BoxSetFilter | BoxSetFind |
+      BoxSetIntersection | BoxSetIsDisjointFrom | BoxSetIsEmpty | BoxSetIsSubsetOf | BoxSetIsSupersetOf | BoxSetMap | BoxSetNone | BoxSetReduce |
+      BoxSetReject | BoxSetRemove | BoxSetRemoveAll | BoxSetRetainAll | BoxSetSome | BoxSetSymmetricDifference | BoxSetToArray | BoxSetToList |
+      BoxSetUnion | BoxUnregisterInterceptor | BoxUnregisterRequestInterceptor | Cache | CacheFilter | CacheNames | CacheProviders | CacheService |
+      CallStackGet | CamelCase | Ceiling | Char | CharsetDecode | CharsetEncode | ClearLocale | ClearTimezone |
+      CLIClear | CLIExit | CLIGetArgs | CLIRead | Compare | CompareNoCase | Compress | ContractPath |
+      Cos | CreateDate | CreateDateTime | CreateDynamicProxy | CreateGUID | CreateObject | CreateODBCDate | CreateODBCDateTime |
+      CreateODBCTime | CreateTempDirectory | CreateTempFile | CreateTime | CreateTimeSpan | CreateUUID | CurrencyFormat | DataNavigate |
+      DateAdd | DateCompare | DateConvert | DateDiff | DateFormat | DatePart | dateSetDay | dateSetHour |
+      dateSetMinute | dateSetMonth | dateSetSecond | dateSetYear | DateTimeFormat | Day | DayOfWeek | DayOfWeekAsString |
+      DayOfWeekShortAsString | DayOfYear | DaysInMonth | DaysInYear | DE | DebugBoxContexts | DecimalFormat | DecrementValue |
+      Decrypt | DecryptBinary | DirectoryCopy | DirectoryCreate | DirectoryDelete | DirectoryExists | DirectoryList | DirectoryMove |
+      DirectoryRename | DollarFormat | Dump | Duplicate | Echo | EncodeForHTML | Encrypt | EncryptBinary |
+      ExecutorDelete | ExecutorGet | ExecutorHas | ExecutorList | ExecutorNew | ExecutorShutdown | ExecutorStatus | Exp |
+      ExpandPath | Extract | FileAppend | FileClose | FileCopy | FileDelete | FileExists | FileGetMimeType |
+      FileInfo | FileIsEOF | FileMove | FileOpen | FileRead | FileReadBinary | FileReadLine | FileSeek |
+      FileSetAccessMode | FileSetAttribute | FileSetLastModified | FileSkipBytes | FileUpload | FileUploadAll | FileWrite | FileWriteLine |
+      Find | FindNoCase | FindOneOf | FirstDayOfMonth | Fix | Floor | FormatBaseN | Forward |
+      FutureNew | GeneratePBKDFKey | GeneratePDBKDFKey | GenerateSecretKey | GetApplicationMetadata | GetBaseTagData | GetBaseTagList | GetBaseTemplatePath |
+      GetBoxCache | GetBoxCacheFilter | GetBoxCacheNames | GetBoxCacheProviders | GetBoxCacheService | GetBoxContext | GetBoxRuntime | GetBoxVersionInfo |
+      GetCanonicalPath | GetClassMetadata | GetComponentList | GetComponentMetadata | GetContextRoot | GetCurrentTemplatePath | GetDirectoryFromPath | GetFileFromPath |
+      GetFileInfo | GetFunctionCalledName | GetFunctionList | GetHTTPRequestData | GetHTTPTimeString | GetLocale | GetLocaleDisplayName | GetLocaleInfo |
+      GetLocalhostIp | GetMetaData | GetModuleInfo | GetModuleList | GetModuleTree | GetNumericDate | GetPageContext | GetRequestClassLoader |
+      GetSemver | GetSystemSetting | GetTempDirectory | GetTempFile | GetTickCount | GetTime | GetTimezone | GetTimezoneInfo |
+      GetToken | Hash | Hash40 | Hmac | Hour | HtmlEditFormat | HtmlFooter | HtmlHead |
+      HTTP | IIF | IncrementValue | InputBaseN | Insert | Int | Invoke | IsArray |
+      IsBinary | IsBoolean | IsBoxSet | IsClosure | IsCurrency | IsCustomFunction | IsDate | IsDateObject |
+      IsDebugMode | IsDefined | IsEmpty | IsFileObject | IsInstanceOf | IsInThread | IsInTransaction | IsIPv6 |
+      IsJSON | IsLeapYear | IsLocalHost | IsNull | IsNumeric | IsNumericDate | IsObject | IsQuery |
+      IsRange | IsSimpleValue | IsStringBuilder | IsStruct | IsThreadAlive | IsThreadInterrupted | IsValid | IsWithinTransaction |
       IsXML | IsXmlAttribute | IsXMLDoc | IsXMLElem | IsXMLNode | IsXMLRoot | IsZipFile | JavaCast |
       JSONDeserialize | JSONPrettify | JSONSerialize | JSStringFormat | Justify | KebabCase | Key | LCase |
       Left | Len | ListAppend | ListAvg | ListChangeDelims | ListCompact | ListContains | ListContainsNoCase |
@@ -114,28 +119,33 @@ variables:
       ListSort | ListToArray | ListTrim | ListValueCount | ListValueCountNoCase | LJustify | Location | Log |
       Log10 | LSCurrencyFormat | LSIsCurrency | LSIsNumeric | LSNumberFormat | LSParseCurrency | LSParseNumber | LTrim |
       Max | Mid | Millisecond | Min | Minute | Month | MonthAsString | MonthShortAsString |
-      Nanosecond | Now | NullValue | NumberFormat | ObjectDeserialize | ObjectSerialize | Offset | PagePoolClear |
-      ParagraphFormat | ParseCurrency | ParseDateTime | ParseNumber | PascalCase | Pi | PrecisionEvaluate | PreserveSingleQuotes |
-      Print | Println | PropertyFile | Quarter | QueryAddColumn | QueryAddRow | QueryAppend | QueryClear |
-      QueryColumnArray | QueryColumnCount | QueryColumnData | QueryColumnExists | QueryColumnList | QueryCurrentRow | QueryDeleteColumn | QueryDeleteRow |
-      QueryEach | QueryEvery | QueryExecute | QueryFilter | QueryGetCell | QueryGetResult | QueryInsertAt | QueryKeyExists |
-      QueryMap | QueryNew | QueryNone | QueryPrepend | QueryRecordCount | QueryReduce | QueryRegisterFunction | QueryReverse |
-      QueryRowData | QueryRowSwap | QuerySetCell | QuerySetRow | QuerySlice | QuerySome | QuerySort | QueryStringToStruct |
-      Rand | Randomize | RandRange | ReEscape | ReFind | ReFindNoCase | ReMatch | ReMatchNoCase |
-      RemoveChars | RepeatString | Replace | ReplaceList | ReplaceListNoCase | ReplaceNoCase | ReReplace | ReReplaceNoCase |
-      Reverse | Right | RJustify | Round | RTrim | RunAsync | RunThreadInContext | SchedulerGet |
-      SchedulerGetAll | SchedulerList | SchedulerRestart | SchedulerShutdown | SchedulerStart | Second | SessionInvalidate | SessionRotate |
-      SessionStartTime | SetEncoding | SetLocale | SetTimezone | Sgn | Sin | Sleep | Slugify |
-      SnakeCase | SOAP | SpanExcluding | SpanIncluding | SQLPrettify | Sqr | StringBind | StringEach |
-      StringEvery | StringFilter | StringLen | StringMap | StringReduce | StringReduceRight | StringSome | StringSort |
-      StripCR | StructAppend | StructClear | StructCopy | StructCount | StructDelete | StructEach | StructEquals |
-      StructEvery | StructFilter | StructFind | StructFindKey | StructFindValue | StructGet | StructGetMetadata | StructInsert |
-      StructIsCaseSensitive | StructIsEmpty | StructIsOrdered | StructKeyArray | StructKeyExists | StructKeyList | StructKeyTranslate | StructMap |
-      StructNew | StructNone | StructReduce | StructSome | StructSort | StructToQueryString | StructToSorted | StructUpdate |
-      StructValueArray | SystemCacheClear | SystemExecute | SystemOutput | Tan | ThreadInterrupt | ThreadJoin | ThreadNew |
-      ThreadTerminate | Throw | TimeFormat | TimeUnits | ToBase64 | ToBinary | ToModifiable | ToNumeric |
-      ToScript | ToString | ToUnmodifiable | Trace | TransactionCommit | TransactionRollback | TransactionSetSavepoint | TranspileCollectionKeySwap |
-      Trim | TrueFalseFormat | UCase | UCFirst | URLDecode | URLEncodedFormat | Val | Week |
+      Nanosecond | Now | NullValue | NumberFormat | ObjectDeserialize | ObjectSerialize | ObjectToSet | Offset |
+      PagePoolClear | ParagraphFormat | ParseCurrency | ParseDateTime | ParseNumber | PascalCase | Pi | PrecisionEvaluate |
+      PreserveSingleQuotes | Print | Println | PropertyFile | Quarter | QueryAddColumn | QueryAddRow | QueryAppend |
+      QueryClear | QueryColumnArray | QueryColumnCount | QueryColumnData | QueryColumnExists | QueryColumnList | QueryCurrentRow | QueryDeleteColumn |
+      QueryDeleteRow | QueryEach | QueryEvery | QueryExecute | QueryFilter | QueryGetCell | QueryGetResult | QueryInsertAt |
+      QueryKeyExists | QueryMap | QueryNew | QueryNone | QueryPrepend | QueryRecordCount | QueryReduce | QueryRegisterFunction |
+      QueryReverse | QueryRowData | QueryRowSwap | QuerySetCell | QuerySetRow | QuerySlice | QuerySome | QuerySort |
+      QueryStringToStruct | Rand | Randomize | RandRange | ReEscape | ReFind | ReFindNoCase | ReMatch |
+      ReMatchNoCase | RemoveChars | RepeatString | Replace | ReplaceList | ReplaceListNoCase | ReplaceNoCase | ReReplace |
+      ReReplaceNoCase | Reverse | Right | RJustify | Round | RTrim | RunAsync | RunThreadInContext |
+      SchedulerGet | SchedulerGetAll | SchedulerList | SchedulerNew | SchedulerRestart | SchedulerShutdown | SchedulerStart | SchedulerStats |
+      Second | SessionInvalidate | SessionRotate | SessionStartTime | SetEncoding | SetLocale | SetNew | SetOf |
+      SetTimezone | Sgn | Sin | Sleep | Slugify | SnakeCase | SOAP | SpanExcluding |
+      SpanIncluding | SQLPrettify | Sqr | StringBind | StringBuilderAppend | StringBuilderClear | StringBuilderContains | StringBuilderDelete |
+      StringBuilderEndsWith | StringBuilderFind | StringBuilderInsert | StringBuilderLeft | StringBuilderMid | StringBuilderNew | StringBuilderPrepend | StringBuilderReplace |
+      StringBuilderReverse | StringBuilderRight | StringBuilderStartsWith | StringBuilderTrim | StringEach | StringEndsWith | StringEndsWithNoCase | StringEvery |
+      StringFilter | StringLen | StringMap | StringReduce | StringReduceRight | StringSome | StringSort | StringStartsWith |
+      StringStartsWithNoCase | StripCR | StructAppend | StructClear | StructCopy | StructCount | StructDelete | StructEach |
+      StructEquals | StructEvery | StructFilter | StructFind | StructFindKey | StructFindValue | StructGet | StructGetMetadata |
+      StructInsert | StructIsCaseSensitive | StructIsEmpty | StructIsOrdered | StructKeyArray | StructKeyExists | StructKeyList | StructKeySet |
+      StructKeyTranslate | StructMap | StructNew | StructNone | StructReduce | StructSome | StructSort | StructToQueryString |
+      StructToSorted | StructUpdate | StructValueArray | StructValueSet | SystemCacheClear | SystemExecute | SystemOutput | Tan |
+      ThreadCurrent | ThreadInterrupt | ThreadJoin | ThreadNew | ThreadTerminate | Throw | TimeFormat | TimeUnits |
+      ToBase64 | ToBinary | ToModifiable | ToNumeric | ToScript | ToSet | ToString | ToUnmodifiable |
+      Trace | TransactionCommit | TransactionRollback | TransactionSetSavepoint | TranspileCollectionKeySwap | Trim | TrueFalseFormat | UCase |
+      UCFirst | URLDecode | URLEncodedFormat | Val | WatcherExists | WatcherGet | WatcherGetAll | WatcherList |
+      WatcherNew | WatcherRestart | WatcherShutdown | WatcherShutdownAll | WatcherStart | WatcherStop | WatcherStopAll | Week |
       WeekOfYear | Wrap | WriteDump | WriteLog | WriteOutput | XMLChildPos | XMLElemNew | XMLFormat |
       XMLGetNodeType | XMLNew | XMLParse | XMLSearch | XMLTransform | XMLValidate | Year | YesNoFormat
     )

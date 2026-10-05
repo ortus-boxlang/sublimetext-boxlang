@@ -1,0 +1,8 @@
+<snippet>
+    <content><![CDATA[import ${1:models.User};
+
+${2:users} = ${3:names}.map( ${1/.*\.//} )${0}]]></content>
+    <tabTrigger>bxclassmap</tabTrigger>
+    <scope>source.boxlang</scope>
+    <description>BoxLang Class Reference as Constructor (1.14+)</description>
+</snippet>

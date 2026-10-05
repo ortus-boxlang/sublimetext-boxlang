@@ -1,0 +1,11 @@
+<snippet>
+    <content><![CDATA[${1:scheduler} = schedulerNew( name = "${2:my-scheduler}", timezone = "${3:UTC}" )
+
+${1:scheduler}.task( "${4:task-name}" )
+	.call( () => ${5:doWork()} )
+	.${6:everyHour}()
+	.onOneServer()${0}]]></content>
+    <tabTrigger>bxscheduler</tabTrigger>
+    <scope>source.boxlang</scope>
+    <description>BoxLang Scheduler with Server-Fixed Task (1.18+)</description>
+</snippet>

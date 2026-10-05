@@ -17,7 +17,7 @@ The package **requires** the BoxLang CLI for core features:
 - **Executable:** `boxlang` (configurable via `boxlang_executable_path` setting)
 - **Detection:** Runs `boxlang --version` on plugin load in background thread
 - **Location:** Typically installed via BVM at `~/.bvm/current/bin/boxlang`
-- **Version:** v1.13.0+54 (current detected)
+- **Version:** requires BoxLang 1.17.0+ (`boxlang check`); latest verified release is 1.18.0
 
 ### CLI Commands Used
 | Command | Purpose |
@@ -25,6 +25,7 @@ The package **requires** the BoxLang CLI for core features:
 | `boxlang --version` | Version detection |
 | `boxlang --bx-printast <file>` | AST parsing for `.bx`/`.bxs` |
 | `boxlang --bx-printast --bx-code "..."` | AST parsing from string (for `<bx:script>` blocks) |
+| `boxlang check --format json <file>` | Syntax check without execution (1.17+) |
 | `boxlang format <file>` | Code formatting |
 | `boxlang compile --source <src> --target <tgt>` | Compilation to bytecode |
 | `boxlang --bx-debug <file>` | Run with Debug |
@@ -58,6 +59,7 @@ sublimetext-boxlang/
 │   ├── component_parser/ast_parser.py # AST parser for .bx/.bxs
 │   ├── component_parser/tag_parser.py # Tag parser for .bxm
 │   ├── error_panel.py                # Parse error display with F4 navigation
+│   ├── syntax_check.py               # `boxlang check` on save / while typing
 │   ├── type_resolver.py              # Medium-depth type inference engine
 │   ├── status_bar.py                 # Status bar (version, indexing, errors)
 │   ├── goto_boxlang_file.py          # Go-to-definition (files + URLs)
@@ -71,9 +73,9 @@ sublimetext-boxlang/
 │       ├── plugin.py                 # BoxlangPlugin base class
 │       ├── basecompletions/__init__.py # BIFs, tags, member functions (JSON-driven)
 │       ├── basecompletions/json/     # Completion data files
-│       │   ├── boxlang_tags.json     # 41 tags
-│       │   ├── boxlang_functions.json # 560 BIFs
-│       │   └── boxlang_member_functions.json # 72 member functions
+│       │   ├── boxlang_tags.json     # 86 tags
+│       │   ├── boxlang_functions.json # 940+ BIFs
+│       │   └── boxlang_member_functions.json # 370+ member functions
 │       ├── boxdocs/__init__.py       # URL-based inline docs (boxlang.ortusbooks.com)
 │       ├── classes/__init__.py       # Indexed component variable completions
 │       ├── dotpaths/__init__.py      # Import/new/createObject dot-path completions
@@ -118,6 +120,7 @@ sublimetext-boxlang/
 - **`run_ast_code(code)`** — Parses code string via `--bx-code` flag
 - **`run_format(file_path)`** — Runs `boxlang format`
 - **`run_compile(source, target)`** — Runs `boxlang compile`
+- **`run_check(file_path)`** — Runs `boxlang check --format json`, returns `(issues, error)`; `supports_check()` gates on 1.17+
 - **`on_detection_complete(callback)`** — Register callback for detection completion
 - **`is_installed()` / `get_version()` / `get_executable()`** — State accessors
 
@@ -290,6 +293,10 @@ All settings in `BoxLang.sublime-settings`:
 | `boxlang_testbox_enabled` | `true` | Enable TestBox integration |
 | `boxlang_auto_compile_on_save` | `false` | Auto-compile to `./bin` on save |
 | `boxlang_compile_target` | `"./bin"` | Compilation target directory |
+| `boxlang_check_on_save` | `true` | Run `boxlang check` on save |
+| `boxlang_check_show_panel` | `true` | Open the error panel on errors |
+| `boxlang_check_on_type` | `false` | Debounced check while typing |
+| `boxlang_check_on_type_delay_ms` | `1000` | Debounce delay in ms (min 100) |
 | `boxlang_format_on_save` | `false` | Auto-format on save |
 | `boxlang_log_in_file_parse_time` | `false` | Log parse timing |
 | `boxlang_log_doc_time` | `false` | Log doc generation timing |
@@ -321,14 +328,15 @@ All settings in `BoxLang.sublime-settings`:
 | Compile File | `boxlang compile --source "$file" --target "./bin"` |
 | Compile Project | `boxlang compile --source "$file_path" --target "./bin"` |
 | Run with Debug | `boxlang --bx-debug "$file"` |
+| Check Syntax | `boxlang check "$file"` |
 | Feature Audit | `boxlang featureaudit --source "$file_path"` |
 
 ## Completion Data Generation
 
 Completion JSON files are generated from BoxLang source:
-- **Tags:** Extracted from `boxlang/src/main/java/ortus/boxlang/runtime/components/` (41 components)
-- **BIFs:** Extracted from BoxLang function registry (560 functions)
-- **Member Functions:** Extracted from BoxLang member method registry (72 methods)
+- **Tags:** Extracted from `boxlang/src/main/java/ortus/boxlang/runtime/components/` (86 components incl. modules)
+- **BIFs:** Extracted from BoxLang function registry (940+ functions incl. modules)
+- **Member Functions:** Extracted from BoxLang member method registry (370+ methods)
 
 ## Wizard Flow
 
