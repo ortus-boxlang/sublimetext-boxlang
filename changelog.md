@@ -9,6 +9,33 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.2.0] - 2026-10-05
+
+Targets **BoxLang 1.17.0+** (verified through 1.18.0).
+
+### Added
+
+- Syntax checking powered by `boxlang check` (BoxLang 1.17+): runs on save, with an opt-in debounced check while typing
+- `BoxLang: Check Syntax` Command Palette command and build variant (clickable errors)
+- Inline error annotations (the first line of each message at the end of the line), a configurable gutter icon, and a gutter hover popup for syntax errors
+- `BoxLang: Check Project` command and build variant (`boxlang check --source`)
+- TestBox runner: `TestBox Run Bundle`, `Run Spec at Cursor`, `Run All Tests` and `Run Last` commands using TestBox's BoxLang runner, with results in a clickable output panel and inline failure annotations. A per-project web runner can be configured with `http_runner_url` (runs over HTTP with `reporter=json`)
+- `BoxLang: Go to TestBox Spec or Suite` and `BoxLang: Go to Property` quick panels
+- `scripts/local_smoke_test.py` to verify the package against a real BoxLang and TestBox install
+- New settings: `boxlang_error_gutter_icons`, `boxlang_error_inline_annotations`, a rewritten `boxlang_testbox` block, `boxlang_check_on_save`, `boxlang_check_show_panel`, `boxlang_check_on_type`, `boxlang_check_on_type_delay_ms`
+- Completions refreshed for BoxLang 1.14 to 1.18: sets (`setNew`, `boxSet*`), `dateSet*`, `stringStartsWith`/`stringEndsWith`, `schedulerNew`, `getModuleTree`, `dataNavigate`, `generatesecret`-era module BIFs, and the latest module BIFs and components (942 BIFs, 86 tags, 371 member functions)
+- Built-in function highlighting now covers 80 newly documented core BIFs
+- New snippets: `bxlocalclass`, `bxabstract`, `bxset`, `bxrange`, `bxclassmap`, `bxtransformer`, `bxscheduler`, `bxtask`, `bxclassintercept`
+- `scripts/generate_syntax_bifs.py` to refresh the highlighted BIF list from the docs repo
+
+### Changed
+
+- Minimum supported BoxLang version is now 1.17.0
+- The `boxlang_testbox` setting block was replaced (the old keys were unused); see the README for the new keys
+- The error panel now starts fresh on every run and can show errors without opening the panel or moving the cursor
+- Syntax highlighting fixture covers 1.14 to 1.18 constructs
+
+
 ### Added
 
 - Syntax highlighting for range operators (`..`, `..<`, `>..`, `>..<`)

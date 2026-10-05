@@ -1,0 +1,9 @@
+<snippet>
+    <content><![CDATA[abstract class ${1:Shape} {
+
+	abstract function ${2:area}()
+}]]></content>
+    <tabTrigger>bxabstract</tabTrigger>
+    <scope>source.boxlang</scope>
+    <description>BoxLang Abstract Class (1.14+)</description>
+</snippet>

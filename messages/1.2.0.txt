@@ -1,0 +1,26 @@
+BoxLang 1.2.0
+=============
+
+This release requires BoxLang 1.17.0 or newer and is verified through 1.18.0.
+
+What's new
+----------
+
+- Syntax checking with `boxlang check`: runs on save, shows errors in an
+  error panel with squiggles, and F4 / Shift+F4 navigation.
+  Optional check-as-you-type: set "boxlang_check_on_type": true.
+- New command palette entry and build variant: BoxLang: Check Syntax
+- Completions refreshed for BoxLang 1.14 to 1.18 (sets, date setters,
+  scheduler, module BIFs and more)
+- New snippets for sets, ranges, inner classes, query transformers,
+  scheduled tasks and interception points
+
+Upgrade BoxLang with: bvm install latest && bvm use latest
+
+TestBox
+-------
+
+Run tests from the command palette: BoxLang: TestBox Run Bundle / Spec at
+Cursor / All Tests / Last. Uses the BoxLang runner from TestBox 7+. To use a
+web runner instead, set "http_runner_url" in your project's boxlang_testbox
+setting. See the README for details.

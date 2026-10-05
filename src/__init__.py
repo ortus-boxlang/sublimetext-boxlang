@@ -13,6 +13,7 @@ from . import events
 from . import goto_boxlang_file
 from . import inline_documentation
 from . import status_bar
+from . import syntax_check
 from . import type_resolver
 from . import utils
 from . import commands

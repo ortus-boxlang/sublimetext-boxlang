@@ -25,6 +25,44 @@
         "command": "boxlang_goto_file"
     },
     {
+        "caption": "BoxLang: Check Syntax",
+        "command": "boxlang_check_syntax"
+    },
+    {
+        "caption": "BoxLang: Check Project",
+        "command": "boxlang_check_project"
+    },
+    {
+        "caption": "BoxLang: TestBox Run Bundle (Current File)",
+        "command": "boxlang_testbox_run",
+        "args": { "scope": "file" }
+    },
+    {
+        "caption": "BoxLang: TestBox Run Spec at Cursor",
+        "command": "boxlang_testbox_run",
+        "args": { "scope": "spec" }
+    },
+    {
+        "caption": "BoxLang: TestBox Run All Tests",
+        "command": "boxlang_testbox_run",
+        "args": { "scope": "all" }
+    },
+    {
+        "caption": "BoxLang: TestBox Run Last",
+        "command": "boxlang_testbox_run",
+        "args": { "scope": "last" }
+    },
+    {
+        "caption": "BoxLang: Go to TestBox Spec or Suite",
+        "command": "boxlang_goto_symbol",
+        "args": { "kind": "spec" }
+    },
+    {
+        "caption": "BoxLang: Go to Property",
+        "command": "boxlang_goto_symbol",
+        "args": { "kind": "property" }
+    },
+    {
         "caption": "BoxLang: Next Error",
         "command": "boxlang_next_error"
     },

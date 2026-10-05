@@ -4,7 +4,7 @@ in a top-level package file so Sublime Text registers them correctly.
 """
 import sublime
 import sublime_plugin
-from .src import completions, events
+from .src import completions, error_panel, events
 from .src import plugin_loaded as _src_plugin_loaded
 
 # Re-export sub-package commands at root level so ST4 discovers and registers them.
@@ -15,6 +15,9 @@ from .src.inline_documentation import BoxlangInlineDocumentationCommand
 from .src.goto_boxlang_file import BoxlangGotoFileCommand
 from .src.error_panel import BoxlangNextErrorCommand, BoxlangPrevErrorCommand
 from .src.completions import BoxlangUpdateCompletionDocCommand
+from .src.syntax_check import BoxlangCheckSyntaxCommand
+from .src.testbox_runner import BoxlangTestboxRunCommand
+from .src.symbols import BoxlangGotoSymbolCommand
 
 
 def plugin_loaded():
@@ -58,6 +61,10 @@ class BoxlangEventListener(sublime_plugin.EventListener):
     # ── hover documentation ───────────────────────────────────────────────────
 
     def on_hover(self, view, point, hover_zone):
+        if hover_zone == sublime.HOVER_GUTTER:
+            if view.match_selector(0, "source.boxlang, embedding.boxlang.markup"):
+                error_panel.show_gutter_hover(view, point)
+            return
         if hover_zone != sublime.HOVER_TEXT:
             return
         if not view.match_selector(

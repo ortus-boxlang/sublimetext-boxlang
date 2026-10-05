@@ -84,6 +84,7 @@ Typical local iteration loop:
 2. Edit package files.
 3. Reload plugin host if needed (`Tools -> Developer -> Reload Plugin`).
 4. Test against `.bx`, `.bxs`, and `.bxm` files.
+5. Run `python3 scripts/local_smoke_test.py` to verify the BoxLang CLI and TestBox integration against a real install (see the README).
 
 ## Project Layout
 
@@ -128,6 +129,9 @@ CLI-related features (if changed):
 - [ ] Formatting via BoxLang CLI behaves as expected.
 - [ ] Compile/build variants still run from [BoxLang.sublime-build](BoxLang.sublime-build).
 - [ ] Setup wizard still completes and persists settings.
+- [ ] `boxlang check` flows (save, on-type, Check Syntax, Check Project) still show errors and clear them.
+- [ ] TestBox commands (bundle, spec at cursor, all, last) still run and show failures.
+- [ ] `python3 scripts/local_smoke_test.py` passes against your BoxLang install.
 
 ## Security
 

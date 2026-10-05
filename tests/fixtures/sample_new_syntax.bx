@@ -49,6 +49,20 @@ class {
 			}
 		}
 
+		// 1.14+: inner class access with $, class references as constructors
+		var widget = new models.Outer$Widget( "w1" );
+		var users = [ "Alice", "Bob" ].map( User );
+		var builder = StringBuilder( "abc" );
+
+		// 1.14+: stepped, typed and dated ranges, set algebra
+		var stepped = ( 1..10 ).step( 2 );
+		var union = set{ 1, 2 } + set{ 2, 3 };
+
+		// 1.17+: nested modules; 1.18+: date setters and server-fixed tasks
+		var tree = getModuleTree();
+		var when = now().setYear( 2027 );
+		task( "nightly" ).call( () => cleanup() ).everyDayAt( "02:00" ).onOneServer();
+
 		return new LocalHelper().ping();
 	}
 }

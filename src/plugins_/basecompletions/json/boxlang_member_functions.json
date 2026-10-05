@@ -18,7 +18,7 @@
       "Outputs the contents of a variable (simple or complex) of any type for debugging purposes to a specific output location.",
       [
         "($0)",
-        "(${1:label}, ${2:top}, ${3:expand}, ${4:abort}, ${5:output}, ${6:format}, ${7:showUDFs}$0)"
+        "(${1:label}, ${2:depth}, ${3:maxRows}, ${4:top}, ${5:expand}, ${6:abort}, ${7:output}, ${8:format}, ${9:showUDFs}$0)"
       ]
     ],
     "chunk": [
@@ -36,14 +36,14 @@
       ]
     ],
     "contains": [
-      "Array finders and contains functions with and without case sensitivity.",
+      "This function searches the array for the specified value. Returns the index in the array of the first match, or 0 if there is",
       [
         "(${1:value}$0)",
         "(${1:value}, ${2:substringMatch}$0)"
       ]
     ],
     "containsNoCase": [
-      "Array finders and contains functions with and without case sensitivity.",
+      "This function searches the array for the specified value. Returns the index in the array of the first match, or 0 if there is",
       [
         "(${1:value}$0)",
         "(${1:value}, ${2:substringMatch}$0)"
@@ -92,21 +92,21 @@
       ]
     ],
     "every": [
-      "Used to iterate over an array and test whether **every** item meets the test callback.",
+      "Used to iterate over an array and test whether every item meets the test callback.",
       [
         "(${1:callback}$0)",
         "(${1:callback}, ${2:parallel}, ${3:maxThreads}, ${4:virtual}$0)"
       ]
     ],
     "filter": [
-      "Filters an array and returns a new array containing the result This BIF will invoke the callback function for each item in the array, passing the item, its index, and the array itself.",
+      "Filters an array and returns a new array containing the result",
       [
         "(${1:callback}$0)",
         "(${1:callback}, ${2:parallel}, ${3:maxThreads}, ${4:virtual}$0)"
       ]
     ],
     "find": [
-      "This function searches the array for the specified value. Returns the index in the array of the first match, or 0 if there is no match.",
+      "This function searches the array for the specified value. Returns the index in the array of the first match, or 0 if there is",
       [
         "(${1:value}$0)",
         "(${1:value}, ${2:substringMatch}$0)"
@@ -134,7 +134,7 @@
       ]
     ],
     "findNoCase": [
-      "Array finders and contains functions with and without case sensitivity.",
+      "This function searches the array for the specified value. Returns the index in the array of the first match, or 0 if there is",
       [
         "(${1:value}$0)",
         "(${1:value}, ${2:substringMatch}$0)"
@@ -274,7 +274,7 @@
       ]
     ],
     "none": [
-      "Used to iterate over an array and test whether **NONE** item meets the test callback.",
+      "Used to iterate over an array and test whether NONE item meets the test callback.",
       [
         "(${1:callback}$0)",
         "(${1:callback}, ${2:parallel}, ${3:maxThreads}, ${4:virtual}$0)"
@@ -309,7 +309,7 @@
       ]
     ],
     "range": [
-      "Build an array out of a range of numbers or using our range syntax: {start}..{end} or using the from and to arguments",
+      "Build an array out of a range of numbers or using our range syntax: {start}..{end}",
       [
         "($0)",
         "(${1:to}$0)"
@@ -351,7 +351,7 @@
       ]
     ],
     "set": [
-      "In a one-dimensional array, sets the elements in a specified index range to a value.",
+      "In a one-dimensional array, sets the elements in a specified",
       [
         "(${1:start}, ${2:end}, ${3:value}$0)",
         "(${1:start}, ${2:end}, ${3:value}$0)"
@@ -372,7 +372,7 @@
       ]
     ],
     "some": [
-      "Used to iterate over an array and test whether **ANY** items meet the test callback.",
+      "Used to iterate over an array and test whether ANY items meet the test callback.",
       [
         "(${1:callback}$0)",
         "(${1:callback}, ${2:parallel}, ${3:maxThreads}, ${4:virtual}$0)"
@@ -428,10 +428,17 @@
       ]
     ],
     "toModifiable": [
-      "Convert an array, struct or query to its Modifiable counterpart.",
+      "Convert an array, struct, query or set to its Modifiable counterpart.",
       [
         "($0)",
         "($0)"
+      ]
+    ],
+    "toSet": [
+      "Convert a collection into a Set, deduplicating automatically.",
+      [
+        "($0)",
+        "(${1:type}, ${2:delimiter}$0)"
       ]
     ],
     "toStruct": [
@@ -442,7 +449,7 @@
       ]
     ],
     "toUnmodifiable": [
-      "Convert an array, struct or query to its Unmodifiable counterpart.",
+      "Convert an array, struct, query or set to its Unmodifiable counterpart.",
       [
         "($0)",
         "($0)"
@@ -459,7 +466,7 @@
       "Returns a new array with duplicate items removed.",
       [
         "($0)",
-        "($0)"
+        "(${1:caseSensitive}$0)"
       ]
     ],
     "unshift": [
@@ -561,11 +568,11 @@
       "Outputs the contents of a variable (simple or complex) of any type for debugging purposes to a specific output location.",
       [
         "($0)",
-        "(${1:label}, ${2:top}, ${3:expand}, ${4:abort}, ${5:output}, ${6:format}, ${7:showUDFs}$0)"
+        "(${1:label}, ${2:depth}, ${3:maxRows}, ${4:top}, ${5:expand}, ${6:abort}, ${7:output}, ${8:format}, ${9:showUDFs}$0)"
       ]
     ],
     "clone": [
-      "",
+      "No description available",
       [
         "($0)",
         "($0)"
@@ -593,49 +600,49 @@
       ]
     ],
     "day": [
-      "Provides the BIF and member functions for all time unit request with no arguments",
+      "Returns the day of the month of a date object. If a string is provided as the argument, an attempt will be made to parse it as a date. If parsing fails, an error will be thrown.",
       [
         "($0)",
         "(${1:timezone}, ${2:locale}$0)"
       ]
     ],
     "dayOfWeek": [
-      "Provides the BIF and member functions for all time unit request with no arguments",
+      "Returns the numeric day of the week of a date object. If a string is provided as the argument, an attempt will be made to parse it as a date. If parsing fails, an error will be thrown.",
       [
         "($0)",
         "(${1:timezone}, ${2:locale}$0)"
       ]
     ],
     "dayOfWeekAsString": [
-      "Provides the BIF and member functions for all time unit request with no arguments",
+      "Returns the full day of the week name of a date object. If a string is provided as the argument, an attempt will be made to parse it as a date. If parsing fails, an error will be thrown.",
       [
         "($0)",
         "(${1:timezone}, ${2:locale}$0)"
       ]
     ],
     "dayOfWeekShortAsString": [
-      "Provides the BIF and member functions for all time unit request with no arguments",
+      "Returns the short day of the week name of a date object. If a string is provided as the argument, an attempt will be made to parse it as a date. If parsing fails, an error will be thrown.",
       [
         "($0)",
         "(${1:timezone}, ${2:locale}$0)"
       ]
     ],
     "dayOfYear": [
-      "Provides the BIF and member functions for all time unit request with no arguments",
+      "Returns the numeric day of the year of a date object. If a string is provided as the argument, an attempt will be made to parse it as a date. If parsing fails, an error will be thrown.",
       [
         "($0)",
         "(${1:timezone}, ${2:locale}$0)"
       ]
     ],
     "daysInMonth": [
-      "Provides the BIF and member functions for all time unit request with no arguments",
+      "Returns the number of days in the month of a date object. If a string is provided as the argument, an attempt will be made to parse it as a date. If parsing fails, an error will be thrown.",
       [
         "($0)",
         "(${1:timezone}, ${2:locale}$0)"
       ]
     ],
     "daysInYear": [
-      "Provides the BIF and member functions for all time unit request with no arguments",
+      "Return the number of days in the year of a date object. If a string is provided as the argument, an attempt will be made to parse it as a date. If parsing fails, an error will be thrown.",
       [
         "($0)",
         "(${1:timezone}, ${2:locale}$0)"
@@ -663,7 +670,7 @@
       ]
     ],
     "firstDayOfMonth": [
-      "Provides the BIF and member functions for all time unit request with no arguments",
+      "Returns the first date of the month of a date object. If a string is provided as the argument, an attempt will be made to parse it as a date. If parsing fails, an error will be thrown.",
       [
         "($0)",
         "(${1:timezone}, ${2:locale}$0)"
@@ -684,7 +691,7 @@
       ]
     ],
     "getnumericdate": [
-      "Provides the BIF and member functions for all time unit request with no arguments",
+      "Returns the numeric date in days from epoch of a date object. If a string is provided as the argument, an attempt will be made to parse it as a date. If parsing fails, an error will be thrown.",
       [
         "($0)",
         "(${1:timezone}, ${2:locale}$0)"
@@ -698,7 +705,7 @@
       ]
     ],
     "hour": [
-      "Provides the BIF and member functions for all time unit request with no arguments",
+      "Returns the hour of a date object. If a string is provided as the argument, an attempt will be made to parse it as a date. If parsing fails, an error will be thrown.",
       [
         "($0)",
         "(${1:timezone}, ${2:locale}$0)"
@@ -712,66 +719,108 @@
       ]
     ],
     "millisecond": [
-      "Provides the BIF and member functions for all time unit request with no arguments",
+      "Returns the millisecond of a date object. If a string is provided as the argument, an attempt will be made to parse it as a date. If parsing fails, an error will be thrown.",
       [
         "($0)",
         "(${1:timezone}, ${2:locale}$0)"
       ]
     ],
     "minute": [
-      "Provides the BIF and member functions for all time unit request with no arguments",
+      "Returns the minute of a date object. If a string is provided as the argument, an attempt will be made to parse it as a date. If parsing fails, an error will be thrown.",
       [
         "($0)",
         "(${1:timezone}, ${2:locale}$0)"
       ]
     ],
     "month": [
-      "Provides the BIF and member functions for all time unit request with no arguments",
+      "Returns the numeric month of a date object. If a string is provided as the argument, an attempt will be made to parse it as a date. If parsing fails, an error will be thrown.",
       [
         "($0)",
         "(${1:timezone}, ${2:locale}$0)"
       ]
     ],
     "monthAsString": [
-      "Provides the BIF and member functions for all time unit request with no arguments",
+      "Returns the full month name of a date object. If a string is provided as the argument, an attempt will be made to parse it as a date. If parsing fails, an error will be thrown.",
       [
         "($0)",
         "(${1:timezone}, ${2:locale}$0)"
       ]
     ],
     "monthShortAsString": [
-      "Provides the BIF and member functions for all time unit request with no arguments",
+      "Returns the short month name of a date object. If a string is provided as the argument, an attempt will be made to parse it as a date. If parsing fails, an error will be thrown.",
       [
         "($0)",
         "(${1:timezone}, ${2:locale}$0)"
       ]
     ],
     "nanosecond": [
-      "Provides the BIF and member functions for all time unit request with no arguments",
+      "Returns the nanosecond of adate object. If a string is provided as the argument, an attempt will be made to parse it as a date. If parsing fails, an error will be thrown.",
       [
         "($0)",
         "(${1:timezone}, ${2:locale}$0)"
       ]
     ],
     "offset": [
-      "Provides the BIF and member functions for all time unit request with no arguments",
+      "Returns the timezone offset of a date object. If a string is provided as the argument, an attempt will be made to parse it as a date. If parsing fails, an error will be thrown.",
       [
         "($0)",
         "(${1:timezone}, ${2:locale}$0)"
       ]
     ],
     "quarter": [
-      "Provides the BIF and member functions for all time unit request with no arguments",
+      "Returns the quarter of a date object. If a string is provided as the argument, an attempt will be made to parse it as a date. If parsing fails, an error will be thrown.",
       [
         "($0)",
         "(${1:timezone}, ${2:locale}$0)"
       ]
     ],
     "second": [
-      "Provides the BIF and member functions for all time unit request with no arguments",
+      "Returns the second of a date object. If a string is provided as the argument, an attempt will be made to parse it as a date. If parsing fails, an error will be thrown.",
       [
         "($0)",
         "(${1:timezone}, ${2:locale}$0)"
+      ]
+    ],
+    "setDay": [
+      "Sets a single date/time unit on a date object, mutating it in place and returning it.",
+      [
+        "(${1:value}$0)",
+        "(${1:value}$0)"
+      ]
+    ],
+    "setHour": [
+      "Sets a single date/time unit on a date object, mutating it in place and returning it.",
+      [
+        "(${1:value}$0)",
+        "(${1:value}$0)"
+      ]
+    ],
+    "setMinute": [
+      "Sets a single date/time unit on a date object, mutating it in place and returning it.",
+      [
+        "(${1:value}$0)",
+        "(${1:value}$0)"
+      ]
+    ],
+    "setMonth": [
+      "Sets a single date/time unit on a date object, mutating it in place and returning it.",
+      [
+        "(${1:value}$0)",
+        "(${1:value}$0)"
+      ]
+    ],
+    "setSecond": [
+      "Sets a single date/time unit on a date object, mutating it in place and returning it.",
+      [
+        "(${1:value}$0)",
+        "(${1:value}$0)"
+      ]
+    ],
+    "setYear": [
+      "Sets a single date/time unit on a date object, mutating it in place and returning it.",
+      [
+        "(${1:value}$0)",
+        "(${1:value}$0)"
       ]
     ],
     "timeFormat": [
@@ -803,7 +852,7 @@
       ]
     ],
     "toEpochSecond": [
-      "",
+      "No description available",
       [
         "($0)",
         "($0)"
@@ -838,14 +887,14 @@
       ]
     ],
     "week": [
-      "Provides the BIF and member functions for all time unit request with no arguments",
+      "Returns the numeric week within a year of a date object. If a string is provided as the argument, an attempt will be made to parse it as a date. If parsing fails, an error will be thrown.",
       [
         "($0)",
         "(${1:timezone}, ${2:locale}$0)"
       ]
     ],
     "year": [
-      "Provides the BIF and member functions for all time unit request with no arguments",
+      "Returns the year of a date object. If a string is provided as the argument, an attempt will be made to parse it as a date. If parsing fails, an error will be thrown.",
       [
         "($0)",
         "(${1:timezone}, ${2:locale}$0)"
@@ -901,7 +950,7 @@
       "Outputs the contents of a variable (simple or complex) of any type for debugging purposes to a specific output location.",
       [
         "($0)",
-        "(${1:label}, ${2:top}, ${3:expand}, ${4:abort}, ${5:output}, ${6:format}, ${7:showUDFs}$0)"
+        "(${1:label}, ${2:depth}, ${3:maxRows}, ${4:top}, ${5:expand}, ${6:abort}, ${7:output}, ${8:format}, ${9:showUDFs}$0)"
       ]
     ],
     "ceiling": [
@@ -919,7 +968,7 @@
       ]
     ],
     "currencyFormat": [
-      "nullArguments:",
+      "No description available",
       [
         "($0)",
         "(${1:type}, ${2:locale}$0)"
@@ -954,7 +1003,7 @@
       ]
     ],
     "floor": [
-      "Returns the absolute value of a number",
+      "Round a number down to the nearest integer",
       [
         "($0)",
         "($0)"
@@ -1078,7 +1127,7 @@
       "Outputs the contents of a variable (simple or complex) of any type for debugging purposes to a specific output location.",
       [
         "($0)",
-        "(${1:label}, ${2:top}, ${3:expand}, ${4:abort}, ${5:output}, ${6:format}, ${7:showUDFs}$0)"
+        "(${1:label}, ${2:depth}, ${3:maxRows}, ${4:top}, ${5:expand}, ${6:abort}, ${7:output}, ${8:format}, ${9:showUDFs}$0)"
       ]
     ],
     "clear": [
@@ -1159,14 +1208,14 @@
       ]
     ],
     "every": [
-      "Used to iterate over a Query and test whether **every** item meets the test callback.",
+      "Used to iterate over a Query and test whether every item meets the test callback.",
       [
         "(${1:closure}$0)",
         "(${1:closure}, ${2:parallel}, ${3:maxThreads}, ${4:virtual}$0)"
       ]
     ],
     "filter": [
-      "Filters query rows specified in filter criteria This BIF will invoke the callback function for each row in the query, passing the row as a struct.",
+      "Filters query rows specified in filter criteria",
       [
         "(${1:callback}$0)",
         "(${1:callback}, ${2:parallel}, ${3:maxThreads}, ${4:virtual}$0)"
@@ -1229,14 +1278,14 @@
       ]
     ],
     "map": [
-      "This BIF will iterate over each row in the query and invoke the callback function for each item so you can do any operation on the row and return a new value that will be set at the same index in a new query.",
+      "This BIF will iterate over each row in the query and invoke the callback function for each item so you can do",
       [
         "(${1:callback}$0)",
         "(${1:callback}, ${2:parallel}, ${3:maxThreads}, ${4:virtual}$0)"
       ]
     ],
     "none": [
-      "Used to iterate over a Query and test whether **NONE** item meets the test callback.",
+      "Used to iterate over a Query and test whether NONE item meets the test callback.",
       [
         "(${1:callback}$0)",
         "(${1:callback}, ${2:parallel}, ${3:maxThreads}, ${4:virtual}$0)"
@@ -1306,7 +1355,7 @@
       ]
     ],
     "some": [
-      "Used to iterate over a query and test whether **ANY** items meet the test callback.",
+      "Used to iterate over a query and test whether ANY items meet the test callback.",
       [
         "(${1:callback}$0)",
         "(${1:callback}, ${2:parallel}, ${3:maxThreads}, ${4:virtual}$0)"
@@ -1334,14 +1383,21 @@
       ]
     ],
     "toModifiable": [
-      "Convert an array, struct or query to its Modifiable counterpart.",
+      "Convert an array, struct, query or set to its Modifiable counterpart.",
       [
         "($0)",
         "($0)"
       ]
     ],
+    "toSet": [
+      "Convert a collection into a Set, deduplicating automatically.",
+      [
+        "($0)",
+        "(${1:type}, ${2:delimiter}$0)"
+      ]
+    ],
     "toUnmodifiable": [
-      "Convert an array, struct or query to its Unmodifiable counterpart.",
+      "Convert an array, struct, query or set to its Unmodifiable counterpart.",
       [
         "($0)",
         "($0)"
@@ -1349,11 +1405,60 @@
     ]
   },
   "string": {
-    "camelCase": [
-      "Convert to camelCase",
+    "ascii": [
+      "Determine the ASCII value of a character",
       [
         "($0)",
         "($0)"
+      ]
+    ],
+    "bind": [
+      "This BIF allows you to bind a string with placeholders to a set of values.",
+      [
+        "(${1:placeholders}$0)",
+        "(${1:placeholders}$0)"
+      ]
+    ],
+    "booleanFormat": [
+      "Returns the value formatted as a boolean string",
+      [
+        "($0)",
+        "($0)"
+      ]
+    ],
+    "bxDump": [
+      "Outputs the contents of a variable (simple or complex) of any type for debugging purposes to a specific output location.",
+      [
+        "($0)",
+        "(${1:label}, ${2:depth}, ${3:maxRows}, ${4:top}, ${5:expand}, ${6:abort}, ${7:output}, ${8:format}, ${9:showUDFs}$0)"
+      ]
+    ],
+    "camelCase": [
+      "Convert a string to camel case",
+      [
+        "($0)",
+        "($0)"
+      ]
+    ],
+    "charsetDecode": [
+      "Encodes a string to a binary representation",
+      [
+        "($0)",
+        "(${1:encoding}$0)"
+      ]
+    ],
+    "compare": [
+      "Performs a case-sensitive comparison of two strings.",
+      [
+        "(${1:string2}$0)",
+        "(${1:string2}$0)"
+      ]
+    ],
+    "compareNoCase": [
+      "Performs a case-insensitive comparison of two strings.",
+      [
+        "(${1:string2}$0)",
+        "(${1:string2}$0)"
       ]
     ],
     "contains": [
@@ -1363,18 +1468,109 @@
         "(${1:substring}$0)"
       ]
     ],
-    "endsWith": [
-      "Check if string ends with suffix",
+    "dateFormat": [
+      "Formats a datetime, date or time",
       [
-        "(${1:suffix}$0)",
-        "(${1:suffix}$0)"
+        "($0)",
+        "(${1:mask}, ${2:timezone}, ${3:locale}$0)"
+      ]
+    ],
+    "dateTimeFormat": [
+      "Formats a datetime, date or time",
+      [
+        "($0)",
+        "(${1:mask}, ${2:timezone}, ${3:locale}$0)"
+      ]
+    ],
+    "day": [
+      "Returns the day of the month of a date object. If a string is provided as the argument, an attempt will be made to parse it as a date. If parsing fails, an error will be thrown.",
+      [
+        "($0)",
+        "(${1:timezone}, ${2:locale}$0)"
+      ]
+    ],
+    "dayOfWeek": [
+      "Returns the numeric day of the week of a date object. If a string is provided as the argument, an attempt will be made to parse it as a date. If parsing fails, an error will be thrown.",
+      [
+        "($0)",
+        "(${1:timezone}, ${2:locale}$0)"
+      ]
+    ],
+    "dayOfWeekAsString": [
+      "Returns the full day of the week name of a date object. If a string is provided as the argument, an attempt will be made to parse it as a date. If parsing fails, an error will be thrown.",
+      [
+        "($0)",
+        "(${1:timezone}, ${2:locale}$0)"
+      ]
+    ],
+    "dayOfWeekShortAsString": [
+      "Returns the short day of the week name of a date object. If a string is provided as the argument, an attempt will be made to parse it as a date. If parsing fails, an error will be thrown.",
+      [
+        "($0)",
+        "(${1:timezone}, ${2:locale}$0)"
+      ]
+    ],
+    "dayOfYear": [
+      "Returns the numeric day of the year of a date object. If a string is provided as the argument, an attempt will be made to parse it as a date. If parsing fails, an error will be thrown.",
+      [
+        "($0)",
+        "(${1:timezone}, ${2:locale}$0)"
+      ]
+    ],
+    "daysInMonth": [
+      "Returns the number of days in the month of a date object. If a string is provided as the argument, an attempt will be made to parse it as a date. If parsing fails, an error will be thrown.",
+      [
+        "($0)",
+        "(${1:timezone}, ${2:locale}$0)"
+      ]
+    ],
+    "daysInYear": [
+      "Return the number of days in the year of a date object. If a string is provided as the argument, an attempt will be made to parse it as a date. If parsing fails, an error will be thrown.",
+      [
+        "($0)",
+        "(${1:timezone}, ${2:locale}$0)"
+      ]
+    ],
+    "endsWith": [
+      "Determines whether a string ends with a specified suffix.",
+      [
+        "(${1:substring}$0)",
+        "(${1:substring}$0)"
+      ]
+    ],
+    "endsWithNoCase": [
+      "Determines whether a string ends with a specified suffix, case-insensitive.",
+      [
+        "(${1:substring}$0)",
+        "(${1:substring}$0)"
       ]
     ],
     "find": [
-      "Find a substring in the string",
+      "Finds the first occurrence of a substring in a string, from a specified start position.",
       [
         "(${1:substring}$0)",
         "(${1:substring}, ${2:start}$0)"
+      ]
+    ],
+    "findNoCase": [
+      "Finds the first occurrence of a substring in a string, from a specified start position.",
+      [
+        "(${1:substring}$0)",
+        "(${1:substring}, ${2:start}$0)"
+      ]
+    ],
+    "findOneOf": [
+      "Finds the first occurrence of any character in a set of characters, from a specified start position.",
+      [
+        "(${1:set}$0)",
+        "(${1:set}, ${2:start}$0)"
+      ]
+    ],
+    "firstDayOfMonth": [
+      "Returns the first date of the month of a date object. If a string is provided as the argument, an attempt will be made to parse it as a date. If parsing fails, an error will be thrown.",
+      [
+        "($0)",
+        "(${1:timezone}, ${2:locale}$0)"
       ]
     ],
     "fromJSON": [
@@ -1384,11 +1580,60 @@
         "(${1:strictMapping}, ${2:useCustomSerializer}$0)"
       ]
     ],
+    "getToken": [
+      "Determines whether a token of the list in the delimiters parameter is present in a string.",
+      [
+        "(${1:index}$0)",
+        "(${1:index}, ${2:delimiter}$0)"
+      ]
+    ],
+    "getnumericdate": [
+      "Returns the numeric date in days from epoch of a date object. If a string is provided as the argument, an attempt will be made to parse it as a date. If parsing fails, an error will be thrown.",
+      [
+        "($0)",
+        "(${1:timezone}, ${2:locale}$0)"
+      ]
+    ],
+    "hash": [
+      "Creates an algorithmic hash of an object",
+      [
+        "($0)",
+        "(${1:algorithm}, ${2:encoding}, ${3:numIterations}$0)"
+      ]
+    ],
+    "hmac": [
+      "Creates an algorithmic hash of an object",
+      [
+        "(${1:key}$0)",
+        "(${1:key}, ${2:algorithm}, ${3:encoding}, ${4:numIterations}$0)"
+      ]
+    ],
+    "hour": [
+      "Returns the hour of a date object. If a string is provided as the argument, an attempt will be made to parse it as a date. If parsing fails, an error will be thrown.",
+      [
+        "($0)",
+        "(${1:timezone}, ${2:locale}$0)"
+      ]
+    ],
+    "inputBaseN": [
+      "Converts a string, using the base specified by radix, to an integer.",
+      [
+        "(${1:radix}$0)",
+        "(${1:radix}$0)"
+      ]
+    ],
     "insert": [
-      "Insert a substring at position",
+      "Inserts a substring into another string at a specified position.",
       [
         "(${1:substring}, ${2:position}$0)",
         "(${1:substring}, ${2:position}$0)"
+      ]
+    ],
+    "isEmpty": [
+      "Determine whether a given value is empty.",
+      [
+        "($0)",
+        "($0)"
       ]
     ],
     "jSONDeserialize": [
@@ -1398,11 +1643,46 @@
         "(${1:strictMapping}, ${2:useCustomSerializer}$0)"
       ]
     ],
-    "kebabCase": [
-      "Convert to kebab-case",
+    "jSONPrettify": [
+      "Prettifies a JSON string.",
       [
         "($0)",
         "($0)"
+      ]
+    ],
+    "jsFormat": [
+      "Escapes special JavaScript characters, such as single quotation mark, double quotation mark, and newline",
+      [
+        "($0)",
+        "($0)"
+      ]
+    ],
+    "kebabCase": [
+      "Convert a string to kebab case",
+      [
+        "($0)",
+        "($0)"
+      ]
+    ],
+    "lCase": [
+      "Uppercase a string",
+      [
+        "($0)",
+        "($0)"
+      ]
+    ],
+    "lJustify": [
+      "Justifies characters in a string of a specified length, either left or right.",
+      [
+        "(${1:length}$0)",
+        "(${1:length}$0)"
+      ]
+    ],
+    "lTrim": [
+      "Trim leading whitespace from a string.",
+      [
+        "($0)",
+        "(${1:chars}$0)"
       ]
     ],
     "lcase": [
@@ -1420,10 +1700,262 @@
       ]
     ],
     "len": [
-      "Get the length of the string",
+      "Returns the absolute value of a number",
       [
         "($0)",
         "($0)"
+      ]
+    ],
+    "listAppend": [
+      "Appends an element to a list",
+      [
+        "(${1:value}$0)",
+        "(${1:value}, ${2:delimiter}, ${3:includeEmptyFields}, ${4:multiCharacterDelimiter}$0)"
+      ]
+    ],
+    "listAvg": [
+      "Gets the average of all values in a list",
+      [
+        "($0)",
+        "(${1:delimiter}, ${2:multiCharacterDelimiter}$0)"
+      ]
+    ],
+    "listChangeDelims": [
+      "Converts the delimiters of a list to the new delimiter.",
+      [
+        "(${1:newDelimiter}$0)",
+        "(${1:newDelimiter}, ${2:delimiter}, ${3:includeEmptyFields}, ${4:multiCharacterDelimiter}$0)"
+      ]
+    ],
+    "listCompact": [
+      "Compacts a list by removing empty items from the start and end of the list",
+      [
+        "($0)",
+        "(${1:delimiter}, ${2:multiCharacterDelimiter}$0)"
+      ]
+    ],
+    "listContains": [
+      "Return int position of value in delimited list, case sensitive or case-insenstive variations",
+      [
+        "(${1:value}$0)",
+        "(${1:value}, ${2:delimiter}, ${3:includeEmptyFields}, ${4:multiCharacterDelimiter}$0)"
+      ]
+    ],
+    "listContainsNoCase": [
+      "Return int position of value in delimited list, case sensitive or case-insenstive variations",
+      [
+        "(${1:value}$0)",
+        "(${1:value}, ${2:delimiter}, ${3:includeEmptyFields}, ${4:multiCharacterDelimiter}$0)"
+      ]
+    ],
+    "listDeleteAt": [
+      "Deletes an element from a list.",
+      [
+        "(${1:position}$0)",
+        "(${1:position}, ${2:delimiter}, ${3:includeEmptyFields}, ${4:multiCharacterDelimiter}$0)"
+      ]
+    ],
+    "listEach": [
+      "Used to iterate over a delimited list and run the function closure for each item in the list.",
+      [
+        "(${1:callback}$0)",
+        "(${1:callback}, ${2:delimiter}, ${3:includeEmptyFields}, ${4:multiCharacterDelimiter}, ${5:parallel}, ${6:maxThreads}, ${7:ordered}, ${8:virtual}$0)"
+      ]
+    ],
+    "listEvery": [
+      "Used to iterate over a delimited list and test whether every item meets the test callback.",
+      [
+        "(${1:callback}$0)",
+        "(${1:callback}, ${2:delimiter}, ${3:includeEmptyFields}, ${4:multiCharacterDelimiter}, ${5:parallel}, ${6:maxThreads}, ${7:virtual}$0)"
+      ]
+    ],
+    "listFilter": [
+      "Filters a delimted list and returns the values from the callback test",
+      [
+        "(${1:filter}$0)",
+        "(${1:filter}, ${2:delimiter}, ${3:includeEmptyFields}, ${4:multiCharacterDelimiter}, ${5:parallel}, ${6:maxThreads}, ${7:virtual}$0)"
+      ]
+    ],
+    "listFind": [
+      "Return int position of value in delimited list, case sensitive or case-insenstive variations",
+      [
+        "(${1:value}$0)",
+        "(${1:value}, ${2:delimiter}, ${3:includeEmptyFields}, ${4:multiCharacterDelimiter}$0)"
+      ]
+    ],
+    "listFindNoCase": [
+      "Return int position of value in delimited list, case sensitive or case-insenstive variations",
+      [
+        "(${1:value}$0)",
+        "(${1:value}, ${2:delimiter}, ${3:includeEmptyFields}, ${4:multiCharacterDelimiter}$0)"
+      ]
+    ],
+    "listFirst": [
+      "Returns the first or last item in a delimited list, according to the specified function name",
+      [
+        "($0)",
+        "(${1:delimiter}, ${2:includeEmptyFields}, ${3:multiCharacterDelimiter}$0)"
+      ]
+    ],
+    "listGetAt": [
+      "Retrieves an item from a delimited list at the specified position",
+      [
+        "(${1:position}$0)",
+        "(${1:position}, ${2:delimiter}, ${3:includeEmptyFields}, ${4:multiCharacterDelimiter}$0)"
+      ]
+    ],
+    "listIndexExists": [
+      "Checks if a list has a given index",
+      [
+        "(${1:index}$0)",
+        "(${1:index}, ${2:delimiter}, ${3:includeEmptyFields}, ${4:multiCharacterDelimiter}$0)"
+      ]
+    ],
+    "listInsertAt": [
+      "Filters a delimted list and returns the values from the callback test",
+      [
+        "(${1:position}, ${2:value}$0)",
+        "(${1:position}, ${2:value}, ${3:delimiter}, ${4:includeEmptyFields}, ${5:multiCharacterDelimiter}$0)"
+      ]
+    ],
+    "listItemTrim": [
+      "Trims each item in the list.",
+      [
+        "($0)",
+        "(${1:delimiter}, ${2:includeEmptyFields}, ${3:multiCharacterDelimiter}$0)"
+      ]
+    ],
+    "listLast": [
+      "Returns the first or last item in a delimited list, according to the specified function name",
+      [
+        "($0)",
+        "(${1:delimiter}, ${2:includeEmptyFields}, ${3:multiCharacterDelimiter}$0)"
+      ]
+    ],
+    "listLen": [
+      "Calculates the length of a list separated by the specified delimiter",
+      [
+        "($0)",
+        "(${1:delimiter}, ${2:includeEmptyFields}, ${3:multiCharacterDelimiter}$0)"
+      ]
+    ],
+    "listMap": [
+      "This BIF will iterate over each item in the delimited list and invoke the callback function for each item so",
+      [
+        "(${1:callback}$0)",
+        "(${1:callback}, ${2:delimiter}, ${3:includeEmptyFields}, ${4:multiCharacterDelimiter}, ${5:parallel}, ${6:maxThreads}, ${7:virtual}$0)"
+      ]
+    ],
+    "listNone": [
+      "Used to iterate over a delimited list and test whether NONE item meets the test callback.",
+      [
+        "(${1:callback}$0)",
+        "(${1:callback}, ${2:delimiter}, ${3:includeEmptyFields}, ${4:multiCharacterDelimiter}, ${5:parallel}, ${6:maxThreads}, ${7:virtual}$0)"
+      ]
+    ],
+    "listPrepend": [
+      "Filters a delimted list and returns the values from the callback test",
+      [
+        "(${1:value}$0)",
+        "(${1:value}, ${2:delimiter}, ${3:includeEmptyFields}, ${4:multiCharacterDelimiter}$0)"
+      ]
+    ],
+    "listQualify": [
+      "Inserts a string at the beginning and end of list elements.",
+      [
+        "(${1:qualifier}$0)",
+        "(${1:qualifier}, ${2:delimiter}, ${3:elements}, ${4:includeEmptyFields}, ${5:multiCharacterDelimiter}$0)"
+      ]
+    ],
+    "listReduce": [
+      "Run the provided udf over a delimited list to reduce the values to a single output",
+      [
+        "(${1:callback}$0)",
+        "(${1:callback}, ${2:initialValue}, ${3:delimiter}, ${4:includeEmptyFields}, ${5:multiCharacterDelimiter}$0)"
+      ]
+    ],
+    "listReduceRight": [
+      "Run the provided udf over a reversed delimited list to reduce the values to a single output",
+      [
+        "(${1:callback}$0)",
+        "(${1:callback}, ${2:initialValue}, ${3:delimiter}, ${4:includeEmptyFields}, ${5:multiCharacterDelimiter}$0)"
+      ]
+    ],
+    "listRemoveDuplicates": [
+      "De-duplicates a delimited list - either case-sensitively or case-insenstively",
+      [
+        "($0)",
+        "(${1:delimiter}, ${2:ignoreCase}, ${3:includeEmptyFields}, ${4:multiCharacterDelimiter}$0)"
+      ]
+    ],
+    "listRest": [
+      "Returns the remainder of a list after removing the first item",
+      [
+        "($0)",
+        "(${1:delimiter}, ${2:includeEmptyFields}, ${3:multiCharacterDelimiter}, ${4:offset}$0)"
+      ]
+    ],
+    "listSetAt": [
+      "Retrieves an item in to a delimited list at the specified position",
+      [
+        "(${1:position}, ${2:value}$0)",
+        "(${1:position}, ${2:value}, ${3:delimiter}, ${4:includeEmptyFields}, ${5:multiCharacterDelimiter}$0)"
+      ]
+    ],
+    "listSome": [
+      "Used to iterate over a delimited list and test whether ANY items meet the test callback.",
+      [
+        "(${1:callback}$0)",
+        "(${1:callback}, ${2:delimiter}, ${3:includeEmptyFields}, ${4:multiCharacterDelimiter}, ${5:parallel}, ${6:maxThreads}, ${7:virtual}$0)"
+      ]
+    ],
+    "listSort": [
+      "Sorts a delimited list and returns the result",
+      [
+        "($0)",
+        "(${1:sortType}, ${2:sortOrder}, ${3:delimiter}, ${4:includeEmptyFields}, ${5:multiCharacterDelimiter}, ${6:localeSensitive}, ${7:callback}$0)"
+      ]
+    ],
+    "listToArray": [
+      "Converts a delimited list to an array",
+      [
+        "($0)",
+        "(${1:delimiter}, ${2:includeEmptyFields}, ${3:multiCharacterDelimiter}$0)"
+      ]
+    ],
+    "listToJSON": [
+      "Converts a BoxLang variable into a JSON (JavaScript Object Notation) string according to the specified options.",
+      [
+        "($0)",
+        "(${1:queryFormat}, ${2:useSecureJSONPrefix}, ${3:useCustomSerializer}, ${4:pretty}$0)"
+      ]
+    ],
+    "listToSet": [
+      "Convert a collection into a Set, deduplicating automatically.",
+      [
+        "($0)",
+        "(${1:type}, ${2:delimiter}$0)"
+      ]
+    ],
+    "listTrim": [
+      "Compacts a list by removing empty items from the start and end of the list",
+      [
+        "($0)",
+        "(${1:delimiter}, ${2:multiCharacterDelimiter}$0)"
+      ]
+    ],
+    "listValueCount": [
+      "returns a count of the number of occurrences of a value in a list",
+      [
+        "(${1:value}$0)",
+        "(${1:value}, ${2:delimiter}, ${3:includeEmptyFields}, ${4:multiCharacterDelimiter}$0)"
+      ]
+    ],
+    "listValueCountNoCase": [
+      "returns a count of the number of occurrences of a value in a list",
+      [
+        "(${1:value}$0)",
+        "(${1:value}, ${2:delimiter}, ${3:includeEmptyFields}, ${4:multiCharacterDelimiter}$0)"
       ]
     ],
     "ltrim": [
@@ -1434,21 +1966,147 @@
       ]
     ],
     "mid": [
-      "Extract a substring",
+      "Extract a substring from a string",
       [
-        "(${1:start}, ${2:count}$0)",
+        "(${1:start}$0)",
         "(${1:start}, ${2:count}$0)"
       ]
     ],
-    "pascalCase": [
-      "Convert to PascalCase",
+    "millisecond": [
+      "Returns the millisecond of a date object. If a string is provided as the argument, an attempt will be made to parse it as a date. If parsing fails, an error will be thrown.",
+      [
+        "($0)",
+        "(${1:timezone}, ${2:locale}$0)"
+      ]
+    ],
+    "minute": [
+      "Returns the minute of a date object. If a string is provided as the argument, an attempt will be made to parse it as a date. If parsing fails, an error will be thrown.",
+      [
+        "($0)",
+        "(${1:timezone}, ${2:locale}$0)"
+      ]
+    ],
+    "month": [
+      "Returns the numeric month of a date object. If a string is provided as the argument, an attempt will be made to parse it as a date. If parsing fails, an error will be thrown.",
+      [
+        "($0)",
+        "(${1:timezone}, ${2:locale}$0)"
+      ]
+    ],
+    "monthAsString": [
+      "Returns the full month name of a date object. If a string is provided as the argument, an attempt will be made to parse it as a date. If parsing fails, an error will be thrown.",
+      [
+        "($0)",
+        "(${1:timezone}, ${2:locale}$0)"
+      ]
+    ],
+    "monthShortAsString": [
+      "Returns the short month name of a date object. If a string is provided as the argument, an attempt will be made to parse it as a date. If parsing fails, an error will be thrown.",
+      [
+        "($0)",
+        "(${1:timezone}, ${2:locale}$0)"
+      ]
+    ],
+    "nanosecond": [
+      "Returns the nanosecond of adate object. If a string is provided as the argument, an attempt will be made to parse it as a date. If parsing fails, an error will be thrown.",
+      [
+        "($0)",
+        "(${1:timezone}, ${2:locale}$0)"
+      ]
+    ],
+    "offset": [
+      "Returns the timezone offset of a date object. If a string is provided as the argument, an attempt will be made to parse it as a date. If parsing fails, an error will be thrown.",
+      [
+        "($0)",
+        "(${1:timezone}, ${2:locale}$0)"
+      ]
+    ],
+    "paragraphFormat": [
+      "Replaces characters in a string: Single newline characters (CR/LF sequences) with spaces and double newline characters with HTML paragraph tags",
       [
         "($0)",
         "($0)"
       ]
     ],
+    "parseDateTime": [
+      "Parses a datetime string or object",
+      [
+        "($0)",
+        "(${1:format}, ${2:timezone}, ${3:locale}$0)"
+      ]
+    ],
+    "pascalCase": [
+      "Convert a string to pascal case",
+      [
+        "($0)",
+        "($0)"
+      ]
+    ],
+    "quarter": [
+      "Returns the quarter of a date object. If a string is provided as the argument, an attempt will be made to parse it as a date. If parsing fails, an error will be thrown.",
+      [
+        "($0)",
+        "(${1:timezone}, ${2:locale}$0)"
+      ]
+    ],
+    "rJustify": [
+      "Justifies characters in a string of a specified length, either left or right.",
+      [
+        "(${1:length}$0)",
+        "(${1:length}$0)"
+      ]
+    ],
+    "rTrim": [
+      "Trim trailing whitespace from a string.",
+      [
+        "($0)",
+        "(${1:chars}$0)"
+      ]
+    ],
+    "reFind": [
+      "Uses a regular expression (RE) to search a string for a pattern, starting from a specified position.",
+      [
+        "(${1:reg_expression}$0)",
+        "(${1:reg_expression}, ${2:start}, ${3:returnSubExpressions}, ${4:scope}$0)"
+      ]
+    ],
+    "reFindNoCase": [
+      "Uses a regular expression (RE) to search a string for a pattern, starting from a specified position.",
+      [
+        "(${1:reg_expression}$0)",
+        "(${1:reg_expression}, ${2:start}, ${3:returnSubExpressions}, ${4:scope}$0)"
+      ]
+    ],
+    "reMatch": [
+      "Uses a regular expression (RE) to search a string for a pattern.",
+      [
+        "(${1:reg_expression}$0)",
+        "(${1:reg_expression}$0)"
+      ]
+    ],
+    "reMatchNoCase": [
+      "Uses a regular expression (RE) to search a string for a pattern.",
+      [
+        "(${1:reg_expression}$0)",
+        "(${1:reg_expression}$0)"
+      ]
+    ],
+    "reReplace": [
+      "Uses a regular expression (regex) to search a string for a string pattern and replace it with another.",
+      [
+        "(${1:regex}, ${2:substring}, ${3:scope}$0)",
+        "(${1:regex}, ${2:substring}, ${3:scope}$0)"
+      ]
+    ],
+    "reReplaceNoCase": [
+      "Uses a regular expression (regex) to search a string for a string pattern and replace it with another.",
+      [
+        "(${1:regex}, ${2:substring}, ${3:scope}$0)",
+        "(${1:regex}, ${2:substring}, ${3:scope}$0)"
+      ]
+    ],
     "removeChars": [
-      "Remove characters from the string",
+      "Removes characters from a string.",
       [
         "(${1:start}, ${2:count}$0)",
         "(${1:start}, ${2:count}$0)"
@@ -1462,14 +2120,35 @@
       ]
     ],
     "replace": [
-      "Replace occurrences in the string",
+      "Replaces occurrences of substring1 in a string with obj, in a specified scope.",
       [
-        "(${1:target}, ${2:replacement}$0)",
-        "(${1:target}, ${2:replacement}, ${3:scope}$0)"
+        "(${1:substring1}, ${2:obj}, ${3:scope}$0)",
+        "(${1:substring1}, ${2:obj}, ${3:scope}$0)"
+      ]
+    ],
+    "replaceList": [
+      "Replaces occurrences of the elements from a delimited list, in a string with corresponding elements from another delimited list.",
+      [
+        "(${1:list1}, ${2:list2}$0)",
+        "(${1:list1}, ${2:list2}, ${3:delimiter_list1}, ${4:delimiter_list2}, ${5:includeEmptyFields}$0)"
+      ]
+    ],
+    "replaceListNoCase": [
+      "Replaces occurrences of the elements from a delimited list, in a string with corresponding elements from another delimited list.",
+      [
+        "(${1:list1}, ${2:list2}$0)",
+        "(${1:list1}, ${2:list2}, ${3:delimiter_list1}, ${4:delimiter_list2}, ${5:includeEmptyFields}$0)"
+      ]
+    ],
+    "replaceNoCase": [
+      "Replaces occurrences of substring1 in a string with obj, in a specified scope.",
+      [
+        "(${1:substring1}, ${2:obj}, ${3:scope}$0)",
+        "(${1:substring1}, ${2:obj}, ${3:scope}, ${4:start}$0)"
       ]
     ],
     "reverse": [
-      "Reverse the string",
+      "Reverse the order of characters in a string",
       [
         "($0)",
         "($0)"
@@ -1489,18 +2168,46 @@
         "($0)"
       ]
     ],
-    "slugify": [
-      "Convert to URL-friendly slug",
+    "sQLPrettify": [
+      "Prettify a SQL string",
       [
         "($0)",
         "($0)"
       ]
     ],
+    "second": [
+      "Returns the second of a date object. If a string is provided as the argument, an attempt will be made to parse it as a date. If parsing fails, an error will be thrown.",
+      [
+        "($0)",
+        "(${1:timezone}, ${2:locale}$0)"
+      ]
+    ],
+    "slugify": [
+      "Slugify a string for URL safety",
+      [
+        "($0)",
+        "(${1:maxLength}, ${2:allow}$0)"
+      ]
+    ],
     "snakeCase": [
-      "Convert to snake_case",
+      "Convert a string to snake case",
       [
         "($0)",
         "($0)"
+      ]
+    ],
+    "spanExcluding": [
+      "Get characters from a string, from the beginning to a character that is in a specified set of characters.",
+      [
+        "(${1:set}$0)",
+        "(${1:set}$0)"
+      ]
+    ],
+    "spanIncluding": [
+      "Gets characters from a string, from the beginning to a character that is NOT in a specified set of characters.",
+      [
+        "(${1:set}$0)",
+        "(${1:set}$0)"
       ]
     ],
     "split": [
@@ -1511,10 +2218,66 @@
       ]
     ],
     "startsWith": [
-      "Check if string starts with prefix",
+      "Determines whether a string starts with a specified prefix.",
       [
-        "(${1:prefix}$0)",
-        "(${1:prefix}$0)"
+        "(${1:substring}$0)",
+        "(${1:substring}$0)"
+      ]
+    ],
+    "startsWithNoCase": [
+      "Determines whether a string starts with a specified prefix, case-insensitive.",
+      [
+        "(${1:substring}$0)",
+        "(${1:substring}$0)"
+      ]
+    ],
+    "stringReduceRight": [
+      "Run the provided udf over a reversed string to reduce the values to a single output",
+      [
+        "(${1:callback}$0)",
+        "(${1:callback}, ${2:initialValue}, ${3:delimiter}, ${4:includeEmptyFields}, ${5:multiCharacterDelimiter}$0)"
+      ]
+    ],
+    "stringSome": [
+      "Tests whether any item in a string meets the specified callback",
+      [
+        "(${1:callback}$0)",
+        "(${1:callback}, ${2:delimiter}, ${3:includeEmptyFields}, ${4:multiCharacterDelimiter}, ${5:parallel}, ${6:maxThreads}, ${7:virtual}$0)"
+      ]
+    ],
+    "stringSort": [
+      "Sorts a string and returns the result",
+      [
+        "($0)",
+        "(${1:sortType}, ${2:sortOrder}, ${3:delimiter}, ${4:includeEmptyFields}, ${5:multiCharacterDelimiter}, ${6:localeSensitive}, ${7:callback}$0)"
+      ]
+    ],
+    "stripCR": [
+      "Deletes return characters from a string.",
+      [
+        "($0)",
+        "($0)"
+      ]
+    ],
+    "timeFormat": [
+      "Formats a datetime, date or time",
+      [
+        "($0)",
+        "(${1:mask}, ${2:timezone}, ${3:locale}$0)"
+      ]
+    ],
+    "timezone": [
+      "Provides the BIF and member functions for all time unit request with no arguments",
+      [
+        "($0)",
+        "(${1:timezone}, ${2:locale}$0)"
+      ]
+    ],
+    "to": [
+      "Converts a value to a string.",
+      [
+        "($0)",
+        "(${1:encoding}$0)"
       ]
     ],
     "toAST": [
@@ -1524,8 +2287,64 @@
         "(${1:filepath}, ${2:returnType}, ${3:sourceType}$0)"
       ]
     ],
+    "toBase64": [
+      "Calculates the Base64 representation of a string or binary object.",
+      [
+        "($0)",
+        "(${1:encoding}$0)"
+      ]
+    ],
+    "toBinary": [
+      "Calculates the binary representation of Base64-encoded data.",
+      [
+        "($0)",
+        "($0)"
+      ]
+    ],
+    "toDateTime": [
+      "Parses a datetime string or object",
+      [
+        "($0)",
+        "(${1:format}, ${2:timezone}, ${3:locale}$0)"
+      ]
+    ],
+    "toJSON": [
+      "Converts a BoxLang variable into a JSON (JavaScript Object Notation) string according to the specified options.",
+      [
+        "($0)",
+        "(${1:queryFormat}, ${2:useSecureJSONPrefix}, ${3:useCustomSerializer}, ${4:pretty}$0)"
+      ]
+    ],
     "trim": [
-      "Remove whitespace from both ends",
+      "Trim whitespace from the beginning and end of a string.",
+      [
+        "($0)",
+        "(${1:chars}$0)"
+      ]
+    ],
+    "trueFalseFormat": [
+      "Returns the value formatted as a boolean string",
+      [
+        "($0)",
+        "($0)"
+      ]
+    ],
+    "uCFirst": [
+      "Transform the first letter of a string to uppercase or the first letter of each word, and optionally lowercase uppercase characters.",
+      [
+        "($0)",
+        "(${1:doAll}, ${2:doLowerIfAllUppercase}$0)"
+      ]
+    ],
+    "uCase": [
+      "Uppercase a string",
+      [
+        "($0)",
+        "($0)"
+      ]
+    ],
+    "uRLEncodedFormat": [
+      "Generates a URL-encoded string.",
       [
         "($0)",
         "($0)"
@@ -1544,11 +2363,53 @@
         "($0)",
         "($0)"
       ]
+    ],
+    "val": [
+      "Converts numeric characters and the first period found that occur at the beginning of a string to a number.",
+      [
+        "($0)",
+        "($0)"
+      ]
+    ],
+    "week": [
+      "Returns the numeric week within a year of a date object. If a string is provided as the argument, an attempt will be made to parse it as a date. If parsing fails, an error will be thrown.",
+      [
+        "($0)",
+        "(${1:timezone}, ${2:locale}$0)"
+      ]
+    ],
+    "wrap": [
+      "Wraps a string at the specified limit, breaking at the last space within the limit.",
+      [
+        "(${1:limit}$0)",
+        "(${1:limit}, ${2:strip}$0)"
+      ]
+    ],
+    "xMLFormat": [
+      "Formats a string so that special XML characters can be used as text in XML",
+      [
+        "($0)",
+        "(${1:escapeChars}$0)"
+      ]
+    ],
+    "year": [
+      "Returns the year of a date object. If a string is provided as the argument, an attempt will be made to parse it as a date. If parsing fails, an error will be thrown.",
+      [
+        "($0)",
+        "(${1:timezone}, ${2:locale}$0)"
+      ]
+    ],
+    "yesNoFormat": [
+      "Return Yes/No based on whether the input is true/false",
+      [
+        "($0)",
+        "($0)"
+      ]
     ]
   },
   "struct": {
     "append": [
-      "Appends the contents of a second struct to the first struct either with or without overwrite",
+      "Appends the contents of a second struct to the first struct either with or",
       [
         "(${1:struct2}$0)",
         "(${1:struct2}, ${2:overwrite}$0)"
@@ -1558,7 +2419,7 @@
       "Outputs the contents of a variable (simple or complex) of any type for debugging purposes to a specific output location.",
       [
         "($0)",
-        "(${1:label}, ${2:top}, ${3:expand}, ${4:abort}, ${5:output}, ${6:format}, ${7:showUDFs}$0)"
+        "(${1:label}, ${2:depth}, ${3:maxRows}, ${4:top}, ${5:expand}, ${6:abort}, ${7:output}, ${8:format}, ${9:showUDFs}$0)"
       ]
     ],
     "clear": [
@@ -1611,7 +2472,7 @@
       ]
     ],
     "every": [
-      "Used to iterate over a struct and test whether **every** item meets the test callback.",
+      "Used to iterate over a struct and test whether every item meets the test callback.",
       [
         "(${1:callback}$0)",
         "(${1:callback}, ${2:parallel}, ${3:maxThreads}, ${4:virtual}$0)"
@@ -1715,6 +2576,13 @@
         "(${1:delimiter}$0)"
       ]
     ],
+    "keySet": [
+      "Build a Set containing the keys of a Struct.",
+      [
+        "($0)",
+        "(${1:type}$0)"
+      ]
+    ],
     "keyTranslate": [
       "Converts a struct with dot-notated keys in to an unflattened version",
       [
@@ -1730,14 +2598,14 @@
       ]
     ],
     "map": [
-      "This BIF will iterate over each key-value pair in the struct and invoke the callback function for each item so you can do any operation on the key-value pair and return a new value that will be set in a new struct.",
+      "This BIF will iterate over each key-value pair in the struct and invoke the callback function for each item so you can do",
       [
         "(${1:callback}$0)",
         "(${1:callback}, ${2:parallel}, ${3:maxThreads}, ${4:virtual}$0)"
       ]
     ],
     "none": [
-      "Used to iterate over a struct and test whether **NONE** item meets the test callback.",
+      "Used to iterate over a struct and test whether NONE item meets the test callback.",
       [
         "(${1:callback}$0)",
         "(${1:callback}, ${2:parallel}, ${3:maxThreads}, ${4:virtual}$0)"
@@ -1751,7 +2619,7 @@
       ]
     ],
     "some": [
-      "Used to iterate over a struct and test whether **ANY** items meet the test callback.",
+      "Used to iterate over a struct and test whether ANY items meet the test callback.",
       [
         "(${1:callback}$0)",
         "(${1:callback}, ${2:parallel}, ${3:maxThreads}, ${4:virtual}$0)"
@@ -1772,7 +2640,7 @@
       ]
     ],
     "toModifiable": [
-      "Convert an array, struct or query to its Modifiable counterpart.",
+      "Convert an array, struct, query or set to its Modifiable counterpart.",
       [
         "($0)",
         "($0)"
@@ -1793,7 +2661,7 @@
       ]
     ],
     "toUnmodifiable": [
-      "Convert an array, struct or query to its Unmodifiable counterpart.",
+      "Convert an array, struct, query or set to its Unmodifiable counterpart.",
       [
         "($0)",
         "($0)"
@@ -1812,6 +2680,13 @@
         "($0)",
         "($0)"
       ]
+    ],
+    "valueSet": [
+      "Build a Set containing the values of a Struct, deduplicating automatically.",
+      [
+        "($0)",
+        "(${1:type}$0)"
+      ]
     ]
   },
   "xml": {
@@ -1819,7 +2694,7 @@
       "Outputs the contents of a variable (simple or complex) of any type for debugging purposes to a specific output location.",
       [
         "($0)",
-        "(${1:label}, ${2:top}, ${3:expand}, ${4:abort}, ${5:output}, ${6:format}, ${7:showUDFs}$0)"
+        "(${1:label}, ${2:depth}, ${3:maxRows}, ${4:top}, ${5:expand}, ${6:abort}, ${7:output}, ${8:format}, ${9:showUDFs}$0)"
       ]
     ],
     "childPos": [
@@ -1861,7 +2736,7 @@
       "Get XML values according to given xPath query",
       [
         "(${1:XSL}$0)",
-        "(${1:XSL}, ${2:parameters}$0)"
+        "(${1:XSL}, ${2:parameters}, ${3:XMLSettings}$0)"
       ]
     ]
   }

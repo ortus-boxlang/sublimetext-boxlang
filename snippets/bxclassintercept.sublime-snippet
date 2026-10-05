@@ -1,0 +1,10 @@
+<snippet>
+    <content><![CDATA[function ${1:afterBoxClassCreation}( event, interceptData ) {
+	// afterBoxClassCreation: instance, className, noInit, context
+	// afterBoxClassInit: instance, result, className, context
+	${0:// observe class instantiation}
+}]]></content>
+    <tabTrigger>bxclassintercept</tabTrigger>
+    <scope>source.boxlang</scope>
+    <description>BoxLang Class Instantiation Interception Point (1.18+)</description>
+</snippet>

@@ -154,7 +154,7 @@
     ]
   ],
   "ArrayFind": [
-    "Array finders and contains functions with and without case sensitivity.",
+    "This function searches the array for the specified value. Returns the index in the array of the first match, or 0 if there is",
     [
       "(${1:array}, ${2:value}$0)",
       "(${1:array}, ${2:value}, ${3:substringMatch}$0)"
@@ -182,7 +182,7 @@
     ]
   ],
   "ArrayFindNoCase": [
-    "Array finders and contains functions with and without case sensitivity.",
+    "This function searches the array for the specified value. Returns the index in the array of the first match, or 0 if",
     [
       "(${1:array}, ${2:value}$0)",
       "(${1:array}, ${2:value}, ${3:substringMatch}$0)"
@@ -244,13 +244,6 @@
       "(${1:array}, ${2:index}$0)"
     ]
   ],
-  "ArrayIsEmpty": [
-    "",
-    [
-      "($0)",
-      "($0)"
-    ]
-  ],
   "ArrayLast": [
     "Return first item in array",
     [
@@ -308,10 +301,10 @@
     ]
   ],
   "ArrayNew": [
-    "Return new array",
+    "Create a new array.",
     [
       "($0)",
-      "($0)"
+      "(${1:dimensions}, ${2:isSynchronized}$0)"
     ]
   ],
   "ArrayNone": [
@@ -465,7 +458,7 @@
     "Returns a new array with duplicate items removed.",
     [
       "(${1:array}$0)",
-      "(${1:array}$0)"
+      "(${1:array}, ${2:caseSensitive}$0)"
     ]
   ],
   "ArrayUnshift": [
@@ -683,6 +676,202 @@
     [
       "(${1:interceptor}$0)",
       "(${1:interceptor}, ${2:states}$0)"
+    ]
+  ],
+  "BoxSetAdd": [
+    "Add an element to a Set, deduplicating automatically.",
+    [
+      "(${1:set}, ${2:value}$0)",
+      "(${1:set}, ${2:value}$0)"
+    ]
+  ],
+  "BoxSetAddAll": [
+    "Add every element of a collection into a Set, deduplicating automatically.",
+    [
+      "(${1:set}, ${2:values}$0)",
+      "(${1:set}, ${2:values}$0)"
+    ]
+  ],
+  "BoxSetClear": [
+    "Remove all elements from a Set, leaving it empty.",
+    [
+      "(${1:set}$0)",
+      "(${1:set}$0)"
+    ]
+  ],
+  "BoxSetContains": [
+    "Test whether a Set contains a given value using BoxLang value equality.",
+    [
+      "(${1:set}, ${2:value}$0)",
+      "(${1:set}, ${2:value}$0)"
+    ]
+  ],
+  "BoxSetContainsAll": [
+    "Test whether a Set contains every element of a given collection.",
+    [
+      "(${1:set}, ${2:values}$0)",
+      "(${1:set}, ${2:values}$0)"
+    ]
+  ],
+  "BoxSetDifference": [
+    "Compute the relative complement (A \\u2212 B) of two Sets.",
+    [
+      "(${1:set}, ${2:otherSet}$0)",
+      "(${1:set}, ${2:otherSet}$0)"
+    ]
+  ],
+  "BoxSetEach": [
+    "Invoke a callback for every element of a Set.",
+    [
+      "(${1:set}, ${2:callback}$0)",
+      "(${1:set}, ${2:callback}$0)"
+    ]
+  ],
+  "BoxSetEquals": [
+    "Test whether two Sets contain exactly the same elements.",
+    [
+      "(${1:set}, ${2:otherSet}$0)",
+      "(${1:set}, ${2:otherSet}$0)"
+    ]
+  ],
+  "BoxSetEvery": [
+    "Test whether every element of a Set satisfies a predicate.",
+    [
+      "(${1:set}, ${2:callback}$0)",
+      "(${1:set}, ${2:callback}$0)"
+    ]
+  ],
+  "BoxSetFilter": [
+    "Return a new Set containing only the elements of the source Set for which the predicate returns true.",
+    [
+      "(${1:set}, ${2:callback}$0)",
+      "(${1:set}, ${2:callback}$0)"
+    ]
+  ],
+  "BoxSetFind": [
+    "Return the first element of a Set for which the predicate returns true, or null if no element matches.",
+    [
+      "(${1:set}, ${2:callback}$0)",
+      "(${1:set}, ${2:callback}$0)"
+    ]
+  ],
+  "BoxSetIntersection": [
+    "Compute the intersection (A \\u2229 B) of two Sets, returning a new Set that contains only the elements present",
+    [
+      "(${1:set}, ${2:otherSet}$0)",
+      "(${1:set}, ${2:otherSet}$0)"
+    ]
+  ],
+  "BoxSetIsDisjointFrom": [
+    "Test whether two Sets share no common elements, i.e.",
+    [
+      "(${1:set}, ${2:otherSet}$0)",
+      "(${1:set}, ${2:otherSet}$0)"
+    ]
+  ],
+  "BoxSetIsEmpty": [
+    "Test whether a Set contains no elements.",
+    [
+      "(${1:set}$0)",
+      "(${1:set}$0)"
+    ]
+  ],
+  "BoxSetIsSubsetOf": [
+    "Test whether every element of set A is also contained in set B, i.e.",
+    [
+      "(${1:set}, ${2:otherSet}$0)",
+      "(${1:set}, ${2:otherSet}$0)"
+    ]
+  ],
+  "BoxSetIsSupersetOf": [
+    "Test whether every element of set B is also contained in set A, i.e.",
+    [
+      "(${1:set}, ${2:otherSet}$0)",
+      "(${1:set}, ${2:otherSet}$0)"
+    ]
+  ],
+  "BoxSetMap": [
+    "Apply a transform function to every element of a Set and collect the deduplicated results into a new Set",
+    [
+      "(${1:set}, ${2:callback}$0)",
+      "(${1:set}, ${2:callback}$0)"
+    ]
+  ],
+  "BoxSetNone": [
+    "Test whether no element of a Set satisfies a predicate.",
+    [
+      "(${1:set}, ${2:callback}$0)",
+      "(${1:set}, ${2:callback}$0)"
+    ]
+  ],
+  "BoxSetReduce": [
+    "Left-fold a Set with an accumulator function, reducing it to a single value.",
+    [
+      "(${1:set}, ${2:callback}$0)",
+      "(${1:set}, ${2:callback}, ${3:initialValue}$0)"
+    ]
+  ],
+  "BoxSetReject": [
+    "Return a new Set containing only the elements of the source Set for which the predicate returns false",
+    [
+      "(${1:set}, ${2:callback}$0)",
+      "(${1:set}, ${2:callback}$0)"
+    ]
+  ],
+  "BoxSetRemove": [
+    "Remove an element from a Set.",
+    [
+      "(${1:set}, ${2:value}$0)",
+      "(${1:set}, ${2:value}$0)"
+    ]
+  ],
+  "BoxSetRemoveAll": [
+    "Remove every element of a collection from a Set, leaving only the elements that are not in the collection.",
+    [
+      "(${1:set}, ${2:values}$0)",
+      "(${1:set}, ${2:values}$0)"
+    ]
+  ],
+  "BoxSetRetainAll": [
+    "Retain only the elements of a Set that are also present in the given collection, removing everything else.",
+    [
+      "(${1:set}, ${2:values}$0)",
+      "(${1:set}, ${2:values}$0)"
+    ]
+  ],
+  "BoxSetSome": [
+    "Test whether at least one element of a Set satisfies a predicate.",
+    [
+      "(${1:set}, ${2:callback}$0)",
+      "(${1:set}, ${2:callback}$0)"
+    ]
+  ],
+  "BoxSetSymmetricDifference": [
+    "Compute the symmetric difference (A \\u25b3 B) of two Sets, returning the elements that are in exactly one of",
+    [
+      "(${1:set}, ${2:otherSet}$0)",
+      "(${1:set}, ${2:otherSet}$0)"
+    ]
+  ],
+  "BoxSetToArray": [
+    "Convert a Set to an Array, preserving the iteration order of the underlying variant.",
+    [
+      "(${1:set}$0)",
+      "(${1:set}$0)"
+    ]
+  ],
+  "BoxSetToList": [
+    "Join the elements of a Set into a delimited string.",
+    [
+      "(${1:set}$0)",
+      "(${1:set}, ${2:delimiter}$0)"
+    ]
+  ],
+  "BoxSetUnion": [
+    "Compute the union (A \\u222a B) of two Sets, returning a new Set that contains all elements from both.",
+    [
+      "(${1:set}, ${2:otherSet}$0)",
+      "(${1:set}, ${2:otherSet}$0)"
     ]
   ],
   "BoxUnregisterInterceptor": [
@@ -1038,7 +1227,7 @@
   "Compress": [
     "Compress the source file or folder to the destination file or folder using",
     [
-      "(${1:format}, ${2:source}, ${3:destination}$0)",
+      "(${1:source}, ${2:destination}$0)",
       "(${1:format}, ${2:source}, ${3:destination}, ${4:includeBaseFolder}, ${5:overwrite}, ${6:prefix}, ${7:filter}, ${8:recurse}, ${9:compressionLevel}$0)"
     ]
   ],
@@ -1218,14 +1407,14 @@
     ]
   ],
   "Day": [
-    "Returns the day of the month of a date object",
+    "Returns the day of the month of a date object. If a string is provided as the argument, an attempt will be made to parse it as a date. If parsing fails, an error will be thrown.",
     [
       "($0)",
       "(${1:date}, ${2:timezone}, ${3:locale}$0)"
     ]
   ],
   "DayOfWeek": [
-    "Returns the numeric day of the week of a date object",
+    "Returns the numeric day of the week of a date object. If a string is provided as the argument, an attempt will be made to parse it as a date. If parsing fails, an error will be thrown.",
     [
       "($0)",
       "(${1:date}, ${2:timezone}, ${3:locale}$0)"
@@ -1246,21 +1435,21 @@
     ]
   ],
   "DayOfYear": [
-    "Returns the numeric day of the year of a date object",
+    "Returns the numeric day of the year of a date object. If a string is provided as the argument, an attempt will be made to parse it as a date. If parsing fails, an error will be thrown.",
     [
       "($0)",
       "(${1:date}, ${2:timezone}, ${3:locale}$0)"
     ]
   ],
   "DaysInMonth": [
-    "Returns the number of days in the month of a date object",
+    "Returns the number of days in the month of a date object. If a string is provided as the argument, an attempt will be made to parse it as a date. If parsing fails, an error will be thrown.",
     [
       "($0)",
       "(${1:date}, ${2:timezone}, ${3:locale}$0)"
     ]
   ],
   "DaysInYear": [
-    "Return the number of days in the year of a date object",
+    "Return the number of days in the year of a date object. If a string is provided as the argument, an attempt will be made to parse it as a date. If parsing fails, an error will be thrown.",
     [
       "($0)",
       "(${1:date}, ${2:timezone}, ${3:locale}$0)"
@@ -1403,7 +1592,7 @@
     "Outputs the contents of a variable (simple or complex) of any type for debugging purposes to a specific output location.",
     [
       "($0)",
-      "(${1:var}, ${2:label}, ${3:top}, ${4:expand}, ${5:abort}, ${6:output}, ${7:format}, ${8:showUDFs}$0)"
+      "(${1:var}, ${2:label}, ${3:depth}, ${4:maxRows}, ${5:top}, ${6:expand}, ${7:abort}, ${8:output}, ${9:format}, ${10:showUDFs}$0)"
     ]
   ],
   "Duplicate": [
@@ -1446,6 +1635,13 @@
     [
       "(${1:key}$0)",
       "(${1:object}, ${2:key}, ${3:algorithm}, ${4:encoding}, ${5:IVorSalt}, ${6:iterations}, ${7:precise}$0)"
+    ]
+  ],
+  "Evaluate": [
+    "Evaluates one or more string expressions, dynamically, from left to right.",
+    [
+      "(${1:expression}$0)",
+      "(${1:expression}$0)"
     ]
   ],
   "ExecutorDelete": [
@@ -1514,7 +1710,7 @@
   "Extract": [
     "Extract the source file or folder to the destination folder using the specified format:",
     [
-      "(${1:format}, ${2:source}, ${3:destination}$0)",
+      "(${1:source}, ${2:destination}$0)",
       "(${1:format}, ${2:source}, ${3:destination}, ${4:overwrite}, ${5:recurse}, ${6:filter}, ${7:entryPaths}$0)"
     ]
   ],
@@ -1589,17 +1785,17 @@
     ]
   ],
   "FileRead": [
-    "Reads the contents of a file and returns it as a string or binary object",
+    "Reads the contents of a file and returns it as a string or binary object.",
     [
       "(${1:filepath}$0)",
-      "(${1:filepath}, ${2:charsetOrBufferSize}, ${3:charset}, ${4:buffersize}$0)"
+      "(${1:filepath}, ${2:charsetOrBufferSize}, ${3:buffersize}$0)"
     ]
   ],
   "FileReadBinary": [
-    "Reads the contents of a file and returns it as a string or binary object",
+    "Reads the contents of a file and returns it as a string or binary object.",
     [
       "(${1:filepath}$0)",
-      "(${1:filepath}, ${2:charsetOrBufferSize}, ${3:charset}, ${4:buffersize}$0)"
+      "(${1:filepath}, ${2:charsetOrBufferSize}, ${3:buffersize}$0)"
     ]
   ],
   "FileReadLine": [
@@ -1659,7 +1855,7 @@
     ]
   ],
   "FileWrite": [
-    "Writes the contents of a string or binary data to a file",
+    "Writes the contents of a string or binary data to a file.",
     [
       "(${1:file}, ${2:data}$0)",
       "(${1:file}, ${2:data}, ${3:charset}, ${4:createPath}$0)"
@@ -1694,7 +1890,7 @@
     ]
   ],
   "FirstDayOfMonth": [
-    "Returns the first date of the month of a date object",
+    "Returns the first date of the month of a date object. If a string is provided as the argument, an attempt will be made to parse it as a date. If parsing fails, an error will be thrown.",
     [
       "($0)",
       "(${1:date}, ${2:timezone}, ${3:locale}$0)"
@@ -1708,7 +1904,7 @@
     ]
   ],
   "Floor": [
-    "Returns the absolute value of a number",
+    "Round a number down to the nearest integer",
     [
       "(${1:number}$0)",
       "(${1:number}$0)"
@@ -1855,7 +2051,7 @@
     ]
   ],
   "GetBoxVersionInfo": [
-    "Get's the version information of the current Box Runtime",
+    "Get version information for the current Box Runtime",
     [
       "($0)",
       "($0)"
@@ -1869,7 +2065,7 @@
     ]
   ],
   "GetClassMetadata": [
-    "Returns the current value of an internal millisecond timer.",
+    "Get metadata about a instance or class given an instantiation path, an absolute OS filesystem path, or an instance of the object.",
     [
       "(${1:path}$0)",
       "(${1:path}$0)"
@@ -1994,6 +2190,13 @@
       "(${1:locale}, ${2:dspLocale}$0)"
     ]
   ],
+  "GetLocalhostIp": [
+    "Returns the localhost IP address (string), or all local IP addresses (array) if the 'all' argument is set to true.",
+    [
+      "($0)",
+      "(${1:all}, ${2:refresh}$0)"
+    ]
+  ],
   "GetMetaData": [
     "Gets metadata (the methods, properties, and parameters of a component) associated with an object.",
     [
@@ -2015,8 +2218,15 @@
       "($0)"
     ]
   ],
+  "GetModuleTree": [
+    "Get the module hierarchy as a tree.",
+    [
+      "($0)",
+      "(${1:module}$0)"
+    ]
+  ],
   "GetNumericDate": [
-    "Returns the numeric date in days from epoch of a date object",
+    "Returns the numeric date in days from epoch of a date object. If a string is provided as the argument, an attempt will be made to parse it as a date. If parsing fails, an error will be thrown.",
     [
       "($0)",
       "(${1:date}, ${2:timezone}, ${3:locale}$0)"
@@ -2086,14 +2296,14 @@
     ]
   ],
   "GetTime": [
-    "Returns the numeric date in milliseconds from epoch of a date object",
+    "Returns the numeric date in milliseconds from epoch of a date object. If a string is provided as the argument, an attempt will be made to parse it as a date. If parsing fails, an error will be thrown.",
     [
       "($0)",
       "(${1:date}, ${2:timezone}, ${3:locale}$0)"
     ]
   ],
   "GetTimezone": [
-    "Returns the timezone identifier of a date object",
+    "Returns the timezone identifier of a date object. If a string is provided as the argument, an attempt will be made to parse it as a date. If parsing fails, an error will be thrown.",
     [
       "($0)",
       "(${1:date}, ${2:timezone}, ${3:locale}$0)"
@@ -2163,7 +2373,7 @@
     ]
   ],
   "Hour": [
-    "Returns the hour of a date object",
+    "Returns the hour of a date object. If a string is provided as the argument, an attempt will be made to parse it as a date. If parsing fails, an error will be thrown.",
     [
       "($0)",
       "(${1:date}, ${2:timezone}, ${3:locale}$0)"
@@ -2541,9 +2751,9 @@
     ]
   ],
   "ImageWriteBase64": [
-    "ImageWriteBase64( name, format )",
+    "ImageWriteBase64( name [, format] )",
     [
-      "(${1:name}, ${2:format}$0)",
+      "(${1:name}$0)",
       "(${1:name}, ${2:format}$0)"
     ]
   ],
@@ -2601,6 +2811,13 @@
     [
       "(${1:object}$0)",
       "(${1:object}$0)"
+    ]
+  ],
+  "IsBoxSet": [
+    "Determine whether a value is a set",
+    [
+      "(${1:variable}$0)",
+      "(${1:variable}$0)"
     ]
   ],
   "IsClosure": [
@@ -2764,6 +2981,13 @@
       "(${1:value}$0)"
     ]
   ],
+  "IsRange": [
+    "Determine whether a value is a range.",
+    [
+      "(${1:value}$0)",
+      "(${1:value}$0)"
+    ]
+  ],
   "IsSafeHTML": [
     "Verifies if the HTML is safe using antisamy policy rules.",
     [
@@ -2787,6 +3011,13 @@
   ],
   "IsSpreadsheetObject": [
     "Determines whether an object is a BoxLang spreadsheet object.",
+    [
+      "(${1:value}$0)",
+      "(${1:value}$0)"
+    ]
+  ],
+  "IsStringBuilder": [
+    "Returns true if the value is a BoxLang StringBuilder instance.",
     [
       "(${1:value}$0)",
       "(${1:value}$0)"
@@ -3108,10 +3339,10 @@
     ]
   ],
   "LTrim": [
-    "Trim leading whitespace from a string",
+    "Trim leading whitespace from a string.",
     [
       "(${1:string}$0)",
-      "(${1:string}$0)"
+      "(${1:string}, ${2:chars}$0)"
     ]
   ],
   "Left": [
@@ -3430,7 +3661,7 @@
     ]
   ],
   "Millisecond": [
-    "Returns the millisecond of a date object",
+    "Returns the millisecond of a date object. If a string is provided as the argument, an attempt will be made to parse it as a date. If parsing fails, an error will be thrown.",
     [
       "($0)",
       "(${1:date}, ${2:timezone}, ${3:locale}$0)"
@@ -3444,7 +3675,7 @@
     ]
   ],
   "Minute": [
-    "Returns the minute of a date object",
+    "Returns the minute of a date object. If a string is provided as the argument, an attempt will be made to parse it as a date. If parsing fails, an error will be thrown.",
     [
       "($0)",
       "(${1:date}, ${2:timezone}, ${3:locale}$0)"
@@ -3472,7 +3703,7 @@
     ]
   ],
   "Month": [
-    "Returns the numeric month of a date object",
+    "Returns the numeric month of a date object. If a string is provided as the argument, an attempt will be made to parse it as a date. If parsing fails, an error will be thrown.",
     [
       "($0)",
       "(${1:date}, ${2:timezone}, ${3:locale}$0)"
@@ -3493,7 +3724,7 @@
     ]
   ],
   "Nanosecond": [
-    "Returns the nanosecond of adate object",
+    "Returns the nanosecond of adate object. If a string is provided as the argument, an attempt will be made to parse it as a date. If parsing fails, an error will be thrown.",
     [
       "($0)",
       "(${1:date}, ${2:timezone}, ${3:locale}$0)"
@@ -3548,15 +3779,22 @@
       "(${1:object}, ${2:file}$0)"
     ]
   ],
+  "ObjectToSet": [
+    "Convert a collection into a Set, deduplicating automatically.",
+    [
+      "(${1:value}$0)",
+      "(${1:value}, ${2:type}, ${3:delimiter}$0)"
+    ]
+  ],
   "Offset": [
-    "Returns the timezone offset of a date object",
+    "Returns the timezone offset of a date object. If a string is provided as the argument, an attempt will be made to parse it as a date. If parsing fails, an error will be thrown.",
     [
       "($0)",
       "(${1:date}, ${2:timezone}, ${3:locale}$0)"
     ]
   ],
   "PagePoolClear": [
-    "Clears all the compiled classes from the Boxpiler's page pool.",
+    "Clears all the compiled classes from the Boxpiler's page pool and resolutions",
     [
       "($0)",
       "($0)"
@@ -3605,10 +3843,10 @@
     ]
   ],
   "PrecisionEvaluate": [
-    "Evaluates one or more string expressions using BigDecimal precision arithmetic.",
+    "Evaluates one or more string expressions dynamically from left to right using BigDecimal precision arithmetic.",
     [
-      "(${1:expressions}$0)",
-      "(${1:expressions}$0)"
+      "(${1:expression}$0)",
+      "(${1:expression}$0)"
     ]
   ],
   "PreserveSingleQuotes": [
@@ -3640,7 +3878,7 @@
     ]
   ],
   "Quarter": [
-    "Returns the quarter of a date object",
+    "Returns the quarter of a date object. If a string is provided as the argument, an attempt will be made to parse it as a date. If parsing fails, an error will be thrown.",
     [
       "($0)",
       "(${1:date}, ${2:timezone}, ${3:locale}$0)"
@@ -3920,10 +4158,10 @@
     ]
   ],
   "RTrim": [
-    "Trim trailing whitespace from a string",
+    "Trim trailing whitespace from a string.",
     [
       "(${1:string}$0)",
-      "(${1:string}$0)"
+      "(${1:string}, ${2:chars}$0)"
     ]
   ],
   "Rand": [
@@ -4150,6 +4388,13 @@
       "($0)"
     ]
   ],
+  "SchedulerNew": [
+    "Create and register a new scheduler.",
+    [
+      "(${1:name}$0)",
+      "(${1:name}, ${2:timezone}, ${3:force}$0)"
+    ]
+  ],
   "SchedulerRestart": [
     "Restart a scheduler by name.",
     [
@@ -4175,11 +4420,18 @@
     "Get the stats of all schedulers or a specific scheduler by name.",
     [
       "($0)",
-      "($0)"
+      "(${1:name}$0)"
+    ]
+  ],
+  "SearchNew": [
+    "Creates and returns a new {@link SearchBuilder} wired to the active search",
+    [
+      "($0)",
+      "(${1:index}, ${2:properties}$0)"
     ]
   ],
   "Second": [
-    "Returns the second of a date object",
+    "Returns the second of a date object. If a string is provided as the argument, an attempt will be made to parse it as a date. If parsing fails, an error will be thrown.",
     [
       "($0)",
       "(${1:date}, ${2:timezone}, ${3:locale}$0)"
@@ -4218,6 +4470,20 @@
     [
       "(${1:locale}$0)",
       "(${1:locale}$0)"
+    ]
+  ],
+  "SetNew": [
+    "Create a new empty Set, optionally pre-seeded from an existing collection.",
+    [
+      "($0)",
+      "(${1:type}, ${2:values}, ${3:caseSensitive}, ${4:isSynchronized}$0)"
+    ]
+  ],
+  "SetOf": [
+    "Build a default (hash-backed) Set from positional arguments, silently deduplicating as it goes.",
+    [
+      "($0)",
+      "($0)"
     ]
   ],
   "SetTimezone": [
@@ -4878,11 +5144,137 @@
       "(${1:string}, ${2:placeholders}$0)"
     ]
   ],
+  "StringBuilderAppend": [
+    "Appends the string representation of value to the end of the StringBuilder buffer.",
+    [
+      "(${1:stringBuilder}, ${2:value}$0)",
+      "(${1:stringBuilder}, ${2:value}$0)"
+    ]
+  ],
+  "StringBuilderClear": [
+    "Resets the StringBuilder buffer to empty.",
+    [
+      "(${1:stringBuilder}$0)",
+      "(${1:stringBuilder}$0)"
+    ]
+  ],
+  "StringBuilderContains": [
+    "No description available.",
+    [
+      "(${1:stringBuilder}, ${2:substring}$0)",
+      "(${1:stringBuilder}, ${2:substring}$0)"
+    ]
+  ],
+  "StringBuilderDelete": [
+    "Removes characters from start to end, both 1-based and inclusive.",
+    [
+      "(${1:stringBuilder}, ${2:start}, ${3:end}$0)",
+      "(${1:stringBuilder}, ${2:start}, ${3:end}$0)"
+    ]
+  ],
+  "StringBuilderEndsWith": [
+    "No description available.",
+    [
+      "(${1:stringBuilder}, ${2:substring}$0)",
+      "(${1:stringBuilder}, ${2:substring}$0)"
+    ]
+  ],
+  "StringBuilderFind": [
+    "No description available.",
+    [
+      "(${1:stringBuilder}, ${2:substring}$0)",
+      "(${1:stringBuilder}, ${2:substring}, ${3:start}$0)"
+    ]
+  ],
+  "StringBuilderInsert": [
+    "Inserts value at the given 1-based position in the StringBuilder buffer.",
+    [
+      "(${1:stringBuilder}, ${2:position}, ${3:value}$0)",
+      "(${1:stringBuilder}, ${2:position}, ${3:value}$0)"
+    ]
+  ],
+  "StringBuilderLeft": [
+    "No description available.",
+    [
+      "(${1:stringBuilder}, ${2:count}$0)",
+      "(${1:stringBuilder}, ${2:count}$0)"
+    ]
+  ],
+  "StringBuilderMid": [
+    "No description available.",
+    [
+      "(${1:stringBuilder}, ${2:start}$0)",
+      "(${1:stringBuilder}, ${2:start}, ${3:count}$0)"
+    ]
+  ],
+  "StringBuilderNew": [
+    "Create a new StringBuilder instance or wrap an existing Java StringBuilder.",
+    [
+      "($0)",
+      "(${1:value}, ${2:capacity}$0)"
+    ]
+  ],
+  "StringBuilderPrepend": [
+    "Inserts the string representation of value at the beginning (position 1) of the buffer.",
+    [
+      "(${1:stringBuilder}, ${2:value}$0)",
+      "(${1:stringBuilder}, ${2:value}$0)"
+    ]
+  ],
+  "StringBuilderReplace": [
+    "Replaces characters from start to end (1-based, inclusive) with value.",
+    [
+      "(${1:stringBuilder}, ${2:start}, ${3:end}, ${4:value}$0)",
+      "(${1:stringBuilder}, ${2:start}, ${3:end}, ${4:value}$0)"
+    ]
+  ],
+  "StringBuilderReverse": [
+    "Reverses the contents of the StringBuilder buffer in place.",
+    [
+      "(${1:stringBuilder}$0)",
+      "(${1:stringBuilder}$0)"
+    ]
+  ],
+  "StringBuilderRight": [
+    "No description available.",
+    [
+      "(${1:stringBuilder}, ${2:count}$0)",
+      "(${1:stringBuilder}, ${2:count}$0)"
+    ]
+  ],
+  "StringBuilderStartsWith": [
+    "No description available.",
+    [
+      "(${1:stringBuilder}, ${2:substring}$0)",
+      "(${1:stringBuilder}, ${2:substring}$0)"
+    ]
+  ],
+  "StringBuilderTrim": [
+    "Strips leading and trailing whitespace from the buffer in place.",
+    [
+      "(${1:stringBuilder}$0)",
+      "(${1:stringBuilder}$0)"
+    ]
+  ],
   "StringEach": [
     "Iterates all the elements in a string and runs the passed callback on each character",
     [
       "(${1:list}, ${2:callback}$0)",
       "(${1:list}, ${2:callback}, ${3:delimiter}, ${4:includeEmptyFields}, ${5:multiCharacterDelimiter}, ${6:parallel}, ${7:maxThreads}, ${8:ordered}, ${9:virtual}$0)"
+    ]
+  ],
+  "StringEndsWith": [
+    "Determines whether a string ends with a specified suffix.",
+    [
+      "(${1:string}, ${2:substring}$0)",
+      "(${1:string}, ${2:substring}$0)"
+    ]
+  ],
+  "StringEndsWithNoCase": [
+    "Determines whether a string ends with a specified suffix, case-insensitive.",
+    [
+      "(${1:string}, ${2:substring}$0)",
+      "(${1:string}, ${2:substring}$0)"
     ]
   ],
   "StringEvery": [
@@ -4939,6 +5331,20 @@
     [
       "(${1:list}$0)",
       "(${1:list}, ${2:sortType}, ${3:sortOrder}, ${4:delimiter}, ${5:includeEmptyFields}, ${6:multiCharacterDelimiter}, ${7:localeSensitive}, ${8:callback}$0)"
+    ]
+  ],
+  "StringStartsWith": [
+    "Determines whether a string starts with a specified prefix.",
+    [
+      "(${1:string}, ${2:substring}$0)",
+      "(${1:string}, ${2:substring}$0)"
+    ]
+  ],
+  "StringStartsWithNoCase": [
+    "Determines whether a string starts with a specified prefix, case-insensitive.",
+    [
+      "(${1:string}, ${2:substring}$0)",
+      "(${1:string}, ${2:substring}$0)"
     ]
   ],
   "StripCR": [
@@ -5088,6 +5494,13 @@
       "(${1:structure}, ${2:delimiter}$0)"
     ]
   ],
+  "StructKeySet": [
+    "Build a Set containing the keys of a Struct.",
+    [
+      "(${1:struct}$0)",
+      "(${1:struct}, ${2:type}$0)"
+    ]
+  ],
   "StructKeyTranslate": [
     "Converts a struct with dot-notated keys in to an unflattened version",
     [
@@ -5165,6 +5578,13 @@
       "(${1:struct}$0)"
     ]
   ],
+  "StructValueSet": [
+    "Build a Set containing the values of a Struct, deduplicating automatically.",
+    [
+      "(${1:struct}$0)",
+      "(${1:struct}, ${2:type}$0)"
+    ]
+  ],
   "SystemCacheClear": [
     "Clears many of the caches in the runtime.",
     [
@@ -5176,7 +5596,7 @@
     "Executes a system process/command on the underlying OS.",
     [
       "(${1:name}$0)",
-      "(${1:name}, ${2:arguments}, ${3:timeout}, ${4:terminateOnTimeout}, ${5:directory}, ${6:output}, ${7:error}$0)"
+      "(${1:name}, ${2:arguments}, ${3:timeout}, ${4:terminateOnTimeout}, ${5:directory}, ${6:output}, ${7:error}, ${8:inheritEnvironment}, ${9:environment}$0)"
     ]
   ],
   "SystemOutput": [
@@ -5191,6 +5611,13 @@
     [
       "(${1:number}$0)",
       "(${1:number}$0)"
+    ]
+  ],
+  "ThreadCurrent": [
+    "Returns the currently executing thread.",
+    [
+      "($0)",
+      "($0)"
     ]
   ],
   "ThreadInterrupt": [
@@ -5264,7 +5691,7 @@
     ]
   ],
   "ToModifiable": [
-    "Convert an array, struct or query to its Modifiable counterpart.",
+    "Convert an array, struct, query or set to its Modifiable counterpart.",
     [
       "(${1:value}$0)",
       "(${1:value}$0)"
@@ -5284,6 +5711,13 @@
       "(${1:cfvar}, ${2:javascriptvar}$0)"
     ]
   ],
+  "ToSet": [
+    "Convert a collection into a Set, deduplicating automatically.",
+    [
+      "(${1:value}$0)",
+      "(${1:value}, ${2:type}, ${3:delimiter}$0)"
+    ]
+  ],
   "ToString": [
     "Converts a value to a string.",
     [
@@ -5292,7 +5726,7 @@
     ]
   ],
   "ToUnmodifiable": [
-    "Convert an array, struct or query to its Unmodifiable counterpart.",
+    "Convert an array, struct, query or set to its Unmodifiable counterpart.",
     [
       "(${1:value}$0)",
       "(${1:value}$0)"
@@ -5334,10 +5768,10 @@
     ]
   ],
   "Trim": [
-    "Trim whitespace from the beginning and end of a string",
+    "Trim whitespace from the beginning and end of a string.",
     [
       "(${1:string}$0)",
-      "(${1:string}$0)"
+      "(${1:string}, ${2:chars}$0)"
     ]
   ],
   "TrueFalseFormat": [
@@ -5396,8 +5830,85 @@
       "(${1:string}, ${2:hashed}$0)"
     ]
   ],
+  "WatcherExists": [
+    "Checks whether a named watcher is currently registered in the watcher service.",
+    [
+      "(${1:name}$0)",
+      "(${1:name}$0)"
+    ]
+  ],
+  "WatcherGet": [
+    "Retrieves a registered watcher instance by name.",
+    [
+      "(${1:name}$0)",
+      "(${1:name}$0)"
+    ]
+  ],
+  "WatcherGetAll": [
+    "Retrieves all registered watchers as a struct keyed by watcher name.",
+    [
+      "($0)",
+      "($0)"
+    ]
+  ],
+  "WatcherList": [
+    "Lists the names of all watchers currently registered in the watcher service.",
+    [
+      "($0)",
+      "($0)"
+    ]
+  ],
+  "WatcherNew": [
+    "Creates and registers a new watcher instance in the watcher service.",
+    [
+      "(${1:paths}, ${2:listener}$0)",
+      "(${1:name}, ${2:paths}, ${3:listener}, ${4:recursive}, ${5:debounce}, ${6:throttle}, ${7:atomicWrites}, ${8:delay}, ${9:errorThreshold}, ${10:force}$0)"
+    ]
+  ],
+  "WatcherRestart": [
+    "Restarts a registered watcher by performing {@code stop()} then {@code start()}.",
+    [
+      "(${1:name}$0)",
+      "(${1:name}$0)"
+    ]
+  ],
+  "WatcherShutdown": [
+    "Stops and removes a registered watcher from the watcher registry.",
+    [
+      "(${1:name}$0)",
+      "(${1:name}$0)"
+    ]
+  ],
+  "WatcherShutdownAll": [
+    "Stops all watchers and removes them from the watcher registry.",
+    [
+      "($0)",
+      "(${1:force}$0)"
+    ]
+  ],
+  "WatcherStart": [
+    "Starts a registered watcher by name.",
+    [
+      "(${1:name}$0)",
+      "(${1:name}$0)"
+    ]
+  ],
+  "WatcherStop": [
+    "Stops a registered watcher by name.",
+    [
+      "(${1:name}$0)",
+      "(${1:name}, ${2:force}$0)"
+    ]
+  ],
+  "WatcherStopAll": [
+    "Stops all registered watchers in the watcher service.",
+    [
+      "($0)",
+      "(${1:force}$0)"
+    ]
+  ],
   "Week": [
-    "Returns the numeric week within a year of a date object",
+    "Returns the numeric week within a year of a date object. If a string is provided as the argument, an attempt will be made to parse it as a date. If parsing fails, an error will be thrown.",
     [
       "($0)",
       "(${1:date}, ${2:timezone}, ${3:locale}$0)"
@@ -5470,7 +5981,7 @@
     "Return new array",
     [
       "($0)",
-      "(${1:XML}$0)"
+      "(${1:XML}, ${2:caseSensitive}, ${3:validator}, ${4:lenient}$0)"
     ]
   ],
   "XMLSearch": [
@@ -5484,7 +5995,7 @@
     "Get XML values according to given xPath query",
     [
       "(${1:XML}, ${2:XSL}$0)",
-      "(${1:XML}, ${2:XSL}, ${3:parameters}$0)"
+      "(${1:XML}, ${2:XSL}, ${3:parameters}, ${4:XMLSettings}$0)"
     ]
   ],
   "XMLValidate": [
@@ -5495,7 +6006,7 @@
     ]
   ],
   "Year": [
-    "Returns the year of a date object",
+    "Returns the year of a date object. If a string is provided as the argument, an attempt will be made to parse it as a date. If parsing fails, an error will be thrown.",
     [
       "($0)",
       "(${1:date}, ${2:timezone}, ${3:locale}$0)"
@@ -5557,6 +6068,13 @@
       "(${1:text}, ${2:options}$0)"
     ]
   ],
+  "aiDecisionStore": [
+    "Creates an `IDecisionStore` — the backing store for durable human-approval grants (`approve_always` and `approve_session`) used by [Human-in-the-Loop](../../../main-components/human-in-the-loop.md).",
+    [
+      "($0)",
+      "(${1:store}, ${2:config}$0)"
+    ]
+  ],
   "aiDocuments": [
     "Main entry point for document loading in AI workflows. Returns a fluent document loader for flexible configuration and execution.",
     [
@@ -5569,6 +6087,34 @@
     [
       "(${1:input}$0)",
       "(${1:input}, ${2:params}, ${3:options}$0)"
+    ]
+  ],
+  "aiFence": [
+    "Wraps untrusted content in tamper-resistant boundary markers so the model treats it as **data**, never instructions — the core defense against indirect prompt injection from RAG documents, tool/MCP output, and web pages.",
+    [
+      "($0)",
+      "(${1:content}, ${2:label}, ${3:withPreamble}$0)"
+    ]
+  ],
+  "aiGateway": [
+    "Resolves an `IGateway` instance by name — a gateway bx-ai ships in core, or one registered by an external gateway module.",
+    [
+      "($0)",
+      "(${1:name}, ${2:options}, ${3:register}, ${4:module}$0)"
+    ]
+  ],
+  "aiGatewayRegistry": [
+    "Returns the singleton `GatewayRegistry` — the extension point external gateway modules use to make their gateway resolvable by `aiGateway()`.",
+    [
+      "($0)",
+      "($0)"
+    ]
+  ],
+  "aiGatewaySession": [
+    "Wires one `AiAgent` to one-or-more `IGateway` instances for inbound message handling. Returns an unstarted `GatewaySession` — call `.start()` to begin accepting inbound messages.",
+    [
+      "($0)",
+      "(${1:agent}, ${2:gateways}, ${3:policy}, ${4:maxQueueDepth}, ${5:checkpointer}$0)"
     ]
   ],
   "aiGlobalSkills": [
@@ -5830,6 +6376,48 @@
       "(${1:year}, ${2:month}, ${3:day}, ${4:hour}, ${5:minute}, ${6:second}, ${7:millisecond}, ${8:timezone}$0)"
     ]
   ],
+  "dateSetDay": [
+    "Sets the day of the month on a date object",
+    [
+      "(${1:date}, ${2:value}$0)",
+      "(${1:date}, ${2:value}$0)"
+    ]
+  ],
+  "dateSetHour": [
+    "Sets the hour on a date object",
+    [
+      "(${1:date}, ${2:value}$0)",
+      "(${1:date}, ${2:value}$0)"
+    ]
+  ],
+  "dateSetMinute": [
+    "Sets the minute on a date object",
+    [
+      "(${1:date}, ${2:value}$0)",
+      "(${1:date}, ${2:value}$0)"
+    ]
+  ],
+  "dateSetMonth": [
+    "Sets the month on a date object",
+    [
+      "(${1:date}, ${2:value}$0)",
+      "(${1:date}, ${2:value}$0)"
+    ]
+  ],
+  "dateSetSecond": [
+    "Sets the second on a date object",
+    [
+      "(${1:date}, ${2:value}$0)",
+      "(${1:date}, ${2:value}$0)"
+    ]
+  ],
+  "dateSetYear": [
+    "Sets the year on a date object",
+    [
+      "(${1:date}, ${2:value}$0)",
+      "(${1:date}, ${2:value}$0)"
+    ]
+  ],
   "echo": [
     "Print a message with line break to the buffer",
     [
@@ -5970,11 +6558,39 @@
       "(${1:value}$0)"
     ]
   ],
+  "tomlDeserialize": [
+    "Parses a TOML string into a BoxLang struct.",
+    [
+      "(${1:toml}$0)",
+      "(${1:toml}, ${2:options}$0)"
+    ]
+  ],
+  "tomlDeserializeFile": [
+    "Reads a TOML file and parses it into a BoxLang struct.",
+    [
+      "(${1:path}$0)",
+      "(${1:path}, ${2:charset}, ${3:options}$0)"
+    ]
+  ],
+  "tomlSerialize": [
+    "Converts a BoxLang struct into TOML text. If `filepath` is provided, the TOML is written to that file instead and the function returns `null`.",
+    [
+      "(${1:content}$0)",
+      "(${1:content}, ${2:filepath}, ${3:charset}, ${4:options}$0)"
+    ]
+  ],
+  "tomlSerializeFile": [
+    "Converts a BoxLang struct into TOML and writes it to a file. This is the explicit, filepath-required counterpart to `tomlSerialize()`.",
+    [
+      "(${1:content}, ${2:filepath}$0)",
+      "(${1:content}, ${2:filepath}, ${3:charset}, ${4:options}$0)"
+    ]
+  ],
   "writeDump": [
     "Outputs the contents of a variable (simple or complex) of any type for debugging purposes to a specific output location.",
     [
       "($0)",
-      "(${1:var}, ${2:label}, ${3:top}, ${4:expand}, ${5:abort}, ${6:output}, ${7:format}, ${8:showUDFs}$0)"
+      "(${1:var}, ${2:label}, ${3:depth}, ${4:maxRows}, ${5:top}, ${6:expand}, ${7:abort}, ${8:output}, ${9:format}, ${10:showUDFs}$0)"
     ]
   ]
 }

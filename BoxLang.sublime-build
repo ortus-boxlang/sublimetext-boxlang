@@ -25,6 +25,14 @@
             "args": { "scope": "project" }
         },
         {
+            "name": "BoxLang: Check Syntax",
+            "target": "boxlang_check"
+        },
+        {
+            "name": "BoxLang: Check Project",
+            "target": "boxlang_check_project"
+        },
+        {
             "name": "BoxLang: Feature Audit",
             "target": "boxlang_audit"
         }

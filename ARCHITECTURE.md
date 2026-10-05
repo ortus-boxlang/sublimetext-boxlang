@@ -46,7 +46,7 @@ The BoxLang Sublime Text package provides comprehensive language support for [Bo
 |------------|---------|----------|
 | Sublime Text 4 (Build 4180+) | Editor platform | Yes |
 | Python 3.12+ | Plugin runtime | Yes (bundled with ST) |
-| BoxLang CLI v1.13.0+ | AST parsing, formatting, compilation | Yes (for full features) |
+| BoxLang CLI v1.17.0+ | AST parsing, syntax checking, formatting, compilation | Yes (for full features) |
 
 ---
 
@@ -471,7 +471,7 @@ The script covers both core and all official modules:
 
 ```
 boxlang-language/reference/
-    built-in-functions/          → 563 core BIFs
+    built-in-functions/          → 639 core BIFs
     components/                  → 49 core tags
     types/                       → member functions
 

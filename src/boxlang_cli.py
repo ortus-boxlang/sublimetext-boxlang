@@ -14,6 +14,8 @@ _boxlang_executable = 'boxlang'
 _detection_complete = False
 _detection_callbacks = []
 JSON_DECODE_ERROR = getattr(json, 'JSONDecodeError', ValueError)
+CHECK_MIN_VERSION = (1, 17, 0)
+CHECK_EXTENSIONS = ('.bx', '.bxs', '.bxm', '.cfc', '.cfm', '.cfs')
 
 
 def _decode_output(output):
@@ -49,10 +51,11 @@ def initialize():
     _boxlang_executable = _find_boxlang_executable()
     threading.Thread(target=_detect_boxlang, daemon=True).start()
 
-def _run_command(args, timeout=30):
+def _run_command(args, timeout=30, cwd=None):
     """Run a subprocess command compatible with Python 3.3."""
     proc = subprocess.Popen(
         args,
+        cwd=cwd,
         stdout=subprocess.PIPE,
         stderr=subprocess.PIPE,
         startupinfo=process.get_startupinfo(),
@@ -110,6 +113,79 @@ def get_version():
 def get_executable():
     """Return the BoxLang executable path."""
     return _boxlang_executable
+
+def version_tuple(version):
+    """Convert a version string such as '1.18.0+12' into a (major, minor, patch) tuple."""
+    import re
+    match = re.search('(\\d+)\\.(\\d+)\\.(\\d+)', version or '')
+    if not match:
+        return None
+    return tuple(int(part) for part in match.groups())
+
+def supports_check():
+    """Return True when the detected BoxLang version provides `boxlang check` (1.17.0+)."""
+    parsed = version_tuple(_boxlang_version)
+    return parsed is not None and parsed >= CHECK_MIN_VERSION
+
+def is_checkable_file(file_path):
+    """Return True when `boxlang check` can validate the given file."""
+    return bool(file_path) and file_path.lower().endswith(CHECK_EXTENSIONS)
+
+def parse_check_output(stdout):
+    """
+    Parse `boxlang check --format json` output.
+
+    Returns a list of {file, valid, issues} records, or None when the output is not valid JSON.
+    Each issue is {message, line, column}.
+    """
+    try:
+        data = json.loads(stdout)
+    except (JSON_DECODE_ERROR, TypeError):
+        return None
+    if isinstance(data, dict):
+        data = [data]
+    if not isinstance(data, list):
+        return None
+    return data
+
+def run_check(file_path, callback=None):
+    """
+    Run `boxlang check --format json` on a file to find syntax errors without executing it.
+
+    Args:
+        file_path: Path to a .bx, .bxs, .bxm, .cfc, .cfm or .cfs file
+        callback: Optional callback function(issues, error). `issues` is a list of
+            {message, line, column} dicts (empty when the file is valid).
+
+    Returns:
+        If callback is None: (issues, error_string) tuple
+        If callback provided: runs asynchronously
+    """
+
+    def _run():
+        try:
+            returncode, stdout, stderr = _run_command([_boxlang_executable, 'check', '--format', 'json', file_path], timeout=30)
+            # Exit code 1 means "syntax errors found", so JSON output is authoritative.
+            records = parse_check_output(stdout)
+            if records is None:
+                result = (None, (stderr.strip() or stdout.strip() or 'boxlang check returned no output'))
+            else:
+                issues = []
+                for record in records:
+                    issues.extend(record.get('issues') or [])
+                result = (issues, None)
+        except subprocess.TimeoutExpired:
+            result = (None, 'BoxLang syntax check timed out')
+        except Exception as e:
+            result = (None, str(e))
+        if callback:
+            callback(*result)
+        else:
+            return result
+    if callback:
+        threading.Thread(target=_run, daemon=True).start()
+    else:
+        return _run()
 
 def run_ast(file_path, callback=None):
     """

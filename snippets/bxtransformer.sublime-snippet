@@ -1,0 +1,9 @@
+<snippet>
+    <content><![CDATA[queryExecute( "${1:SELECT * FROM table}", [], {
+	datasource : "${2:app}",
+	transformer : ( query, meta ) => ${3:query.toArrayOfStructs()}
+} )${0}]]></content>
+    <tabTrigger>bxtransformer</tabTrigger>
+    <scope>source.boxlang</scope>
+    <description>BoxLang Query Transformer (1.14+)</description>
+</snippet>

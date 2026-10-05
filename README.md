@@ -17,9 +17,9 @@ Comprehensive BoxLang language support for Sublime Text 4. Provides syntax highl
 
 ### Intelligent Completions
 
-- **825+ Built-in Functions** (563 core + 262 module) with parameter hints and snippet insertion
-- **81+ BoxLang Tags** (`bx:` components) (49 core + 32 module) with attribute completions
-- **229 Member Functions** for native types (string, array, struct, query, numeric, datetime, list, xml)
+- **940+ Built-in Functions** (639 core + 303 module) with parameter hints and snippet insertion
+- **86 BoxLang Tags** (`bx:` components) (49 core + 37 module) with attribute completions
+- **370+ Member Functions** for native types (string, array, struct, query, numeric, date, datetime, list, xml)
 - **Dot-Path Completions** for `import`, `new`, and `createObject()` statements
 - **Type-Aware Completions** based on inferred variable types
 - **Component Indexing** with inheritance resolution for project-wide completions
@@ -36,9 +36,12 @@ Comprehensive BoxLang language support for Sublime Text 4. Provides syntax highl
 - **Code Formatting** via `boxlang format` CLI
 - **Build System** — Run, compile, debug, and audit BoxLang files
 - **Go to Definition** — Command Palette navigation to classes and functions
+- **Go to Spec / Property** — Quick panels for TestBox `describe()` / `it()` names and `property` declarations
+- **Syntax Check** — `boxlang check` on save (and optionally while typing) with squiggles, gutter icons, inline error annotations, an error panel, and F4/Shift+F4 navigation
+- **TestBox Runner** — Run the current bundle, the spec at the cursor, or all tests with the BoxLang runner (or a project web runner) and see failures inline
 - **Error Panel** — Parse error display with F4/Shift+F4 navigation
 - **Status Bar** — Version, indexing progress, and error counts
-- **Code Snippets** — 10 built-in snippets for common patterns
+- **Code Snippets** — 19 built-in snippets for common patterns, including sets, ranges, inner classes, query transformers and scheduled tasks
 
 ---
 
@@ -47,7 +50,7 @@ Comprehensive BoxLang language support for Sublime Text 4. Provides syntax highl
 | Dependency | Version | Purpose |
 |------------|---------|---------|
 | Sublime Text | 4 (Build 4180+) | Editor platform |
-| BoxLang | 1.13.0+ | CLI for parsing, formatting, compilation |
+| BoxLang | 1.17.0+ | CLI for parsing, syntax checking, formatting, compilation |
 | Python | 3.11+ | Plugin runtime (bundled with Sublime Text) |
 
 > **Note:** Syntax highlighting works without BoxLang installed. Full feature set requires the BoxLang CLI available in your PATH.
@@ -115,7 +118,79 @@ Re-run the wizard anytime: `BoxLang: Run Setup Wizard` (Command Palette)
 | **Run with Debug** | `boxlang --bx-debug "$file"` | Run with Debug output |
 | **Compile File** | `boxlang compile --source "$file" --target "./bin"` | Compile single file |
 | **Compile Project** | `boxlang compile --source "$file_path" --target "./bin"` | Compile entire project |
+| **Check Syntax** | `boxlang check "$file"` | Validate syntax without running the file (BoxLang 1.17+) |
+| **Check Project** | `boxlang check --source "$project"` | Validate every file in the project (BoxLang 1.17+) |
 | **Feature Audit** | `boxlang featureaudit --source "$file_path"` | Audit CFML→BoxLang compatibility |
+
+---
+
+## Navigating Symbols
+
+| Where | What you get |
+|-------|--------------|
+| `Goto Symbol` (`Cmd/Ctrl+R`) | Classes (including inner and local classes) and functions, in script and `bx:function` tag form |
+| `Goto Anything` > `@` | Same list, filtered as you type |
+| `BoxLang: Go to Property` | Every `property` declaration in the file. Handles `property string name;`, `property name="x" inject="y";` and `<bx:property name="x">` |
+| `BoxLang: Go to TestBox Spec or Suite` | Every `describe()` / `it()` style call and xUnit test function in the file |
+
+Properties and spec names are listed through commands rather than Goto Symbol, because the grammar scopes cannot tell a property name from its attributes (`inject`, `type`) or a spec name from any other string.
+
+---
+
+## Syntax Checking
+
+The package runs [`boxlang check`](https://boxlang.ortusbooks.com/getting-started/ide-tooling/boxlang-syntax-check) (BoxLang 1.17+) to find syntax errors without executing your code.
+
+- **On save** (default): errors are underlined, listed in the error panel, and counted in the status bar. Use `F4` / `Shift+F4` to jump between them.
+- **While typing** (opt-in): set `boxlang_check_on_type` to `true`. The unsaved buffer is checked after a pause of `boxlang_check_on_type_delay_ms` (default 1000 ms), without opening the panel.
+- **On demand**: run `BoxLang: Check Syntax` from the Command Palette, or pick the `BoxLang: Check Syntax` build variant for clickable errors in the build output. `BoxLang: Check Project` (command and build variant) checks every file in the project.
+- **Where errors show**: a squiggle, a gutter icon, the first line of the message inline at the end of the line, a hover popup on the gutter icon, and the full text in the error panel. Turn the icon or inline text off with `boxlang_error_gutter_icons` and `boxlang_error_inline_annotations`.
+- Works for `.bx`, `.bxs`, `.bxm`, and the CFML extensions (`.cfc`, `.cfm`, `.cfs`) when CFML fallback is enabled.
+
+If your BoxLang is older than 1.17 the check is skipped and the status bar tells you why.
+
+---
+
+## TestBox
+
+Run tests from the Command Palette (`BoxLang: TestBox ...`):
+
+| Command | Runs |
+|---------|------|
+| `TestBox Run Bundle (Current File)` | The bundle for the current file |
+| `TestBox Run Spec at Cursor` | The `it()` / `test()` / `function testXxx()` above the cursor (or the enclosing `describe()` suite) |
+| `TestBox Run All Tests` | Everything in `directory` (default `tests.specs`) |
+| `TestBox Run Last` | Repeats the previous run |
+
+By default tests run through TestBox's **BoxLang runner** (`testbox/system/runners/BoxLangRunner.bx`, TestBox 7+). It is auto-detected from your project; set `runner_path` if yours lives elsewhere. Results appear in an output panel with clickable `file:line` failures, and failing lines in open files get a squiggle, gutter icon and inline message.
+
+### Jump to specs and suites
+
+`BoxLang: Go to TestBox Spec or Suite` lists every `describe()`, `feature()`, `story()`, `it()`, `test()`, `then()` and xUnit `function testXxx()` in the current file. The list previews as you move through it and jumps on Enter (Escape restores your cursor).
+
+### Using a web runner (per project)
+
+A web runner is opt-in per project. Put the runner URL in your `.sublime-project`:
+
+```json
+{
+  "settings": {
+    "boxlang_testbox": {
+      "http_runner_url": "http://localhost:8080/tests/runner.bxm"
+    }
+  }
+}
+```
+
+Tests then run over HTTP with `reporter=json` (plus `bundles`, `directory`, `testSpecs` or `testSuites` as needed) and the results are shown the same way.
+
+| `boxlang_testbox` key | Default | Description |
+|-----------------------|---------|-------------|
+| `runner_path` | `""` | Path to `BoxLangRunner.bx`, relative to the project root. Empty = auto-detect |
+| `http_runner_url` | `""` | Web runner URL. Empty = use the BoxLang runner |
+| `directory` | `"tests.specs"` | Dot-path directory used by Run All Tests |
+| `extra_args` | `[]` | Extra BoxLang runner arguments, e.g. `["--labels=unit"]` |
+| `timeout` | `300` | Seconds to wait for a run |
 
 ---
 
@@ -123,7 +198,7 @@ Re-run the wizard anytime: `BoxLang: Run Setup Wizard` (Command Palette)
 
 Open settings: `Preferences: BoxLang Settings` (Command Palette)
 
-> **Note:** The table below shows frequently used settings. For the complete list (28 settings), see `Preferences: BoxLang Settings` in Sublime Text or [BoxLang.sublime-settings](BoxLang.sublime-settings).
+> **Note:** The table below shows frequently used settings. For the complete list (30 settings), see `Preferences: BoxLang Settings` in Sublime Text or [BoxLang.sublime-settings](BoxLang.sublime-settings).
 
 ### Key Settings
 
@@ -136,6 +211,12 @@ Open settings: `Preferences: BoxLang Settings` (Command Palette)
 | `boxlang_class_completion_names` | `"basic"` | Include return type: `basic`, `full` |
 | `boxlang_instantiated_component_completions` | `true` | Variable-to-component mapping completions |
 | `boxlang_auto_insert_closing_tag` | `false` | Auto-insert closing `bx:` tag on `>` |
+| `boxlang_check_on_save` | `true` | Run `boxlang check` when a file is saved |
+| `boxlang_check_show_panel` | `true` | Open the error panel when a check finds errors |
+| `boxlang_check_on_type` | `false` | Also check while typing (debounced, checks the unsaved buffer) |
+| `boxlang_check_on_type_delay_ms` | `1000` | Delay after the last keystroke before checking (min 100) |
+| `boxlang_error_gutter_icons` | `true` | Gutter icon on lines with syntax errors |
+| `boxlang_error_inline_annotations` | `true` | Show the first line of each error at the end of the line |
 | `boxlang_format_on_save` | `false` | Auto-format on save |
 | `boxlang_auto_compile_on_save` | `false` | Auto-compile to `./bin` on save |
 | `boxlang_compile_target` | `"./bin"` | Compilation target directory |
@@ -184,12 +265,50 @@ Add to your `.sublime-project` file:
 | `bxforeach` | For-in loop |
 | `bxif` | If statement |
 | `bxscript` | `<bx:script>` block |
+| `bxlocalclass` | Local or inner class (1.14+) |
+| `bxabstract` | Abstract class (1.14+) |
+| `bxset` | Set literal (1.14+) |
+| `bxrange` | Range (1.14+) |
+| `bxclassmap` | Class reference as constructor, `map( User )` (1.14+) |
+| `bxtransformer` | `queryExecute` with a query transformer (1.14+) |
+| `bxscheduler` | `schedulerNew()` with a server-fixed task (1.18+) |
+| `bxtask` | Scheduled task with `.onOneServer()` (1.18+) |
+| `bxclassintercept` | Class instantiation interception point (1.18+) |
+
+---
+
+## Trying the Package Locally
+
+`scripts/local_smoke_test.py` checks the package against a **real** BoxLang (and optionally TestBox) install before you open Sublime Text:
+
+```bash
+# Everything it can find on PATH
+python3 scripts/local_smoke_test.py
+
+# Explicit paths, a web runner, and linking the package into Sublime Text
+python3 scripts/local_smoke_test.py \
+  --boxlang ~/.bvm/current/bin/boxlang \
+  --testbox /path/to/testbox \
+  --http-url http://localhost:8080/tests/runner.bxm \
+  --install
+```
+
+| Step | What it verifies |
+|------|------------------|
+| 1 | Python compiles, JSON, XML and settings files parse, the unit tests pass |
+| 2 | BoxLang is installed and 1.17+ |
+| 3 | `boxlang check --format json` output is parsed for a valid and an invalid file |
+| 4 | The build variant `file_regex` matches real `boxlang check` text output, for a file and a project |
+| 5 | The TestBox BoxLang runner writes a JSON report the package can read, failures carry a file and line, and `--filter-specs` runs a single spec (needs TestBox 7+) |
+| 6 | A web runner returns `reporter=json` output the package can read (only with `--http-url`) |
+
+Steps that need something you do not have (TestBox, a web runner) are skipped. The script exits 1 if anything fails, and finishes by printing a checklist of manual checks to run inside Sublime Text. `--install` symlinks the package into your Sublime Text `Packages` folder as `BoxLang`.
 
 ---
 
 ## Running Tests
 
-The package includes a comprehensive test suite using pytest and TestBox-style expectations (236 tests across 15 files).
+The package includes a comprehensive test suite using pytest and TestBox-style expectations (321 tests across 19 files).
 
 ### Quick Start
 
@@ -386,8 +505,8 @@ Completion data (BIFs, tags, member functions, and inline doc parameters) is gen
 
 | File | Contents |
 | ---- | -------- |
-| `boxlang_functions.json` | 825+ BIF names → description + snippet pairs |
-| `boxlang_tags.json` | 81+ tag names → required/optional attribute lists |
+| `boxlang_functions.json` | 940+ BIF names → description + snippet pairs |
+| `boxlang_tags.json` | 86 tag names → required/optional attribute lists |
 | `boxlang_member_functions.json` | Member methods per type (string, array, struct, …) |
 | `boxlang_function_params.json` | Full parameter data used by F1/hover doc popups |
 
@@ -425,7 +544,7 @@ Parsing BIF files...
   compat-cfml: +40 BIFs
   image-manipulation: +55 BIFs
   ...
-Found 825 BIFs total (563 core + 262 module)
+Found 942 BIFs total (639 core + 303 module)
 ```
 
 Check `[warn]` lines in stderr — they indicate markdown files the parser could not extract a
@@ -486,13 +605,14 @@ git commit -m "chore: update completion data from boxlang-docs"
 ### Phase 2 (Complete)
 
 - [x] Syntax highlighting (`.bx`, `.bxs`, `.bxm`)
-- [x] 825+ BIF, 81+ tag, and 229 member function completions
+- [x] 940+ BIF, 86 tag, and 370+ member function completions
 - [x] Dot-path and type-aware completions
 - [x] Component indexing with inheritance resolution
 - [x] Inline documentation (F1 popup, hover, completion docs)
 - [x] Code formatting via `boxlang format`
 - [x] Build system (run, compile, debug, audit)
 - [x] Error panel with F4/Shift+F4 navigation
+- [x] Syntax checking via `boxlang check`
 - [x] Type inference engine (medium depth)
 - [x] Go-to-definition via Command Palette
 - [x] Status bar integration (version, indexing, errors)

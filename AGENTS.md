@@ -17,7 +17,7 @@ The package **requires** the BoxLang CLI for core features:
 - **Executable:** `boxlang` (configurable via `boxlang_executable_path` setting)
 - **Detection:** Runs `boxlang --version` on plugin load in background thread
 - **Location:** Typically installed via BVM at `~/.bvm/current/bin/boxlang`
-- **Version:** v1.13.0+54 (current detected)
+- **Version:** requires BoxLang 1.17.0+ (`boxlang check`); latest verified release is 1.18.0
 
 ### CLI Commands Used
 | Command | Purpose |
@@ -25,6 +25,7 @@ The package **requires** the BoxLang CLI for core features:
 | `boxlang --version` | Version detection |
 | `boxlang --bx-printast <file>` | AST parsing for `.bx`/`.bxs` |
 | `boxlang --bx-printast --bx-code "..."` | AST parsing from string (for `<bx:script>` blocks) |
+| `boxlang check --format json <file>` | Syntax check without execution (1.17+) |
 | `boxlang format <file>` | Code formatting |
 | `boxlang compile --source <src> --target <tgt>` | Compilation to bytecode |
 | `boxlang --bx-debug <file>` | Run with Debug |
@@ -58,6 +59,9 @@ sublimetext-boxlang/
 │   ├── component_parser/ast_parser.py # AST parser for .bx/.bxs
 │   ├── component_parser/tag_parser.py # Tag parser for .bxm
 │   ├── error_panel.py                # Parse error display with F4 navigation
+│   ├── syntax_check.py               # `boxlang check` on save / while typing
+│   ├── testbox_runner.py             # TestBox runs (BoxLang CLI runner or web runner) + results
+│   ├── symbols.py                    # Go to Spec/Suite and Go to Property quick panels
 │   ├── type_resolver.py              # Medium-depth type inference engine
 │   ├── status_bar.py                 # Status bar (version, indexing, errors)
 │   ├── goto_boxlang_file.py          # Go-to-definition (files + URLs)
@@ -71,9 +75,9 @@ sublimetext-boxlang/
 │       ├── plugin.py                 # BoxlangPlugin base class
 │       ├── basecompletions/__init__.py # BIFs, tags, member functions (JSON-driven)
 │       ├── basecompletions/json/     # Completion data files
-│       │   ├── boxlang_tags.json     # 41 tags
-│       │   ├── boxlang_functions.json # 560 BIFs
-│       │   └── boxlang_member_functions.json # 72 member functions
+│       │   ├── boxlang_tags.json     # 86 tags
+│       │   ├── boxlang_functions.json # 940+ BIFs
+│       │   └── boxlang_member_functions.json # 370+ member functions
 │       ├── boxdocs/__init__.py       # URL-based inline docs (boxlang.ortusbooks.com)
 │       ├── classes/__init__.py       # Indexed component variable completions
 │       ├── dotpaths/__init__.py      # Import/new/createObject dot-path completions
@@ -118,6 +122,7 @@ sublimetext-boxlang/
 - **`run_ast_code(code)`** — Parses code string via `--bx-code` flag
 - **`run_format(file_path)`** — Runs `boxlang format`
 - **`run_compile(source, target)`** — Runs `boxlang compile`
+- **`run_check(file_path)`** — Runs `boxlang check --format json`, returns `(issues, error)`; `supports_check()` gates on 1.17+
 - **`on_detection_complete(callback)`** — Register callback for detection completion
 - **`is_installed()` / `get_version()` / `get_executable()`** — State accessors
 
@@ -245,10 +250,25 @@ Medium-depth type inference (not full static analysis).
 - Unknown: `"any"`
 
 ### `error_panel.py` — Error Display
-- **`show_errors(view, file_path, errors)`** — Shows errors in output panel + highlights regions
+- **`show_errors(view, file_path, errors, show_panel=True, navigate=True)`** — Fresh output panel + squiggles, gutter icon and inline annotations
+- **`show_gutter_hover(view, point)`** — Popup with the messages for a line
+- **`errors_for_row(view, row)`** — Messages recorded for a zero-based row
 - **`clear_errors(view)`** — Clears error regions
 - **`navigate_next/prev(view)`** — F4/Shift+F4 navigation between errors
 - Error format: `{ "line": N, "column": N, "message": "..." }`
+
+### `testbox_runner.py` — TestBox Integration
+- **`boxlang_testbox_run`** window command, `scope`: `file`, `spec`, `all`, `last`
+- BoxLang runner: `boxlang <testbox>/system/runners/BoxLangRunner.bx --bundles=<dot.path> --filter-specs=<name> --reporter=text --write-json-report=true --reportpath=<tmp>`; the JSON report is read from the temp dir (the runner wipes its report path, so never point it at `tests/results`)
+- Web runner (only when `http_runner_url` is set in project settings): GET `url?reporter=json&bundles=...|directory=...&testSpecs=...`
+- `parse_results()` normalizes the TestResult memento (`bundleStats` > `suiteStats` > `specStats`); `find_target_at()` locates the spec or suite at the cursor
+
+### `symbols.py` — Symbol Navigation
+- **`boxlang_goto_symbol`** text command, `kind`: `spec` or `property`
+- `find_specs(text)` and `find_properties(text)` are pure functions over buffer text. They exist because the grammar scopes cannot distinguish a property name from attribute names (`inject`, `type`) or a spec name from any other string, so Goto Symbol (`metadata/*.tmPreferences`) only covers classes and functions
+
+### `scripts/local_smoke_test.py`
+Runs the CLI integration (`boxlang check`, TestBox runner, optional web runner) against real installs with `sublime` stubbed out. Run it after changing `boxlang_cli.py`, `syntax_check.py` or `testbox_runner.py`.
 
 ### `status_bar.py` — Status Bar
 Displays in Sublime Text status bar:
@@ -290,6 +310,13 @@ All settings in `BoxLang.sublime-settings`:
 | `boxlang_testbox_enabled` | `true` | Enable TestBox integration |
 | `boxlang_auto_compile_on_save` | `false` | Auto-compile to `./bin` on save |
 | `boxlang_compile_target` | `"./bin"` | Compilation target directory |
+| `boxlang_check_on_save` | `true` | Run `boxlang check` on save |
+| `boxlang_check_show_panel` | `true` | Open the error panel on errors |
+| `boxlang_check_on_type` | `false` | Debounced check while typing |
+| `boxlang_check_on_type_delay_ms` | `1000` | Debounce delay in ms (min 100) |
+| `boxlang_error_gutter_icons` | `true` | Gutter icon on error lines |
+| `boxlang_error_inline_annotations` | `true` | Inline message at the end of error lines |
+| `boxlang_testbox` | `{...}` | TestBox runner config (`runner_path`, `http_runner_url`, `directory`, `extra_args`, `timeout`); project settings override |
 | `boxlang_format_on_save` | `false` | Auto-format on save |
 | `boxlang_log_in_file_parse_time` | `false` | Log parse timing |
 | `boxlang_log_doc_time` | `false` | Log doc generation timing |
@@ -321,14 +348,16 @@ All settings in `BoxLang.sublime-settings`:
 | Compile File | `boxlang compile --source "$file" --target "./bin"` |
 | Compile Project | `boxlang compile --source "$file_path" --target "./bin"` |
 | Run with Debug | `boxlang --bx-debug "$file"` |
+| Check Syntax | `boxlang check "$file"` |
+| Check Project | `boxlang check --source "$project"` |
 | Feature Audit | `boxlang featureaudit --source "$file_path"` |
 
 ## Completion Data Generation
 
 Completion JSON files are generated from BoxLang source:
-- **Tags:** Extracted from `boxlang/src/main/java/ortus/boxlang/runtime/components/` (41 components)
-- **BIFs:** Extracted from BoxLang function registry (560 functions)
-- **Member Functions:** Extracted from BoxLang member method registry (72 methods)
+- **Tags:** Extracted from `boxlang/src/main/java/ortus/boxlang/runtime/components/` (86 components incl. modules)
+- **BIFs:** Extracted from BoxLang function registry (940+ functions incl. modules)
+- **Member Functions:** Extracted from BoxLang member method registry (370+ methods)
 
 ## Wizard Flow
 
