@@ -8,18 +8,18 @@ _error_regions = []
 _current_error_index = -1
 _PANEL_NAME = 'boxlang_errors'
 
-def show_errors(view, file_path, errors):
+def show_errors(view, file_path, errors, show_panel=True, navigate=True):
     """Show parse errors in the output panel and highlight regions."""
     global _error_regions, _current_error_index
     _error_regions = []
     _current_error_index = -1
-    panel = view.window().find_output_panel(_PANEL_NAME)
-    if not panel:
-        view.window().create_output_panel(_PANEL_NAME)
-        panel = view.window().find_output_panel(_PANEL_NAME)
+    window = view.window()
+    if not window:
+        return
+    # create_output_panel hands back a fresh panel, so stale errors never accumulate
+    panel = window.create_output_panel(_PANEL_NAME)
     panel.set_syntax_file('Packages/Text/Plain text.tmLanguage')
     panel.settings().set('word_wrap', True)
-    panel.settings().set('read_only', True)
     content = 'BoxLang Parse Errors - {}\n'.format(file_path)
     content += '=' * 60 + '\n\n'
     for i, error in enumerate(errors):
@@ -31,12 +31,23 @@ def show_errors(view, file_path, errors):
         if line > 0:
             pt = view.text_point(line - 1, max(0, col - 1))
             _error_regions.append(sublime.Region(pt, view.line(pt).end()))
-    panel.run_command('append', {'characters': content})
+    panel.run_command('append', {'characters': content, 'force': True})
+    panel.settings().set('read_only', True)
     if _error_regions:
         view.add_regions('boxlang_parse_errors', _error_regions, 'invalid', 'dot', sublime.DRAW_SQUIGGLY_UNDERLINE | sublime.DRAW_NO_FILL | sublime.DRAW_NO_OUTLINE)
-    view.window().run_command('show_panel', {'panel': 'output.{}'.format(_PANEL_NAME)})
-    _current_error_index = 0
-    _navigate_to_error(view)
+    else:
+        view.erase_regions('boxlang_parse_errors')
+    if show_panel:
+        window.run_command('show_panel', {'panel': 'output.{}'.format(_PANEL_NAME)})
+    if navigate:
+        _current_error_index = 0
+        _navigate_to_error(view)
+
+def hide_panel(view):
+    """Hide the error output panel if it is showing."""
+    window = view.window()
+    if window and window.active_panel() == 'output.{}'.format(_PANEL_NAME):
+        window.run_command('hide_panel', {'panel': 'output.{}'.format(_PANEL_NAME)})
 
 def clear_errors(view):
     """Clear all error regions and hide the panel."""

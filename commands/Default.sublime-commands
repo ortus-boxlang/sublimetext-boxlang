@@ -25,6 +25,10 @@
         "command": "boxlang_goto_file"
     },
     {
+        "caption": "BoxLang: Check Syntax",
+        "command": "boxlang_check_syntax"
+    },
+    {
         "caption": "BoxLang: Next Error",
         "command": "boxlang_next_error"
     },

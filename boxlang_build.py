@@ -116,3 +116,21 @@ class BoxlangAuditCommand(sublime_plugin.WindowCommand):
             build_helpers.show_path_error(self.window)
             return
         self.window.run_command('exec', {'shell_cmd': '{} featureaudit --source "{}"'.format(bx_path, file_path)})
+
+
+class BoxlangCheckCommand(sublime_plugin.WindowCommand):
+    """Check the current file for syntax errors with `boxlang check` (BoxLang 1.17+)."""
+
+    def run(self, args=None, **kwargs):
+        view = self.window.active_view()
+        if not view:
+            return
+        file_path = view.file_name()
+        if not file_path:
+            sublime.status_message('BoxLang: Save the file first to check syntax')
+            return
+        bx_path = build_helpers.get_boxlang_path()
+        if not bx_path:
+            build_helpers.show_path_error(self.window)
+            return
+        self.window.run_command('exec', {'shell_cmd': '{} check "{}"'.format(bx_path, file_path), 'file_regex': '^\\s*(.+?): Line: ([0-9]+) Col: ([0-9]+) - (.*)$'})

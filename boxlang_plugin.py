@@ -15,6 +15,7 @@ from .src.inline_documentation import BoxlangInlineDocumentationCommand
 from .src.goto_boxlang_file import BoxlangGotoFileCommand
 from .src.error_panel import BoxlangNextErrorCommand, BoxlangPrevErrorCommand
 from .src.completions import BoxlangUpdateCompletionDocCommand
+from .src.syntax_check import BoxlangCheckSyntaxCommand
 
 
 def plugin_loaded():

@@ -84,6 +84,19 @@
     "boxlang_auto_compile_on_save": false,
     "boxlang_compile_target": "./bin",
 
+    // Syntax checking with `boxlang check` (requires BoxLang 1.17+)
+    // Check the file for syntax errors every time it is saved
+    "boxlang_check_on_save": true,
+
+    // Open the error panel when a check finds errors
+    "boxlang_check_show_panel": true,
+
+    // Also check while typing (debounced). Checks the unsaved buffer.
+    "boxlang_check_on_type": false,
+
+    // Delay in milliseconds after the last keystroke before checking (minimum 100)
+    "boxlang_check_on_type_delay_ms": 1000,
+
     // Auto-format on save
     "boxlang_format_on_save": false,
 

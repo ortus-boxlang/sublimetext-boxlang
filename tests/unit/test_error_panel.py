@@ -28,9 +28,7 @@ class TestErrorPanelShowErrors:
         mock_window = MagicMock()
         mock_panel = MagicMock()
         mock_view.window = MagicMock(return_value=mock_window)
-        mock_window.find_output_panel = MagicMock(return_value=None)
-        mock_window.create_output_panel = MagicMock()
-        mock_window.find_output_panel = MagicMock(side_effect=[None, mock_panel])
+        mock_window.create_output_panel = MagicMock(return_value=mock_panel)
 
         errors = [
             {"line": 10, "column": 5, "message": "Syntax error"}
@@ -48,8 +46,7 @@ class TestErrorPanelShowErrors:
         mock_window = MagicMock()
         mock_panel = MagicMock()
         mock_view.window = MagicMock(return_value=mock_window)
-        mock_window.find_output_panel = MagicMock(side_effect=[None, mock_panel])
-        mock_window.create_output_panel = MagicMock()
+        mock_window.create_output_panel = MagicMock(return_value=mock_panel)
         mock_view.text_point = MagicMock(return_value=100)
         mock_view.line = MagicMock(return_value=MockRegion(100, 150))
 
@@ -72,8 +69,7 @@ class TestErrorPanelShowErrors:
         mock_window = MagicMock()
         mock_panel = MagicMock()
         mock_view.window = MagicMock(return_value=mock_window)
-        mock_window.find_output_panel = MagicMock(side_effect=[None, mock_panel])
-        mock_window.create_output_panel = MagicMock()
+        mock_window.create_output_panel = MagicMock(return_value=mock_panel)
         mock_view.text_point = MagicMock(return_value=100)
         mock_view.line = MagicMock(return_value=MockRegion(100, 150))
 
@@ -96,8 +92,7 @@ class TestErrorPanelShowErrors:
         mock_window = MagicMock()
         mock_panel = MagicMock()
         mock_view.window = MagicMock(return_value=mock_window)
-        mock_window.find_output_panel = MagicMock(side_effect=[None, mock_panel])
-        mock_window.create_output_panel = MagicMock()
+        mock_window.create_output_panel = MagicMock(return_value=mock_panel)
         mock_view.text_point = MagicMock(return_value=100)
         mock_view.line = MagicMock(return_value=MockRegion(100, 150))
 
