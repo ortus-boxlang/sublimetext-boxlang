@@ -7,6 +7,7 @@ import sublime_plugin
 from . import boxlang_cli
 from . import component_index
 from . import utils
+from . import version_info
 _STATUS_KEY_VERSION = 'boxlang_version'
 _STATUS_KEY_INDEXING = 'boxlang_indexing'
 _STATUS_KEY_ERRORS = 'boxlang_errors'
@@ -44,7 +45,7 @@ def _update_status_bar(view):
         return
     version = boxlang_cli.get_version()
     if version:
-        view.set_status(_STATUS_KEY_VERSION, 'BoxLang v{}'.format(version))
+        view.set_status(_STATUS_KEY_VERSION, 'BoxLang v{}{}'.format(version, version_info.status_suffix(view.file_name(), version)))
     elif boxlang_cli.is_installed():
         view.set_status(_STATUS_KEY_VERSION, 'BoxLang: detecting...')
     else:

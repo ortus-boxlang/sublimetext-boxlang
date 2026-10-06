@@ -193,7 +193,13 @@ def boxlang_checks(boxlang_cli, executable):
     version = boxlang_cli.get_version()
     check('BoxLang runs (`boxlang --version`)', boxlang_cli.is_installed(), 'Could not run {}'.format(executable))
     print('       using {} (version {})'.format(executable, version or 'unknown'))
-    return check('BoxLang is 1.17.0 or newer (required for `boxlang check`)', boxlang_cli.supports_check(), 'Found {}. Upgrade: bvm install latest'.format(version))
+    try:
+        from src import version_info
+        print('       --- what `BoxLang: Show Version Info` will show ---')
+        print(version_info.format_report(version_info.collect(os.getcwd())).replace('\n', '\n       '))
+    except Exception as exc:
+        report('fail', 'Version info report', exc)
+    return check('BoxLang is 1.17.0 or newer (required for `boxlang check`)', boxlang_cli.supports_check(), 'Found {}. Upgrade the BoxLang you use (bvm install latest, or install-boxlang --force)'.format(version))
 
 
 # ── steps 3 and 4: boxlang check ──────────────────────────────────────────────

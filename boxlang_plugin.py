@@ -18,6 +18,7 @@ from .src.completions import BoxlangUpdateCompletionDocCommand
 from .src.syntax_check import BoxlangCheckSyntaxCommand
 from .src.testbox_runner import BoxlangTestboxRunCommand
 from .src.symbols import BoxlangGotoSymbolCommand
+from .src.version_info import BoxlangShowVersionInfoCommand
 
 
 def plugin_loaded():

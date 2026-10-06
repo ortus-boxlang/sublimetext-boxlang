@@ -3,6 +3,7 @@ BoxLang CLI wrapper for version detection, AST parsing, formatting, and compilat
 """
 import os
 import re
+import shutil
 import subprocess
 import json
 import threading
@@ -35,22 +36,61 @@ def _decode_output(output):
             continue
     return output.decode('utf-8', 'replace')
 
-def _find_boxlang_executable():
-    """Find BoxLang executable in common locations."""
+def executable_candidates():
+    """Return the standard places a BoxLang executable can live, most specific first."""
+    bvm_home = os.environ.get('BVM_HOME') or os.path.expanduser('~/.bvm')
+    return [
+        os.path.join(bvm_home, 'current', 'bin', 'boxlang'),
+        '/opt/homebrew/bin/boxlang',
+        '/usr/local/bin/boxlang',
+        os.path.expanduser('~/.local/bin/boxlang'),
+        '/usr/local/boxlang/bin/boxlang',
+        os.path.expanduser('~/.local/boxlang/bin/boxlang'),
+        'c:\\boxlang\\bin\\boxlang.bat',
+        os.path.expandvars('${USERPROFILE}\\.local\\bin\\boxlang.bat'),
+    ]
+
+def resolve_executable():
+    """
+    Find the BoxLang executable.
+
+    Returns (path, source) where source is 'setting' (boxlang_executable_path), 'candidate'
+    (a standard install location), 'path' (found on PATH) or 'missing' (path is the bare
+    name `boxlang`, which will fail to run).
+    """
     custom_path = utils.get_setting('boxlang_executable_path')
     if custom_path:
-        return custom_path
-    candidates = [os.path.expanduser('~/.bvm/current/bin/boxlang'), '/usr/local/bin/boxlang', os.path.expanduser('~/.local/bin/boxlang'), '/usr/local/boxlang/bin/boxlang', os.path.expanduser('~/.local/boxlang/bin/boxlang'), 'c:\\boxlang\\bin\\boxlang.bat', os.path.expandvars('${USERPROFILE}\\.local\\bin\\boxlang.bat')]
-    for candidate in candidates:
+        return (custom_path, 'setting')
+    for candidate in executable_candidates():
         if os.path.isfile(candidate):
-            return candidate
-    return 'boxlang'
+            return (candidate, 'candidate')
+    on_path = shutil.which('boxlang')
+    if on_path:
+        return (on_path, 'path')
+    return ('boxlang', 'missing')
+
+def _find_boxlang_executable():
+    """Find BoxLang executable in common locations."""
+    return resolve_executable()[0]
 
 def initialize():
     """Initialize and detect BoxLang installation."""
     global _boxlang_installed, _boxlang_version, _boxlang_executable, _detection_complete
     _boxlang_executable = _find_boxlang_executable()
     threading.Thread(target=_detect_boxlang, daemon=True).start()
+
+def redetect():
+    """
+    Re-resolve the executable and re-run version detection synchronously.
+
+    Unlike initialize() this does not fire the one-time detection callbacks.
+    Returns (installed, version, executable, source).
+    """
+    global _boxlang_executable
+    executable, source = resolve_executable()
+    _boxlang_executable = executable
+    _detect_boxlang(notify=False)
+    return (_boxlang_installed, _boxlang_version, _boxlang_executable, source)
 
 def _run_command(args, timeout=30, cwd=None):
     """Run a subprocess command compatible with Python 3.3."""
@@ -109,7 +149,7 @@ def _find_version(output):
             return parsed
     return lines[0].strip() if lines else ''
 
-def _detect_boxlang():
+def _detect_boxlang(notify=True):
     """Detect BoxLang installation by running boxlang --version."""
     global _boxlang_installed, _boxlang_version, _detection_complete
     try:
@@ -124,8 +164,9 @@ def _detect_boxlang():
         _boxlang_installed = False
         _boxlang_version = ''
     _detection_complete = True
-    for callback in _detection_callbacks:
-        callback(_boxlang_installed, _boxlang_version)
+    if notify:
+        for callback in _detection_callbacks:
+            callback(_boxlang_installed, _boxlang_version)
 
 def _parse_version(version_line):
     """Extract version string from BoxLang version output."""
