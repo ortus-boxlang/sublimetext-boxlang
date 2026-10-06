@@ -62,6 +62,7 @@ sublimetext-boxlang/
 │   ├── syntax_check.py               # `boxlang check` on save / while typing
 │   ├── testbox_runner.py             # TestBox runs (BoxLang CLI runner or web runner) + results
 │   ├── symbols.py                    # Go to Spec/Suite and Go to Property quick panels
+│   ├── version_info.py               # Show Version Info: install type, BVM details, status bar suffix
 │   ├── type_resolver.py              # Medium-depth type inference engine
 │   ├── status_bar.py                 # Status bar (version, indexing, errors)
 │   ├── goto_boxlang_file.py          # Go-to-definition (files + URLs)
@@ -123,6 +124,9 @@ sublimetext-boxlang/
 - **`run_format(file_path)`** — Runs `boxlang format`
 - **`run_compile(source, target)`** — Runs `boxlang compile`
 - **`run_check(file_path)`** — Runs `boxlang check --format json`, returns `(issues, error)`; `supports_check()` gates on 1.17+
+- **`resolve_executable()`** — Returns `(path, source)`: `setting`, `candidate`, `path` or `missing`; shared by detection and the build commands
+- **`redetect()`** — Re-resolves and re-runs detection synchronously without firing the one-time callbacks
+- **`extract_json(text)`** — First JSON value in command output, skipping JVM warning lines
 - **`on_detection_complete(callback)`** — Register callback for detection completion
 - **`is_installed()` / `get_version()` / `get_executable()`** — State accessors
 
@@ -266,6 +270,11 @@ Medium-depth type inference (not full static analysis).
 ### `symbols.py` — Symbol Navigation
 - **`boxlang_goto_symbol`** text command, `kind`: `spec` or `property`
 - `find_specs(text)` and `find_properties(text)` are pure functions over buffer text. They exist because the grammar scopes cannot distinguish a property name from attribute names (`inject`, `type`) or a spec name from any other string, so Goto Symbol (`metadata/*.tmPreferences`) only covers classes and functions
+
+### `version_info.py` — Version Info
+- **`boxlang_show_version_info`** window command (palette: `BoxLang: Show Version Info`)
+- `classify_install()` derives the install type from the executable path (bvm, homebrew, quick-user, quick-system, windows, path, other). The quick installer has no version manager, so BVM details (`bvm_current`, `bvm_installed`, `read_bvmrc`) are only collected when `~/.bvm` or `BVM_HOME` exists
+- `status_suffix()` returns ` (.bvmrc X)` for the status bar only when a concrete `.bvmrc` version differs from the active one (`latest` and `snapshot` never count as a mismatch)
 
 ### `scripts/local_smoke_test.py`
 Runs the CLI integration (`boxlang check`, TestBox runner, optional web runner) against real installs with `sublime` stubbed out. Run it after changing `boxlang_cli.py`, `syntax_check.py` or `testbox_runner.py`.

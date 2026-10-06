@@ -9,6 +9,26 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.3.0] - 2026-10-06
+
+### Added
+
+- `BoxLang: Show Version Info` command: re-detects BoxLang and shows the version, executable, where it came from (BVM, Homebrew, quick installer user or system, Windows installer, custom setting or PATH), `BOXLANG_HOME`, project signals and an upgrade hint for that install type
+- BVM details (global `bvm current`, project `.bvmrc`, installed versions, mismatch warning) when BVM is present. Nothing BVM-specific is shown for other install types
+- The status bar adds `(.bvmrc X)` after the version when a BVM project file differs from the active version
+- Homebrew's `/opt/homebrew/bin/boxlang` is now a standard detection location, and `BVM_HOME` is honored
+
+### Changed
+
+- Build variants and the version detection now share one executable lookup (`boxlang_executable_path`, standard locations, then `PATH`). Build commands now also find BoxLang on `PATH`
+
+## [1.2.1] - 2026-10-06
+
+### Fixed
+
+- The status bar showed a JVM warning (`[0.001s][warning][cds] The shared archive file version ...`) instead of the BoxLang version when the JVM printed it before the real output. The version, `boxlang check` and AST JSON are now read after skipping JVM warning lines, so syntax checking and indexing keep working
+- README troubleshooting for finding which BoxLang and Java the package is using
+
 ## [1.2.0] - 2026-10-05
 
 Targets **BoxLang 1.17.0+** (verified through 1.18.0).

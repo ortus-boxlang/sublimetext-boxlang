@@ -40,6 +40,7 @@ Comprehensive BoxLang language support for Sublime Text 4. Provides syntax highl
 - **Syntax Check** — `boxlang check` on save (and optionally while typing) with squiggles, gutter icons, inline error annotations, an error panel, and F4/Shift+F4 navigation
 - **TestBox Runner** — Run the current bundle, the spec at the cursor, or all tests with the BoxLang runner (or a project web runner) and see failures inline
 - **Error Panel** — Parse error display with F4/Shift+F4 navigation
+- **Version Info** — `BoxLang: Show Version Info` shows the BoxLang version, executable, install type (BVM, Homebrew, quick installer, ...) and project details
 - **Status Bar** — Version, indexing progress, and error counts
 - **Code Snippets** — 19 built-in snippets for common patterns, including sets, ranges, inner classes, query transformers and scheduled tasks
 
@@ -85,6 +86,63 @@ On first launch, the setup wizard will:
 3. **Show Quick Tips** — Display essential keyboard shortcuts
 
 Re-run the wizard anytime: `BoxLang: Run Setup Wizard` (Command Palette)
+
+---
+
+## Troubleshooting
+
+### Which BoxLang is Sublime Text using?
+
+Run `BoxLang: Show Version Info` from the Command Palette. It re-detects BoxLang each time and shows:
+
+```
+BoxLang Version Info
+============================================================
+Version      : 1.18.0+1
+Executable   : /Users/you/.local/bin/boxlang
+Source       : Quick installer (user)
+Features     : syntax check available
+BOXLANG_HOME : /Users/you/.boxlang (default, variable not set)
+
+Project      : /Users/you/work/app
+  .boxlang.json : not found
+
+Upgrade      : install-boxlang --check-update
+```
+
+It works for every way of installing BoxLang, and the **Source** line says which one was found:
+
+| Source | Typical path |
+|--------|--------------|
+| BVM | `~/.bvm/current/bin/boxlang` |
+| Homebrew | `/opt/homebrew/bin/boxlang` |
+| Quick installer (user) | `~/.local/bin/boxlang` |
+| Quick installer (system) | `/usr/local/bin/boxlang` |
+| Windows installer | `C:\BoxLang\bin\boxlang.bat` |
+| `boxlang_executable_path` setting | whatever you set |
+| `PATH` | anything else Sublime can find |
+
+If you use **BVM**, the report also shows `bvm current`, the project's `.bvmrc`, and the installed versions, and warns when the `.bvmrc` version is not the one that is active. The status bar adds `(.bvmrc 1.17.6)` after the version in that case. Without BVM none of this appears.
+
+Sublime Text checks, in order: the `boxlang_executable_path` setting, the standard locations in the table above, then your `PATH`. On macOS an app launched from the Dock or Spotlight does **not** read your shell profile, so its `PATH` and `JAVA_HOME` can differ from your Terminal's. If detection picks the wrong BoxLang or says it is not found, pin the exact one in `Preferences: BoxLang Settings`:
+
+```json
+{ "boxlang_executable_path": "/Users/you/.local/bin/boxlang" }
+```
+
+To see which Java a BoxLang runs on, from a Terminal:
+
+```bash
+which boxlang
+head -40 "$(which boxlang)"      # the launcher script shows how it picks a JVM
+echo "$JAVA_HOME"
+java -version
+/usr/libexec/java_home -V         # macOS: every installed JDK
+```
+
+### The status bar shows `[warning][cds] The shared archive file version ...`
+
+That is a JVM warning, not a package error: the Java running BoxLang does not match the class data sharing archive it was built with, and the JVM prints a line before BoxLang's own output. Since 1.2.1 the package skips JVM warning lines when reading the BoxLang version and JSON output. To remove the warning itself, make BoxLang start on the JDK it expects: reinstall it (`bvm install latest --force`), or point `JAVA_HOME` at the matching JDK, then run `boxlang --version` in a Terminal and confirm the warning is gone.
 
 ---
 
@@ -308,7 +366,7 @@ Steps that need something you do not have (TestBox, a web runner) are skipped. T
 
 ## Running Tests
 
-The package includes a comprehensive test suite using pytest and TestBox-style expectations (321 tests across 19 files).
+The package includes a comprehensive test suite using pytest and TestBox-style expectations (363 tests across 20 files).
 
 ### Quick Start
 

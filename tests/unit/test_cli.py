@@ -199,3 +199,76 @@ class TestBoxlangCLIRunCompile:
         success, error = boxlang_cli.run_compile("/src", "/bin")
         expect(success).to_be_false()
         expect(error).to_be("Compile error")
+
+
+CDS_WARNING = "[0.001s][warning][cds] The shared archive file version 0x12 does not match the required version 0x13."
+
+
+class TestJvmNoiseTolerance:
+    """The JVM can print warnings ahead of BoxLang's own output."""
+
+    def test_version_ignores_jvm_warning_line(self):
+        from src import boxlang_cli
+        output = CDS_WARNING + "\nBoxLang 1.18.0+1 (Build: 20261002)\n"
+        expect(boxlang_cli._find_version(output)).to_be("1.18.0+1")
+
+    def test_version_with_warning_after_version_line(self):
+        from src import boxlang_cli
+        expect(boxlang_cli._find_version("BoxLang v1.17.6+3\n" + CDS_WARNING)).to_be("1.17.6+3")
+
+    def test_version_falls_back_to_first_real_line(self):
+        from src import boxlang_cli
+        expect(boxlang_cli._find_version(CDS_WARNING + "\nsomething unexpected\n")).to_be("something unexpected")
+
+    def test_version_empty_output(self):
+        from src import boxlang_cli
+        expect(boxlang_cli._find_version("")).to_be("")
+        expect(boxlang_cli._find_version(CDS_WARNING)).to_be("")
+
+    def test_detection_survives_warning(self):
+        from src import boxlang_cli
+        with patch.object(boxlang_cli, "_run_command", return_value=(0, CDS_WARNING + "\nBoxLang 1.18.0+1\n", "")):
+            boxlang_cli._detect_boxlang()
+        expect(boxlang_cli.get_version()).to_be("1.18.0+1")
+        expect(boxlang_cli.supports_check()).to_be_true()
+
+    def test_extract_json_skips_leading_bracket_noise(self):
+        from src import boxlang_cli
+        text = CDS_WARNING + '\n[ {\n  "file" : "a.bx",\n  "valid" : true,\n  "issues" : [ ]\n} ]\n'
+        data = boxlang_cli.extract_json(text)
+        expect(data[0]["file"]).to_be("a.bx")
+
+    def test_extract_json_object_and_none(self):
+        from src import boxlang_cli
+        expect(boxlang_cli.extract_json("warning line\n{\"a\": 1}")).to_be({"a": 1})
+        expect(boxlang_cli.extract_json(CDS_WARNING)).to_be_none()
+        expect(boxlang_cli.extract_json("")).to_be_none()
+
+    def test_check_output_with_warning_prefix(self):
+        from src import boxlang_cli
+        text = CDS_WARNING + '\n[{"file": "bad.bxs", "valid": false, "issues": [{"message": "m", "line": 1, "column": 3}]}]'
+        records = boxlang_cli.parse_check_output(text)
+        expect(records[0]["issues"][0]["line"]).to_be(1)
+
+    def test_run_check_with_warning_prefix(self):
+        from src import boxlang_cli
+        out = CDS_WARNING + '\n[{"file": "bad.bxs", "valid": false, "issues": [{"message": "m", "line": 2, "column": 1}]}]'
+        with patch.object(boxlang_cli, "_run_command", return_value=(1, out, "")):
+            issues, error = boxlang_cli.run_check("/p/bad.bxs")
+        expect(error).to_be_none()
+        expect(issues[0]["line"]).to_be(2)
+
+    def test_run_ast_with_warning_prefix(self):
+        from src import boxlang_cli
+        out = CDS_WARNING + '\n{"statements": []}'
+        with patch.object(boxlang_cli, "_run_command", return_value=(0, out, "")):
+            ast, error = boxlang_cli.run_ast("/p/a.bx")
+        expect(error).to_be_none()
+        expect(ast).to_be({"statements": []})
+
+    def test_run_ast_without_json_is_an_error(self):
+        from src import boxlang_cli
+        with patch.object(boxlang_cli, "_run_command", return_value=(0, CDS_WARNING, "")):
+            ast, error = boxlang_cli.run_ast("/p/a.bx")
+        expect(ast).to_be_none()
+        expect(error).to_contain("Invalid JSON")
