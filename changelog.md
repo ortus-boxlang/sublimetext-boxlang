@@ -9,6 +9,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.2.1] - 2026-10-06
+
+### Fixed
+
+- The status bar showed a JVM warning (`[0.001s][warning][cds] The shared archive file version ...`) instead of the BoxLang version when the JVM printed it before the real output. The version, `boxlang check` and AST JSON are now read after skipping JVM warning lines, so syntax checking and indexing keep working
+- README troubleshooting for finding which BoxLang and Java the package is using
+
 ## [1.2.0] - 2026-10-05
 
 Targets **BoxLang 1.17.0+** (verified through 1.18.0).

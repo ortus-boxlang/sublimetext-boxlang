@@ -182,6 +182,13 @@ def boxlang_checks(boxlang_cli, executable):
         report('fail', 'BoxLang executable found', 'Not on PATH. Install with `bvm install latest && bvm use latest` or pass --boxlang PATH')
         return False
     boxlang_cli._boxlang_executable = executable
+    try:
+        raw = subprocess.run([executable, '--version'], stdout=subprocess.PIPE, stderr=subprocess.STDOUT, universal_newlines=True, timeout=30).stdout
+    except (OSError, subprocess.SubprocessError):
+        raw = ''
+    noise = [line for line in raw.splitlines() if re.match(r'^\s*\[\d+(?:\.\d+)?s\]\[', line)]
+    if noise:
+        report('skip', 'JVM printed warnings before the BoxLang version (the package skips them)', '\n'.join(noise) + '\nThis usually means BoxLang is starting on a different JDK than it was built for. Check JAVA_HOME and `java -version`.')
     boxlang_cli._detect_boxlang()
     version = boxlang_cli.get_version()
     check('BoxLang runs (`boxlang --version`)', boxlang_cli.is_installed(), 'Could not run {}'.format(executable))

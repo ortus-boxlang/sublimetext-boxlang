@@ -88,6 +88,38 @@ Re-run the wizard anytime: `BoxLang: Run Setup Wizard` (Command Palette)
 
 ---
 
+## Troubleshooting
+
+### Which BoxLang and Java is Sublime Text using?
+
+Sublime Text finds BoxLang from the `boxlang_executable_path` setting, then `~/.bvm/current/bin/boxlang` and a few standard locations, then your `PATH`. On macOS, an app launched from the Dock or Spotlight does **not** read your shell profile, so its `PATH` and `JAVA_HOME` can differ from your Terminal's. To see what the package picked up, open `View > Show Console` and run this (it assumes the package folder is named `BoxLang`):
+
+```python
+from BoxLang.src import boxlang_cli; print(boxlang_cli.get_executable(), boxlang_cli.get_version())
+```
+
+The status bar also shows `BoxLang v<version>` once detection succeeds, or `BoxLang: not found`. To remove any doubt, set the path explicitly in `Preferences: BoxLang Settings`:
+
+```json
+{ "boxlang_executable_path": "/Users/you/.bvm/current/bin/boxlang" }
+```
+
+To see which Java that BoxLang runs on, from a Terminal:
+
+```bash
+which boxlang
+head -40 "$(which boxlang)"      # the launcher script shows how it picks a JVM
+echo "$JAVA_HOME"
+java -version
+/usr/libexec/java_home -V         # macOS: every installed JDK
+```
+
+### The status bar shows `[warning][cds] The shared archive file version ...`
+
+That is a JVM warning, not a package error: the Java running BoxLang does not match the class data sharing archive it was built with, and the JVM prints a line before BoxLang's own output. Since 1.2.1 the package skips JVM warning lines when reading the BoxLang version and JSON output. To remove the warning itself, make BoxLang start on the JDK it expects: reinstall it (`bvm install latest --force`), or point `JAVA_HOME` at the matching JDK, then run `boxlang --version` in a Terminal and confirm the warning is gone.
+
+---
+
 ## Key Bindings
 
 | Action | macOS | Linux | Windows |

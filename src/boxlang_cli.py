@@ -2,6 +2,7 @@
 BoxLang CLI wrapper for version detection, AST parsing, formatting, and compilation.
 """
 import os
+import re
 import subprocess
 import json
 import threading
@@ -69,6 +70,45 @@ def _run_command(args, timeout=30, cwd=None):
         stdout, stderr = proc.communicate()
         raise
 
+_JVM_LOG_LINE = re.compile(r'^\s*\[\d+(?:\.\d+)?s\]\[')
+
+def extract_json(text):
+    """
+    Return the first JSON array or object found in command output.
+
+    The JVM can print warnings (for example `[0.001s][warning][cds] ...`) ahead of the real
+    output, so the output is scanned line by line instead of assuming it is pure JSON.
+    Returns None when no JSON is found.
+    """
+    if not text:
+        return None
+    decoder = json.JSONDecoder()
+    lines = text.split('\n')
+    for index, line in enumerate(lines):
+        if line.lstrip()[:1] not in ('[', '{'):
+            continue
+        try:
+            value, _ = decoder.raw_decode('\n'.join(lines[index:]).lstrip())
+        except ValueError:
+            continue
+        if isinstance(value, (list, dict)):
+            return value
+    return None
+
+def _find_version(output):
+    """Pick the version out of `boxlang --version` output, skipping JVM warning lines."""
+    lines = [line for line in output.splitlines() if line.strip() and not _JVM_LOG_LINE.match(line)]
+    for line in lines:
+        if 'boxlang' in line.lower():
+            parsed = _parse_version(line)
+            if parsed:
+                return parsed
+    for line in lines:
+        parsed = _parse_version(line)
+        if parsed:
+            return parsed
+    return lines[0].strip() if lines else ''
+
 def _detect_boxlang():
     """Detect BoxLang installation by running boxlang --version."""
     global _boxlang_installed, _boxlang_version, _detection_complete
@@ -76,9 +116,7 @@ def _detect_boxlang():
         returncode, stdout, stderr = _run_command([_boxlang_executable, '--version'], timeout=10)
         if returncode == 0 and stdout.strip():
             _boxlang_installed = True
-            version_line = stdout.strip().split('\n')[0]
-            version_match = _parse_version(version_line)
-            _boxlang_version = version_match or version_line
+            _boxlang_version = _find_version(stdout)
         else:
             _boxlang_installed = False
             _boxlang_version = ''
@@ -138,9 +176,8 @@ def parse_check_output(stdout):
     Returns a list of {file, valid, issues} records, or None when the output is not valid JSON.
     Each issue is {message, line, column}.
     """
-    try:
-        data = json.loads(stdout)
-    except (JSON_DECODE_ERROR, TypeError):
+    data = extract_json(stdout)
+    if data is None:
         return None
     if isinstance(data, dict):
         data = [data]
@@ -204,7 +241,9 @@ def run_ast(file_path, callback=None):
         try:
             returncode, stdout, stderr = _run_command([_boxlang_executable, '--bx-printast', file_path], timeout=30)
             if returncode == 0:
-                ast = json.loads(stdout)
+                ast = extract_json(stdout)
+                if ast is None:
+                    raise JSON_DECODE_ERROR('no JSON found in the BoxLang output', stdout, 0)
                 if callback:
                     callback(ast, None)
                 else:
@@ -251,7 +290,9 @@ def run_ast_code(code, callback=None):
         try:
             returncode, stdout, stderr = _run_command([_boxlang_executable, '--bx-printast', '--bx-code', code], timeout=30)
             if returncode == 0:
-                ast = json.loads(stdout)
+                ast = extract_json(stdout)
+                if ast is None:
+                    raise JSON_DECODE_ERROR('no JSON found in the BoxLang output', stdout, 0)
                 if callback:
                     callback(ast, None)
                 else:
