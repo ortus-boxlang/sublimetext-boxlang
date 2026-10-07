@@ -9,6 +9,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- `BoxLang: Open Documentation Website`, `BoxLang: Get Support` and `TestBox: Open Documentation Website` Command Palette commands
+
+### Fixed
+
+- Inline documentation plugins now receive file and project context even when the cursor is outside a recognized syntax context
+
 ## [1.3.0] - 2026-10-06
 
 ### Added

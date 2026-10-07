@@ -9,6 +9,11 @@ from .src import plugin_loaded as _src_plugin_loaded
 
 # Re-export sub-package commands at root level so ST4 discovers and registers them.
 from .src.auto_close_tag import BoxlangAutoCloseTagCommand
+from .src.commands.open_docs import (
+    BoxlangGetSupportCommand,
+    BoxlangOpenDocsCommand,
+    BoxlangOpenTestboxDocsCommand,
+)
 from .src.commands.wizard import BoxlangRunWizardCommand
 from .src.component_index import BoxlangIndexProjectCommand, BoxlangCreateProjectCommand
 from .src.inline_documentation import BoxlangInlineDocumentationCommand

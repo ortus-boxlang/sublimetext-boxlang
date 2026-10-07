@@ -21,6 +21,18 @@
         "args": { "doc_type": "inline_doc" }
     },
     {
+        "caption": "BoxLang: Open Documentation Website",
+        "command": "boxlang_open_docs"
+    },
+    {
+        "caption": "BoxLang: Get Support",
+        "command": "boxlang_get_support"
+    },
+    {
+        "caption": "TestBox: Open Documentation Website",
+        "command": "boxlang_open_testbox_docs"
+    },
+    {
         "caption": "BoxLang: Go to Definition",
         "command": "boxlang_goto_file"
     },

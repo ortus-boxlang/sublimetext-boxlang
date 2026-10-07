@@ -37,6 +37,20 @@ class TestPluginSystem:
         expect(boxlang_plugins.plugins).to_be_a(list)
 
 
+class TestPackageCommands:
+    """Tests for package-level commands."""
+
+    def test_open_docs_command_opens_boxlang_website(self, monkeypatch):
+        from src.commands import open_docs
+
+        opened_urls = []
+        monkeypatch.setattr(open_docs.webbrowser, 'open_new_tab', opened_urls.append)
+
+        open_docs.BoxlangOpenDocsCommand().run()
+
+        expect(opened_urls).to_be(['https://boxlang.ortusbooks.com'])
+
+
 class TestPluginModuleImports:
     """Tests that all plugin modules can be imported."""
 
@@ -201,6 +215,24 @@ class TestInlineDocumentationHelpers:
 
         expect(get_documentation_position(MockView(), 5)).to_be(4)
         expect(get_documentation_position(MockView(), 4)).to_be(4)
+
+
+class TestDocumentationCommands:
+    """Tests for commands that open documentation and support sites."""
+
+    def test_browser_commands_open_their_configured_urls(self, monkeypatch):
+        from src.commands import open_docs
+
+        opened_urls = []
+        monkeypatch.setattr(open_docs.webbrowser, 'open_new_tab', opened_urls.append)
+
+        open_docs.BoxlangGetSupportCommand().run()
+        open_docs.BoxlangOpenTestboxDocsCommand().run()
+
+        expect(opened_urls).to_be([
+            'https://www.boxlang.io/plans',
+            'https://testbox.ortusbooks.com',
+        ])
 
 
 class TestGotoBoxlangFile:
