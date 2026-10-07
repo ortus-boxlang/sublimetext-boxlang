@@ -4,16 +4,17 @@ in a top-level package file so Sublime Text registers them correctly.
 """
 import sublime
 import sublime_plugin
+import importlib
 from .src import completions, error_panel, events
 from .src import plugin_loaded as _src_plugin_loaded
 
 # Re-export sub-package commands at root level so ST4 discovers and registers them.
 from .src.auto_close_tag import BoxlangAutoCloseTagCommand
-from .src.commands.open_docs import (
-    BoxlangGetSupportCommand,
-    BoxlangOpenDocsCommand,
-    BoxlangOpenTestboxDocsCommand,
-)
+from .src.commands import open_docs as _open_docs
+_open_docs = importlib.reload(_open_docs)
+BoxlangGetSupportCommand = _open_docs.BoxlangGetSupportCommand
+BoxlangOpenDocsCommand = _open_docs.BoxlangOpenDocsCommand
+BoxlangOpenTestboxDocsCommand = _open_docs.BoxlangOpenTestboxDocsCommand
 from .src.commands.wizard import BoxlangRunWizardCommand
 from .src.component_index import BoxlangIndexProjectCommand, BoxlangCreateProjectCommand
 from .src.inline_documentation import BoxlangInlineDocumentationCommand

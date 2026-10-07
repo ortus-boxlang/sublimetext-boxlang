@@ -16,6 +16,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 
 - Inline documentation plugins now receive file and project context even when the cursor is outside a recognized syntax context
+- The root plugin reloads the documentation command module so newly added browser commands are available after plugin reload
 
 ## [1.3.0] - 2026-10-06
 
