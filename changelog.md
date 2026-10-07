@@ -17,6 +17,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Inline documentation plugins now receive file and project context even when the cursor is outside a recognized syntax context
 - The root plugin reloads the documentation command module so newly added browser commands are available after plugin reload
+- TestBox runner discovery now checks `./testbox`, `./lib/testbox` and source-checkout layouts; missing runners explain project-level CLI and HTTP configuration
 
 ## [1.3.0] - 2026-10-06
 

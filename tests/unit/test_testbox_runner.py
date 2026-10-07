@@ -47,6 +47,44 @@ class TestSettings:
         expect(settings["timeout"]).to_be(60)
         expect(settings["http_runner_url"]).to_be("http://localhost:8080/tests/runner.bxm")
 
+    def test_save_project_testbox_setting_preserves_existing_settings(self):
+        from src import testbox_runner
+        window = MagicMock()
+        window.project_file_name.return_value = "/proj/project.sublime-project"
+        window.project_data.return_value = {
+            "settings": {"other": True, "boxlang_testbox": {"directory": "tests.unit"}}
+        }
+
+        saved = testbox_runner.save_project_testbox_setting(
+            window, "runner_path", "lib/testbox/system/runners/BoxLangRunner.bx"
+        )
+
+        expect(saved).to_be_true()
+        project_data = window.set_project_data.call_args[0][0]
+        expect(project_data["settings"]["other"]).to_be_true()
+        expect(project_data["settings"]["boxlang_testbox"]["directory"]).to_be("tests.unit")
+        expect(project_data["settings"]["boxlang_testbox"]["runner_path"]).to_be(
+            "lib/testbox/system/runners/BoxLangRunner.bx"
+        )
+
+    def test_missing_runner_prompt_offers_local_and_http_options(self):
+        from src import testbox_runner
+        window = MagicMock()
+
+        testbox_runner.prompt_for_runner(window, MagicMock(), "/proj")
+
+        choices, on_choice = window.show_quick_panel.call_args[0]
+        expect(choices).to_be([
+            "Set a local BoxLangRunner.bx path",
+            "Use an HTTP runner",
+        ])
+        on_choice(0)
+        expect(window.show_input_panel.call_args[0][0]).to_contain("Runner path")
+
+        window.show_input_panel.reset_mock()
+        on_choice(1)
+        expect(window.show_input_panel.call_args[0][0]).to_contain("HTTP runner URL")
+
 
 class TestPaths:
     def test_bundle_dot_path(self):
@@ -64,6 +102,22 @@ class TestPaths:
         nested.mkdir(parents=True)
         expect(testbox_runner.find_runner(str(nested), str(tmp_path))).to_be(str(runner))
         expect(testbox_runner.find_runner(str(nested), None)).to_be(str(runner))
+
+    def test_find_runner_supports_lib_testbox_install(self, tmp_path):
+        from src import testbox_runner
+        runner = tmp_path / "lib" / "testbox" / "system" / "runners" / "BoxLangRunner.bx"
+        runner.parent.mkdir(parents=True)
+        runner.write_text("class {}")
+
+        expect(testbox_runner.find_runner(str(tmp_path), str(tmp_path))).to_be(str(runner))
+
+    def test_find_runner_supports_testbox_source_checkout(self, tmp_path):
+        from src import testbox_runner
+        runner = tmp_path / "system" / "runners" / "BoxLangRunner.bx"
+        runner.parent.mkdir(parents=True)
+        runner.write_text("class {}")
+
+        expect(testbox_runner.find_runner(str(tmp_path), str(tmp_path))).to_be(str(runner))
 
     def test_find_runner_returns_none_when_missing(self, tmp_path):
         from src import testbox_runner

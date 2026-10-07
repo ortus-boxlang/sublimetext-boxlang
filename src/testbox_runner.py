@@ -24,7 +24,11 @@ from . import utils
 
 _PANEL_NAME = 'boxlang_testbox'
 _REGION_KEY = 'boxlang_testbox_failures'
-_RUNNER_RELATIVE = os.path.join('testbox', 'system', 'runners', 'BoxLangRunner.bx')
+_RUNNER_RELATIVE_PATHS = (
+    os.path.join('testbox', 'system', 'runners', 'BoxLangRunner.bx'),
+    os.path.join('lib', 'testbox', 'system', 'runners', 'BoxLangRunner.bx'),
+    os.path.join('system', 'runners', 'BoxLangRunner.bx'),
+)
 SPEC_FUNCTIONS = ('it', 'fit', 'xit', 'test', 'ftest', 'xtest', 'then', 'fthen', 'xthen')
 SUITE_FUNCTIONS = ('describe', 'fdescribe', 'xdescribe', 'feature', 'ffeature', 'xfeature', 'story', 'fstory', 'xstory', 'given', 'fgiven', 'xgiven', 'when', 'fwhen', 'xwhen', 'scenario', 'fscenario', 'xscenario')
 CALL_PATTERN = re.compile(r'\b(' + '|'.join(SPEC_FUNCTIONS + SUITE_FUNCTIONS) + r')\s*\(\s*(["\'])((?:(?!\2).)*)\2')
@@ -57,8 +61,9 @@ def get_testbox_settings(view=None):
 # ── path helpers ──────────────────────────────────────────────────────────────
 
 def find_runner(start_dir, project_root=None, configured=''):
-    """Locate BoxLangRunner.bx: a configured path, the project root, or any parent of start_dir."""
+    """Locate BoxLangRunner.bx in installed-module or source-checkout layouts."""
     if configured:
+        configured = os.path.expanduser(configured)
         candidate = configured if os.path.isabs(configured) or not project_root else os.path.join(project_root, configured)
         return candidate if os.path.isfile(candidate) else None
     seen = []
@@ -72,7 +77,15 @@ def find_runner(start_dir, project_root=None, configured=''):
             break
         current = parent
     for directory in seen:
-        candidate = os.path.join(directory, _RUNNER_RELATIVE)
+        candidate = _find_runner_in_directory(directory)
+        if candidate:
+            return candidate
+    return None
+
+
+def _find_runner_in_directory(directory):
+    for relative_path in _RUNNER_RELATIVE_PATHS:
+        candidate = os.path.join(directory, relative_path)
         if os.path.isfile(candidate):
             return candidate
     return None
@@ -141,6 +154,69 @@ def build_http_url(base_url, settings, bundle=None, target=None):
         params.append(('testSpecs' if target[0] == 'spec' else 'testSuites', target[1]))
     separator = '&' if '?' in base_url else '?'
     return base_url + separator + urlencode(params)
+
+
+def save_project_testbox_setting(window, key, value):
+    """Save one TestBox option in the open Sublime project file."""
+    if not window.project_file_name():
+        sublime.error_message(
+            'Save or open a Sublime project before saving TestBox settings. '
+            'Project settings belong in the .sublime-project file.'
+        )
+        return False
+    project_data = window.project_data() or {}
+    settings = dict(project_data.get('settings') or {})
+    testbox_settings = dict(settings.get('boxlang_testbox') or {})
+    testbox_settings[key] = value
+    settings['boxlang_testbox'] = testbox_settings
+    project_data['settings'] = settings
+    window.set_project_data(project_data)
+    return True
+
+
+def _prompt_runner_path(window, view, project_root):
+    def on_runner_path(path):
+        path = path.strip()
+        if not path:
+            return
+        if not find_runner(project_root, project_root, path):
+            sublime.error_message('TestBox runner not found at: {}'.format(path))
+            return
+        if save_project_testbox_setting(window, 'runner_path', path):
+            start_run(window, view, last=_last_run.get('args'))
+
+    window.show_input_panel(
+        'Runner path (absolute or relative to project root):', '', on_runner_path, None, None
+    )
+
+
+def _prompt_http_runner(window, view):
+    def on_http_url(url):
+        url = url.strip()
+        if not url:
+            return
+        if not url.startswith(('http://', 'https://')):
+            sublime.error_message('Enter an HTTP or HTTPS TestBox runner URL.')
+            return
+        if save_project_testbox_setting(window, 'http_runner_url', url):
+            start_run(window, view, last=_last_run.get('args'))
+
+    window.show_input_panel('TestBox HTTP runner URL:', '', on_http_url, None, None)
+
+
+def prompt_for_runner(window, view, project_root):
+    """Ask whether to configure a local runner path or an HTTP runner."""
+    choices = ['Set a local BoxLangRunner.bx path', 'Use an HTTP runner']
+    actions = (
+        lambda: _prompt_runner_path(window, view, project_root),
+        lambda: _prompt_http_runner(window, view),
+    )
+
+    def on_choice(index):
+        if 0 <= index < len(actions):
+            actions[index]()
+
+    window.show_quick_panel(choices, on_choice)
 
 
 # ── parsing results ───────────────────────────────────────────────────────────
@@ -359,7 +435,11 @@ def start_run(window, view, scope='file', last=None):
             return
         runner_path = find_runner(os.path.dirname(file_path) if file_path else project_root, project_root, settings.get('runner_path'))
         if not runner_path:
-            sublime.error_message('TestBox BoxLang runner not found.\n\nInstall TestBox 7+ in your project (box install testbox) or set "runner_path" in the "boxlang_testbox" setting.\n\nTo use a web runner instead, set "http_runner_url" in your project settings.')
+            sublime.error_message(
+                'TestBox BoxLang runner not found. Checked ./testbox, ./lib/testbox and '
+                './system source-checkout locations. Choose how to configure TestBox.'
+            )
+            prompt_for_runner(window, view, project_root)
             return
         bx_path = boxlang_cli.get_executable()
     sublime.status_message('TestBox: running {}...'.format(title))
