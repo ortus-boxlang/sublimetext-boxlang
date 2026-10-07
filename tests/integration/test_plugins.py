@@ -153,10 +153,39 @@ class TestBoxlangViewContext:
 
         monkeypatch.setattr(buffer_metadata, 'get_cached_view_metadata', lambda view: (_ for _ in ()).throw(RuntimeError('boom')))
 
-        boxlang_view = BoxlangView(MockView(), 1)
+        boxlang_view = BoxlangView(MockView(), 0)
 
         expect(boxlang_view.type).to_be('script')
         expect(boxlang_view.view_metadata).to_be_a(dict)
+
+    def test_boxlang_view_initializes_plugin_metadata_without_syntax_context(self, mock_sublime):
+        """Plugins may inspect file/project metadata even outside recognized syntax."""
+        from src.boxlang_view import BoxlangView
+
+        class MockView:
+            def match_selector(self, point, selector):
+                return False
+
+            def file_name(self):
+                return '/path/to/project/Example.bx'
+
+            def window(self):
+                return None
+
+            def substr(self, point):
+                return ''
+
+        boxlang_view = BoxlangView(MockView(), 1)
+
+        expect(boxlang_view.type).to_be_none()
+        expect(boxlang_view.file_path).to_be('/path/to/project/Example.bx')
+        expect(boxlang_view.project_name).to_be_none()
+
+        from src.plugins_.classes import get_inline_documentation as get_class_documentation
+        from src.plugins_.applicationbx import BoxlangPlugin as ApplicationPlugin
+
+        expect(get_class_documentation(boxlang_view, 'hover_doc')).to_be_none()
+        expect(ApplicationPlugin().get_inline_documentation(boxlang_view, 'hover_doc')).to_be_none()
 
 
 class TestInlineDocumentationHelpers:

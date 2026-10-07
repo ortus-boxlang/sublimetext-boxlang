@@ -77,10 +77,10 @@ class BoxlangView:
         self.MethodPreview = MethodPreview
         self.GotoBoxlangFile = GotoBoxlangFile
         self.prefix_start = self.position - len(self.prefix)
-        self.determine_type()
         self.view_metadata = {}
+        self.determine_type()
+        self.set_base_info()
         if self.type:
-            self.set_base_info()
             try:
                 self.view_metadata = buffer_metadata.get_cached_view_metadata(view)
             except Exception as exc:
@@ -91,7 +91,7 @@ class BoxlangView:
         self.file_path = utils.normalize_path(self.view.file_name())
         self.file_name = self.file_path.split('/').pop().lower() if self.file_path else None
         self.project_name = utils.get_project_name(self.view)
-        self.previous_char = self.view.substr(self.prefix_start - 1)
+        self.previous_char = self.view.substr(self.prefix_start - 1) if self.prefix_start > 0 else ''
 
     def determine_type(self):
         """Determine the context type at the current position."""
