@@ -647,54 +647,6 @@ git commit -m "chore: update completion data from boxlang-docs"
 
 ---
 
-## Known Limitations
-
-1. **AST for `.bxm`** — `boxlang --bx-printast` does not support markup files; uses flexible tag parser
-2. **AST class parsing** — BoxLang v1.13.0 parses `class` as `BoxIdentifier` expressions, requiring sequential pattern matching
-3. **Java introspection** — `createObject("java", "...")` types resolve as `"any"` (deferred)
-4. **MCP server** — Available but deferred to Phase 5
-5. **In-memory index** — No disk persistence; rebuilt each session
-6. **Single-threaded indexing** — Files indexed sequentially; will be parallelized in Phase 4
-
----
-
-## Roadmap
-
-### Phase 2 (Complete)
-
-- [x] Syntax highlighting (`.bx`, `.bxs`, `.bxm`)
-- [x] 940+ BIF, 86 tag, and 370+ member function completions
-- [x] Dot-path and type-aware completions
-- [x] Component indexing with inheritance resolution
-- [x] Inline documentation (F1 popup, hover, completion docs)
-- [x] Code formatting via `boxlang format`
-- [x] Build system (run, compile, debug, audit)
-- [x] Error panel with F4/Shift+F4 navigation
-- [x] Syntax checking via `boxlang check`
-- [x] Type inference engine (medium depth)
-- [x] Go-to-definition via Command Palette
-- [x] Status bar integration (version, indexing, errors)
-- [x] 10 code snippets for common patterns
-- [x] `applicationbx` plugin — Application.bx lifecycle completions
-- [x] `in_file_completions` plugin — in-file symbol completions
-- [x] Root-level event listener registration
-- [x] Sub-package command re-export for ST4 compatibility
-
-### Phase 3
-
-- [ ] Auto-close tags on `>`
-
-### Phase 4
-
-- [ ] Java class introspection
-
-
-## Documentation
-
-Full BoxLang documentation: [boxlang.ortusbooks.com](https://boxlang.ortusbooks.com)
-
----
-
 ## License
 
 Apache License 2.0 — see [license.txt](license.txt) for details.
