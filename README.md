@@ -44,6 +44,23 @@ Comprehensive BoxLang language support for Sublime Text 4. Provides syntax highl
 - **Status Bar** — Version, indexing progress, and error counts
 - **Code Snippets** — 19 built-in snippets for common patterns, including sets, ranges, inner classes, query transformers and scheduled tasks
 
+## Screenshots
+
+<table>
+  <tr>
+    <td align="center"><img src="images/sublime-introspection.png" alt="BoxLang function completions in Sublime Text" width="100%"><br><sub>Context-aware completions</sub></td>
+    <td align="center"><img src="images/sublime-insights.png" alt="Inline BoxLang function documentation in Sublime Text" width="100%"><br><sub>Inline documentation</sub></td>
+  </tr>
+  <tr>
+    <td align="center"><img src="images/sublime-build.png" alt="BoxLang build variants in the Sublime Text command palette" width="100%"><br><sub>Build variants</sub></td>
+    <td align="center"><img src="images/sublime-syntax-issues.png" alt="BoxLang syntax errors shown inline and in the error panel" width="100%"><br><sub>Syntax diagnostics</sub></td>
+  </tr>
+  <tr>
+    <td align="center"><img src="images/sublime-testbox-runner.png" alt="TestBox test results in Sublime Text" width="100%"><br><sub>TestBox results</sub></td>
+    <td align="center"><img src="images/sublime-testbox-navigator.png" alt="Navigating TestBox specs from Sublime Text" width="100%"><br><sub>TestBox spec navigation</sub></td>
+  </tr>
+</table>
+
 ---
 
 ## Requirements
